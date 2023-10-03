@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -28,6 +30,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
-
+  await Supabase.initialize(
+    url: 'https://${dotenv.env['SUPBASE_PROJECT_ID']}.supabase.co',
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+  );
   runApp(await builder());
 }
