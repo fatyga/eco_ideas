@@ -15,3 +15,10 @@ abstract class AuthRepository {
 
   Future<void> logOut();
 }
+
+// Exceptions
+abstract class AuthException implements Exception {}
+
+class UserNotFoundException extends AuthException {}
+
+class InvalidPasswordException extends AuthException {}

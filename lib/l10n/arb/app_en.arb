@@ -4,4 +4,6 @@
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
     }
+    "userNotFoundExceptionSnackbarText" : "No user found for provided credentials.",
+    "invalidPasswordExceptionSnackbarText" : "Wrong password for given username."
 }
