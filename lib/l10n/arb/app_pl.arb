@@ -3,8 +3,6 @@
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"
-    }
-
-    "userNotFoundExceptionSnackbarText" : "Użytkownik o podanym nicku nie istnieje.",
-    "invalidPasswordExceptionSnackbarText" : "Nieprawidłowe hasło dla użytkownika o podanym nicku."
+    },
+    "badEmailOrPasswordFailureSnackBarText" : "Nieprawidłowy adres email lub hasło." 
 }

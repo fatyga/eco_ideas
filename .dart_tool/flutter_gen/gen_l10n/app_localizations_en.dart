@@ -6,4 +6,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get counterAppBarTitle => 'Counter';
+
+  @override
+  String get badEmailOrPasswordFailureSnackBarText => 'Incorrect email address or password.';
 }
