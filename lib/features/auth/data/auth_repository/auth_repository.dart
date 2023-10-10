@@ -24,3 +24,5 @@ abstract class AuthRepository {
 abstract class AuthFailure implements Exception {}
 
 class BadEmailOrPassword extends AuthFailure {}
+
+class GoogleSignInFail extends AuthFailure {}

@@ -108,7 +108,7 @@ class SupabaseAuthRepository implements AuthRepository {
     );
 
     if (result == null) {
-      throw 'Could not find AuthorizationResponse after authorizing';
+      throw GoogleSignInFail();
     }
 
     // Request the access and id token to google
@@ -130,7 +130,7 @@ class SupabaseAuthRepository implements AuthRepository {
     final idToken = tokenResult?.idToken;
 
     if (idToken == null) {
-      throw 'Could not find idToken from the token response';
+      throw GoogleSignInFail();
     }
 
     await ref.read(goTrueClientProvider).signInWithIdToken(
