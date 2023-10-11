@@ -3,7 +3,10 @@ import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
+import 'package:eco_ideas/features/auth/domain/auth_status.dart';
+import 'package:eco_ideas/features/auth/domain/user_profile/user_profile.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 // TODO(fatyga): Fix imports
@@ -12,20 +15,18 @@ import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 part 'supabase_auth_repository.g.dart';
 
 @riverpod
-SupabaseAuthRepository supabaseAuthRepository(SupabaseAuthRepositoryRef ref) =>
-    SupabaseAuthRepository(ref);
-
-@riverpod
 supabase.GoTrueClient goTrueClient(GoTrueClientRef ref) =>
     supabase.Supabase.instance.client.auth;
-
-@riverpod
-Stream<AuthStatus> authChanges(AuthChangesRef ref) =>
-    ref.watch(supabaseAuthRepositoryProvider).status;
 
 class SupabaseAuthRepository implements AuthRepository {
   SupabaseAuthRepository(this.ref);
   final Ref ref;
+
+  @override
+  UserProfileUID? get currentUserUID {
+    final user = ref.read(goTrueClientProvider).currentUser;
+    return user?.id;
+  }
 
   @override
   Stream<AuthStatus> get status => ref
@@ -82,7 +83,8 @@ class SupabaseAuthRepository implements AuthRepository {
 
     /// Client ID that you registered with Google Cloud.
     /// You will have two different values for iOS and Android.
-    const clientId = 'YOUR_CLIENT_ID_HERE';
+    // TODO(fatyg): find a way to remove null assertion operator
+    final clientId = dotenv.env['GOOGLE_OAUTH_CLIENT_ID']!;
 
     /// reverse DNS form of the client ID + `:/` is set as the redirect URL
     final redirectUrl = '${clientId.split('.').reversed.join('.')}:/';
