@@ -52,7 +52,11 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   Future<void> signOut() async {
-    await ref.read(goTrueClientProvider).signOut();
+    try {
+      await ref.read(goTrueClientProvider).signOut();
+    } on supabase.AuthException catch (_) {
+      throw SignOutFail();
+    }
   }
 
   @override
@@ -60,10 +64,15 @@ class SupabaseAuthRepository implements AuthRepository {
     required String email,
     required String password,
   }) async {
-    final response = await ref
-        .read(goTrueClientProvider)
-        .signInWithPassword(email: email, password: password);
-    if (response.user == null) {
+    try {
+      final response = await ref
+          .read(goTrueClientProvider)
+          .signInWithPassword(email: email, password: password);
+
+      if (response.session == null || response.user == null) {
+        throw BadEmailOrPassword();
+      }
+    } on supabase.AuthException catch (_) {
       throw BadEmailOrPassword();
     }
   }
@@ -135,12 +144,16 @@ class SupabaseAuthRepository implements AuthRepository {
       throw GoogleSignInFail();
     }
 
-    await ref.read(goTrueClientProvider).signInWithIdToken(
-          provider: supabase.Provider.google,
-          idToken: idToken,
-          accessToken: tokenResult?.accessToken,
-          nonce: rawNonce,
-        );
+    try {
+      await ref.read(goTrueClientProvider).signInWithIdToken(
+            provider: supabase.Provider.google,
+            idToken: idToken,
+            accessToken: tokenResult?.accessToken,
+            nonce: rawNonce,
+          );
+    } on supabase.AuthException catch (_) {
+      throw GoogleSignInFail();
+    }
   }
 
   @override
@@ -149,10 +162,18 @@ class SupabaseAuthRepository implements AuthRepository {
     required String password,
     required String username,
   }) async {
-    await ref.read(goTrueClientProvider).signUp(
-      email: email,
-      password: password,
-      data: {'username': username},
-    );
+    try {
+      final response = await ref.read(goTrueClientProvider).signUp(
+        email: email,
+        password: password,
+        data: {'username': username},
+      );
+
+      if (response.session == null || response.user == null) {
+        throw SignInFail();
+      }
+    } on supabase.AuthException catch (_) {
+      throw SignInFail();
+    }
   }
 }
