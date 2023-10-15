@@ -170,10 +170,10 @@ class SupabaseAuthRepository implements AuthRepository {
       );
 
       if (response.session == null || response.user == null) {
-        throw SignInFail();
+        throw SignUpFail();
       }
     } on supabase.AuthException catch (_) {
-      throw SignInFail();
+      throw SignUpFail();
     }
   }
 }

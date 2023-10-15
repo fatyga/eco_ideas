@@ -40,7 +40,7 @@ abstract class AuthRepository {
 // Exceptions
 abstract class AuthFailure implements Exception {}
 
-class SignInFail extends AuthFailure {}
+class SignUpFail extends AuthFailure {}
 
 class SignOutFail extends AuthFailure {}
 
