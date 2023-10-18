@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart';
+import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -15,6 +18,8 @@ class MockSession extends Mock implements Session {}
 
 class MockUser extends Mock implements User {}
 
+class MockAuthState extends Mock implements AuthState {}
+
 ProviderContainer createContainer(MockGoTrueClient goTrueClient) {
   final container = ProviderContainer(
     overrides: [goTrueClientProvider.overrideWith((ref) => goTrueClient)],
@@ -27,6 +32,139 @@ ProviderContainer createContainer(MockGoTrueClient goTrueClient) {
 
 void main() {
   group('SupabaseAuthRepository', () {
+    group('status', () {
+      test('returns AuthStatus.unknown if AuthChangeEvent.tokenRefreshed', () {
+        final goTrueClient = MockGoTrueClient();
+
+        final authState = MockAuthState();
+        const event = AuthChangeEvent.tokenRefreshed;
+        when(() => authState.event).thenReturn(event);
+
+        when(() => goTrueClient.onAuthStateChange)
+            .thenAnswer((_) => Stream.value(authState));
+
+        final container = createContainer(goTrueClient);
+
+        expect(
+          container.read(authRepositoryProvider).status,
+          emits(AuthStatus.unknown),
+        );
+      });
+
+      test('returns AuthStatus.unknown if AuthChangeEvent.mfaChallengeVerified',
+          () {
+        final goTrueClient = MockGoTrueClient();
+
+        final authState = MockAuthState();
+        const event = AuthChangeEvent.mfaChallengeVerified;
+        when(() => authState.event).thenReturn(event);
+
+        when(() => goTrueClient.onAuthStateChange)
+            .thenAnswer((_) => Stream.value(authState));
+
+        final container = createContainer(goTrueClient);
+
+        expect(
+          container.read(authRepositoryProvider).status,
+          emits(AuthStatus.unknown),
+        );
+      });
+
+      test('returns AuthStatus.unauthenticated if AuthChangeEvent.signedOut',
+          () {
+        final goTrueClient = MockGoTrueClient();
+
+        final authState = MockAuthState();
+        const event = AuthChangeEvent.signedOut;
+        when(() => authState.event).thenReturn(event);
+
+        when(() => goTrueClient.onAuthStateChange)
+            .thenAnswer((_) => Stream.value(authState));
+
+        final container = createContainer(goTrueClient);
+
+        expect(
+          container.read(authRepositoryProvider).status,
+          emits(AuthStatus.unauthenticated),
+        );
+      });
+
+      test('returns AuthStatus.unauthenticated if AuthChangeEvent.userDeleted',
+          () {
+        final goTrueClient = MockGoTrueClient();
+
+        final authState = MockAuthState();
+        const event = AuthChangeEvent.userDeleted;
+        when(() => authState.event).thenReturn(event);
+
+        when(() => goTrueClient.onAuthStateChange)
+            .thenAnswer((_) => Stream.value(authState));
+
+        final container = createContainer(goTrueClient);
+
+        expect(
+          container.read(authRepositoryProvider).status,
+          emits(AuthStatus.unauthenticated),
+        );
+      });
+
+      test('returns AuthStatus.authenticated if AuthChangeEvent.signedIn', () {
+        final goTrueClient = MockGoTrueClient();
+
+        final authState = MockAuthState();
+        const event = AuthChangeEvent.signedIn;
+        when(() => authState.event).thenReturn(event);
+
+        when(() => goTrueClient.onAuthStateChange)
+            .thenAnswer((_) => Stream.value(authState));
+
+        final container = createContainer(goTrueClient);
+
+        expect(
+          container.read(authRepositoryProvider).status,
+          emits(AuthStatus.authenticated),
+        );
+      });
+
+      test('returns AuthStatus.authenticated if AuthChangeEvent.userUpdated',
+          () {
+        final goTrueClient = MockGoTrueClient();
+
+        final authState = MockAuthState();
+        const event = AuthChangeEvent.userUpdated;
+        when(() => authState.event).thenReturn(event);
+
+        when(() => goTrueClient.onAuthStateChange)
+            .thenAnswer((_) => Stream.value(authState));
+
+        final container = createContainer(goTrueClient);
+
+        expect(
+          container.read(authRepositoryProvider).status,
+          emits(AuthStatus.authenticated),
+        );
+      });
+
+      test(
+          'returns AuthStatus.authenticated if AuthChangeEvent.passwordRecovery',
+          () {
+        final goTrueClient = MockGoTrueClient();
+
+        final authState = MockAuthState();
+        const event = AuthChangeEvent.passwordRecovery;
+        when(() => authState.event).thenReturn(event);
+
+        when(() => goTrueClient.onAuthStateChange)
+            .thenAnswer((_) => Stream.value(authState));
+
+        final container = createContainer(goTrueClient);
+
+        expect(
+          container.read(authRepositoryProvider).status,
+          emits(AuthStatus.authenticated),
+        );
+      });
+    });
     group('signOut', () {
       test('invokes GoTrueClient.signOut method', () async {
         final goTrueClient = MockGoTrueClient();
@@ -174,9 +312,10 @@ void main() {
 
         when(
           () => goTrueClient.signUp(
-              email: any(named: 'email'),
-              password: any(named: 'password'),
-              data: data),
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+            data: data,
+          ),
         ).thenAnswer((_) async => authResponse);
 
         await container.read(authRepositoryProvider).signUpWithEmail(
@@ -199,9 +338,10 @@ void main() {
 
         when(
           () => goTrueClient.signUp(
-              email: any(named: 'email'),
-              password: any(named: 'password'),
-              data: data),
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+            data: data,
+          ),
         ).thenAnswer((_) async => authResponse);
 
         expect(
@@ -226,9 +366,10 @@ void main() {
 
         when(
           () => goTrueClient.signUp(
-              email: any(named: 'email'),
-              password: any(named: 'password'),
-              data: data),
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+            data: data,
+          ),
         ).thenAnswer((_) async => authResponse);
 
         expect(
@@ -249,9 +390,10 @@ void main() {
 
         when(
           () => goTrueClient.signUp(
-              email: any(named: 'email'),
-              password: any(named: 'password'),
-              data: data),
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+            data: data,
+          ),
         ).thenThrow(exception);
 
         expect(
