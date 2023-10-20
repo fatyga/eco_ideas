@@ -21,5 +21,20 @@ final goTrueClientProvider =
 );
 
 typedef GoTrueClientRef = AutoDisposeProviderRef<supabase.GoTrueClient>;
+String _$flutterAppAuthHash() => r'df5b30f62238f21b66a932b39bc553e0f7a7b7ba';
+
+/// See also [flutterAppAuth].
+@ProviderFor(flutterAppAuth)
+final flutterAppAuthProvider = AutoDisposeProvider<FlutterAppAuth>.internal(
+  flutterAppAuth,
+  name: r'flutterAppAuthProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$flutterAppAuthHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FlutterAppAuthRef = AutoDisposeProviderRef<FlutterAppAuth>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

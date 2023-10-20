@@ -18,6 +18,9 @@ part 'supabase_auth_repository.g.dart';
 supabase.GoTrueClient goTrueClient(GoTrueClientRef ref) =>
     supabase.Supabase.instance.client.auth;
 
+@riverpod
+FlutterAppAuth flutterAppAuth(FlutterAppAuthRef ref) => const FlutterAppAuth();
+
 class SupabaseAuthRepository implements AuthRepository {
   SupabaseAuthRepository(this.ref);
   final Ref ref;
@@ -102,7 +105,7 @@ class SupabaseAuthRepository implements AuthRepository {
     const discoveryUrl =
         'https://accounts.google.com/.well-known/openid-configuration';
 
-    const appAuth = FlutterAppAuth();
+    final appAuth = ref.read(flutterAppAuthProvider);
 
     // authorize the user by opening the consent page
     final result = await appAuth.authorize(

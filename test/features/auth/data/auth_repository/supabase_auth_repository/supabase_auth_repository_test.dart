@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_appauth/flutter_appauth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' hide Provider;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -18,11 +20,30 @@ class MockSession extends Mock implements Session {}
 
 class MockUser extends Mock implements User {}
 
+// Mock dependencies for status getter
 class MockAuthState extends Mock implements AuthState {}
 
-ProviderContainer createContainer(MockGoTrueClient goTrueClient) {
+// Mock dependencies for SignInWithGoogle
+class MockFlutterAppAuth extends Mock implements FlutterAppAuth {}
+
+class MockAuthorizationRequest extends Mock implements AuthorizationRequest {}
+
+class MockAuthorizationResponse extends Mock implements AuthorizationResponse {}
+
+class MockTokenRequest extends Mock implements TokenRequest {}
+
+class MockTokenResponse extends Mock implements TokenResponse {}
+
+ProviderContainer createContainer(
+  MockGoTrueClient goTrueClient, [
+  MockFlutterAppAuth? flutterAppAuth,
+]) {
   final container = ProviderContainer(
-    overrides: [goTrueClientProvider.overrideWith((ref) => goTrueClient)],
+    overrides: [
+      goTrueClientProvider.overrideWith((ref) => goTrueClient),
+      if (flutterAppAuth != null)
+        flutterAppAuthProvider.overrideWith((ref) => flutterAppAuth)
+    ],
   );
 
   addTearDown(container.dispose);
@@ -31,6 +52,11 @@ ProviderContainer createContainer(MockGoTrueClient goTrueClient) {
 }
 
 void main() {
+  setUpAll(() {
+    registerFallbackValue(MockAuthorizationRequest());
+    registerFallbackValue(MockTokenRequest());
+    registerFallbackValue(Provider.google);
+  });
   group('SupabaseAuthRepository', () {
     group('status', () {
       test('returns AuthStatus.unknown if AuthChangeEvent.tokenRefreshed', () {
@@ -293,6 +319,73 @@ void main() {
       });
     });
 
+    group('signInWithGoogle', () {
+      setUp(() async {
+        await dotenv.load();
+      });
+      test(
+        'throws SignInWithGoogleFail if FlutterAppAuth.autorize returns null',
+        () {
+          final goTrueClient = MockGoTrueClient();
+          final appAuth = MockFlutterAppAuth();
+
+          when(() => appAuth.authorize(any())).thenAnswer((_) async => null);
+
+          final container = createContainer(goTrueClient, appAuth);
+
+          expect(
+            () async =>
+                container.read(authRepositoryProvider).signInWithGoogle(),
+            throwsA(isA<GoogleSignInFail>()),
+          );
+        },
+      );
+
+      test(
+        'throws SignInWithGoogleFail if FlutterAppAuth.token returns null',
+        () {
+          final goTrueClient = MockGoTrueClient();
+          final appAuth = MockFlutterAppAuth();
+
+          when(() => appAuth.authorize(any()))
+              .thenAnswer((_) async => MockAuthorizationResponse());
+          when(() => appAuth.token(any())).thenAnswer((_) async => null);
+
+          final container = createContainer(goTrueClient, appAuth);
+
+          expect(
+            () async =>
+                container.read(authRepositoryProvider).signInWithGoogle(),
+            throwsA(isA<GoogleSignInFail>()),
+          );
+        },
+      );
+
+      test(
+        'throws SignInWithGoogleFail if GoTrueClient.signInWithIdToken throws',
+        () {
+          final goTrueClient = MockGoTrueClient();
+          final appAuth = MockFlutterAppAuth();
+          final exception = MockAuthException();
+
+          when(() => appAuth.authorize(any())).thenAnswer((_) async => null);
+          when(() => appAuth.token(any()))
+              .thenAnswer((_) async => MockTokenResponse());
+
+          when(() => goTrueClient.signInWithIdToken(
+              provider: any(named: 'provider'),
+              idToken: any(named: 'idToken'))).thenThrow(exception);
+
+          final container = createContainer(goTrueClient, appAuth);
+
+          expect(
+            () async =>
+                container.read(authRepositoryProvider).signInWithGoogle(),
+            throwsA(isA<GoogleSignInFail>()),
+          );
+        },
+      );
+    });
     group('signUpWithEmail', () {
       const email = 'email@domain.com';
       const password = 'qwerty';
