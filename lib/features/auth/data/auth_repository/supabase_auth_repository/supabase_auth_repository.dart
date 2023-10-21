@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:eco_ideas/common_providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
-import 'package:eco_ideas/features/auth/domain/user_profile/user_profile.dart';
+
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,10 +16,6 @@ import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 part 'supabase_auth_repository.g.dart';
 
 @riverpod
-supabase.GoTrueClient goTrueClient(GoTrueClientRef ref) =>
-    supabase.Supabase.instance.client.auth;
-
-@riverpod
 FlutterAppAuth flutterAppAuth(FlutterAppAuthRef ref) => const FlutterAppAuth();
 
 class SupabaseAuthRepository implements AuthRepository {
@@ -26,14 +23,9 @@ class SupabaseAuthRepository implements AuthRepository {
   final Ref ref;
 
   @override
-  UserProfileUID? get currentUserUID {
-    final user = ref.read(goTrueClientProvider).currentUser;
-    return user?.id;
-  }
-
-  @override
   Stream<AuthStatus> get status => ref
-          .read(goTrueClientProvider)
+          .read(supabaseClientProvider)
+          .auth
           .onAuthStateChange
           .map((supabase.AuthState authState) {
         switch (authState.event) {
@@ -56,7 +48,7 @@ class SupabaseAuthRepository implements AuthRepository {
   @override
   Future<void> signOut() async {
     try {
-      await ref.read(goTrueClientProvider).signOut();
+      await ref.read(supabaseClientProvider).auth.signOut();
     } on supabase.AuthException catch (_) {
       throw SignOutFail();
     }
@@ -69,7 +61,8 @@ class SupabaseAuthRepository implements AuthRepository {
   }) async {
     try {
       final response = await ref
-          .read(goTrueClientProvider)
+          .read(supabaseClientProvider)
+          .auth
           .signInWithPassword(email: email, password: password);
 
       if (response.session == null || response.user == null) {
@@ -148,7 +141,7 @@ class SupabaseAuthRepository implements AuthRepository {
     }
 
     try {
-      await ref.read(goTrueClientProvider).signInWithIdToken(
+      await ref.read(supabaseClientProvider).auth.signInWithIdToken(
             provider: supabase.Provider.google,
             idToken: idToken,
             accessToken: tokenResult?.accessToken,
@@ -166,7 +159,7 @@ class SupabaseAuthRepository implements AuthRepository {
     required String username,
   }) async {
     try {
-      final response = await ref.read(goTrueClientProvider).signUp(
+      final response = await ref.read(supabaseClientProvider).auth.signUp(
         email: email,
         password: password,
         data: {'username': username},

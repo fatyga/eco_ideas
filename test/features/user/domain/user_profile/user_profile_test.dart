@@ -1,4 +1,4 @@
-import 'package:eco_ideas/features/auth/domain/domain.dart';
+import 'package:eco_ideas/features/user/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

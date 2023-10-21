@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:eco_ideas/common_providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart' hide Provider;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+class MockSupabaseClient extends Mock implements SupabaseClient {}
 
 class MockGoTrueClient extends Mock implements GoTrueClient {}
 
@@ -40,7 +43,11 @@ ProviderContainer createContainer(
 ]) {
   final container = ProviderContainer(
     overrides: [
-      goTrueClientProvider.overrideWith((ref) => goTrueClient),
+      supabaseClientProvider.overrideWith((ref) {
+        final mockSupabaseClient = MockSupabaseClient();
+        when(() => mockSupabaseClient.auth).thenReturn(goTrueClient);
+        return mockSupabaseClient;
+      }),
       if (flutterAppAuth != null)
         flutterAppAuthProvider.overrideWith((ref) => flutterAppAuth)
     ],
@@ -200,7 +207,8 @@ void main() {
 
         await container.read(authRepositoryProvider).signOut();
 
-        verify(() => container.read(goTrueClientProvider).signOut()).called(1);
+        verify(() => container.read(supabaseClientProvider).auth.signOut())
+            .called(1);
       });
 
       test('throws SignOutFail, if GoTrueClient.signOut throws AuthException',

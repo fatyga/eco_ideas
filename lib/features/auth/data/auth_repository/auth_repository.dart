@@ -1,6 +1,6 @@
 import 'package:eco_ideas/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
-import 'package:eco_ideas/features/auth/domain/user_profile/user_profile.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_repository.g.dart';
@@ -18,7 +18,6 @@ Stream<AuthStatus> authChanges(AuthChangesRef ref) =>
 abstract class AuthRepository {
   AuthRepository();
 
-  UserProfileUID? get currentUserUID;
   Stream<AuthStatus> get status;
 
   Future<void> signInWithEmail({
