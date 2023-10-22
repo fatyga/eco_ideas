@@ -12,6 +12,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   // Add cross-flavor configuration here
+  await dotenv.load();
   await Supabase.initialize(
     url: 'https://${dotenv.env['SUPBASE_PROJECT_ID']}.supabase.co',
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
