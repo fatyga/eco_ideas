@@ -31,10 +31,13 @@ class HomeRoute extends GoRouteData {
 }
 
 // Authentication
-@TypedGoRoute<AuthRoute>(path: AuthRoute.path, routes: [
-  TypedGoRoute<SignInRoute>(path: SignInRoute.path),
-  TypedGoRoute<SignUpRoute>(path: SignUpRoute.path)
-])
+@TypedGoRoute<AuthRoute>(
+  path: AuthRoute.path,
+  routes: [
+    TypedGoRoute<SignInRoute>(path: SignInRoute.path),
+    TypedGoRoute<SignUpRoute>(path: SignUpRoute.path),
+  ],
+)
 class AuthRoute extends GoRouteData {
   const AuthRoute();
   static const path = '/auth';

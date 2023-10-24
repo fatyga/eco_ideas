@@ -15,9 +15,10 @@ class RouterListenable extends _$RouterListenable implements Listenable {
   @override
   Future<void> build() async {
     _isAuthenticated = ref.watch(authChangesProvider).when(
-        data: (status) => status.isAuthenticated,
-        error: (_, __) => false,
-        loading: () => false);
+          data: (status) => status.isAuthenticated,
+          error: (_, __) => false,
+          loading: () => false,
+        );
 
     ref.listenSelf((_, __) {
       if (state.isLoading) return;
@@ -34,6 +35,9 @@ class RouterListenable extends _$RouterListenable implements Listenable {
       return _isAuthenticated ? HomeRoute.path : AuthRoute.path;
     }
 
+    final isAuthProcess = state.matchedLocation == SignInRoute.path ||
+        state.matchedLocation == SignUpRoute.path;
+    if (isAuthProcess) return _isAuthenticated ? HomeRoute.path : null;
     return _isAuthenticated ? null : SplashRoute.path;
   }
 

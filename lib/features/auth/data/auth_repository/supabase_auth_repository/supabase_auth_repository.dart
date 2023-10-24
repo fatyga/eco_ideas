@@ -6,6 +6,7 @@ import 'package:eco_ideas/common_providers/supabase_provider/supabase_provider.d
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 
+import 'package:rxdart/rxdart.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,7 +44,7 @@ class SupabaseAuthRepository implements AuthRepository {
           case supabase.AuthChangeEvent.mfaChallengeVerified:
             return AuthStatus.unknown;
         }
-      });
+      }).startWith(AuthStatus.unknown);
 
   @override
   Future<void> signOut() async {

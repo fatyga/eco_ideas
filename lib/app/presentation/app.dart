@@ -1,5 +1,5 @@
-import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
+import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
