@@ -49,7 +49,7 @@ ProviderContainer createContainer(
         return mockSupabaseClient;
       }),
       if (flutterAppAuth != null)
-        flutterAppAuthProvider.overrideWith((ref) => flutterAppAuth)
+        flutterAppAuthProvider.overrideWith((ref) => flutterAppAuth),
     ],
   );
 
@@ -380,9 +380,12 @@ void main() {
           when(() => appAuth.token(any()))
               .thenAnswer((_) async => MockTokenResponse());
 
-          when(() => goTrueClient.signInWithIdToken(
+          when(
+            () => goTrueClient.signInWithIdToken(
               provider: any(named: 'provider'),
-              idToken: any(named: 'idToken'))).thenThrow(exception);
+              idToken: any(named: 'idToken'),
+            ),
+          ).thenThrow(exception);
 
           final container = createContainer(goTrueClient, appAuth);
 

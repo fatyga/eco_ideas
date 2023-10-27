@@ -5,12 +5,11 @@ import 'package:crypto/crypto.dart';
 import 'package:eco_ideas/common_providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
-
-import 'package:rxdart/rxdart.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:rxdart/rxdart.dart';
 // TODO(fatyga): Fix imports
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
@@ -39,7 +38,7 @@ class SupabaseAuthRepository implements AuthRepository {
           case supabase.AuthChangeEvent.userDeleted:
             return AuthStatus.unauthenticated;
 
-          // TODO(fatyga): Check whether this cases should return AuthStatus.unknown.
+          //TODO(fatyga): Check whether this cases should return AuthStatus.unknown.
           case supabase.AuthChangeEvent.tokenRefreshed:
           case supabase.AuthChangeEvent.mfaChallengeVerified:
             return AuthStatus.unknown;

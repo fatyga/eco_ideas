@@ -31,26 +31,10 @@ class HomeRoute extends GoRouteData {
 }
 
 // Authentication
-@TypedGoRoute<AuthRoute>(
-  path: AuthRoute.path,
-  routes: [
-    TypedGoRoute<SignInRoute>(path: SignInRoute.path),
-    TypedGoRoute<SignUpRoute>(path: SignUpRoute.path),
-  ],
-)
-class AuthRoute extends GoRouteData {
-  const AuthRoute();
-  static const path = '/auth';
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const HomeScreen();
-  }
-}
-
+@TypedGoRoute<SignInRoute>(path: SignInRoute.path)
 class SignInRoute extends GoRouteData {
   const SignInRoute();
-  static const path = 'signIn';
+  static const path = '/signIn';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
@@ -58,9 +42,10 @@ class SignInRoute extends GoRouteData {
   }
 }
 
+@TypedGoRoute<SignUpRoute>(path: SignUpRoute.path)
 class SignUpRoute extends GoRouteData {
   const SignUpRoute();
-  static const path = 'signIn';
+  static const path = '/signUp';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {

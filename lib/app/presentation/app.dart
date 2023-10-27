@@ -10,14 +10,15 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(goRouterProvider);
     return MaterialApp.router(
-        theme: ThemeData(
-          appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-          colorScheme: ColorScheme.fromSwatch(
-            accentColor: const Color(0xFF13B9FF),
-          ),
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+        colorScheme: ColorScheme.fromSwatch(
+          accentColor: const Color(0xFF13B9FF),
         ),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        routerConfig: goRouter);
+      ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      routerConfig: goRouter,
+    );
   }
 }
