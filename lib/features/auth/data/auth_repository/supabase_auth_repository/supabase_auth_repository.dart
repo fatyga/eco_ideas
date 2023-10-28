@@ -9,7 +9,7 @@ import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:rxdart/rxdart.dart';
+
 // TODO(fatyga): Fix imports
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
@@ -23,27 +23,25 @@ class SupabaseAuthRepository implements AuthRepository {
   final Ref ref;
 
   @override
-  Stream<AuthStatus> get status => ref
-          .read(supabaseClientProvider)
-          .auth
-          .onAuthStateChange
-          .map((supabase.AuthState authState) {
-        switch (authState.event) {
-          case supabase.AuthChangeEvent.signedIn:
-          case supabase.AuthChangeEvent.userUpdated:
-          case supabase.AuthChangeEvent.passwordRecovery:
-            return AuthStatus.authenticated;
+  Stream<AuthStatus> get status async* {
+    yield AuthStatus.unknown;
+    final initialSession = await ref.read(supabaseAuthProvider).initialSession;
 
-          case supabase.AuthChangeEvent.signedOut:
-          case supabase.AuthChangeEvent.userDeleted:
-            return AuthStatus.unauthenticated;
+    if (initialSession != null) {
+      yield AuthStatus.authenticated;
+    } else {
+      yield AuthStatus.unauthenticated;
+    }
 
-          //TODO(fatyga): Check whether this cases should return AuthStatus.unknown.
-          case supabase.AuthChangeEvent.tokenRefreshed:
-          case supabase.AuthChangeEvent.mfaChallengeVerified:
-            return AuthStatus.unknown;
-        }
-      }).startWith(AuthStatus.unknown);
+    await for (final supabase.AuthState state
+        in ref.read(supabaseClientProvider).auth.onAuthStateChange) {
+      if (state.session != null) {
+        yield AuthStatus.authenticated;
+      } else {
+        yield AuthStatus.unauthenticated;
+      }
+    }
+  }
 
   @override
   Future<void> signOut() async {

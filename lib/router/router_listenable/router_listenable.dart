@@ -16,7 +16,6 @@ class RouterListenable extends _$RouterListenable implements Listenable {
   Future<void> build() async {
     _isAuthenticated = ref.watch(authChangesProvider).when(
           data: (status) {
-            print(status);
             return status.isAuthenticated;
           },
           error: (_, __) => false,
