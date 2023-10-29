@@ -39,12 +39,14 @@ class MockTokenRequest extends Mock implements TokenRequest {}
 
 class MockTokenResponse extends Mock implements TokenResponse {}
 
-ProviderContainer createContainer(
-    {MockGoTrueClient? goTrueClient,
-    MockFlutterAppAuth? flutterAppAuth,
-    MockSupabaseAuth? supabaseAuth}) {
+ProviderContainer createContainer({
+  MockGoTrueClient? goTrueClient,
+  MockFlutterAppAuth? flutterAppAuth,
+  MockSupabaseAuth? supabaseAuth,
+}) {
   final container = ProviderContainer(
     overrides: [
+      authRepositoryProvider.overrideWith(SupabaseAuthRepository.new),
       if (goTrueClient != null)
         supabaseClientProvider.overrideWith((ref) {
           final mockSupabaseClient = MockSupabaseClient();
@@ -79,7 +81,7 @@ void main() {
         when(() => state.session).thenReturn(session);
 
         when(() => goTrueClient.onAuthStateChange)
-            .thenAnswer((invocation) => Stream.value(state));
+            .thenAnswer((_) => Stream.value(state));
         final container = createContainer(goTrueClient: goTrueClient);
 
         expect(
@@ -89,7 +91,7 @@ void main() {
       });
 
       test(
-          'emits AuthStatus.authenticated when initialSession do not return null',
+          'emits AuthStatus.authenticated when initialSession does not return null',
           () async {
         final goTrueClient = MockGoTrueClient();
         final supabaseAuth = MockSupabaseAuth();
@@ -100,11 +102,13 @@ void main() {
 
         when(() => state.session).thenReturn(session);
         when(() => goTrueClient.onAuthStateChange)
-            .thenAnswer((invocation) => Stream.value(state));
+            .thenAnswer((_) => Stream.value(state));
         when(() => supabaseAuth.initialSession)
             .thenAnswer((_) async => session);
         final container = createContainer(
-            goTrueClient: goTrueClient, supabaseAuth: supabaseAuth);
+          goTrueClient: goTrueClient,
+          supabaseAuth: supabaseAuth,
+        );
 
         expect(
           container.read(authRepositoryProvider).status,
@@ -123,10 +127,12 @@ void main() {
 
         when(() => state.session).thenReturn(session);
         when(() => goTrueClient.onAuthStateChange)
-            .thenAnswer((invocation) => Stream.value(state));
+            .thenAnswer((_) => Stream.value(state));
         when(() => supabaseAuth.initialSession).thenAnswer((_) async => null);
         final container = createContainer(
-            goTrueClient: goTrueClient, supabaseAuth: supabaseAuth);
+          goTrueClient: goTrueClient,
+          supabaseAuth: supabaseAuth,
+        );
 
         expect(
           container.read(authRepositoryProvider).status,
@@ -145,18 +151,20 @@ void main() {
 
         when(() => state.session).thenReturn(session);
         when(() => goTrueClient.onAuthStateChange)
-            .thenAnswer((invocation) => Stream.value(state));
+            .thenAnswer((_) => Stream.value(state));
         when(() => supabaseAuth.initialSession)
             .thenAnswer((_) async => session);
         final container = createContainer(
-            goTrueClient: goTrueClient, supabaseAuth: supabaseAuth);
+          goTrueClient: goTrueClient,
+          supabaseAuth: supabaseAuth,
+        );
 
         expect(
           container.read(authRepositoryProvider).status,
           emitsInOrder([
             AuthStatus.unknown,
             AuthStatus.authenticated,
-            AuthStatus.authenticated
+            AuthStatus.authenticated,
           ]),
         );
       });
@@ -172,18 +180,20 @@ void main() {
 
         when(() => state.session).thenReturn(null);
         when(() => goTrueClient.onAuthStateChange)
-            .thenAnswer((invocation) => Stream.value(state));
+            .thenAnswer((_) => Stream.value(state));
         when(() => supabaseAuth.initialSession)
             .thenAnswer((_) async => session);
         final container = createContainer(
-            goTrueClient: goTrueClient, supabaseAuth: supabaseAuth);
+          goTrueClient: goTrueClient,
+          supabaseAuth: supabaseAuth,
+        );
 
         expect(
           container.read(authRepositoryProvider).status,
           emitsInOrder([
             AuthStatus.unknown,
             AuthStatus.authenticated,
-            AuthStatus.unauthenticated
+            AuthStatus.unauthenticated,
           ]),
         );
       });
@@ -330,7 +340,9 @@ void main() {
           when(() => appAuth.authorize(any())).thenAnswer((_) async => null);
 
           final container = createContainer(
-              goTrueClient: goTrueClient, flutterAppAuth: appAuth);
+            goTrueClient: goTrueClient,
+            flutterAppAuth: appAuth,
+          );
 
           expect(
             () async =>
@@ -351,7 +363,9 @@ void main() {
           when(() => appAuth.token(any())).thenAnswer((_) async => null);
 
           final container = createContainer(
-              goTrueClient: goTrueClient, flutterAppAuth: appAuth);
+            goTrueClient: goTrueClient,
+            flutterAppAuth: appAuth,
+          );
 
           expect(
             () async =>
@@ -380,7 +394,9 @@ void main() {
           ).thenThrow(exception);
 
           final container = createContainer(
-              goTrueClient: goTrueClient, flutterAppAuth: appAuth);
+            goTrueClient: goTrueClient,
+            flutterAppAuth: appAuth,
+          );
 
           expect(
             () async =>

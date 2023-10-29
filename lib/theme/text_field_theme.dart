@@ -1,0 +1,3 @@
+class EcoIdeasTextFieldTheme {
+  EcoIdeasTextFieldTheme._();
+}

@@ -1,5 +1,10 @@
 {
     "@@locale": "pl",
+    "appName": "EcoIdeas",
+    "greetingText": "Witaj w EcoIdeas",
+    "emailTextFieldLabelText": "Adres e-mail",
+    "passwordTextFieldLabelText": "Hasło",
+    "signInButtonText": "Zaloguj się",
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"

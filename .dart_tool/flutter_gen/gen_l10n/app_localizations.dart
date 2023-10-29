@@ -93,6 +93,36 @@ abstract class AppLocalizations {
     Locale('pl')
   ];
 
+  /// No description provided for @appName.
+  ///
+  /// In en, this message translates to:
+  /// **'EcoIdeas'**
+  String get appName;
+
+  /// No description provided for @greetingText.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome in '**
+  String get greetingText;
+
+  /// No description provided for @emailTextFieldLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailTextFieldLabelText;
+
+  /// No description provided for @passwordTextFieldLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordTextFieldLabelText;
+
+  /// No description provided for @signInButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signInButtonText;
+
   /// Text shown in the AppBar of the Counter Page
   ///
   /// In en, this message translates to:
