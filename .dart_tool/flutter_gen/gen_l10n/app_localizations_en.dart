@@ -17,7 +17,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordTextFieldLabelText => 'Password';
 
   @override
+  String get registerTextButtonLabelText => 'Don\'t have an account? ';
+
+  @override
+  String get registerTextButtonActionText => 'Register!';
+
+  @override
+  String get forgotPasswordButtonLabelText => 'Forget password? ';
+
+  @override
+  String get forgotPasswordButtonActionText => 'Change it!';
+
+  @override
   String get signInButtonText => 'Sign In';
+
+  @override
+  String get signInLabeledDividerText => 'OR';
 
   @override
   String get counterAppBarTitle => 'Counter';

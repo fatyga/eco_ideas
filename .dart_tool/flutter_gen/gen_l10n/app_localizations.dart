@@ -117,11 +117,41 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get passwordTextFieldLabelText;
 
+  /// No description provided for @registerTextButtonLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? '**
+  String get registerTextButtonLabelText;
+
+  /// No description provided for @registerTextButtonActionText.
+  ///
+  /// In en, this message translates to:
+  /// **'Register!'**
+  String get registerTextButtonActionText;
+
+  /// No description provided for @forgotPasswordButtonLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget password? '**
+  String get forgotPasswordButtonLabelText;
+
+  /// No description provided for @forgotPasswordButtonActionText.
+  ///
+  /// In en, this message translates to:
+  /// **'Change it!'**
+  String get forgotPasswordButtonActionText;
+
   /// No description provided for @signInButtonText.
   ///
   /// In en, this message translates to:
   /// **'Sign In'**
   String get signInButtonText;
+
+  /// No description provided for @signInLabeledDividerText.
+  ///
+  /// In en, this message translates to:
+  /// **'OR'**
+  String get signInLabeledDividerText;
 
   /// Text shown in the AppBar of the Counter Page
   ///

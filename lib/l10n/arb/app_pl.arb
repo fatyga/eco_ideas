@@ -4,7 +4,12 @@
     "greetingText": "Witaj w EcoIdeas",
     "emailTextFieldLabelText": "Adres e-mail",
     "passwordTextFieldLabelText": "Hasło",
+    "registerTextButtonLabelText": "Nie masz konta? ",
+    "registerTextButtonActionText": "Utwórz je!",
+    "forgotPasswordButtonLabelText": "Zapomniałeś hasła? ",
+    "forgotPasswordButtonActionText": "Zmień je!",
     "signInButtonText": "Zaloguj się",
+    "signInLabeledDividerText": "LUB",
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"

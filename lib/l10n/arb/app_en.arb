@@ -4,7 +4,12 @@
     "greetingText": "Welcome in ",
     "emailTextFieldLabelText": "Email",
     "passwordTextFieldLabelText": "Password",
+    "registerTextButtonLabelText": "Don't have an account? ",
+    "registerTextButtonActionText": "Register!",
+    "forgotPasswordButtonLabelText": "Forget password? ",
+    "forgotPasswordButtonActionText": "Change it!",
     "signInButtonText": "Sign In",
+    "signInLabeledDividerText": "OR",
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
