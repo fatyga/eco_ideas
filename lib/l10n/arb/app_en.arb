@@ -8,6 +8,7 @@
     "registerTextButtonActionText": "Register!",
     "forgotPasswordButtonLabelText": "Forget password? ",
     "forgotPasswordButtonActionText": "Change it!",
+    "googleAuthButtonLabelText": "Continue with Google", 
     "signInButtonText": "Sign In",
     "signInLabeledDividerText": "OR",
     "counterAppBarTitle": "Counter",

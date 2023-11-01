@@ -141,6 +141,12 @@ abstract class AppLocalizations {
   /// **'Change it!'**
   String get forgotPasswordButtonActionText;
 
+  /// No description provided for @googleAuthButtonLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get googleAuthButtonLabelText;
+
   /// No description provided for @signInButtonText.
   ///
   /// In en, this message translates to:

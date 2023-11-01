@@ -8,6 +8,7 @@
     "registerTextButtonActionText": "Utwórz je!",
     "forgotPasswordButtonLabelText": "Zapomniałeś hasła? ",
     "forgotPasswordButtonActionText": "Zmień je!",
+    "googleAuthButtonLabelText": "Kontynuuj z Google",
     "signInButtonText": "Zaloguj się",
     "signInLabeledDividerText": "LUB",
     "counterAppBarTitle": "Licznik",

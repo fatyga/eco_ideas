@@ -12,10 +12,15 @@ class RegisterActionButton extends StatelessWidget {
     final theme = Theme.of(context);
 
     return LabeledAction(
-        label: Text(l10n.registerTextButtonLabelText),
-        actionText: Text(l10n.registerTextButtonActionText,
-            style: theme.textTheme.labelLarge!
-                .copyWith(color: theme.colorScheme.primary)),
-        onActionTap: onPressed);
+      label: Text(
+        l10n.registerTextButtonLabelText,
+      ),
+      actionText: Text(
+        l10n.registerTextButtonActionText,
+        style: theme.textTheme.labelLarge!
+            .copyWith(color: theme.colorScheme.primary),
+      ),
+      onActionTap: onPressed,
+    );
   }
 }

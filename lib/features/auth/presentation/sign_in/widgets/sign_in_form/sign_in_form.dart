@@ -13,12 +13,10 @@ class SignInForm extends StatelessWidget {
           const EmailField(),
           const SizedBox(height: 12),
           const PasswordField(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ForgotPasswordActionButton(onPressed: () {}),
-            ],
-          ),
+          Container(
+              padding: const EdgeInsets.only(top: 4),
+              alignment: Alignment.centerRight,
+              child: ForgotPasswordActionButton(onPressed: () {})),
           const SizedBox(height: 12),
           const SignInButton(),
         ],

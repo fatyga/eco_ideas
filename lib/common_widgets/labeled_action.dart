@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class LabeledAction extends StatelessWidget {
-  const LabeledAction(
-      {required this.label,
-      required this.actionText,
-      required this.onActionTap,
-      super.key});
+  const LabeledAction({
+    required this.label,
+    required this.actionText,
+    required this.onActionTap,
+    super.key,
+  });
 
   final Text label;
   final Text actionText;

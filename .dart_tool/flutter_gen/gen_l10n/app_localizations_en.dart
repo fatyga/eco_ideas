@@ -29,6 +29,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgotPasswordButtonActionText => 'Change it!';
 
   @override
+  String get googleAuthButtonLabelText => 'Continue with Google';
+
+  @override
   String get signInButtonText => 'Sign In';
 
   @override
