@@ -1,7 +1,7 @@
 {
     "@@locale": "pl",
     "appName": "EcoIdeas",
-    "greetingText": "Witaj w EcoIdeas",
+    "greetingText": "Witaj w ",
     "emailTextFieldLabelText": "Adres e-mail",
     "passwordTextFieldLabelText": "Hasło",
     "registerTextButtonLabelText": "Nie masz konta? ",

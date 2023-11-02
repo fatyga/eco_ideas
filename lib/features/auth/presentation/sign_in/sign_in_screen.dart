@@ -8,14 +8,43 @@ import 'package:eco_ideas/l10n/l10n.dart';
 
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
 
   static const path = '/signIn';
 
   @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  late final FocusNode _emailFocusNode;
+  late final FocusNode _passwordFocusNode;
+
+  bool get isAnyFieldFocused =>
+      _emailFocusNode.hasFocus || _passwordFocusNode.hasFocus;
+
+  @override
+  void initState() {
+    _emailFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
+
+    _emailFocusNode.addListener(() => setState(() {}));
+    _passwordFocusNode.addListener(() => setState(() {}));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -24,16 +53,21 @@ class SignInScreen extends StatelessWidget {
             const Spacer(),
             const GreetingTitle(),
             const SizedBox(height: 64),
-            const SignInForm(),
-            LabeledDivider(
-              labelText: l10n.signInLabeledDividerText,
-              verticalSpace: 20,
+            SignInForm(
+              emailFocusNode: _emailFocusNode,
+              passwordFocusNode: _passwordFocusNode,
             ),
-            GoogleAuthButton(
-              onPressed: () {},
-            ),
-            const Spacer(),
-            Center(child: RegisterActionButton(onPressed: () {})),
+            if (!isAnyFieldFocused) ...[
+              LabeledDivider(
+                labelText: l10n.signInLabeledDividerText,
+                verticalSpace: 20,
+              ),
+              GoogleAuthButton(
+                onPressed: () {},
+              ),
+              const Spacer(),
+              Center(child: RegisterActionButton(onPressed: () {})),
+            ],
           ],
         ),
       ),
