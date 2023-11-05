@@ -1,4 +1,5 @@
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
+import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
 import 'package:eco_ideas/splash/splash_screen.dart';
 import 'package:flutter/widgets.dart';
@@ -7,10 +8,9 @@ import 'package:go_router/go_router.dart';
 part 'routes.g.dart';
 
 // Splash
-@TypedGoRoute<SplashRoute>(path: SplashRoute.path)
+@TypedGoRoute<SplashRoute>(path: SplashScreen.path)
 class SplashRoute extends GoRouteData {
   const SplashRoute();
-  static const path = '/splash';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
@@ -19,10 +19,9 @@ class SplashRoute extends GoRouteData {
 }
 
 // Home
-@TypedGoRoute<HomeRoute>(path: HomeRoute.path)
+@TypedGoRoute<HomeRoute>(path: HomeScreen.path)
 class HomeRoute extends GoRouteData {
   const HomeRoute();
-  static const path = '/home';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
@@ -31,10 +30,9 @@ class HomeRoute extends GoRouteData {
 }
 
 // Authentication
-@TypedGoRoute<SignInRoute>(path: SignInRoute.path)
+@TypedGoRoute<SignInRoute>(path: SignInScreen.path)
 class SignInRoute extends GoRouteData {
   const SignInRoute();
-  static const path = '/signIn';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
@@ -42,13 +40,22 @@ class SignInRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<SignUpRoute>(path: SignUpRoute.path)
+@TypedGoRoute<SignUpRoute>(path: SignUpScreen.path)
 class SignUpRoute extends GoRouteData {
   const SignUpRoute();
-  static const path = '/signUp';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const SignUpScreen();
+  }
+}
+
+@TypedGoRoute<PasswordRecoveryRoute>(path: PasswordRecoveryScreen.path)
+class PasswordRecoveryRoute extends GoRouteData {
+  const PasswordRecoveryRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const PasswordRecoveryScreen();
   }
 }

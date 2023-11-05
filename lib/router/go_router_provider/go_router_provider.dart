@@ -9,10 +9,13 @@ part 'go_router_provider.g.dart';
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
   final notifier = ref.watch(routerListenableProvider.notifier);
-  return GoRouter(
+  final router = GoRouter(
     redirect: notifier.redirect,
-    initialLocation: SplashRoute.path,
+    initialLocation: const SplashRoute().location,
     routes: $appRoutes,
     refreshListenable: notifier,
   );
+
+  ref.onDispose(router.dispose);
+  return router;
 }

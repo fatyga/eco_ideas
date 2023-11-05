@@ -11,6 +11,7 @@ List<RouteBase> get $appRoutes => [
       $homeRoute,
       $signInRoute,
       $signUpRoute,
+      $passwordRecoveryRoute,
     ];
 
 RouteBase get $splashRoute => GoRouteData.$route(
@@ -36,7 +37,7 @@ extension $SplashRouteExtension on SplashRoute {
 }
 
 RouteBase get $homeRoute => GoRouteData.$route(
-      path: '/home',
+      path: '/',
       factory: $HomeRouteExtension._fromState,
     );
 
@@ -44,7 +45,7 @@ extension $HomeRouteExtension on HomeRoute {
   static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
   String get location => GoRouteData.$location(
-        '/home',
+        '/',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -80,7 +81,7 @@ extension $SignInRouteExtension on SignInRoute {
 }
 
 RouteBase get $signUpRoute => GoRouteData.$route(
-      path: '/signUp',
+      path: '/signup',
       factory: $SignUpRouteExtension._fromState,
     );
 
@@ -88,7 +89,30 @@ extension $SignUpRouteExtension on SignUpRoute {
   static SignUpRoute _fromState(GoRouterState state) => const SignUpRoute();
 
   String get location => GoRouteData.$location(
-        '/signUp',
+        '/signup',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $passwordRecoveryRoute => GoRouteData.$route(
+      path: '/passwordRecovery',
+      factory: $PasswordRecoveryRouteExtension._fromState,
+    );
+
+extension $PasswordRecoveryRouteExtension on PasswordRecoveryRoute {
+  static PasswordRecoveryRoute _fromState(GoRouterState state) =>
+      const PasswordRecoveryRoute();
+
+  String get location => GoRouteData.$location(
+        '/passwordRecovery',
       );
 
   void go(BuildContext context) => context.go(location);

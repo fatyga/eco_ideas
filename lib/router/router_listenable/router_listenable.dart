@@ -31,16 +31,20 @@ class RouterListenable extends _$RouterListenable implements Listenable {
   String? redirect(BuildContext context, GoRouterState state) {
     if (this.state.isLoading || this.state.hasError) return null;
 
-    final isSplash = state.matchedLocation == SplashRoute.path;
+    final isSplash = state.matchedLocation == const SplashRoute().location;
 
     if (isSplash) {
-      return _isAuthenticated ? HomeRoute.path : SignInRoute.path;
+      return _isAuthenticated
+          ? const HomeRoute().location
+          : const SignInRoute().location;
     }
 
-    final isAuthProcess = state.matchedLocation == SignInRoute.path ||
-        state.matchedLocation == SignUpRoute.path;
-    if (isAuthProcess) return _isAuthenticated ? HomeRoute.path : null;
-    return _isAuthenticated ? null : SplashRoute.path;
+    final isAuthProcess =
+        state.matchedLocation == const SignInRoute().location ||
+            state.matchedLocation == const SignUpRoute().location;
+    if (isAuthProcess)
+      return _isAuthenticated ? const HomeRoute().location : null;
+    return _isAuthenticated ? null : const SplashRoute().location;
   }
 
   @override
