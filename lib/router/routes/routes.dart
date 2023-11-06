@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:eco_ideas/features/auth/presentation/auth/auth_screen.dart';
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
@@ -29,8 +32,21 @@ class HomeRoute extends GoRouteData {
   }
 }
 
+@TypedGoRoute<AuthRoute>(path: '/auth', routes: [
+  TypedGoRoute<SignInRoute>(path: SignInScreen.path),
+  TypedGoRoute<SignUpRoute>(path: SignUpScreen.path),
+  TypedGoRoute<PasswordRecoveryRoute>(path: PasswordRecoveryScreen.path)
+])
+class AuthRoute extends GoRouteData {
+  const AuthRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const AuthScreen();
+  }
+}
+
 // Authentication
-@TypedGoRoute<SignInRoute>(path: SignInScreen.path)
 class SignInRoute extends GoRouteData {
   const SignInRoute();
 
@@ -40,7 +56,6 @@ class SignInRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<SignUpRoute>(path: SignUpScreen.path)
 class SignUpRoute extends GoRouteData {
   const SignUpRoute();
 
@@ -50,7 +65,6 @@ class SignUpRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<PasswordRecoveryRoute>(path: PasswordRecoveryScreen.path)
 class PasswordRecoveryRoute extends GoRouteData {
   const PasswordRecoveryRoute();
 
