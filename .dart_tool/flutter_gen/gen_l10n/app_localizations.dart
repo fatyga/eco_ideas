@@ -159,6 +159,18 @@ abstract class AppLocalizations {
   /// **'OR'**
   String get signInLabeledDividerText;
 
+  /// No description provided for @passwordRecoveryAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset your password'**
+  String get passwordRecoveryAppBarTitle;
+
+  /// No description provided for @passwordRecoveryFirstStepDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'In this step, please enter email address with which your account was created.'**
+  String get passwordRecoveryFirstStepDescription;
+
   /// Text shown in the AppBar of the Counter Page
   ///
   /// In en, this message translates to:

@@ -11,6 +11,8 @@
     "googleAuthButtonLabelText": "Kontynuuj z Google",
     "signInButtonText": "Zaloguj się",
     "signInLabeledDividerText": "LUB",
+    "passwordRecoveryAppBarTitle": "Zresetuj swoje hasło",
+    "passwordRecoveryFirstStepDescription": "W tym kroku podaj adres e-mail, za pomocą którego utworzono konto.",
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"

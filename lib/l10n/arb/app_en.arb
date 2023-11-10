@@ -11,6 +11,8 @@
     "googleAuthButtonLabelText": "Continue with Google", 
     "signInButtonText": "Sign In",
     "signInLabeledDividerText": "OR",
+    "passwordRecoveryAppBarTitle": "Reset your password",
+    "passwordRecoveryFirstStepDescription": "In this step, please enter email address with which your account was created.",
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"

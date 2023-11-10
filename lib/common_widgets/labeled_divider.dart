@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LabeledDivider extends StatelessWidget {
-  const LabeledDivider(
-      {required this.labelText, this.verticalSpace = 0, super.key});
+  const LabeledDivider({
+    required this.labelText,
+    this.verticalSpace = 0,
+    super.key,
+  });
 
   final String labelText;
   final double verticalSpace;

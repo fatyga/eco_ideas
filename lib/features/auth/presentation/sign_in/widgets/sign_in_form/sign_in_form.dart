@@ -1,4 +1,3 @@
-import 'package:eco_ideas/features/auth/presentation/password_recovery.dart/password_recovery_screen.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/sign_in_form/forgot_password_action_button.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/widgets.dart';
 import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
@@ -33,7 +32,7 @@ class SignInForm extends ConsumerWidget {
               onPressed: () {
                 ref
                     .read(goRouterProvider)
-                    .push(const PasswordRecoveryRoute().location);
+                    .go(const PasswordRecoveryRoute().location);
               },
             ),
           ),

@@ -12,8 +12,10 @@ class ForgotPasswordActionButton extends StatelessWidget {
     final theme = Theme.of(context);
 
     return LabeledAction(
-      label: Text(l10n.forgotPasswordButtonLabelText,
-          style: theme.textTheme.labelMedium),
+      label: Text(
+        l10n.forgotPasswordButtonLabelText,
+        style: theme.textTheme.labelMedium,
+      ),
       actionText: Text(
         l10n.forgotPasswordButtonActionText,
         style: theme.textTheme.labelMedium!

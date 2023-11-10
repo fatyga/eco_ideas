@@ -16,42 +16,41 @@ GoRouter goRouter(GoRouterRef ref) {
     ..onDispose(isAuth.dispose)
     ..listen(authChangesProvider, (_, next) {
       next.when(
-          data: (status) => isAuth.value = AsyncData(status.isAuthenticated),
-          error: (_, __) => const AsyncData(false),
-          loading: () => const AsyncData(false));
+        data: (status) => isAuth.value = AsyncData(status.isAuthenticated),
+        error: (error, stackTrace) =>
+            isAuth.value = AsyncError(error, stackTrace),
+        loading: () => isAuth.value = const AsyncLoading(),
+      );
     });
 
   final router = GoRouter(
-      initialLocation: const SplashRoute().location,
-      routes: $appRoutes,
-      refreshListenable: isAuth,
-      redirect: (context, state) {
-        if (isAuth.value.unwrapPrevious().hasError) {
-          return const SignInRoute().location;
-        }
+    initialLocation: const SplashRoute().location,
+    routes: $appRoutes,
+    debugLogDiagnostics: true,
+    refreshListenable: isAuth,
+    redirect: (context, state) {
+      if (isAuth.value.unwrapPrevious().hasError) {
+        return const SignInRoute().location;
+      }
+      if (isAuth.value.isLoading || !isAuth.value.hasValue) {
+        return const SplashRoute().location;
+      }
 
-        if (isAuth.value.isLoading || !isAuth.value.hasValue) {
-          return const SplashRoute().location;
-        }
+      final auth = isAuth.value.requireValue;
 
-        final auth = isAuth.value.requireValue;
+      final isSplash = state.uri.path == const SplashRoute().location;
+      if (isSplash) {
+        return auth ? const HomeRoute().location : const SignInRoute().location;
+      }
 
-        final isSplash = state.uri.path == const SplashRoute().location;
-        if (isSplash) {
-          return auth
-              ? const HomeRoute().location
-              : const SignInRoute().location;
-        }
+      final isLoggingIn = state.uri.path.contains(const AuthRoute().location);
 
-        final inAuthenticationProcess =
-            state.uri.path == const SignInRoute().location;
+      if (isLoggingIn) return auth ? const HomeRoute().location : null;
 
-        if (inAuthenticationProcess) {
-          return auth ? const HomeRoute().location : null;
-        }
-
-        return auth ? null : const SplashRoute().location;
-      });
+      //return auth ? null : const SplashRoute().location; // this doesn't allow to navigate for example to PasswordRecoveryRoute
+      return null;
+    },
+  );
 
   ref.onDispose(router.dispose);
   return router;

@@ -38,6 +38,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signInLabeledDividerText => 'OR';
 
   @override
+  String get passwordRecoveryAppBarTitle => 'Reset your password';
+
+  @override
+  String get passwordRecoveryFirstStepDescription => 'In this step, please enter email address with which your account was created.';
+
+  @override
   String get counterAppBarTitle => 'Counter';
 
   @override

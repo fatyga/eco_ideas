@@ -63,14 +63,16 @@ RouteBase get $authRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'signIn',
           factory: $SignInRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'passwordRecovery',
+              factory: $PasswordRecoveryRouteExtension._fromState,
+            ),
+          ],
         ),
         GoRouteData.$route(
-          path: 'signup',
+          path: 'signUp',
           factory: $SignUpRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'passwordRecovery',
-          factory: $PasswordRecoveryRouteExtension._fromState,
         ),
       ],
     );
@@ -109,11 +111,12 @@ extension $SignInRouteExtension on SignInRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $SignUpRouteExtension on SignUpRoute {
-  static SignUpRoute _fromState(GoRouterState state) => const SignUpRoute();
+extension $PasswordRecoveryRouteExtension on PasswordRecoveryRoute {
+  static PasswordRecoveryRoute _fromState(GoRouterState state) =>
+      const PasswordRecoveryRoute();
 
   String get location => GoRouteData.$location(
-        '/auth/signup',
+        '/auth/signIn/passwordRecovery',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -126,12 +129,11 @@ extension $SignUpRouteExtension on SignUpRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $PasswordRecoveryRouteExtension on PasswordRecoveryRoute {
-  static PasswordRecoveryRoute _fromState(GoRouterState state) =>
-      const PasswordRecoveryRoute();
+extension $SignUpRouteExtension on SignUpRoute {
+  static SignUpRoute _fromState(GoRouterState state) => const SignUpRoute();
 
   String get location => GoRouteData.$location(
-        '/auth/passwordRecovery',
+        '/auth/signUp',
       );
 
   void go(BuildContext context) => context.go(location);

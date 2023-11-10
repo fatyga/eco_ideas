@@ -16,9 +16,11 @@ class AuthProviderButton extends StatelessWidget {
     final theme = Theme.of(context);
     return OutlinedButton.icon(
       icon: Image.asset(logoAssetPath, height: 24),
-      label: Text(label,
-          style: theme.textTheme.titleSmall!
-              .copyWith(color: theme.colorScheme.onBackground)),
+      label: Text(
+        label,
+        style: theme.textTheme.titleSmall!
+            .copyWith(color: theme.colorScheme.onBackground),
+      ),
       onPressed: onPressed,
     );
   }
