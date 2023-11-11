@@ -38,7 +38,7 @@ class HomeRoute extends GoRouteData {
     TypedGoRoute<SignInRoute>(
       path: SignInScreen.path,
       routes: [
-        TypedGoRoute<PasswordRecoveryRoute>(path: PasswordRecoveryScreen.path),
+        TypedGoRoute<PasswordResetRoute>(path: PasswordResetScreen.path),
       ],
     ),
     TypedGoRoute<SignUpRoute>(
@@ -83,11 +83,11 @@ class SignUpRoute extends GoRouteData {
   }
 }
 
-class PasswordRecoveryRoute extends GoRouteData {
-  const PasswordRecoveryRoute();
+class PasswordResetRoute extends GoRouteData {
+  const PasswordResetRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const PasswordRecoveryScreen();
+    return const PasswordResetScreen();
   }
 }

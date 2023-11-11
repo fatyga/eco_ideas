@@ -170,4 +170,9 @@ class SupabaseAuthRepository implements AuthRepository {
       throw SignUpFail();
     }
   }
+
+  @override
+  Future<void> resetPasswordForEmail({required String email}) async {
+    await ref.read(supabaseClientProvider).auth.resetPasswordForEmail(email);
+  }
 }

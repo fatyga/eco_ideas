@@ -10,30 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3416c2ad-4a83-42f4-b66f-fbbfb47e6f5e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations_en.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations_es.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations_es.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.last_build_id" beforeDir="false" afterPath="$PROJECT_DIR$/build/.last_build_id" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/auth.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/auth.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/auth_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/auth_repository.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/data/data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/data/data.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/data/user_repository/user_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/data/user_repository/user_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/domain/domain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/domain/domain.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/domain/user_profile/user_profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/domain/user_profile/user_profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/domain/user_profile/user_profile.freezed.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/domain/user_profile/user_profile.freezed.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/domain/user_profile/user_profile.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/domain/user_profile/user_profile.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_recovery.dart/password_recovery.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_recovery.dart/password_recovery_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/presentation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/presentation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/sign_in/widgets/sign_in_form/sign_in_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/sign_in/widgets/sign_in_form/sign_in_form.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/router/routes/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/router/routes/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/router/routes/routes.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/router/routes/routes.g.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,18 +37,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/src/eco_ideas&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "C:/src/eco_ideas",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration name="main_development.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="buildFlavor" value="development" />
+      <option name="filePath" value="$PROJECT_DIR$/lib/main_development.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

@@ -66,7 +66,7 @@ RouteBase get $authRoute => GoRouteData.$route(
           routes: [
             GoRouteData.$route(
               path: 'passwordRecovery',
-              factory: $PasswordRecoveryRouteExtension._fromState,
+              factory: $PasswordResetRouteExtension._fromState,
             ),
           ],
         ),
@@ -111,9 +111,9 @@ extension $SignInRouteExtension on SignInRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $PasswordRecoveryRouteExtension on PasswordRecoveryRoute {
-  static PasswordRecoveryRoute _fromState(GoRouterState state) =>
-      const PasswordRecoveryRoute();
+extension $PasswordResetRouteExtension on PasswordResetRoute {
+  static PasswordResetRoute _fromState(GoRouterState state) =>
+      const PasswordResetRoute();
 
   String get location => GoRouteData.$location(
         '/auth/signIn/passwordRecovery',

@@ -32,7 +32,7 @@ class SignInForm extends ConsumerWidget {
               onPressed: () {
                 ref
                     .read(goRouterProvider)
-                    .go(const PasswordRecoveryRoute().location);
+                    .go(const PasswordResetRoute().location);
               },
             ),
           ),
