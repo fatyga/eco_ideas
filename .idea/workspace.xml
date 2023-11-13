@@ -10,15 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3416c2ad-4a83-42f4-b66f-fbbfb47e6f5e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/auth_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/auth_repository.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_recovery.dart/password_recovery.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_recovery.dart/password_recovery_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/presentation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/presentation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/sign_in/widgets/sign_in_form/sign_in_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/sign_in/widgets/sign_in_form/sign_in_form.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/router/routes/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/router/routes/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_controller/password_reset_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_controller/password_reset_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_controller/password_reset_controller.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_controller/password_reset_controller.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/domain/user_profile/user_profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/domain/user_profile/user_profile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/router/routes/routes.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/router/routes/routes.g.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +47,7 @@
     "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
     "last_opened_file_path": "C:/src/eco_ideas",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>

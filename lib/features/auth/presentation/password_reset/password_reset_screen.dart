@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class PasswordResetScreen extends ConsumerWidget {
   const PasswordResetScreen({super.key});
 
-  static const String path = 'passwordRecovery';
+  static const String path = 'passwordReset';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +25,9 @@ class PasswordResetScreen extends ConsumerWidget {
             const SizedBox(height: 8),
             const EmailField(),
             ElevatedButton(
-                onPressed: controller.resetPasswordForEmail, child: Text('Confirm'))
+              onPressed: controller.resetPasswordForEmail,
+              child: Text('Confirm'),
+            ),
           ],
         ),
       ),

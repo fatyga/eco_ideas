@@ -155,12 +155,13 @@ class SupabaseAuthRepository implements AuthRepository {
     required String email,
     required String password,
     required String username,
+    String? avatarUrl,
   }) async {
     try {
       final response = await ref.read(supabaseClientProvider).auth.signUp(
         email: email,
         password: password,
-        data: {'username': username},
+        data: {'username': username, 'avatarUrl': avatarUrl},
       );
 
       if (response.session == null || response.user == null) {
@@ -173,6 +174,9 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   Future<void> resetPasswordForEmail({required String email}) async {
-    await ref.read(supabaseClientProvider).auth.resetPasswordForEmail(email);
+    await ref.read(supabaseClientProvider).auth.resetPasswordForEmail(
+          email,
+          redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL'],
+        );
   }
 }
