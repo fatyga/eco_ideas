@@ -171,6 +171,30 @@ abstract class AppLocalizations {
   /// **'In this step, please enter email address with which your account was created.'**
   String get passwordRecoveryFirstStepDescription;
 
+  /// No description provided for @passwordInputEmptyErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'Password can\'t be empty'**
+  String get passwordInputEmptyErrorText;
+
+  /// No description provided for @passwordInputTooShortErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is too short(at least 6 characters)'**
+  String get passwordInputTooShortErrorText;
+
+  /// No description provided for @emailInputEmptyErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'Email can\'t be empty'**
+  String get emailInputEmptyErrorText;
+
+  /// No description provided for @emailInputInvalidErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is invalid'**
+  String get emailInputInvalidErrorText;
+
   /// Text shown in the AppBar of the Counter Page
   ///
   /// In en, this message translates to:

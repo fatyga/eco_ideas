@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignInState {
-  String? get email => throw _privateConstructorUsedError;
-  String? get password => throw _privateConstructorUsedError;
+  EmailInput get email => throw _privateConstructorUsedError;
+  PasswordInput get password => throw _privateConstructorUsedError;
+  bool get isValid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInStateCopyWith<SignInState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $SignInStateCopyWith<$Res> {
           SignInState value, $Res Function(SignInState) then) =
       _$SignInStateCopyWithImpl<$Res, SignInState>;
   @useResult
-  $Res call({String? email, String? password});
+  $Res call({EmailInput email, PasswordInput password, bool isValid});
 }
 
 /// @nodoc
@@ -46,18 +47,23 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
+    Object? email = null,
+    Object? password = null,
+    Object? isValid = null,
   }) {
     return _then(_value.copyWith(
-      email: freezed == email
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
+              as EmailInput,
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as PasswordInput,
+      isValid: null == isValid
+          ? _value.isValid
+          : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$_SignInStateCopyWith<$Res>
       __$$_SignInStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? email, String? password});
+  $Res call({EmailInput email, PasswordInput password, bool isValid});
 }
 
 /// @nodoc
@@ -84,18 +90,23 @@ class __$$_SignInStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
+    Object? email = null,
+    Object? password = null,
+    Object? isValid = null,
   }) {
     return _then(_$_SignInState(
-      email: freezed == email
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: freezed == password
+              as EmailInput,
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as PasswordInput,
+      isValid: null == isValid
+          ? _value.isValid
+          : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -103,16 +114,24 @@ class __$$_SignInStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SignInState implements _SignInState {
-  const _$_SignInState({this.email, this.password});
+  const _$_SignInState(
+      {this.email = const EmailInput.pure(),
+      this.password = const PasswordInput.pure(),
+      this.isValid = false});
 
   @override
-  final String? email;
+  @JsonKey()
+  final EmailInput email;
   @override
-  final String? password;
+  @JsonKey()
+  final PasswordInput password;
+  @override
+  @JsonKey()
+  final bool isValid;
 
   @override
   String toString() {
-    return 'SignInState(email: $email, password: $password)';
+    return 'SignInState(email: $email, password: $password, isValid: $isValid)';
   }
 
   @override
@@ -122,11 +141,12 @@ class _$_SignInState implements _SignInState {
             other is _$_SignInState &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.isValid, isValid) || other.isValid == isValid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password, isValid);
 
   @JsonKey(ignore: true)
   @override
@@ -136,13 +156,17 @@ class _$_SignInState implements _SignInState {
 }
 
 abstract class _SignInState implements SignInState {
-  const factory _SignInState({final String? email, final String? password}) =
-      _$_SignInState;
+  const factory _SignInState(
+      {final EmailInput email,
+      final PasswordInput password,
+      final bool isValid}) = _$_SignInState;
 
   @override
-  String? get email;
+  EmailInput get email;
   @override
-  String? get password;
+  PasswordInput get password;
+  @override
+  bool get isValid;
   @override
   @JsonKey(ignore: true)
   _$$_SignInStateCopyWith<_$_SignInState> get copyWith =>

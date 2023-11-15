@@ -44,6 +44,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordRecoveryFirstStepDescription => 'In this step, please enter email address with which your account was created.';
 
   @override
+  String get passwordInputEmptyErrorText => 'Password can\'t be empty';
+
+  @override
+  String get passwordInputTooShortErrorText => 'Password is too short(at least 6 characters)';
+
+  @override
+  String get emailInputEmptyErrorText => 'Email can\'t be empty';
+
+  @override
+  String get emailInputInvalidErrorText => 'Email is invalid';
+
+  @override
   String get counterAppBarTitle => 'Counter';
 
   @override

@@ -9,6 +9,7 @@ environment:
 dependencies:
   bloc: ^8.1.2
   crypto: ^3.0.3
+  email_validator: ^2.1.17
   flutter:
     sdk: flutter
   flutter_appauth: ^6.0.2
@@ -19,6 +20,7 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^2.4.3
  
+  formz: ^0.6.1
   freezed_annotation: ^2.4.1
   go_router: ^12.0.0
   intl: ^0.18.0

@@ -7,7 +7,6 @@ import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/sign_in_for
 import 'package:eco_ideas/l10n/l10n.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});

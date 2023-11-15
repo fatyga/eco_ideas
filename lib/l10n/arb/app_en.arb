@@ -13,6 +13,10 @@
     "signInLabeledDividerText": "OR",
     "passwordRecoveryAppBarTitle": "Reset your password",
     "passwordRecoveryFirstStepDescription": "In this step, please enter email address with which your account was created.",
+    "passwordInputEmptyErrorText": "Password can't be empty",
+    "passwordInputTooShortErrorText": "Password is too short(at least 6 characters)",
+    "emailInputEmptyErrorText": "Email can't be empty",
+    "emailInputInvalidErrorText": "Email is invalid",
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"

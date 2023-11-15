@@ -13,6 +13,10 @@
     "signInLabeledDividerText": "LUB",
     "passwordRecoveryAppBarTitle": "Zresetuj swoje hasło",
     "passwordRecoveryFirstStepDescription": "W tym kroku podaj adres e-mail, za pomocą którego utworzono konto.",
+    "passwordInputEmptyErrorText": "To pole nie może być puste",
+    "passwordInputTooShortErrorText": "Hasło jest za krótkie(co najmniej 6 znaków)",
+    "emailInputEmptyErrorText": "To pole nie może być puste",
+    "emailInputInvalidErrorText": "Adres e-mail jest nieprawidłowy.",
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"

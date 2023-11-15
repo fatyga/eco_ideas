@@ -13,8 +13,9 @@ class SignInButton extends ConsumerWidget {
     final isSigningIn = ref.watch(signInControllerProvider).isLoading;
 
     return IndicatorButton(
-        isLoading: isSigningIn,
-        onPressed: ref.read(signInControllerProvider.notifier).signInWithEmail,
-        child: Text(l10n.signInButtonText));
+      isLoading: isSigningIn,
+      onPressed: ref.read(signInControllerProvider.notifier).signInWithEmail,
+      child: Text(l10n.signInButtonText),
+    );
   }
 }

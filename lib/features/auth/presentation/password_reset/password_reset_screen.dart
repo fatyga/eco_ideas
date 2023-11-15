@@ -23,7 +23,9 @@ class PasswordResetScreen extends ConsumerWidget {
           children: [
             Text(l10n.passwordRecoveryFirstStepDescription),
             const SizedBox(height: 8),
-            const EmailField(),
+            EmailField(
+              onChanged: (_) {},
+            ),
             ElevatedButton(
               onPressed: controller.resetPasswordForEmail,
               child: Text('Confirm'),
