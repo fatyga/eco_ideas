@@ -10,11 +10,17 @@ class SignInButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final isSigningIn = ref.watch(signInControllerProvider).isLoading;
 
+    final isSigningIn = ref.watch(signInControllerProvider).isLoading;
+    final isValid = ref.watch(
+      signInControllerProvider
+          .select((controllerState) => controllerState.value!.isValid),
+    );
     return IndicatorButton(
       isLoading: isSigningIn,
-      onPressed: ref.read(signInControllerProvider.notifier).signInWithEmail,
+      onPressed: isSigningIn || !isValid
+          ? null
+          : ref.read(signInControllerProvider.notifier).signInWithEmail,
       child: Text(l10n.signInButtonText),
     );
   }

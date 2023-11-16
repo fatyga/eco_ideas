@@ -29,7 +29,12 @@ class SignInForm extends ConsumerWidget {
                   .select((controllerState) => controllerState.value!.email),
             );
 
+            final isLoading = ref.watch(
+              signInControllerProvider.select((value) => value.isLoading),
+            );
+
             return EmailField(
+              enabled: !isLoading,
               onChanged:
                   ref.read(signInControllerProvider.notifier).updateEmailField,
               focusNode: emailFocusNode,
@@ -48,7 +53,11 @@ class SignInForm extends ConsumerWidget {
               signInControllerProvider
                   .select((controllerState) => controllerState.value!.password),
             );
+            final isLoading = ref.watch(
+              signInControllerProvider.select((value) => value.isLoading),
+            );
             return PasswordField(
+              enabled: !isLoading,
               focusNode: passwordFocusNode,
               onChanged: ref
                   .read(signInControllerProvider.notifier)

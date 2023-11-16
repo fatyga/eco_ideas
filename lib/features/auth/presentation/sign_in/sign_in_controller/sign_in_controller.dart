@@ -76,7 +76,8 @@ class SignInController extends _$SignInController {
           password: state.value!.password.value,
         );
       } catch (e) {
-        state = AsyncError(e, StackTrace.current);
+        state = AsyncError<SignInState>(e, StackTrace.current)
+            .copyWithPrevious(state);
       }
 
       state = AsyncValue.data(state.value!);

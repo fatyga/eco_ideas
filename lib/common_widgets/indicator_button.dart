@@ -9,13 +9,21 @@ class IndicatorButton extends StatelessWidget {
   });
 
   final bool isLoading;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget child;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return FilledButton(
       onPressed: onPressed,
-      child: isLoading ? const CircularProgressIndicator() : child,
+      child: isLoading
+          ? SizedBox(
+              width: 24,
+              height: 24,
+              child: CircularProgressIndicator(
+                  color: theme.colorScheme.primary, strokeWidth: 2),
+            )
+          : child,
     );
   }
 }
