@@ -1,9 +1,6 @@
-import 'package:eco_ideas/common_widgets/greeting_title.dart';
-import 'package:eco_ideas/common_widgets/labeled_divider.dart';
+import 'package:eco_ideas/common/widgets/greeting_title.dart';
+import 'package:eco_ideas/common/widgets/labeled_divider.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/google_auth_button.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/register_action_button.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/sign_in_form/sign_in_form.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 
 import 'package:flutter/material.dart';

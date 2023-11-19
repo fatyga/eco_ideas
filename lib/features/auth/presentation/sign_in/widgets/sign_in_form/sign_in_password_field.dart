@@ -1,4 +1,4 @@
-import 'package:eco_ideas/common_widgets/password_field.dart';
+import 'package:eco_ideas/common/widgets/password_field.dart';
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/widgets.dart';

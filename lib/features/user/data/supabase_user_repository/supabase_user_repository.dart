@@ -1,4 +1,4 @@
-import 'package:eco_ideas/common_providers/supabase_provider/supabase_provider.dart';
+import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/user/domain/user_profile/user_profile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

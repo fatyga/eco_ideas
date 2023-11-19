@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
-import 'package:eco_ideas/common_providers/supabase_provider/supabase_provider.dart';
+import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
