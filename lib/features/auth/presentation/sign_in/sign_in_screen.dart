@@ -63,7 +63,11 @@ class _SignInScreenState extends State<SignInScreen> {
                 onPressed: () {},
               ),
               const Spacer(),
-              Center(child: RegisterActionButton(onPressed: () {})),
+              Center(
+                child: RegisterActionButton(
+                  onPressed: () {},
+                ),
+              ),
             ] else
               const Spacer(),
           ],

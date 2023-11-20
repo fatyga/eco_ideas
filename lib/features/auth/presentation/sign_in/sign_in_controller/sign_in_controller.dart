@@ -70,6 +70,7 @@ class SignInController extends _$SignInController {
       } catch (e) {
         state = AsyncError<SignInState>(e, StackTrace.current)
             .copyWithPrevious(state);
+        return;
       }
 
       state = AsyncValue.data(state.value!);

@@ -1,19 +1,8 @@
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_controller/password_reset_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'password_reset_controller.g.dart';
-part 'password_reset_controller.freezed.dart';
-
-enum PasswordResetStep { initial, sendingLink, settingPassword }
-
-@freezed
-class PasswordResetState with _$PasswordResetState {
-  const factory PasswordResetState({
-    @Default(PasswordResetStep.initial) PasswordResetStep step,
-    String? email,
-  }) = _PasswordResetState;
-}
 
 @riverpod
 class PasswordResetController extends _$PasswordResetController {
@@ -24,7 +13,7 @@ class PasswordResetController extends _$PasswordResetController {
 
   Future<void> resetPasswordForEmail() async {
     if (state.hasValue && state.value!.email != null) {
-      state = const AsyncLoading();
+      state = const AsyncLoading<PasswordResetState>().copyWithPrevious(state);
       await ref
           .read(authRepositoryProvider)
           .resetPasswordForEmail(email: state.value!.email!);

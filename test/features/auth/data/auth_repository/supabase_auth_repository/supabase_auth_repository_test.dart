@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:eco_ideas/common_providers/supabase_provider/supabase_provider.dart';
+import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
