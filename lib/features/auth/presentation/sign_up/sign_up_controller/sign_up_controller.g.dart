@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_in_controller.dart';
+part of 'sign_up_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signInControllerHash() => r'ad2079f819b1f0bc5c3731a3e781f706d28ca2a7';
+String _$signUpControllerHash() => r'badc95bdaa0c58ff6e968e6a31709f1ee285e6cd';
 
-/// See also [SignInController].
-@ProviderFor(SignInController)
-final signInControllerProvider =
-    AutoDisposeAsyncNotifierProvider<SignInController, SignInState>.internal(
-  SignInController.new,
-  name: r'signInControllerProvider',
+/// See also [SignUpController].
+@ProviderFor(SignUpController)
+final signUpControllerProvider =
+    AutoDisposeAsyncNotifierProvider<SignUpController, SignUpState>.internal(
+  SignUpController.new,
+  name: r'signUpControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$signInControllerHash,
+      : _$signUpControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SignInController = AutoDisposeAsyncNotifier<SignInState>;
+typedef _$SignUpController = AutoDisposeAsyncNotifier<SignUpState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

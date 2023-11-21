@@ -48,10 +48,7 @@ class SignInController extends _$SignInController {
         final password = PasswordInput.dirty(value: newValue);
         final isValid = Formz.validate([state.value!.email, password]);
         state = AsyncValue.data(
-          state
-              .unwrapPrevious()
-              .value!
-              .copyWith(password: password, isValid: isValid),
+          state.value!.copyWith(password: password, isValid: isValid),
         );
       }
     }

@@ -2,8 +2,10 @@ import 'package:eco_ideas/common/widgets/greeting_title.dart';
 import 'package:eco_ideas/common/widgets/labeled_divider.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
+import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -63,10 +65,16 @@ class _SignInScreenState extends State<SignInScreen> {
                 onPressed: () {},
               ),
               const Spacer(),
-              Center(
-                child: RegisterActionButton(
-                  onPressed: () {},
-                ),
+              Consumer(
+                builder: (context, ref, _) {
+                  return Center(
+                    child: RegisterActionButton(
+                      onPressed: () {
+                        ref.read(goRouterProvider).go('/auth/signUp');
+                      },
+                    ),
+                  );
+                },
               ),
             ] else
               const Spacer(),
