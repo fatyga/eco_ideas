@@ -14,6 +14,14 @@ class SignInState with _$SignInState {
     @Default(PasswordInput.pure()) PasswordInput password,
     @Default(false) bool isValid,
   }) = _SignInState;
+  const SignInState._();
+
+  bool get canAttemptSigningIn =>
+      isValid &&
+      !email.isPure &&
+      email.isValid &&
+      !password.isPure &&
+      password.isValid;
 }
 
 extension SignInStateUI on AsyncValue<SignInState> {

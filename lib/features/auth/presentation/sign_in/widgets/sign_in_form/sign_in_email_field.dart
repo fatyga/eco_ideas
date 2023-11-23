@@ -18,22 +18,25 @@ class SignInEmailField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final inputState = ref.watch(
       signInControllerProvider
-          .select((controllerState) => controllerState.value!.email),
+          .select((controllerState) => controllerState.valueOrNull?.email),
     );
 
     final isLoading = ref.watch(
-      signInControllerProvider.select((value) => value.isLoading),
+      signInControllerProvider
+          .select((controllerState) => controllerState.isLoading),
     );
 
     return EmailField(
       enabled: !isLoading,
       onChanged: ref.read(signInControllerProvider.notifier).updateEmailField,
       focusNode: focusNode,
-      errorText: inputState.isPure
+      errorText: inputState == null
           ? null
-          : inputState.isNotValid
-              ? inputState.error!.errorText(l10n)
-              : null,
+          : inputState.isPure
+              ? null
+              : inputState.isNotValid
+                  ? inputState.error!.errorText(l10n)
+                  : null,
     );
   }
 }

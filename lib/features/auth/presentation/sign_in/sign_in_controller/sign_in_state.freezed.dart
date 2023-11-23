@@ -113,11 +113,12 @@ class __$$_SignInStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SignInState implements _SignInState {
+class _$_SignInState extends _SignInState {
   const _$_SignInState(
       {this.email = const EmailInput.pure(),
       this.password = const PasswordInput.pure(),
-      this.isValid = false});
+      this.isValid = false})
+      : super._();
 
   @override
   @JsonKey()
@@ -155,11 +156,12 @@ class _$_SignInState implements _SignInState {
       __$$_SignInStateCopyWithImpl<_$_SignInState>(this, _$identity);
 }
 
-abstract class _SignInState implements SignInState {
+abstract class _SignInState extends SignInState {
   const factory _SignInState(
       {final EmailInput email,
       final PasswordInput password,
       final bool isValid}) = _$_SignInState;
+  const _SignInState._() : super._();
 
   @override
   EmailInput get email;

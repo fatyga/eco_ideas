@@ -18,21 +18,24 @@ class SignInPasswordField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final inputState = ref.watch(
       signInControllerProvider
-          .select((controllerState) => controllerState.value!.password),
+          .select((controllerState) => controllerState.valueOrNull?.password),
     );
     final isLoading = ref.watch(
-      signInControllerProvider.select((value) => value.isLoading),
+      signInControllerProvider
+          .select((controllerState) => controllerState.isLoading),
     );
     return PasswordField(
       enabled: !isLoading,
       focusNode: focusNode,
       onChanged:
           ref.read(signInControllerProvider.notifier).updatePasswordField,
-      errorText: inputState.isPure
+      errorText: inputState == null
           ? null
-          : inputState.isNotValid
-              ? inputState.error!.errorText(l10n)
-              : null,
+          : inputState.isPure
+              ? null
+              : inputState.isNotValid
+                  ? inputState.error!.errorText(l10n)
+                  : null,
     );
   }
 }

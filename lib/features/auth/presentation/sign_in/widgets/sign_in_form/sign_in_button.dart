@@ -17,16 +17,21 @@ class SignInButton extends ConsumerWidget {
       (_, state) => state.showSnackBarOnError(context),
     );
 
-    final isSigningIn = ref.watch(signInControllerProvider).isLoading;
-    final isValid = ref.watch(
+    final isSigningIn = ref.watch(
       signInControllerProvider
-          .select((controllerState) => controllerState.value!.isValid),
+          .select((controllerState) => controllerState.isLoading),
+    );
+    final canAttemptSigningIn = ref.watch(
+      signInControllerProvider.select((controllerState) =>
+          controllerState.valueOrNull?.canAttemptSigningIn),
     );
     return IndicatorButton(
       isLoading: isSigningIn,
-      onPressed: isSigningIn || !isValid
+      onPressed: isSigningIn || canAttemptSigningIn == null
           ? null
-          : ref.read(signInControllerProvider.notifier).signInWithEmail,
+          : canAttemptSigningIn
+              ? ref.read(signInControllerProvider.notifier).signInWithEmail
+              : null,
       child: Text(l10n.signInButtonText),
     );
   }
