@@ -20,11 +20,11 @@ class SignInController extends _$SignInController {
     final stateValue = state.valueOrNull;
     if (stateValue != null) {
       if (newValue.isEmpty) {
-        const email = PasswordInput.pure();
+        const email = EmailInput.pure();
         final isValid = Formz.validate([email, stateValue.password]);
         state = AsyncValue.data(
           stateValue.copyWith(
-            email: const EmailInput.pure(),
+            email: email,
             isValid: isValid,
           ),
         );
