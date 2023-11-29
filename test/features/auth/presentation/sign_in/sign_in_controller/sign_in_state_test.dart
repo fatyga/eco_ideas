@@ -7,9 +7,11 @@ void main() {
   SignInState createSubject({
     EmailInput email = const EmailInput.pure(),
     PasswordInput password = const PasswordInput.pure(),
-    bool isValid = false,
   }) {
-    return SignInState(email: email, password: password, isValid: isValid);
+    return SignInState(
+      email: email,
+      password: password,
+    );
   }
 
   group('constructor', () {
@@ -28,12 +30,10 @@ void main() {
       expect(
         createSubject().copyWith(
           email: const EmailInput.dirty(value: 'email'),
-          isValid: true,
         ),
         equals(
           createSubject(
             email: const EmailInput.dirty(value: 'email'),
-            isValid: true,
           ),
         ),
       );

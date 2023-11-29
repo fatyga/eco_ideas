@@ -3,8 +3,6 @@ import 'package:eco_ideas/features/auth/domain/input_models/email_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/password_input.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_state.dart';
 
-import 'package:formz/formz.dart';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'sign_in_controller.g.dart';
@@ -21,18 +19,19 @@ class SignInController extends _$SignInController {
     if (stateValue != null) {
       if (newValue.isEmpty) {
         const email = EmailInput.pure();
-        final isValid = Formz.validate([email, stateValue.password]);
+
         state = AsyncValue.data(
           stateValue.copyWith(
             email: email,
-            isValid: isValid,
           ),
         );
       } else {
         final email = EmailInput.dirty(value: newValue);
-        final isValid = Formz.validate([email, stateValue.password]);
+
         state = AsyncValue.data(
-          stateValue.copyWith(email: email, isValid: isValid),
+          stateValue.copyWith(
+            email: email,
+          ),
         );
       }
     }
@@ -43,18 +42,19 @@ class SignInController extends _$SignInController {
     if (stateValue != null) {
       if (newValue.isEmpty) {
         const password = PasswordInput.pure();
-        final isValid = Formz.validate([stateValue.email, password]);
+
         state = AsyncValue.data(
           stateValue.copyWith(
-            password: const PasswordInput.pure(),
-            isValid: isValid,
+            password: password,
           ),
         );
       } else {
         final password = PasswordInput.dirty(value: newValue);
-        final isValid = Formz.validate([stateValue.email, password]);
+
         state = AsyncValue.data(
-          stateValue.copyWith(password: password, isValid: isValid),
+          stateValue.copyWith(
+            password: password,
+          ),
         );
       }
     }

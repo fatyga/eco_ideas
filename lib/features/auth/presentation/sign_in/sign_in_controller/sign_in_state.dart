@@ -3,6 +3,7 @@ import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_f
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure_ui_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sign_in_state.freezed.dart';
@@ -12,7 +13,6 @@ class SignInState with _$SignInState {
   const factory SignInState({
     @Default(EmailInput.pure()) EmailInput email,
     @Default(PasswordInput.pure()) PasswordInput password,
-    @Default(false) bool isValid,
   }) = _SignInState;
   const SignInState._();
 
@@ -22,6 +22,10 @@ class SignInState with _$SignInState {
       email.isValid &&
       !password.isPure &&
       password.isValid;
+}
+
+extension InputsValidity on SignInState {
+  bool get isValid => Formz.validate([email, password]);
 }
 
 extension SignInStateUI on AsyncValue<SignInState> {

@@ -29,6 +29,13 @@ void main() {
   }
 
   group('signInController', () {
+    const invalidEmail = 'john.2!@#@w';
+    const validEmail = 'john.doe@gmail.com';
+
+    const validPassword = 'qwerty123';
+    const tooShortPassword = 'qwert';
+
+    registerFallbackValue(const SignInState());
     group('constructor', () {
       test('initial state is AsyncData', () {
         final mockAuthRepository = MockAuthRepository();
@@ -51,10 +58,76 @@ void main() {
       });
     });
 
-    group('updateEmailField', () {
-      const invalidEmail = 'john.2!@#@w';
-      const validEmail = 'john.doe@gmail.com';
+    group('isValid', () {
+      test('default value is false', () {
+        final container = makeProviderContainer();
 
+        final listener = Listener<AsyncValue<SignInState>>();
+
+        container.listen(
+          signInControllerProvider,
+          listener.call,
+          fireImmediately: true,
+        );
+        final controller = container.read(signInControllerProvider.notifier);
+        expect(controller.state.requireValue.isValid, equals(false));
+      });
+
+      test('equals false when both of inputs are invalid', () {
+        final container = makeProviderContainer();
+
+        final listener = Listener<AsyncValue<SignInState>>();
+
+        container.listen(
+          signInControllerProvider,
+          listener.call,
+          fireImmediately: true,
+        );
+
+        final controller = container.read(signInControllerProvider.notifier)
+          ..updateEmailField(invalidEmail)
+          ..updatePasswordField(tooShortPassword);
+
+        expect(controller.state.requireValue.isValid, equals(false));
+      });
+
+      test('equals false when one of inputs is invalid', () {
+        final container = makeProviderContainer();
+
+        final listener = Listener<AsyncValue<SignInState>>();
+
+        container.listen(
+          signInControllerProvider,
+          listener.call,
+          fireImmediately: true,
+        );
+
+        final controller = container.read(signInControllerProvider.notifier)
+          ..updateEmailField(invalidEmail)
+          ..updatePasswordField(validPassword);
+
+        expect(controller.state.requireValue.isValid, equals(false));
+      });
+
+      test('equals true when both of inputs are valid', () {
+        final container = makeProviderContainer();
+
+        final listener = Listener<AsyncValue<SignInState>>();
+
+        container.listen(
+          signInControllerProvider,
+          listener.call,
+          fireImmediately: true,
+        );
+
+        final controller = container.read(signInControllerProvider.notifier)
+          ..updateEmailField(validEmail)
+          ..updatePasswordField(validPassword);
+
+        expect(controller.state.requireValue.isValid, equals(true));
+      });
+    });
+    group('updateEmailField', () {
       // isValid property is always false, because we change only EmailInput, while password field stays untouched and by default is invalid
       test('set email to EmailInput.pure() when newValue is empty', () {
         final container = makeProviderContainer();
@@ -102,7 +175,6 @@ void main() {
                 const AsyncData<SignInState>(
                   SignInState(
                     email: EmailInput.dirty(value: invalidEmail),
-                    isValid: false,
                   ),
                 ),
               ),
@@ -111,9 +183,9 @@ void main() {
         verifyNoMoreInteractions(listener);
       });
 
-      test(
-          'set email to EmailInput.dirty() and overwrite isValid when newValue is not empty and valid',
-          () {
+      test('''
+set email to EmailInput.dirty() and overwrite isValid when newValue is
+           not empty and valid''', () {
         final container = makeProviderContainer();
         final listener = Listener<AsyncValue<SignInState>>();
         container.listen(
@@ -134,7 +206,6 @@ void main() {
                 const AsyncData<SignInState>(
                   SignInState(
                     email: EmailInput.dirty(value: validEmail),
-                    isValid: false,
                   ),
                 ),
               ),
@@ -145,9 +216,6 @@ void main() {
     });
 
     group('updatePasswordField', () {
-      const validPassword = 'qwerty123';
-      const tooShortPassword = 'qwert';
-
       // isValid property is always false, because we change only PasswordInput, while email field stays untouched and by default is invalid
       test('sets password to PasswordInput.pure() when value is empty', () {
         final container = makeProviderContainer();
@@ -197,7 +265,6 @@ void main() {
                 const AsyncData<SignInState>(
                   SignInState(
                     password: PasswordInput.dirty(value: tooShortPassword),
-                    isValid: false,
                   ),
                 ),
               ),
@@ -229,7 +296,6 @@ void main() {
                 const AsyncData<SignInState>(
                   SignInState(
                     email: EmailInput.dirty(value: validPassword),
-                    isValid: false,
                   ),
                 ),
               ),

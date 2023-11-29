@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignInState {
   EmailInput get email => throw _privateConstructorUsedError;
   PasswordInput get password => throw _privateConstructorUsedError;
-  bool get isValid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInStateCopyWith<SignInState> get copyWith =>
@@ -31,7 +30,7 @@ abstract class $SignInStateCopyWith<$Res> {
           SignInState value, $Res Function(SignInState) then) =
       _$SignInStateCopyWithImpl<$Res, SignInState>;
   @useResult
-  $Res call({EmailInput email, PasswordInput password, bool isValid});
+  $Res call({EmailInput email, PasswordInput password});
 }
 
 /// @nodoc
@@ -49,7 +48,6 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? isValid = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -60,10 +58,6 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      isValid: null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -76,7 +70,7 @@ abstract class _$$_SignInStateCopyWith<$Res>
       __$$_SignInStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({EmailInput email, PasswordInput password, bool isValid});
+  $Res call({EmailInput email, PasswordInput password});
 }
 
 /// @nodoc
@@ -92,7 +86,6 @@ class __$$_SignInStateCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? isValid = null,
   }) {
     return _then(_$_SignInState(
       email: null == email
@@ -103,10 +96,6 @@ class __$$_SignInStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      isValid: null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -116,8 +105,7 @@ class __$$_SignInStateCopyWithImpl<$Res>
 class _$_SignInState extends _SignInState {
   const _$_SignInState(
       {this.email = const EmailInput.pure(),
-      this.password = const PasswordInput.pure(),
-      this.isValid = false})
+      this.password = const PasswordInput.pure()})
       : super._();
 
   @override
@@ -126,13 +114,10 @@ class _$_SignInState extends _SignInState {
   @override
   @JsonKey()
   final PasswordInput password;
-  @override
-  @JsonKey()
-  final bool isValid;
 
   @override
   String toString() {
-    return 'SignInState(email: $email, password: $password, isValid: $isValid)';
+    return 'SignInState(email: $email, password: $password)';
   }
 
   @override
@@ -142,12 +127,11 @@ class _$_SignInState extends _SignInState {
             other is _$_SignInState &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.isValid, isValid) || other.isValid == isValid));
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, isValid);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -158,17 +142,13 @@ class _$_SignInState extends _SignInState {
 
 abstract class _SignInState extends SignInState {
   const factory _SignInState(
-      {final EmailInput email,
-      final PasswordInput password,
-      final bool isValid}) = _$_SignInState;
+      {final EmailInput email, final PasswordInput password}) = _$_SignInState;
   const _SignInState._() : super._();
 
   @override
   EmailInput get email;
   @override
   PasswordInput get password;
-  @override
-  bool get isValid;
   @override
   @JsonKey(ignore: true)
   _$$_SignInStateCopyWith<_$_SignInState> get copyWith =>
