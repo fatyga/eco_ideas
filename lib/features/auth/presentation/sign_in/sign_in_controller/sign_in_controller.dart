@@ -1,3 +1,4 @@
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/email_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/password_input.dart';
@@ -62,9 +63,9 @@ class SignInController extends _$SignInController {
 
   Future<void> signInWithEmail() async {
     final stateValue = state.valueOrNull;
-    if (stateValue != null) {
+    if (stateValue != null && stateValue.isValid) {
       final authRepository = ref.read(authRepositoryProvider);
-      state = const AsyncValue<SignInState>.loading().copyWithPrevious(state);
+      state = const AsyncLoading<SignInState>();
 
       try {
         await authRepository.signInWithEmail(
@@ -72,12 +73,10 @@ class SignInController extends _$SignInController {
           password: stateValue.password.value,
         );
       } catch (e) {
-        state = AsyncError<SignInState>(e, StackTrace.current)
-            .copyWithPrevious(state);
+        state = AsyncError<SignInState>(e, StackTrace.current);
         return;
       }
-
-      state = AsyncValue.data(stateValue);
+      state = AsyncData<SignInState>(state.requireValue);
     }
   }
 }

@@ -22,8 +22,8 @@ class SignInButton extends ConsumerWidget {
           .select((controllerState) => controllerState.isLoading),
     );
     final canAttemptSigningIn = ref.watch(
-      signInControllerProvider.select((controllerState) =>
-          controllerState.valueOrNull?.canAttemptSigningIn),
+      signInControllerProvider
+          .select((controllerState) => controllerState.valueOrNull?.isValid),
     );
     return IndicatorButton(
       isLoading: isSigningIn,

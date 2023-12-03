@@ -15,13 +15,6 @@ class SignInState with _$SignInState {
     @Default(PasswordInput.pure()) PasswordInput password,
   }) = _SignInState;
   const SignInState._();
-
-  bool get canAttemptSigningIn =>
-      isValid &&
-      !email.isPure &&
-      email.isValid &&
-      !password.isPure &&
-      password.isValid;
 }
 
 extension InputsValidity on SignInState {
