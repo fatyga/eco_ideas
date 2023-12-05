@@ -56,6 +56,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailInputInvalidErrorText => 'Email is invalid';
 
   @override
+  String get signUpScreenAppBarTitle => 'Create an account';
+
+  @override
+  String get signUpButtonText => 'Register';
+
+  @override
   String get counterAppBarTitle => 'Counter';
 
   @override

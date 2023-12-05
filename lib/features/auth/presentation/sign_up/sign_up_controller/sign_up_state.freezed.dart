@@ -20,7 +20,6 @@ mixin _$SignUpState {
   PasswordInput get password => throw _privateConstructorUsedError;
   UsernameInput get username => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
-  bool get isValid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpStateCopyWith<SignUpState> get copyWith =>
@@ -37,8 +36,7 @@ abstract class $SignUpStateCopyWith<$Res> {
       {EmailInput email,
       PasswordInput password,
       UsernameInput username,
-      String? avatarUrl,
-      bool isValid});
+      String? avatarUrl});
 }
 
 /// @nodoc
@@ -58,7 +56,6 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? password = null,
     Object? username = null,
     Object? avatarUrl = freezed,
-    Object? isValid = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -77,10 +74,6 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      isValid: null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -97,8 +90,7 @@ abstract class _$$_SignUpStateCopyWith<$Res>
       {EmailInput email,
       PasswordInput password,
       UsernameInput username,
-      String? avatarUrl,
-      bool isValid});
+      String? avatarUrl});
 }
 
 /// @nodoc
@@ -116,7 +108,6 @@ class __$$_SignUpStateCopyWithImpl<$Res>
     Object? password = null,
     Object? username = null,
     Object? avatarUrl = freezed,
-    Object? isValid = null,
   }) {
     return _then(_$_SignUpState(
       email: null == email
@@ -135,10 +126,6 @@ class __$$_SignUpStateCopyWithImpl<$Res>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      isValid: null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -150,8 +137,7 @@ class _$_SignUpState implements _SignUpState {
       {this.email = const EmailInput.pure(),
       this.password = const PasswordInput.pure(),
       this.username = const UsernameInput.pure(),
-      this.avatarUrl,
-      this.isValid = false});
+      this.avatarUrl});
 
   @override
   @JsonKey()
@@ -164,13 +150,10 @@ class _$_SignUpState implements _SignUpState {
   final UsernameInput username;
   @override
   final String? avatarUrl;
-  @override
-  @JsonKey()
-  final bool isValid;
 
   @override
   String toString() {
-    return 'SignUpState(email: $email, password: $password, username: $username, avatarUrl: $avatarUrl, isValid: $isValid)';
+    return 'SignUpState(email: $email, password: $password, username: $username, avatarUrl: $avatarUrl)';
   }
 
   @override
@@ -184,13 +167,12 @@ class _$_SignUpState implements _SignUpState {
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl) &&
-            (identical(other.isValid, isValid) || other.isValid == isValid));
+                other.avatarUrl == avatarUrl));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, email, password, username, avatarUrl, isValid);
+      Object.hash(runtimeType, email, password, username, avatarUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -204,8 +186,7 @@ abstract class _SignUpState implements SignUpState {
       {final EmailInput email,
       final PasswordInput password,
       final UsernameInput username,
-      final String? avatarUrl,
-      final bool isValid}) = _$_SignUpState;
+      final String? avatarUrl}) = _$_SignUpState;
 
   @override
   EmailInput get email;
@@ -215,8 +196,6 @@ abstract class _SignUpState implements SignUpState {
   UsernameInput get username;
   @override
   String? get avatarUrl;
-  @override
-  bool get isValid;
   @override
   @JsonKey(ignore: true)
   _$$_SignUpStateCopyWith<_$_SignUpState> get copyWith =>

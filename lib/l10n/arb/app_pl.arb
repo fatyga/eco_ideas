@@ -17,6 +17,8 @@
     "passwordInputTooShortErrorText": "Hasło jest za krótkie(co najmniej 6 znaków)",
     "emailInputEmptyErrorText": "To pole nie może być puste",
     "emailInputInvalidErrorText": "Adres e-mail jest nieprawidłowy.",
+    "signUpScreenAppBarTitle": "Utwórz konto",
+    "signUpButtonText": "Zarejestruj się",
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"

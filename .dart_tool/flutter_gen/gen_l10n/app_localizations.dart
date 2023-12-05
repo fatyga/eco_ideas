@@ -195,6 +195,18 @@ abstract class AppLocalizations {
   /// **'Email is invalid'**
   String get emailInputInvalidErrorText;
 
+  /// No description provided for @signUpScreenAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account'**
+  String get signUpScreenAppBarTitle;
+
+  /// No description provided for @signUpButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get signUpButtonText;
+
   /// Text shown in the AppBar of the Counter Page
   ///
   /// In en, this message translates to:

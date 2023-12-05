@@ -17,6 +17,8 @@
     "passwordInputTooShortErrorText": "Password is too short(at least 6 characters)",
     "emailInputEmptyErrorText": "Email can't be empty",
     "emailInputInvalidErrorText": "Email is invalid",
+    "signUpScreenAppBarTitle": "Create an account",
+    "signUpButtonText": "Register",
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
