@@ -35,7 +35,7 @@ class SignInForm extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 12),
-        const SignInButton()
+        const SignInButton(),
       ],
     );
   }

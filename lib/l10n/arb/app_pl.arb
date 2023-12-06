@@ -4,6 +4,7 @@
     "greetingText": "Witaj w ",
     "emailTextFieldLabelText": "Adres e-mail",
     "passwordTextFieldLabelText": "Hasło",
+    "passwordRetypeFieldLabelText": "Powtórz hasło",
     "registerTextButtonLabelText": "Nie masz konta? ",
     "registerTextButtonActionText": "Utwórz je!",
     "forgotPasswordButtonLabelText": "Zapomniałeś hasła? ",
@@ -19,6 +20,7 @@
     "emailInputInvalidErrorText": "Adres e-mail jest nieprawidłowy.",
     "signUpScreenAppBarTitle": "Utwórz konto",
     "signUpButtonText": "Zarejestruj się",
+    "signUpPasswordRetypeInputMismatchErrorText": "Hasła są niezgodne",
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"

@@ -26,7 +26,9 @@ void main() {
     });
 
     test(
-        'returns PasswordInputError.tooShort when the length of the password is less than 6 characters',
+        '''
+returns PasswordInputError.tooShort when the length of the password
+         is less than 6 characters''',
         () {
       expect(
         createSubject().validator('two'),

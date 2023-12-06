@@ -10,10 +10,10 @@ class SignUpEmailField extends ConsumerWidget {
   final FocusNode? focusNode;
   final AppLocalizations l10n;
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final inputState = ref.watch(
       signUpControllerProvider
-          .select((controllerState) => controllerState.valueOrNull?.email),
+          .select((controllerState) => controllerState.valueOrNull?.emailInput),
     );
 
     final enabled = ref.watch(

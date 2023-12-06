@@ -2,6 +2,7 @@ import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_f
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure_ui_extension.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/email_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/password_input.dart';
+import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/username_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,15 +14,18 @@ part 'sign_up_state.freezed.dart';
 @freezed
 class SignUpState with _$SignUpState {
   const factory SignUpState({
-    @Default(EmailInput.pure()) EmailInput email,
-    @Default(PasswordInput.pure()) PasswordInput password,
-    @Default(UsernameInput.pure()) UsernameInput username,
+    @Default(EmailInput.pure()) EmailInput emailInput,
+    @Default(PasswordInput.pure()) PasswordInput passwordInput,
+    @Default(PasswordRetypeInput.pure(null))
+    PasswordRetypeInput passwordRetypeInput,
+    @Default(UsernameInput.pure()) UsernameInput usernameInput,
     String? avatarUrl,
   }) = _SignUpState;
 }
 
 extension FieldsValidity on SignUpState {
-  bool get isValid => Formz.validate([email, password, username]);
+  bool get isValid =>
+      Formz.validate([emailInput, passwordInput, usernameInput]);
 }
 
 extension SignInStateUI on AsyncValue<SignUpState> {

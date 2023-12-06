@@ -9,9 +9,11 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Home')),
-        body: ElevatedButton(
-            onPressed: () => ref.read(authRepositoryProvider).signOut(),
-            child: Text('Logout')));
+      appBar: AppBar(title: const Text('Home')),
+      body: ElevatedButton(
+        onPressed: () => ref.read(authRepositoryProvider).signOut(),
+        child: const Text('Logout'),
+      ),
+    );
   }
 }

@@ -17,6 +17,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordTextFieldLabelText => 'Password';
 
   @override
+  String get passwordRetypeFieldLabelText => 'Retype password';
+
+  @override
   String get registerTextButtonLabelText => 'Don\'t have an account? ';
 
   @override
@@ -60,6 +63,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signUpButtonText => 'Register';
+
+  @override
+  String get signUpPasswordRetypeInputMismatchErrorText => 'Passwords are mismatched';
 
   @override
   String get counterAppBarTitle => 'Counter';

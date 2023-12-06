@@ -1,5 +1,6 @@
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
+import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,11 +17,11 @@ class SignUpController extends _$SignUpController {
     final stateValue = state.valueOrNull;
     if (stateValue != null) {
       if (newValue.isEmpty) {
-        const email = EmailInput.pure();
+        const emailInput = EmailInput.pure();
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            email: email,
+            emailInput: emailInput,
           ),
         );
       } else {
@@ -28,7 +29,7 @@ class SignUpController extends _$SignUpController {
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            email: email,
+            emailInput: email,
           ),
         );
       }
@@ -39,11 +40,11 @@ class SignUpController extends _$SignUpController {
     final stateValue = state.valueOrNull;
     if (stateValue != null) {
       if (newValue.isEmpty) {
-        const password = PasswordInput.pure();
+        const passwordInput = PasswordInput.pure();
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            password: password,
+            passwordInput: passwordInput,
           ),
         );
       } else {
@@ -51,30 +52,56 @@ class SignUpController extends _$SignUpController {
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            password: password,
+            passwordInput: password,
           ),
         );
       }
     }
+  }
 
-    Future<void> signUpWithEmail() async {
-      final stateValue = state.valueOrNull;
-      if (stateValue != null && stateValue.isValid) {
-        final authRepository = ref.read(authRepositoryProvider);
-        state = const AsyncLoading<SignUpState>();
+  void updatePasswordRetypeField(String newValue) {
+    final stateValue = state.valueOrNull;
+    if (stateValue != null) {
+      if (newValue.isEmpty) {
+        const passwordRetype = PasswordRetypeInput.pure(null);
 
-        try {
-          await authRepository.signUpWithEmail(
-            email: stateValue.email.value,
-            password: stateValue.password.value,
-            username: stateValue.username.value,
-          );
-        } catch (e) {
-          state = AsyncError<SignUpState>(e, StackTrace.current);
-          return;
-        }
-        state = AsyncData<SignUpState>(state.requireValue);
+        state = AsyncValue.data(
+          stateValue.copyWith(
+            passwordRetypeInput: passwordRetype,
+          ),
+        );
+      } else {
+        final password = PasswordRetypeInput.dirty(
+          value: newValue,
+          passwordToMatch: stateValue.passwordInput.value,
+        );
+
+        state = AsyncValue.data(
+          stateValue.copyWith(
+            passwordRetypeInput: password,
+          ),
+        );
       }
+    }
+  }
+
+  Future<void> signUpWithEmail() async {
+    final stateValue = state.valueOrNull;
+    if (stateValue != null && stateValue.isValid) {
+      final authRepository = ref.read(authRepositoryProvider);
+      state = const AsyncLoading<SignUpState>();
+
+      try {
+        await authRepository.signUpWithEmail(
+          email: stateValue.emailInput.value,
+          password: stateValue.passwordInput.value,
+          username: stateValue.usernameInput.value,
+        );
+      } catch (e) {
+        state = AsyncError<SignUpState>(e, StackTrace.current);
+        return;
+      }
+      state = AsyncData<SignUpState>(state.requireValue);
     }
   }
 }

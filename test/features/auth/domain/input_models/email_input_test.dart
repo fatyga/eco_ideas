@@ -17,7 +17,6 @@ void main() {
     test('EmailInput.dirty() returns dirty EmailInput', () {
       final emailInput = createSubject(value: 'example');
       expect(emailInput.isPure, equals(false));
-      ;
     });
   });
 

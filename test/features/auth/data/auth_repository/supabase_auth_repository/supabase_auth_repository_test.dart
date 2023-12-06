@@ -92,7 +92,7 @@ void main() {
       });
 
       test(
-          'emits AuthStatus.authenticated when initialSession does not return null',
+          '''emits AuthStatus.authenticated when initialSession does not return null''',
           () async {
         final goTrueClient = MockGoTrueClient();
         final supabaseAuth = MockSupabaseAuth();
@@ -305,7 +305,7 @@ void main() {
       });
 
       test(
-          'throws BadEmailOrPassword, if GoTrueClient.signInWithPassword throws',
+          '''throws BadEmailOrPassword, if GoTrueClient.signInWithPassword throws''',
           () async {
         final goTrueClient = MockGoTrueClient();
         final exception = MockAuthException();

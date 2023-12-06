@@ -21,7 +21,9 @@ class IndicatorButton extends StatelessWidget {
               width: 24,
               height: 24,
               child: CircularProgressIndicator(
-                  color: theme.colorScheme.primary, strokeWidth: 2),
+                color: theme.colorScheme.primary,
+                strokeWidth: 2,
+              ),
             )
           : child,
     );

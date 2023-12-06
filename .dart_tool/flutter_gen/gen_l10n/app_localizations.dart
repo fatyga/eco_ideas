@@ -117,6 +117,12 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get passwordTextFieldLabelText;
 
+  /// No description provided for @passwordRetypeFieldLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Retype password'**
+  String get passwordRetypeFieldLabelText;
+
   /// No description provided for @registerTextButtonLabelText.
   ///
   /// In en, this message translates to:
@@ -206,6 +212,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Register'**
   String get signUpButtonText;
+
+  /// No description provided for @signUpPasswordRetypeInputMismatchErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords are mismatched'**
+  String get signUpPasswordRetypeInputMismatchErrorText;
 
   /// Text shown in the AppBar of the Counter Page
   ///

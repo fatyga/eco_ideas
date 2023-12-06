@@ -16,9 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignUpState {
-  EmailInput get email => throw _privateConstructorUsedError;
-  PasswordInput get password => throw _privateConstructorUsedError;
-  UsernameInput get username => throw _privateConstructorUsedError;
+  EmailInput get emailInput => throw _privateConstructorUsedError;
+  PasswordInput get passwordInput => throw _privateConstructorUsedError;
+  PasswordRetypeInput get passwordRetypeInput =>
+      throw _privateConstructorUsedError;
+  UsernameInput get usernameInput => throw _privateConstructorUsedError;
   String? get avatarUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,9 +35,10 @@ abstract class $SignUpStateCopyWith<$Res> {
       _$SignUpStateCopyWithImpl<$Res, SignUpState>;
   @useResult
   $Res call(
-      {EmailInput email,
-      PasswordInput password,
-      UsernameInput username,
+      {EmailInput emailInput,
+      PasswordInput passwordInput,
+      PasswordRetypeInput passwordRetypeInput,
+      UsernameInput usernameInput,
       String? avatarUrl});
 }
 
@@ -52,23 +55,28 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
-    Object? password = null,
-    Object? username = null,
+    Object? emailInput = null,
+    Object? passwordInput = null,
+    Object? passwordRetypeInput = null,
+    Object? usernameInput = null,
     Object? avatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      emailInput: null == emailInput
+          ? _value.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
               as EmailInput,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
+      passwordInput: null == passwordInput
+          ? _value.passwordInput
+          : passwordInput // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      passwordRetypeInput: null == passwordRetypeInput
+          ? _value.passwordRetypeInput
+          : passwordRetypeInput // ignore: cast_nullable_to_non_nullable
+              as PasswordRetypeInput,
+      usernameInput: null == usernameInput
+          ? _value.usernameInput
+          : usernameInput // ignore: cast_nullable_to_non_nullable
               as UsernameInput,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
@@ -87,9 +95,10 @@ abstract class _$$_SignUpStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {EmailInput email,
-      PasswordInput password,
-      UsernameInput username,
+      {EmailInput emailInput,
+      PasswordInput passwordInput,
+      PasswordRetypeInput passwordRetypeInput,
+      UsernameInput usernameInput,
       String? avatarUrl});
 }
 
@@ -104,23 +113,28 @@ class __$$_SignUpStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
-    Object? password = null,
-    Object? username = null,
+    Object? emailInput = null,
+    Object? passwordInput = null,
+    Object? passwordRetypeInput = null,
+    Object? usernameInput = null,
     Object? avatarUrl = freezed,
   }) {
     return _then(_$_SignUpState(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      emailInput: null == emailInput
+          ? _value.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
               as EmailInput,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
+      passwordInput: null == passwordInput
+          ? _value.passwordInput
+          : passwordInput // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      passwordRetypeInput: null == passwordRetypeInput
+          ? _value.passwordRetypeInput
+          : passwordRetypeInput // ignore: cast_nullable_to_non_nullable
+              as PasswordRetypeInput,
+      usernameInput: null == usernameInput
+          ? _value.usernameInput
+          : usernameInput // ignore: cast_nullable_to_non_nullable
               as UsernameInput,
       avatarUrl: freezed == avatarUrl
           ? _value.avatarUrl
@@ -134,26 +148,30 @@ class __$$_SignUpStateCopyWithImpl<$Res>
 
 class _$_SignUpState implements _SignUpState {
   const _$_SignUpState(
-      {this.email = const EmailInput.pure(),
-      this.password = const PasswordInput.pure(),
-      this.username = const UsernameInput.pure(),
+      {this.emailInput = const EmailInput.pure(),
+      this.passwordInput = const PasswordInput.pure(),
+      this.passwordRetypeInput = const PasswordRetypeInput.pure(null),
+      this.usernameInput = const UsernameInput.pure(),
       this.avatarUrl});
 
   @override
   @JsonKey()
-  final EmailInput email;
+  final EmailInput emailInput;
   @override
   @JsonKey()
-  final PasswordInput password;
+  final PasswordInput passwordInput;
   @override
   @JsonKey()
-  final UsernameInput username;
+  final PasswordRetypeInput passwordRetypeInput;
+  @override
+  @JsonKey()
+  final UsernameInput usernameInput;
   @override
   final String? avatarUrl;
 
   @override
   String toString() {
-    return 'SignUpState(email: $email, password: $password, username: $username, avatarUrl: $avatarUrl)';
+    return 'SignUpState(emailInput: $emailInput, passwordInput: $passwordInput, passwordRetypeInput: $passwordRetypeInput, usernameInput: $usernameInput, avatarUrl: $avatarUrl)';
   }
 
   @override
@@ -161,18 +179,21 @@ class _$_SignUpState implements _SignUpState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignUpState &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput) &&
+            (identical(other.passwordInput, passwordInput) ||
+                other.passwordInput == passwordInput) &&
+            (identical(other.passwordRetypeInput, passwordRetypeInput) ||
+                other.passwordRetypeInput == passwordRetypeInput) &&
+            (identical(other.usernameInput, usernameInput) ||
+                other.usernameInput == usernameInput) &&
             (identical(other.avatarUrl, avatarUrl) ||
                 other.avatarUrl == avatarUrl));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, username, avatarUrl);
+  int get hashCode => Object.hash(runtimeType, emailInput, passwordInput,
+      passwordRetypeInput, usernameInput, avatarUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -183,17 +204,20 @@ class _$_SignUpState implements _SignUpState {
 
 abstract class _SignUpState implements SignUpState {
   const factory _SignUpState(
-      {final EmailInput email,
-      final PasswordInput password,
-      final UsernameInput username,
+      {final EmailInput emailInput,
+      final PasswordInput passwordInput,
+      final PasswordRetypeInput passwordRetypeInput,
+      final UsernameInput usernameInput,
       final String? avatarUrl}) = _$_SignUpState;
 
   @override
-  EmailInput get email;
+  EmailInput get emailInput;
   @override
-  PasswordInput get password;
+  PasswordInput get passwordInput;
   @override
-  UsernameInput get username;
+  PasswordRetypeInput get passwordRetypeInput;
+  @override
+  UsernameInput get usernameInput;
   @override
   String? get avatarUrl;
   @override

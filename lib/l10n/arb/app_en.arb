@@ -4,6 +4,7 @@
     "greetingText": "Welcome in ",
     "emailTextFieldLabelText": "Email",
     "passwordTextFieldLabelText": "Password",
+    "passwordRetypeFieldLabelText": "Retype password",
     "registerTextButtonLabelText": "Don't have an account? ",
     "registerTextButtonActionText": "Register!",
     "forgotPasswordButtonLabelText": "Forget password? ",
@@ -19,6 +20,7 @@
     "emailInputInvalidErrorText": "Email is invalid",
     "signUpScreenAppBarTitle": "Create an account",
     "signUpButtonText": "Register",
+    "signUpPasswordRetypeInputMismatchErrorText": "Passwords are mismatched",
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
