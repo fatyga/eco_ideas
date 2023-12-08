@@ -24,8 +24,9 @@ class SignUpState with _$SignUpState {
 }
 
 extension FieldsValidity on SignUpState {
-  bool get isValid =>
-      Formz.validate([emailInput, passwordInput, usernameInput]);
+  bool get isValid => Formz.validate(
+        [emailInput, passwordInput, passwordRetypeInput, usernameInput],
+      );
 }
 
 extension SignInStateUI on AsyncValue<SignUpState> {

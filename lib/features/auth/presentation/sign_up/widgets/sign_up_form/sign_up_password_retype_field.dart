@@ -25,9 +25,24 @@ class SignUpPasswordRetypeField extends ConsumerWidget {
       signUpControllerProvider
           .select((controllerState) => controllerState.isLoading),
     );
+
+    final passwordInputState = ref.watch(
+      signUpControllerProvider.select(
+        (controllerState) => controllerState.valueOrNull?.passwordInput,
+      ),
+    );
+
+    final bool shouldBeEnabled;
+    if (passwordInputState == null) {
+      shouldBeEnabled = false;
+    } else {
+      shouldBeEnabled = !isLoading &&
+          (!passwordInputState.isPure && passwordInputState.isValid);
+    }
+
     return PasswordField(
       forRetype: true,
-      enabled: !isLoading,
+      enabled: shouldBeEnabled,
       focusNode: focusNode,
       onChanged:
           ref.read(signUpControllerProvider.notifier).updatePasswordRetypeField,

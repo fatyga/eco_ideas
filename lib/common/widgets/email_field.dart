@@ -18,7 +18,7 @@ class EmailField extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return TextFormField(
+    return TextField(
       enabled: enabled,
       onChanged: onChanged,
       focusNode: focusNode,

@@ -23,7 +23,7 @@ class PasswordField extends StatelessWidget {
   ) {
     final l10n = context.l10n;
 
-    return TextFormField(
+    return TextField(
       enabled: enabled,
       onChanged: onChanged,
       focusNode: focusNode,
@@ -34,7 +34,6 @@ class PasswordField extends StatelessWidget {
         errorText: errorText,
       ),
       obscureText: true,
-      autovalidateMode: AutovalidateMode.always,
     );
   }
 }

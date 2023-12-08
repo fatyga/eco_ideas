@@ -41,10 +41,12 @@ class SignUpController extends _$SignUpController {
     if (stateValue != null) {
       if (newValue.isEmpty) {
         const passwordInput = PasswordInput.pure();
+        const passwordRetypeInput = PasswordRetypeInput.pure(null);
 
         state = AsyncValue.data(
           stateValue.copyWith(
             passwordInput: passwordInput,
+            passwordRetypeInput: passwordRetypeInput,
           ),
         );
       } else {
