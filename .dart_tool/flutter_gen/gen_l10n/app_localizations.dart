@@ -123,6 +123,12 @@ abstract class AppLocalizations {
   /// **'Retype password'**
   String get passwordRetypeFieldLabelText;
 
+  /// No description provided for @usernameTextFieldLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get usernameTextFieldLabelText;
+
   /// No description provided for @registerTextButtonLabelText.
   ///
   /// In en, this message translates to:
@@ -189,6 +195,24 @@ abstract class AppLocalizations {
   /// **'Password is too short(at least 6 characters)'**
   String get passwordInputTooShortErrorText;
 
+  /// No description provided for @signUpPasswordInputErrorSpecialCharacterNotPresentText.
+  ///
+  /// In en, this message translates to:
+  /// **'At least one special character(!@#\$%^&*) is required'**
+  String get signUpPasswordInputErrorSpecialCharacterNotPresentText;
+
+  /// No description provided for @signUpPasswordInputErrorDigitNotPresent.
+  ///
+  /// In en, this message translates to:
+  /// **'At least one digit(0-9) is required'**
+  String get signUpPasswordInputErrorDigitNotPresent;
+
+  /// No description provided for @signUpPasswordInputErrorUppercaseNotPresent.
+  ///
+  /// In en, this message translates to:
+  /// **'At least one uppercase letter(A-Z) is required'**
+  String get signUpPasswordInputErrorUppercaseNotPresent;
+
   /// No description provided for @emailInputEmptyErrorText.
   ///
   /// In en, this message translates to:
@@ -218,6 +242,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Passwords are mismatched'**
   String get signUpPasswordRetypeInputMismatchErrorText;
+
+  /// No description provided for @signUpUsernameInputErrorEmptyText.
+  ///
+  /// In en, this message translates to:
+  /// **'Username can\'t be empty'**
+  String get signUpUsernameInputErrorEmptyText;
+
+  /// No description provided for @signUpUsernameInputErrorTooShortText.
+  ///
+  /// In en, this message translates to:
+  /// **'Username is too short(at least 6 characters)'**
+  String get signUpUsernameInputErrorTooShortText;
 
   /// Text shown in the AppBar of the Counter Page
   ///

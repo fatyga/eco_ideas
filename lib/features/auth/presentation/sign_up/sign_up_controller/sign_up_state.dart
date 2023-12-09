@@ -1,8 +1,9 @@
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure_ui_extension.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/email_input.dart';
-import 'package:eco_ideas/features/auth/domain/input_models/password_input.dart';
+
 import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
+import 'package:eco_ideas/features/auth/domain/input_models/sign_up_password_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/username_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,7 +16,7 @@ part 'sign_up_state.freezed.dart';
 class SignUpState with _$SignUpState {
   const factory SignUpState({
     @Default(EmailInput.pure()) EmailInput emailInput,
-    @Default(PasswordInput.pure()) PasswordInput passwordInput,
+    @Default(SignUpPasswordInput.pure()) SignUpPasswordInput passwordInput,
     @Default(PasswordRetypeInput.pure(null))
     PasswordRetypeInput passwordRetypeInput,
     @Default(UsernameInput.pure()) UsernameInput usernameInput,

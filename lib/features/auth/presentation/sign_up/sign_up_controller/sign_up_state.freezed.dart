@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SignUpState {
   EmailInput get emailInput => throw _privateConstructorUsedError;
-  PasswordInput get passwordInput => throw _privateConstructorUsedError;
+  SignUpPasswordInput get passwordInput => throw _privateConstructorUsedError;
   PasswordRetypeInput get passwordRetypeInput =>
       throw _privateConstructorUsedError;
   UsernameInput get usernameInput => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $SignUpStateCopyWith<$Res> {
   @useResult
   $Res call(
       {EmailInput emailInput,
-      PasswordInput passwordInput,
+      SignUpPasswordInput passwordInput,
       PasswordRetypeInput passwordRetypeInput,
       UsernameInput usernameInput,
       String? avatarUrl});
@@ -69,7 +69,7 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
       passwordInput: null == passwordInput
           ? _value.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
+              as SignUpPasswordInput,
       passwordRetypeInput: null == passwordRetypeInput
           ? _value.passwordRetypeInput
           : passwordRetypeInput // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ abstract class _$$_SignUpStateCopyWith<$Res>
   @useResult
   $Res call(
       {EmailInput emailInput,
-      PasswordInput passwordInput,
+      SignUpPasswordInput passwordInput,
       PasswordRetypeInput passwordRetypeInput,
       UsernameInput usernameInput,
       String? avatarUrl});
@@ -127,7 +127,7 @@ class __$$_SignUpStateCopyWithImpl<$Res>
       passwordInput: null == passwordInput
           ? _value.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
+              as SignUpPasswordInput,
       passwordRetypeInput: null == passwordRetypeInput
           ? _value.passwordRetypeInput
           : passwordRetypeInput // ignore: cast_nullable_to_non_nullable
@@ -149,7 +149,7 @@ class __$$_SignUpStateCopyWithImpl<$Res>
 class _$_SignUpState implements _SignUpState {
   const _$_SignUpState(
       {this.emailInput = const EmailInput.pure(),
-      this.passwordInput = const PasswordInput.pure(),
+      this.passwordInput = const SignUpPasswordInput.pure(),
       this.passwordRetypeInput = const PasswordRetypeInput.pure(null),
       this.usernameInput = const UsernameInput.pure(),
       this.avatarUrl});
@@ -159,7 +159,7 @@ class _$_SignUpState implements _SignUpState {
   final EmailInput emailInput;
   @override
   @JsonKey()
-  final PasswordInput passwordInput;
+  final SignUpPasswordInput passwordInput;
   @override
   @JsonKey()
   final PasswordRetypeInput passwordRetypeInput;
@@ -205,7 +205,7 @@ class _$_SignUpState implements _SignUpState {
 abstract class _SignUpState implements SignUpState {
   const factory _SignUpState(
       {final EmailInput emailInput,
-      final PasswordInput passwordInput,
+      final SignUpPasswordInput passwordInput,
       final PasswordRetypeInput passwordRetypeInput,
       final UsernameInput usernameInput,
       final String? avatarUrl}) = _$_SignUpState;
@@ -213,7 +213,7 @@ abstract class _SignUpState implements SignUpState {
   @override
   EmailInput get emailInput;
   @override
-  PasswordInput get passwordInput;
+  SignUpPasswordInput get passwordInput;
   @override
   PasswordRetypeInput get passwordRetypeInput;
   @override

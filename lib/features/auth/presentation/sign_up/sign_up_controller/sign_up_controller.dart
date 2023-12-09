@@ -1,6 +1,8 @@
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
+import 'package:eco_ideas/features/auth/domain/input_models/sign_up_password_input.dart';
+import 'package:eco_ideas/features/auth/domain/input_models/username_input.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,6 +13,29 @@ class SignUpController extends _$SignUpController {
   @override
   FutureOr<SignUpState> build() {
     return const SignUpState();
+  }
+
+  void updateUsernameField(String newValue) {
+    final stateValue = state.valueOrNull;
+    if (stateValue != null) {
+      if (newValue.isEmpty) {
+        const usernameInput = UsernameInput.pure();
+
+        state = AsyncValue.data(
+          stateValue.copyWith(
+            usernameInput: usernameInput,
+          ),
+        );
+      } else {
+        final usernameInput = UsernameInput.dirty(value: newValue);
+
+        state = AsyncValue.data(
+          stateValue.copyWith(
+            usernameInput: usernameInput,
+          ),
+        );
+      }
+    }
   }
 
   void updateEmailField(String newValue) {
@@ -40,7 +65,7 @@ class SignUpController extends _$SignUpController {
     final stateValue = state.valueOrNull;
     if (stateValue != null) {
       if (newValue.isEmpty) {
-        const passwordInput = PasswordInput.pure();
+        const passwordInput = SignUpPasswordInput.pure();
         const passwordRetypeInput = PasswordRetypeInput.pure(null);
 
         state = AsyncValue.data(
@@ -50,8 +75,7 @@ class SignUpController extends _$SignUpController {
           ),
         );
       } else {
-        final password = PasswordInput.dirty(value: newValue);
-
+        final password = SignUpPasswordInput.dirty(value: newValue);
         state = AsyncValue.data(
           stateValue.copyWith(
             passwordInput: password,
@@ -65,22 +89,22 @@ class SignUpController extends _$SignUpController {
     final stateValue = state.valueOrNull;
     if (stateValue != null) {
       if (newValue.isEmpty) {
-        const passwordRetype = PasswordRetypeInput.pure(null);
+        const passwordRetypeInput = PasswordRetypeInput.pure(null);
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            passwordRetypeInput: passwordRetype,
+            passwordRetypeInput: passwordRetypeInput,
           ),
         );
       } else {
-        final password = PasswordRetypeInput.dirty(
+        final passwordRetypeInput = PasswordRetypeInput.dirty(
           value: newValue,
           passwordToMatch: stateValue.passwordInput.value,
         );
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            passwordRetypeInput: password,
+            passwordRetypeInput: passwordRetypeInput,
           ),
         );
       }

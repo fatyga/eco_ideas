@@ -20,6 +20,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordRetypeFieldLabelText => 'Retype password';
 
   @override
+  String get usernameTextFieldLabelText => 'Username';
+
+  @override
   String get registerTextButtonLabelText => 'Don\'t have an account? ';
 
   @override
@@ -53,6 +56,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordInputTooShortErrorText => 'Password is too short(at least 6 characters)';
 
   @override
+  String get signUpPasswordInputErrorSpecialCharacterNotPresentText => 'At least one special character(!@#\$%^&*) is required';
+
+  @override
+  String get signUpPasswordInputErrorDigitNotPresent => 'At least one digit(0-9) is required';
+
+  @override
+  String get signUpPasswordInputErrorUppercaseNotPresent => 'At least one uppercase letter(A-Z) is required';
+
+  @override
   String get emailInputEmptyErrorText => 'Email can\'t be empty';
 
   @override
@@ -66,6 +78,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signUpPasswordRetypeInputMismatchErrorText => 'Passwords are mismatched';
+
+  @override
+  String get signUpUsernameInputErrorEmptyText => 'Username can\'t be empty';
+
+  @override
+  String get signUpUsernameInputErrorTooShortText => 'Username is too short(at least 6 characters)';
 
   @override
   String get counterAppBarTitle => 'Counter';

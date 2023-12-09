@@ -22,6 +22,7 @@ class PasswordInput extends FormzInput<String, PasswordInputError> {
   PasswordInputError? validator(String value) {
     if (value.isEmpty) return PasswordInputError.empty;
     if (value.length < 6) return PasswordInputError.tooShort;
+
     return null;
   }
 }
