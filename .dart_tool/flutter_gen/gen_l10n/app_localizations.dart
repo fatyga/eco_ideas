@@ -243,6 +243,12 @@ abstract class AppLocalizations {
   /// **'Passwords are mismatched'**
   String get signUpPasswordRetypeInputMismatchErrorText;
 
+  /// No description provided for @signUpPasswordretypeInputemptyErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'This field can\'t be empty'**
+  String get signUpPasswordretypeInputemptyErrorText;
+
   /// No description provided for @signUpUsernameInputErrorEmptyText.
   ///
   /// In en, this message translates to:

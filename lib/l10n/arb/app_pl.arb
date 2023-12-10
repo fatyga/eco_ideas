@@ -25,6 +25,7 @@
     "signUpScreenAppBarTitle": "Utwórz konto",
     "signUpButtonText": "Zarejestruj się",
     "signUpPasswordRetypeInputMismatchErrorText": "Hasła są niezgodne",
+    "signUpPasswordretypeInputemptyErrorText": "To pole nie może być puste",
     "signUpUsernameInputErrorEmptyText" : "To pole nie może być puste",
     "signUpUsernameInputErrorTooShortText": "Nazwa użytkownika jest za krótka(co najmniej 6 znaków",
     "counterAppBarTitle": "Licznik",

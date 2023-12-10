@@ -66,19 +66,35 @@ class SignUpController extends _$SignUpController {
     if (stateValue != null) {
       if (newValue.isEmpty) {
         const passwordInput = SignUpPasswordInput.pure();
-        const passwordRetypeInput = PasswordRetypeInput.pure(null);
+
+        state = AsyncValue.data(
+          stateValue.copyWith(
+            passwordInput: passwordInput,
+          ),
+        );
+      } else {
+        final passwordInput = SignUpPasswordInput.dirty(value: newValue);
+
+        final PasswordRetypeInput passwordRetypeInput;
+        // retain passwordRetypeInput if it is pure, and update only
+        // passwordToMatch if passwordInput is valid
+        if (stateValue.passwordRetypeInput.isPure) {
+          passwordRetypeInput = PasswordRetypeInput.pure(
+            passwordToMatch: passwordInput.isValid ? newValue : null,
+          );
+        } else {
+          // retain passwordRetypeInput as dirty, and update only
+          // passwordToMatch if passwordInput is valid
+          passwordRetypeInput = PasswordRetypeInput.dirty(
+            value: stateValue.passwordRetypeInput.value,
+            passwordToMatch: passwordInput.isValid ? newValue : null,
+          );
+        }
 
         state = AsyncValue.data(
           stateValue.copyWith(
             passwordInput: passwordInput,
             passwordRetypeInput: passwordRetypeInput,
-          ),
-        );
-      } else {
-        final password = SignUpPasswordInput.dirty(value: newValue);
-        state = AsyncValue.data(
-          stateValue.copyWith(
-            passwordInput: password,
           ),
         );
       }
@@ -89,7 +105,11 @@ class SignUpController extends _$SignUpController {
     final stateValue = state.valueOrNull;
     if (stateValue != null) {
       if (newValue.isEmpty) {
-        const passwordRetypeInput = PasswordRetypeInput.pure(null);
+        final passwordRetypeInput = PasswordRetypeInput.pure(
+          passwordToMatch: stateValue.passwordInput.isValid
+              ? stateValue.passwordInput.value
+              : null,
+        );
 
         state = AsyncValue.data(
           stateValue.copyWith(

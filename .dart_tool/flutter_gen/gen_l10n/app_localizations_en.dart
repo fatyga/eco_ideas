@@ -80,6 +80,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpPasswordRetypeInputMismatchErrorText => 'Passwords are mismatched';
 
   @override
+  String get signUpPasswordretypeInputemptyErrorText => 'This field can\'t be empty';
+
+  @override
   String get signUpUsernameInputErrorEmptyText => 'Username can\'t be empty';
 
   @override

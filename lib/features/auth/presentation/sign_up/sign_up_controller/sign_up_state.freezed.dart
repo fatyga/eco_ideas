@@ -150,7 +150,7 @@ class _$_SignUpState implements _SignUpState {
   const _$_SignUpState(
       {this.emailInput = const EmailInput.pure(),
       this.passwordInput = const SignUpPasswordInput.pure(),
-      this.passwordRetypeInput = const PasswordRetypeInput.pure(null),
+      this.passwordRetypeInput = const PasswordRetypeInput.pure(),
       this.usernameInput = const UsernameInput.pure(),
       this.avatarUrl});
 

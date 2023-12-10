@@ -25,6 +25,7 @@
     "signUpScreenAppBarTitle": "Create an account",
     "signUpButtonText": "Register",
     "signUpPasswordRetypeInputMismatchErrorText": "Passwords are mismatched",
+    "signUpPasswordretypeInputemptyErrorText": "This field can't be empty",
     "signUpUsernameInputErrorEmptyText" : "Username can't be empty",
     "signUpUsernameInputErrorTooShortText": "Username is too short(at least 6 characters)",
     "counterAppBarTitle": "Counter",

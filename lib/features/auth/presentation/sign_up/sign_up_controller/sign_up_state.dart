@@ -17,7 +17,7 @@ class SignUpState with _$SignUpState {
   const factory SignUpState({
     @Default(EmailInput.pure()) EmailInput emailInput,
     @Default(SignUpPasswordInput.pure()) SignUpPasswordInput passwordInput,
-    @Default(PasswordRetypeInput.pure(null))
+    @Default(PasswordRetypeInput.pure())
     PasswordRetypeInput passwordRetypeInput,
     @Default(UsernameInput.pure()) UsernameInput usernameInput,
     String? avatarUrl,

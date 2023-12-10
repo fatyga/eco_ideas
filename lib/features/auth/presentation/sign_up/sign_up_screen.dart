@@ -13,9 +13,9 @@ class SignUpScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.signUpScreenAppBarTitle),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(children: [SignUpForm()]),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: ListView(children: const [SignUpForm()]),
       ),
     );
   }
