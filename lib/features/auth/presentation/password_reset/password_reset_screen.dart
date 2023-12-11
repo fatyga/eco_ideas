@@ -12,7 +12,7 @@ class PasswordResetScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final theme = Theme.of(context);
+
     final controller = ref.watch(passwordResetControllerProvider.notifier);
 
     return Scaffold(

@@ -1,8 +1,5 @@
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
-import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
-import 'package:eco_ideas/features/auth/domain/input_models/sign_up_password_input.dart';
-import 'package:eco_ideas/features/auth/domain/input_models/username_input.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

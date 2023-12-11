@@ -15,18 +15,23 @@ part 'sign_up_state.freezed.dart';
 @freezed
 class SignUpState with _$SignUpState {
   const factory SignUpState({
+    @Default(UsernameInput.pure()) UsernameInput usernameInput,
     @Default(EmailInput.pure()) EmailInput emailInput,
     @Default(SignUpPasswordInput.pure()) SignUpPasswordInput passwordInput,
     @Default(PasswordRetypeInput.pure())
     PasswordRetypeInput passwordRetypeInput,
-    @Default(UsernameInput.pure()) UsernameInput usernameInput,
     String? avatarUrl,
   }) = _SignUpState;
 }
 
 extension FieldsValidity on SignUpState {
   bool get isValid => Formz.validate(
-        [emailInput, passwordInput, passwordRetypeInput, usernameInput],
+        [
+          usernameInput,
+          emailInput,
+          passwordInput,
+          passwordRetypeInput,
+        ],
       );
 }
 

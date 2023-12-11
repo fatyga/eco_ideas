@@ -1,6 +1,5 @@
+import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
-import 'package:eco_ideas/features/auth/domain/input_models/email_input.dart';
-import 'package:eco_ideas/features/auth/domain/input_models/password_input.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_state.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
