@@ -72,28 +72,35 @@ class SignUpController extends _$SignUpController {
       } else {
         final passwordInput = SignUpPasswordInput.dirty(value: newValue);
 
-        final PasswordRetypeInput passwordRetypeInput;
-        // retain passwordRetypeInput if it is pure, and update only
-        // passwordToMatch if passwordInput is valid
-        if (stateValue.passwordRetypeInput.isPure) {
-          passwordRetypeInput = PasswordRetypeInput.pure(
-            passwordToMatch: passwordInput.isValid ? newValue : null,
+        if (passwordInput.isValid) {
+          final PasswordRetypeInput passwordRetypeInput;
+          // retain passwordRetypeInput if it is pure, and update only
+          // passwordToMatch if passwordInput is valid
+          if (stateValue.passwordRetypeInput.isPure) {
+            passwordRetypeInput = PasswordRetypeInput.pure(
+              passwordToMatch: passwordInput.value,
+            );
+          } else {
+            // retain passwordRetypeInput as dirty, and update only
+            // passwordToMatch if passwordInput is valid
+            passwordRetypeInput = PasswordRetypeInput.dirty(
+              value: stateValue.passwordRetypeInput.value,
+              passwordToMatch: passwordInput.value,
+            );
+          }
+          state = AsyncValue.data(
+            stateValue.copyWith(
+              passwordInput: passwordInput,
+              passwordRetypeInput: passwordRetypeInput,
+            ),
           );
         } else {
-          // retain passwordRetypeInput as dirty, and update only
-          // passwordToMatch if passwordInput is valid
-          passwordRetypeInput = PasswordRetypeInput.dirty(
-            value: stateValue.passwordRetypeInput.value,
-            passwordToMatch: passwordInput.isValid ? newValue : null,
+          state = AsyncValue.data(
+            stateValue.copyWith(
+              passwordInput: passwordInput,
+            ),
           );
         }
-
-        state = AsyncValue.data(
-          stateValue.copyWith(
-            passwordInput: passwordInput,
-            passwordRetypeInput: passwordRetypeInput,
-          ),
-        );
       }
     }
   }

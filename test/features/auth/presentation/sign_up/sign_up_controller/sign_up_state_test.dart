@@ -101,7 +101,7 @@ void main() {
         );
       });
 
-      test('equals false when all inputs are valid', () {
+      test('equals true when all inputs are valid', () {
         final username = MockUsernameInput();
         final email = MockEmailInput();
         final password = MockSignUpPasswordInput();

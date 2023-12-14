@@ -1,0 +1,399 @@
+// ignore_for_file: cascade_invocations, lines_longer_than_80_chars
+
+import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
+import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_controller.dart';
+import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockAuthRepository extends Mock implements AuthRepository {}
+
+class Listener<T> extends Mock {
+  void call(T? current, T next);
+}
+
+void main() {
+  ProviderContainer makeProviderContainer({AuthRepository? authRepository}) {
+    final container = ProviderContainer(
+      overrides: [
+        if (authRepository != null)
+          authRepositoryProvider.overrideWith((_) => authRepository),
+      ],
+    );
+
+    addTearDown(container.dispose);
+    return container;
+  }
+
+  group('SignUpController', () {
+    group('constructor', () {
+      test('initial state is AsyncData', () {
+        final container = makeProviderContainer();
+
+        final listener = Listener<AsyncValue<SignUpState>>();
+
+        container.listen(
+          signUpControllerProvider,
+          listener.call,
+          fireImmediately: true,
+        );
+
+        verify(
+          () => listener(null, const AsyncData<SignUpState>(SignUpState())),
+        ).called(1);
+      });
+    });
+
+    group('fields updating', () {
+      group('updateEmailField', () {
+        const enteredValue = 'john.doe@gmail.com';
+
+        // test('does nothing, if state could not be resolved', () {
+        //   final container = makeProviderContainer();
+        //   final listener = Listener<AsyncValue<SignUpState>>();
+
+        //   container.listen(
+        //     signUpControllerProvider,
+        //     listener.call,
+        //     fireImmediately: true,
+        //   );
+
+        //   final controller = container.read(signUpControllerProvider.notifier);
+        //   // set state diffrent than data, with no previous value
+
+        //   controller.state =
+        //       const AsyncValue<SignUpState>.loading().unwrapPrevious();
+
+        //   controller.updateEmailField(enteredValue);
+        //   verifyInOrder([
+        //     () => listener.call(
+        //           null,
+        //           const AsyncData<SignUpState>(SignUpState()),
+        //         ),
+        //     () => listener.call(
+        //           const AsyncData<SignUpState>(SignUpState()),
+        //           const AsyncLoading<SignUpState>(),
+        //         )
+        //   ]);
+        //   verifyNoMoreInteractions(listener);
+        // });
+        test('set email to EmailInput.pure() when newValue is empty', () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updateEmailField('');
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+          ]);
+
+          expect(controller.state.requireValue.emailInput.isPure, equals(true));
+          expect(controller.state.requireValue.emailInput.value, equals(''));
+          verifyNoMoreInteractions(listener);
+        });
+
+        test('''
+set email to EmailInput.dirty(value: newValue) when [newValue] is provided''',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updateEmailField(enteredValue);
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      emailInput: EmailInput.dirty(value: enteredValue),
+                    ),
+                  ),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.emailInput.isPure,
+            equals(false),
+          );
+
+          expect(
+            controller.state.requireValue.emailInput.value,
+            equals(enteredValue),
+          );
+          verifyNoMoreInteractions(listener);
+        });
+      });
+
+      group('updateUsernameField', () {
+        const enteredValue = 'johnDoe123';
+
+        // test('does nothing, if state could not be resolved', () {
+        //   final container = makeProviderContainer();
+        //   final listener = Listener<AsyncValue<SignUpState>>();
+
+        //   container.listen(
+        //     signUpControllerProvider,
+        //     listener.call,
+        //     fireImmediately: true,
+        //   );
+
+        //   final controller = container.read(signUpControllerProvider.notifier);
+        //   // set state diffrent than data, with no previous data
+
+        //   controller.state =
+        //       const AsyncValue<SignUpState>.loading().unwrapPrevious();
+
+        //   controller.updateUsernameField(enteredValue);
+        //   verifyInOrder(
+        //     [
+        //       () => listener.call(
+        //             null,
+        //             const AsyncData<SignUpState>(SignUpState()),
+        //           ),
+        //       () => listener.call(
+        //             const AsyncData<SignUpState>(SignUpState()),
+        //             const AsyncLoading<SignUpState>(),
+        //           ),
+        //     ],
+        //   );
+        //   verifyNoMoreInteractions(listener);
+        // });
+        test('set usernameInput to UsernameInput.pure() when newValue is empty',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updateUsernameField('');
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.usernameInput.isPure,
+            equals(true),
+          );
+
+          expect(controller.state.requireValue.usernameInput.value, equals(''));
+
+          verifyNoMoreInteractions(listener);
+        });
+
+        test('''
+set usernameInput to UsernameInput.dirty(value: newValue) when [newValue] is provided''',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updateUsernameField(enteredValue);
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      usernameInput: UsernameInput.dirty(value: enteredValue),
+                    ),
+                  ),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.usernameInput.isPure,
+            equals(false),
+          );
+
+          expect(
+            controller.state.requireValue.usernameInput.value,
+            equals(enteredValue),
+          );
+          verifyNoMoreInteractions(listener);
+        });
+      });
+
+      group('updatePasswordField', () {
+        const validValue = "Qwerty1!";
+
+        test(
+            'set passwordInput to SignUpPasswordInput.pure() when newValue is empty',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updatePasswordField('');
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.passwordInput.isPure,
+            equals(true),
+          );
+
+          expect(controller.state.requireValue.passwordInput.value, equals(''));
+
+          verifyNoMoreInteractions(listener);
+        });
+
+        test('''
+set passwordInput to PasswordInput.dirty(value: newValue) when [newValue] is provided''',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updatePasswordField(validValue);
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: validValue),
+                    ),
+                  ),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.passwordInput.isPure,
+            equals(false),
+          );
+
+          expect(
+            controller.state.requireValue.passwordInput.value,
+            equals(validValue),
+          );
+          verifyNoMoreInteractions(listener);
+        });
+
+        test('''
+if [newValue] is valid && passwordRetypeInput is pure, update passwordRetypeInput's [passwordToMatch] to [newValue]''',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updatePasswordField(validValue);
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: validValue),
+                      passwordRetypeInput: PasswordRetypeInput.pure(
+                        passwordToMatch: 'elo',
+                      ),
+                    ),
+                  ),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.passwordInput.isPure,
+            equals(false),
+          );
+          expect(
+            controller.state.requireValue.passwordInput.value,
+            equals(validValue),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.isPure,
+            equals(true),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.passwordToMatch,
+            equals(validValue),
+          );
+
+          verifyNoMoreInteractions(listener);
+        });
+      });
+    });
+  });
+}
