@@ -261,6 +261,7 @@ set usernameInput to UsernameInput.dirty(value: newValue) when [newValue] is pro
 
       group('updatePasswordField', () {
         const validValue = "Qwerty1!";
+        const invalidValue = "qwerty123";
 
         test(
             'set passwordInput to SignUpPasswordInput.pure() when newValue is empty',
@@ -339,6 +340,52 @@ set passwordInput to PasswordInput.dirty(value: newValue) when [newValue] is pro
           verifyNoMoreInteractions(listener);
         });
 
+        test(
+            'if passwordInput with entered value is invalid, passwordRetypeInput stays untouched',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updatePasswordField(invalidValue);
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: invalidValue),
+                    ),
+                  ),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.passwordInput.isPure,
+            equals(false),
+          );
+
+          expect(
+            controller.state.requireValue.passwordInput.value,
+            equals(invalidValue),
+          );
+
+          expect(
+            controller.state.requireValue.passwordInput.isValid,
+            equals(false),
+          );
+          verifyNoMoreInteractions(listener);
+        });
         test('''
 if [newValue] is valid && passwordRetypeInput is pure, update passwordRetypeInput's [passwordToMatch] to [newValue]''',
             () {
@@ -365,7 +412,7 @@ if [newValue] is valid && passwordRetypeInput is pure, update passwordRetypeInpu
                       passwordInput:
                           SignUpPasswordInput.dirty(value: validValue),
                       passwordRetypeInput: PasswordRetypeInput.pure(
-                        passwordToMatch: 'elo',
+                        passwordToMatch: validValue,
                       ),
                     ),
                   ),
@@ -391,6 +438,290 @@ if [newValue] is valid && passwordRetypeInput is pure, update passwordRetypeInpu
             equals(validValue),
           );
 
+          verifyNoMoreInteractions(listener);
+        });
+
+        test('''
+if [newValue] is valid && passwordRetypeInput is dirty, update passwordRetypeInput's [passwordToMatch] to [newValue] and persist its value''',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          const passwordRetypeInputValue = 'zaq123';
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updatePasswordRetypeField(passwordRetypeInputValue)
+            ..updatePasswordField(validValue);
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordRetypeInput: PasswordRetypeInput.dirty(
+                        value: passwordRetypeInputValue,
+                      ),
+                    ),
+                  ),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordRetypeInput: PasswordRetypeInput.dirty(
+                        value: passwordRetypeInputValue,
+                      ),
+                    ),
+                  ),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: validValue),
+                      passwordRetypeInput: PasswordRetypeInput.dirty(
+                        value: passwordRetypeInputValue,
+                        passwordToMatch: validValue,
+                      ),
+                    ),
+                  ),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.passwordInput.isPure,
+            equals(false),
+          );
+          expect(
+            controller.state.requireValue.passwordInput.value,
+            equals(validValue),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.isPure,
+            equals(false),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.passwordToMatch,
+            equals(validValue),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.value,
+            equals(passwordRetypeInputValue),
+          );
+
+          verifyNoMoreInteractions(listener);
+        });
+      });
+
+      group('updatePasswordRetypeInput', () {
+        const enteredValue = 'Qwerty1!';
+
+        // test('does nothing, if state could not be resolved', () {
+        //   final container = makeProviderContainer();
+        //   final listener = Listener<AsyncValue<SignUpState>>();
+
+        //   container.listen(
+        //     signUpControllerProvider,
+        //     listener.call,
+        //     fireImmediately: true,
+        //   );
+
+        //   final controller = container.read(signUpControllerProvider.notifier);
+        //   // set state diffrent than data, with no previous data
+
+        //   controller.state =
+        //       const AsyncValue<SignUpState>.loading().unwrapPrevious();
+
+        //   controller.updateUsernameField(enteredValue);
+        //   verifyInOrder(
+        //     [
+        //       () => listener.call(
+        //             null,
+        //             const AsyncData<SignUpState>(SignUpState()),
+        //           ),
+        //       () => listener.call(
+        //             const AsyncData<SignUpState>(SignUpState()),
+        //             const AsyncLoading<SignUpState>(),
+        //           ),
+        //     ],
+        //   );
+        //   verifyNoMoreInteractions(listener);
+        // });
+        test(
+            'set passwordRetypeInput to PasswordRetypeInput.pure() when newValue is empty and passwordInput.isValid is false',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updatePasswordRetypeField('');
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.isPure,
+            equals(true),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.value,
+            equals(''),
+          );
+
+          verifyNoMoreInteractions(listener);
+        });
+
+        test(
+            'if [newValue] is empty, and [passwordInput.isValid] is true, then [passwordToMatch] should be updated to passwordInput.value',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updatePasswordField(enteredValue)
+            ..updatePasswordRetypeField('');
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: enteredValue),
+                    ),
+                  ),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: enteredValue),
+                    ),
+                  ),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: enteredValue),
+                      passwordRetypeInput: PasswordRetypeInput.pure(
+                        passwordToMatch: enteredValue,
+                      ),
+                    ),
+                  ),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.isPure,
+            equals(true),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.value,
+            equals(''),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.passwordToMatch,
+            equals(enteredValue),
+          );
+          verifyNoMoreInteractions(listener);
+        });
+
+        test('''
+set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newValue] is provided''',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          const passwordFieldValue = 'Zaq!123';
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updatePasswordField(passwordFieldValue)
+            ..updatePasswordRetypeField(enteredValue);
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: passwordFieldValue),
+                    ),
+                  ),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: passwordFieldValue),
+                    ),
+                  ),
+                  const AsyncData<SignUpState>(
+                    SignUpState(
+                      passwordInput:
+                          SignUpPasswordInput.dirty(value: passwordFieldValue),
+                      passwordRetypeInput: PasswordRetypeInput.dirty(
+                        value: enteredValue,
+                        passwordToMatch: passwordFieldValue,
+                      ),
+                    ),
+                  ),
+                ),
+          ]);
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.isPure,
+            equals(false),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.value,
+            equals(enteredValue),
+          );
+
+          expect(
+            controller.state.requireValue.passwordRetypeInput.passwordToMatch,
+            equals(passwordFieldValue),
+          );
           verifyNoMoreInteractions(listener);
         });
       });
