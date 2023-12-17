@@ -1,6 +1,7 @@
 // ignore_for_file: cascade_invocations, lines_longer_than_80_chars
 
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_controller.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
@@ -28,6 +29,9 @@ void main() {
   }
 
   group('SignUpController', () {
+    setUpAll(() {
+      registerFallbackValue(const AsyncLoading<SignUpState>());
+    });
     group('constructor', () {
       test('initial state is AsyncData', () {
         final container = makeProviderContainer();
@@ -260,8 +264,8 @@ set usernameInput to UsernameInput.dirty(value: newValue) when [newValue] is pro
       });
 
       group('updatePasswordField', () {
-        const validValue = "Qwerty1!";
-        const invalidValue = "qwerty123";
+        const validValue = 'Qwerty1!';
+        const invalidValue = 'qwerty123';
 
         test(
             'set passwordInput to SignUpPasswordInput.pure() when newValue is empty',
@@ -724,6 +728,162 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
           );
           verifyNoMoreInteractions(listener);
         });
+      });
+    });
+
+    group('signUpWithEmail', () {
+      const username = 'JohnDoe123';
+      const email = 'john.doe@gmail.com';
+      const password = 'Qwerty!1';
+
+      test('does nothing, when state.isValid == false', () async {
+        final authRepository = MockAuthRepository();
+
+        final container = makeProviderContainer(authRepository: authRepository);
+        final listener = Listener<AsyncValue<SignUpState>>();
+
+        container.listen(
+          signUpControllerProvider,
+          listener.call,
+          fireImmediately: true,
+        );
+
+        final controller = container.read(signUpControllerProvider.notifier);
+        await controller.signUpWithEmail();
+        verifyInOrder([
+          () =>
+              listener.call(null, const AsyncData<SignUpState>(SignUpState())),
+        ]);
+
+        verifyNever(
+          () => authRepository.signUpWithEmail(
+            email: email,
+            password: password,
+            username: username,
+          ),
+        );
+      });
+
+      test('sign up fail', () async {
+        final authRepository = MockAuthRepository();
+
+        when(
+          () => authRepository.signUpWithEmail(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+            username: any(named: 'username'),
+          ),
+        ).thenThrow(SignUpFail());
+        final container = makeProviderContainer(authRepository: authRepository);
+        final listener = Listener<AsyncValue<SignUpState>>();
+
+        container.listen(
+          signUpControllerProvider,
+          listener.call,
+          fireImmediately: true,
+        );
+
+        final controller = container.read(signUpControllerProvider.notifier)
+          ..updateUsernameField(username)
+          ..updateEmailField(email)
+          ..updatePasswordField(password)
+          ..updatePasswordRetypeField(password);
+
+        await controller.signUpWithEmail();
+
+        verifyInOrder([
+          () =>
+              listener.call(null, const AsyncData<SignUpState>(SignUpState())),
+          () => listener.call(
+                const AsyncData<SignUpState>(
+                  SignUpState(
+                    usernameInput: UsernameInput.dirty(value: username),
+                    emailInput: EmailInput.dirty(value: email),
+                    passwordInput: SignUpPasswordInput.dirty(value: password),
+                    passwordRetypeInput:
+                        PasswordRetypeInput.dirty(value: password),
+                  ),
+                ),
+                any(that: isA<AsyncLoading<SignUpState>>()),
+              ),
+          () => listener.call(
+                any(that: isA<AsyncLoading<SignUpState>>()),
+                any(that: isA<AsyncError<SignUpState>>()),
+              ),
+        ]);
+
+        verify(
+          () => authRepository.signUpWithEmail(
+            email: email,
+            password: password,
+            username: username,
+          ),
+        ).called(1);
+      });
+
+      test('sign up success', () async {
+        final authRepository = MockAuthRepository();
+
+        when(
+          () => authRepository.signUpWithEmail(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+            username: any(named: 'username'),
+          ),
+        ).thenAnswer((_) => Future.value());
+        final container = makeProviderContainer(authRepository: authRepository);
+        final listener = Listener<AsyncValue<SignUpState>>();
+
+        container.listen(
+          signUpControllerProvider,
+          listener.call,
+          fireImmediately: true,
+        );
+
+        final controller = container.read(signUpControllerProvider.notifier)
+          ..updateUsernameField(username)
+          ..updateEmailField(email)
+          ..updatePasswordField(password)
+          ..updatePasswordRetypeField(password);
+
+        await controller.signUpWithEmail();
+
+        verifyInOrder([
+          () =>
+              listener.call(null, const AsyncData<SignUpState>(SignUpState())),
+          () => listener.call(
+                const AsyncData<SignUpState>(
+                  SignUpState(
+                    usernameInput: UsernameInput.dirty(value: username),
+                    emailInput: EmailInput.dirty(value: email),
+                    passwordInput: SignUpPasswordInput.dirty(value: password),
+                    passwordRetypeInput:
+                        PasswordRetypeInput.dirty(value: password),
+                  ),
+                ),
+                any(that: isA<AsyncLoading<SignUpState>>()),
+              ),
+          () => listener.call(
+                any(that: isA<AsyncLoading<SignUpState>>()),
+                const AsyncData<SignUpState>(
+                  SignUpState(
+                    usernameInput: UsernameInput.dirty(value: username),
+                    emailInput: EmailInput.dirty(value: email),
+                    passwordInput: SignUpPasswordInput.dirty(value: password),
+                    passwordRetypeInput:
+                        PasswordRetypeInput.dirty(value: password),
+                  ),
+                ),
+              ),
+        ]);
+
+        verify(
+          () => authRepository.signUpWithEmail(
+            email: email,
+            password: password,
+            username: username,
+          ),
+        ).called(1);
       });
     });
   });

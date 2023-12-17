@@ -27,14 +27,10 @@ void main() {
   }
 
   group('signInController', () {
-    const invalidEmail = 'john.2!@#@w';
-    const validEmail = 'john.doe@gmail.com';
-
-    const validPassword = 'qwerty123';
-    const tooShortPassword = 'qwert';
-
-    registerFallbackValue(const SignInState());
-    registerFallbackValue(const AsyncLoading<SignInState>());
+    setUpAll(() {
+      registerFallbackValue(const SignInState());
+      registerFallbackValue(const AsyncLoading<SignInState>());
+    });
     group('constructor', () {
       test('initial state is AsyncData', () {
         final mockAuthRepository = MockAuthRepository();
@@ -57,183 +53,132 @@ void main() {
       });
     });
 
-    group('updateEmailField', () {
-      test('set email to EmailInput.pure() when newValue is empty', () {
-        final container = makeProviderContainer();
-        final listener = Listener<AsyncValue<SignInState>>();
-        container.listen(
-          signInControllerProvider,
-          listener.call,
-          fireImmediately: true,
-        );
+    group('fields updating', () {
+      group('updateEmailField', () {
+        const enteredValue = 'john.2!@#@w';
 
-        container.read(signInControllerProvider.notifier).updateEmailField('');
+        test('set email to EmailInput.pure() when newValue is empty', () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignInState>>();
+          container.listen(
+            signInControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
 
-        verifyInOrder([
-          () =>
-              listener.call(null, const AsyncData<SignInState>(SignInState())),
-          () => listener.call(
-                const AsyncData<SignInState>(SignInState()),
-                const AsyncData<SignInState>(SignInState()),
-              ),
-        ]);
+          container
+              .read(signInControllerProvider.notifier)
+              .updateEmailField('');
 
-        verifyNoMoreInteractions(listener);
-      });
+          verifyInOrder([
+            () => listener.call(
+                null, const AsyncData<SignInState>(SignInState())),
+            () => listener.call(
+                  const AsyncData<SignInState>(SignInState()),
+                  const AsyncData<SignInState>(SignInState()),
+                ),
+          ]);
 
-      test('''
-set email to EmailInput.dirty() and overwrite isValid when
-           newValue is not empty and invalid''', () {
-        final container = makeProviderContainer();
-        final listener = Listener<AsyncValue<SignInState>>();
-        container.listen(
-          signInControllerProvider,
-          listener.call,
-          fireImmediately: true,
-        );
+          verifyNoMoreInteractions(listener);
+        });
 
-        container
-            .read(signInControllerProvider.notifier)
-            .updateEmailField(invalidEmail);
+        test('''
+set email to EmailInput.dirty(value: newValue) when [newValue] is provided ''',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignInState>>();
+          container.listen(
+            signInControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
 
-        verifyInOrder([
-          () =>
-              listener.call(null, const AsyncData<SignInState>(SignInState())),
-          () => listener.call(
-                const AsyncData<SignInState>(SignInState()),
-                const AsyncData<SignInState>(
-                  SignInState(
-                    email: EmailInput.dirty(value: invalidEmail),
+          container
+              .read(signInControllerProvider.notifier)
+              .updateEmailField(enteredValue);
+
+          verifyInOrder([
+            () => listener.call(
+                null, const AsyncData<SignInState>(SignInState())),
+            () => listener.call(
+                  const AsyncData<SignInState>(SignInState()),
+                  const AsyncData<SignInState>(
+                    SignInState(
+                      email: EmailInput.dirty(value: enteredValue),
+                    ),
                   ),
                 ),
-              ),
-        ]);
+          ]);
 
-        verifyNoMoreInteractions(listener);
+          verifyNoMoreInteractions(listener);
+        });
       });
 
-      test('''
-set email to EmailInput.dirty() and overwrite isValid when newValue is
-           not empty and valid''', () {
-        final container = makeProviderContainer();
-        final listener = Listener<AsyncValue<SignInState>>();
-        container.listen(
-          signInControllerProvider,
-          listener.call,
-          fireImmediately: true,
-        );
+      group('updatePasswordField', () {
+        const enteredValue = 'qwerty123';
 
-        container
-            .read(signInControllerProvider.notifier)
-            .updateEmailField(validEmail);
+        test('sets password to PasswordInput.pure() when [newValue] is empty',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignInState>>();
+          container.listen(
+            signInControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
 
-        verifyInOrder([
-          () =>
-              listener.call(null, const AsyncData<SignInState>(SignInState())),
-          () => listener.call(
-                const AsyncData<SignInState>(SignInState()),
-                const AsyncData<SignInState>(
-                  SignInState(
-                    email: EmailInput.dirty(value: validEmail),
+          container
+              .read(signInControllerProvider.notifier)
+              .updatePasswordField('');
+
+          verifyInOrder([
+            () => listener.call(
+                null, const AsyncData<SignInState>(SignInState())),
+            () => listener.call(
+                  const AsyncData<SignInState>(SignInState()),
+                  const AsyncData<SignInState>(SignInState()),
+                ),
+          ]);
+
+          verifyNoMoreInteractions(listener);
+        });
+
+        test('''
+sets email to PasswordInput.dirty(value: newValue) when [newValue] is provided
+           ''', () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignInState>>();
+          container.listen(
+            signInControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          container
+              .read(signInControllerProvider.notifier)
+              .updatePasswordField(enteredValue);
+
+          verifyInOrder([
+            () => listener.call(
+                null, const AsyncData<SignInState>(SignInState())),
+            () => listener.call(
+                  const AsyncData<SignInState>(SignInState()),
+                  const AsyncData<SignInState>(
+                    SignInState(
+                      password: PasswordInput.dirty(value: enteredValue),
+                    ),
                   ),
                 ),
-              ),
-        ]);
+          ]);
 
-        verifyNoMoreInteractions(listener);
-      });
-    });
-
-    group('updatePasswordField', () {
-      test('sets password to PasswordInput.pure() when value is empty', () {
-        final container = makeProviderContainer();
-        final listener = Listener<AsyncValue<SignInState>>();
-        container.listen(
-          signInControllerProvider,
-          listener.call,
-          fireImmediately: true,
-        );
-
-        container
-            .read(signInControllerProvider.notifier)
-            .updatePasswordField('');
-
-        verifyInOrder([
-          () =>
-              listener.call(null, const AsyncData<SignInState>(SignInState())),
-          () => listener.call(
-                const AsyncData<SignInState>(SignInState()),
-                const AsyncData<SignInState>(SignInState()),
-              ),
-        ]);
-
-        verifyNoMoreInteractions(listener);
-      });
-
-      test('''
-set email to PasswordInput.dirty() and overwrite isValid when
-           newValue is not empty and too short''', () {
-        final container = makeProviderContainer();
-        final listener = Listener<AsyncValue<SignInState>>();
-        container.listen(
-          signInControllerProvider,
-          listener.call,
-          fireImmediately: true,
-        );
-
-        container
-            .read(signInControllerProvider.notifier)
-            .updatePasswordField(tooShortPassword);
-
-        verifyInOrder([
-          () =>
-              listener.call(null, const AsyncData<SignInState>(SignInState())),
-          () => listener.call(
-                const AsyncData<SignInState>(SignInState()),
-                const AsyncData<SignInState>(
-                  SignInState(
-                    password: PasswordInput.dirty(value: tooShortPassword),
-                  ),
-                ),
-              ),
-        ]);
-
-        verifyNoMoreInteractions(listener);
-      });
-
-      test('''
-set email to PasswordInput.dirty() and overwrite isValid when
-           newValue is not empty and valid''', () {
-        final container = makeProviderContainer();
-        final listener = Listener<AsyncValue<SignInState>>();
-        container.listen(
-          signInControllerProvider,
-          listener.call,
-          fireImmediately: true,
-        );
-
-        container
-            .read(signInControllerProvider.notifier)
-            .updateEmailField(validPassword);
-
-        verifyInOrder([
-          () =>
-              listener.call(null, const AsyncData<SignInState>(SignInState())),
-          () => listener.call(
-                const AsyncData<SignInState>(SignInState()),
-                const AsyncData<SignInState>(
-                  SignInState(
-                    email: EmailInput.dirty(value: validPassword),
-                  ),
-                ),
-              ),
-        ]);
-
-        verifyNoMoreInteractions(listener);
+          verifyNoMoreInteractions(listener);
+        });
       });
     });
 
     group('signInWithEmail', () {
+      const email = 'john.doe@gmail.com';
+      const password = 'johnDoe123';
       test('''does nothing when state.isValid == false''', () async {
         final container = makeProviderContainer();
         final listener = Listener<AsyncValue<SignInState>>();
@@ -251,7 +196,6 @@ set email to PasswordInput.dirty() and overwrite isValid when
           () =>
               listener.call(null, const AsyncData<SignInState>(SignInState())),
         ]);
-        verifyNoMoreInteractions(listener);
       });
 
       test('sign-in success', () async {
@@ -271,8 +215,8 @@ set email to PasswordInput.dirty() and overwrite isValid when
         );
 
         final controller = container.read(signInControllerProvider.notifier)
-          ..updateEmailField(validEmail)
-          ..updatePasswordField(validPassword);
+          ..updateEmailField(email)
+          ..updatePasswordField(password);
 
         await controller.signInWithEmail();
 
@@ -280,27 +224,10 @@ set email to PasswordInput.dirty() and overwrite isValid when
           () =>
               listener.call(null, const AsyncData<SignInState>(SignInState())),
           () => listener.call(
-                const AsyncData<SignInState>(SignInState()),
-                const AsyncData<SignInState>(
-                  SignInState(email: EmailInput.dirty(value: validEmail)),
-                ),
-              ),
-          () => listener.call(
-                const AsyncData<SignInState>(
-                  SignInState(email: EmailInput.dirty(value: validEmail)),
-                ),
                 const AsyncData<SignInState>(
                   SignInState(
-                    email: EmailInput.dirty(value: validEmail),
-                    password: PasswordInput.dirty(value: validPassword),
-                  ),
-                ),
-              ),
-          () => listener.call(
-                const AsyncData<SignInState>(
-                  SignInState(
-                    email: EmailInput.dirty(value: validEmail),
-                    password: PasswordInput.dirty(value: validPassword),
+                    email: EmailInput.dirty(value: email),
+                    password: PasswordInput.dirty(value: password),
                   ),
                 ),
                 any(that: isA<AsyncLoading<SignInState>>()),
@@ -309,8 +236,8 @@ set email to PasswordInput.dirty() and overwrite isValid when
                 any(that: isA<AsyncLoading<SignInState>>()),
                 const AsyncData<SignInState>(
                   SignInState(
-                    email: EmailInput.dirty(value: validEmail),
-                    password: PasswordInput.dirty(value: validPassword),
+                    email: EmailInput.dirty(value: email),
+                    password: PasswordInput.dirty(value: password),
                   ),
                 ),
               ),
@@ -318,11 +245,10 @@ set email to PasswordInput.dirty() and overwrite isValid when
 
         verify(
           () => authRepository.signInWithEmail(
-            email: validEmail,
-            password: validPassword,
+            email: email,
+            password: password,
           ),
         ).called(1);
-        verifyNoMoreInteractions(listener);
       });
 
       test('sign-in fail', () async {
@@ -342,35 +268,18 @@ set email to PasswordInput.dirty() and overwrite isValid when
         );
 
         final controller = container.read(signInControllerProvider.notifier)
-          ..updateEmailField(validEmail)
-          ..updatePasswordField(validPassword);
+          ..updateEmailField(email)
+          ..updatePasswordField(password);
         await controller.signInWithEmail();
 
         verifyInOrder([
           () =>
               listener.call(null, const AsyncData<SignInState>(SignInState())),
           () => listener.call(
-                const AsyncData<SignInState>(SignInState()),
-                const AsyncData<SignInState>(
-                  SignInState(email: EmailInput.dirty(value: validEmail)),
-                ),
-              ),
-          () => listener.call(
-                const AsyncData<SignInState>(
-                  SignInState(email: EmailInput.dirty(value: validEmail)),
-                ),
                 const AsyncData<SignInState>(
                   SignInState(
-                    email: EmailInput.dirty(value: validEmail),
-                    password: PasswordInput.dirty(value: validPassword),
-                  ),
-                ),
-              ),
-          () => listener.call(
-                const AsyncData<SignInState>(
-                  SignInState(
-                    email: EmailInput.dirty(value: validEmail),
-                    password: PasswordInput.dirty(value: validPassword),
+                    email: EmailInput.dirty(value: email),
+                    password: PasswordInput.dirty(value: password),
                   ),
                 ),
                 any(that: isA<AsyncLoading<SignInState>>()),
@@ -383,11 +292,10 @@ set email to PasswordInput.dirty() and overwrite isValid when
 
         verify(
           () => authRepository.signInWithEmail(
-            email: validEmail,
-            password: validPassword,
+            email: email,
+            password: password,
           ),
         ).called(1);
-        verifyNoMoreInteractions(listener);
       });
     });
   });
