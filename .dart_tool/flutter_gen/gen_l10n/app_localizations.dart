@@ -261,6 +261,42 @@ abstract class AppLocalizations {
   /// **'Username is too short(at least 6 characters)'**
   String get signUpUsernameInputErrorTooShortText;
 
+  /// No description provided for @signUpChangeAvatarButtonLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Change avatar'**
+  String get signUpChangeAvatarButtonLabelText;
+
+  /// No description provided for @signUpAddAvatarButtonLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Add avatar'**
+  String get signUpAddAvatarButtonLabelText;
+
+  /// No description provided for @signUpDeleteAvatarButtonLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete avatar'**
+  String get signUpDeleteAvatarButtonLabelText;
+
+  /// No description provided for @signUpPickAvatarDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add avatar from:'**
+  String get signUpPickAvatarDialogTitle;
+
+  /// No description provided for @signUpPickAvatarDialogGalleryOptionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'gallery'**
+  String get signUpPickAvatarDialogGalleryOptionTitle;
+
+  /// No description provided for @signUpPickAvatarDialogCameraOptionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'camera'**
+  String get signUpPickAvatarDialogCameraOptionTitle;
+
   /// Text shown in the AppBar of the Counter Page
   ///
   /// In en, this message translates to:

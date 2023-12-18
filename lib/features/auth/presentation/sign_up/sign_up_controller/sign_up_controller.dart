@@ -135,6 +135,13 @@ class SignUpController extends _$SignUpController {
     }
   }
 
+  void updateAvatar(String imageUrl) {
+    final stateValue = state.valueOrNull;
+    if (stateValue != null) {
+      state = AsyncValue.data(stateValue.copyWith(avatarUrl: imageUrl));
+    }
+  }
+
   Future<void> signUpWithEmail() async {
     final stateValue = state.valueOrNull;
     if (stateValue != null && stateValue.isValid) {

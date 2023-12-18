@@ -89,6 +89,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpUsernameInputErrorTooShortText => 'Username is too short(at least 6 characters)';
 
   @override
+  String get signUpChangeAvatarButtonLabelText => 'Change avatar';
+
+  @override
+  String get signUpAddAvatarButtonLabelText => 'Add avatar';
+
+  @override
+  String get signUpDeleteAvatarButtonLabelText => 'Delete avatar';
+
+  @override
+  String get signUpPickAvatarDialogTitle => 'Add avatar from:';
+
+  @override
+  String get signUpPickAvatarDialogGalleryOptionTitle => 'gallery';
+
+  @override
+  String get signUpPickAvatarDialogCameraOptionTitle => 'camera';
+
+  @override
   String get counterAppBarTitle => 'Counter';
 
   @override

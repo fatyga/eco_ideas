@@ -28,6 +28,12 @@
     "signUpPasswordretypeInputemptyErrorText": "To pole nie może być puste",
     "signUpUsernameInputErrorEmptyText" : "To pole nie może być puste",
     "signUpUsernameInputErrorTooShortText": "Nazwa użytkownika jest za krótka(co najmniej 6 znaków",
+    "signUpChangeAvatarButtonLabelText": "Zmień avatar",
+    "signUpAddAvatarButtonLabelText": "Dodaj avatar",
+    "signUpDeleteAvatarButtonLabelText": "Usuń avatar",
+    "signUpPickAvatarDialogTitle": "Dodaj awatar z:",
+    "signUpPickAvatarDialogGalleryOptionTitle": "galeria",
+    "signUpPickAvatarDialogCameraOptionTitle": "aparat",
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"

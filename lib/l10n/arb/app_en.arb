@@ -28,6 +28,12 @@
     "signUpPasswordretypeInputemptyErrorText": "This field can't be empty",
     "signUpUsernameInputErrorEmptyText" : "Username can't be empty",
     "signUpUsernameInputErrorTooShortText": "Username is too short(at least 6 characters)",
+    "signUpChangeAvatarButtonLabelText": "Change avatar",
+    "signUpAddAvatarButtonLabelText": "Add avatar",
+    "signUpDeleteAvatarButtonLabelText": "Delete avatar",
+    "signUpPickAvatarDialogTitle": "Add avatar from:",
+    "signUpPickAvatarDialogGalleryOptionTitle": "gallery",
+    "signUpPickAvatarDialogCameraOptionTitle": "camera",
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
