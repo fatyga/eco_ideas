@@ -20,16 +20,19 @@ class SignUpUserAvatar extends ConsumerWidget {
     );
   }
 
+  double get radius => 60;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
     final imagePath = ref.watch(
       signUpControllerProvider
           .select((controllerState) => controllerState.valueOrNull?.avatarUrl),
     );
 
-    return GestureDetector(
+    return UserAvatar(
+      editable: true,
+      radius: radius,
       onTap: () => _showAvatarDialog(context, imagePath),
-      child: const UserAvatar(radius: 60),
     );
   }
 }

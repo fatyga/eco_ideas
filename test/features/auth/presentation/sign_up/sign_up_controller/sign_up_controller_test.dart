@@ -111,7 +111,8 @@ void main() {
           verifyNoMoreInteractions(listener);
         });
 
-        test('''
+        test(
+            '''
 set email to EmailInput.dirty(value: newValue) when [newValue] is provided''',
             () {
           final container = makeProviderContainer();
@@ -221,7 +222,8 @@ set email to EmailInput.dirty(value: newValue) when [newValue] is provided''',
           verifyNoMoreInteractions(listener);
         });
 
-        test('''
+        test(
+            '''
 set usernameInput to UsernameInput.dirty(value: newValue) when [newValue] is provided''',
             () {
           final container = makeProviderContainer();
@@ -302,7 +304,8 @@ set usernameInput to UsernameInput.dirty(value: newValue) when [newValue] is pro
           verifyNoMoreInteractions(listener);
         });
 
-        test('''
+        test(
+            '''
 set passwordInput to PasswordInput.dirty(value: newValue) when [newValue] is provided''',
             () {
           final container = makeProviderContainer();
@@ -390,7 +393,8 @@ set passwordInput to PasswordInput.dirty(value: newValue) when [newValue] is pro
           );
           verifyNoMoreInteractions(listener);
         });
-        test('''
+        test(
+            '''
 if [newValue] is valid && passwordRetypeInput is pure, update passwordRetypeInput's [passwordToMatch] to [newValue]''',
             () {
           final container = makeProviderContainer();
@@ -445,7 +449,8 @@ if [newValue] is valid && passwordRetypeInput is pure, update passwordRetypeInpu
           verifyNoMoreInteractions(listener);
         });
 
-        test('''
+        test(
+            '''
 if [newValue] is valid && passwordRetypeInput is dirty, update passwordRetypeInput's [passwordToMatch] to [newValue] and persist its value''',
             () {
           final container = makeProviderContainer();
@@ -662,7 +667,8 @@ if [newValue] is valid && passwordRetypeInput is dirty, update passwordRetypeInp
           verifyNoMoreInteractions(listener);
         });
 
-        test('''
+        test(
+            '''
 set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newValue] is provided''',
             () {
           final container = makeProviderContainer();
@@ -726,6 +732,58 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
             controller.state.requireValue.passwordRetypeInput.passwordToMatch,
             equals(passwordFieldValue),
           );
+          verifyNoMoreInteractions(listener);
+        });
+      });
+
+      group('updateAvatar', () {
+        const path = '/home/johnDoe/photos/avatar.png';
+        test('no state is emitted, if given [avatarUrl] is empty', () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updateAvatar('');
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+          ]);
+
+          verifyNoMoreInteractions(listener);
+        });
+        test(
+            'updates state.avatarUrl to [avatarUrl], when state is AsyncData && [avatarUrl] is not empty',
+            () {
+          final container = makeProviderContainer();
+          final listener = Listener<AsyncValue<SignUpState>>();
+          container.listen(
+            signUpControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container.read(signUpControllerProvider.notifier)
+            ..updateAvatar(path);
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(SignUpState(avatarUrl: path)),
+                ),
+          ]);
+
           verifyNoMoreInteractions(listener);
         });
       });
