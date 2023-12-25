@@ -1,11 +1,47 @@
 import 'package:eco_ideas/common/widgets/user_avatar.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class AvatarDialog extends StatelessWidget {
+class AvatarDialog extends StatefulWidget {
   const AvatarDialog({this.imagePath, super.key});
 
   final String? imagePath;
+
+  @override
+  State<AvatarDialog> createState() => _AvatarDialogState();
+}
+
+class _AvatarDialogState extends State<AvatarDialog> {
+  bool get isAvatarPresent => imagePath != null;
+  bool get areChangesToSave => widget.imagePath != imagePath;
+  late String? imagePath;
+
+  @override
+  void initState() {
+    imagePath = widget.imagePath;
+    super.initState();
+  }
+
+  void _deleteAvatar() {
+    setState(() {
+      imagePath = null;
+    });
+  }
+
+  void _setImagePath(String? path) {
+    if (path == null) return;
+    setState(() {
+      imagePath = path;
+    });
+  }
+
+  void _saveChanges() {
+    if (areChangesToSave) {
+      Navigator.pop(context, imagePath);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -14,18 +50,36 @@ class AvatarDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const UserAvatar(radius: 40),
+            UserAvatar(
+              radius: 60,
+              imagePath: imagePath,
+            ),
             const SizedBox(height: 16),
-            if (imagePath == null)
+            if (!isAvatarPresent)
               _AddAvatarButton(
-                onPressed: () {},
+                onPressed: () async {
+                  final image = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                  _setImagePath(image?.path);
+                },
               ),
-            if (imagePath?.isNotEmpty != null) ...[
+            if (isAvatarPresent) ...[
               _ChangeAvatarButton(
-                onPressed: () {},
+                onPressed: () async {
+                  final image = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                  _setImagePath(image?.path);
+                },
               ),
-              _DeleteAvatarButton(onPressed: () {}),
+              _DeleteAvatarButton(
+                onPressed: _deleteAvatar,
+              )
             ],
+            if (areChangesToSave)
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: _SaveButton(onTap: _saveChanges),
+              ),
           ],
         ),
       ),
@@ -79,6 +133,19 @@ class _AddAvatarButton extends StatelessWidget {
       onTap: onPressed,
       leading: const Icon(Icons.add),
       title: Text(l10n.signUpAddAvatarButtonLabelText),
+    );
+  }
+}
+
+class _SaveButton extends StatelessWidget {
+  const _SaveButton({required this.onTap, super.key});
+
+  final VoidCallback onTap;
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+      onPressed: onTap,
+      child: const Text('Save changes'),
     );
   }
 }

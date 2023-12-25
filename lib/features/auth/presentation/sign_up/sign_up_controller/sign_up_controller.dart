@@ -135,9 +135,9 @@ class SignUpController extends _$SignUpController {
     }
   }
 
-  void updateAvatar(String avatarUrl) {
+  void updateAvatar(String? avatarUrl) {
     final stateValue = state.valueOrNull;
-    if (stateValue != null && avatarUrl.isNotEmpty) {
+    if (stateValue != null) {
       state = AsyncValue.data(stateValue.copyWith(avatarUrl: avatarUrl));
     }
   }
