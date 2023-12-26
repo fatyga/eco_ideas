@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:eco_ideas/common/widgets/avatar_dialog.dart';
+import 'package:eco_ideas/common/widgets/avatar_dialog/avatar_dialog.dart';
 import 'package:flutter/material.dart';
 
 class UserAvatar extends StatelessWidget {
@@ -24,6 +24,7 @@ class UserAvatar extends StatelessWidget {
   ) async {
     return showDialog<String?>(
       context: context,
+      barrierDismissible: false,
       builder: (context) => AvatarDialog(
         imagePath: imagePath,
       ),

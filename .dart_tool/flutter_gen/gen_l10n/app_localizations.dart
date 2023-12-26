@@ -261,47 +261,53 @@ abstract class AppLocalizations {
   /// **'Username is too short(at least 6 characters)'**
   String get signUpUsernameInputErrorTooShortText;
 
-  /// No description provided for @signUpChangeAvatarButtonLabelText.
-  ///
-  /// In en, this message translates to:
-  /// **'Change avatar'**
-  String get signUpChangeAvatarButtonLabelText;
-
-  /// No description provided for @signUpAddAvatarButtonLabelText.
-  ///
-  /// In en, this message translates to:
-  /// **'Add avatar'**
-  String get signUpAddAvatarButtonLabelText;
-
-  /// No description provided for @signUpDeleteAvatarButtonLabelText.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete avatar'**
-  String get signUpDeleteAvatarButtonLabelText;
-
-  /// No description provided for @signUpPickAvatarDialogTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Add avatar from:'**
-  String get signUpPickAvatarDialogTitle;
-
-  /// No description provided for @signUpPickAvatarDialogGalleryOptionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'gallery'**
-  String get signUpPickAvatarDialogGalleryOptionTitle;
-
-  /// No description provided for @signUpPickAvatarDialogCameraOptionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'camera'**
-  String get signUpPickAvatarDialogCameraOptionTitle;
-
   /// Text shown in the AppBar of the Counter Page
   ///
   /// In en, this message translates to:
   /// **'Counter'**
   String get counterAppBarTitle;
+
+  /// No description provided for @avatarDialogSaveButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get avatarDialogSaveButtonText;
+
+  /// No description provided for @avatarDialogChangeAvatarButtonLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Change avatar'**
+  String get avatarDialogChangeAvatarButtonLabelText;
+
+  /// No description provided for @avatarDialogAddAvatarButtonLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Add avatar'**
+  String get avatarDialogAddAvatarButtonLabelText;
+
+  /// No description provided for @avatarDialogDeleteAvatarButtonLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete avatar'**
+  String get avatarDialogDeleteAvatarButtonLabelText;
+
+  /// No description provided for @avatarDialogCloseButtonTooltipText.
+  ///
+  /// In en, this message translates to:
+  /// **'Close dialog'**
+  String get avatarDialogCloseButtonTooltipText;
+
+  /// No description provided for @avatarDialogPickGalleryOptionLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'gallery'**
+  String get avatarDialogPickGalleryOptionLabelText;
+
+  /// No description provided for @avatarDialogCameraOptionLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'camera'**
+  String get avatarDialogCameraOptionLabelText;
 
   /// No description provided for @badEmailOrPasswordFailureSnackBarText.
   ///

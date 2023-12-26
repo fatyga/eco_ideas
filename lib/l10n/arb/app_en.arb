@@ -27,16 +27,18 @@
     "signUpPasswordRetypeInputMismatchErrorText": "Passwords are mismatched",
     "signUpPasswordretypeInputemptyErrorText": "This field can't be empty",
     "signUpUsernameInputErrorEmptyText" : "Username can't be empty",
-    "signUpUsernameInputErrorTooShortText": "Username is too short(at least 6 characters)",
-    "signUpChangeAvatarButtonLabelText": "Change avatar",
-    "signUpAddAvatarButtonLabelText": "Add avatar",
-    "signUpDeleteAvatarButtonLabelText": "Delete avatar",
-    "signUpPickAvatarDialogTitle": "Add avatar from:",
-    "signUpPickAvatarDialogGalleryOptionTitle": "gallery",
-    "signUpPickAvatarDialogCameraOptionTitle": "camera",
+    "signUpUsernameInputErrorTooShortText": "Username is too short(at least 6 characters)", 
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
     },
+    "avatarDialogSaveButtonText": "Save changes",
+    "avatarDialogChangeAvatarButtonLabelText": "Change avatar",
+    "avatarDialogAddAvatarButtonLabelText": "Add avatar",
+    "avatarDialogDeleteAvatarButtonLabelText": "Delete avatar",
+    "avatarDialogCloseButtonTooltipText": "Close dialog",
+    "avatarDialogPickGalleryOptionLabelText": "gallery",
+    "avatarDialogCameraOptionLabelText": "camera",
+
     "badEmailOrPasswordFailureSnackBarText": "Incorrect email address or password."
 }
