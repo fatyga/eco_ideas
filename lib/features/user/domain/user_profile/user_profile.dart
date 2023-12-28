@@ -8,7 +8,7 @@ typedef UserProfileId = String;
 @freezed
 class UserProfile with _$UserProfile {
   const factory UserProfile({
-    required UserProfileId uid,
+    required UserProfileId id,
     required String username,
     required String avatarURL,
   }) = _UserProfile;

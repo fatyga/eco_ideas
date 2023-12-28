@@ -1,5 +1,7 @@
-import 'package:eco_ideas/features/user/data/supabase_user_repository/supabase_user_repository.dart';
-import 'package:eco_ideas/features/user/domain/user_profile/user_profile.dart';
+import 'dart:io';
+
+import 'package:eco_ideas/features/user/user.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'user_repository.g.dart';
@@ -11,7 +13,7 @@ UserRepository userRepository(UserRepositoryRef ref) =>
 abstract class UserRepository {
   UserRepository();
 
-  Future<UserProfile?> getCurrentUserProfile();
+  Future<void> uploadAvatar(File image);
 }
 
 class UserFailure implements Exception {}

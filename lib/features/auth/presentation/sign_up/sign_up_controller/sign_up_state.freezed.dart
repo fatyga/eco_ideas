@@ -87,11 +87,11 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
 }
 
 /// @nodoc
-abstract class _$$_SignUpStateCopyWith<$Res>
+abstract class _$$SignUpStateImplCopyWith<$Res>
     implements $SignUpStateCopyWith<$Res> {
-  factory _$$_SignUpStateCopyWith(
-          _$_SignUpState value, $Res Function(_$_SignUpState) then) =
-      __$$_SignUpStateCopyWithImpl<$Res>;
+  factory _$$SignUpStateImplCopyWith(
+          _$SignUpStateImpl value, $Res Function(_$SignUpStateImpl) then) =
+      __$$SignUpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -103,11 +103,11 @@ abstract class _$$_SignUpStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SignUpStateCopyWithImpl<$Res>
-    extends _$SignUpStateCopyWithImpl<$Res, _$_SignUpState>
-    implements _$$_SignUpStateCopyWith<$Res> {
-  __$$_SignUpStateCopyWithImpl(
-      _$_SignUpState _value, $Res Function(_$_SignUpState) _then)
+class __$$SignUpStateImplCopyWithImpl<$Res>
+    extends _$SignUpStateCopyWithImpl<$Res, _$SignUpStateImpl>
+    implements _$$SignUpStateImplCopyWith<$Res> {
+  __$$SignUpStateImplCopyWithImpl(
+      _$SignUpStateImpl _value, $Res Function(_$SignUpStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -119,7 +119,7 @@ class __$$_SignUpStateCopyWithImpl<$Res>
     Object? passwordRetypeInput = null,
     Object? avatarUrl = freezed,
   }) {
-    return _then(_$_SignUpState(
+    return _then(_$SignUpStateImpl(
       usernameInput: null == usernameInput
           ? _value.usernameInput
           : usernameInput // ignore: cast_nullable_to_non_nullable
@@ -146,8 +146,8 @@ class __$$_SignUpStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SignUpState implements _SignUpState {
-  const _$_SignUpState(
+class _$SignUpStateImpl implements _SignUpState {
+  const _$SignUpStateImpl(
       {this.usernameInput = const UsernameInput.pure(),
       this.emailInput = const EmailInput.pure(),
       this.passwordInput = const SignUpPasswordInput.pure(),
@@ -175,10 +175,10 @@ class _$_SignUpState implements _SignUpState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SignUpState &&
+            other is _$SignUpStateImpl &&
             (identical(other.usernameInput, usernameInput) ||
                 other.usernameInput == usernameInput) &&
             (identical(other.emailInput, emailInput) ||
@@ -198,8 +198,8 @@ class _$_SignUpState implements _SignUpState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SignUpStateCopyWith<_$_SignUpState> get copyWith =>
-      __$$_SignUpStateCopyWithImpl<_$_SignUpState>(this, _$identity);
+  _$$SignUpStateImplCopyWith<_$SignUpStateImpl> get copyWith =>
+      __$$SignUpStateImplCopyWithImpl<_$SignUpStateImpl>(this, _$identity);
 }
 
 abstract class _SignUpState implements SignUpState {
@@ -208,7 +208,7 @@ abstract class _SignUpState implements SignUpState {
       final EmailInput emailInput,
       final SignUpPasswordInput passwordInput,
       final PasswordRetypeInput passwordRetypeInput,
-      final String? avatarUrl}) = _$_SignUpState;
+      final String? avatarUrl}) = _$SignUpStateImpl;
 
   @override
   UsernameInput get usernameInput;
@@ -222,6 +222,6 @@ abstract class _SignUpState implements SignUpState {
   String? get avatarUrl;
   @override
   @JsonKey(ignore: true)
-  _$$_SignUpStateCopyWith<_$_SignUpState> get copyWith =>
+  _$$SignUpStateImplCopyWith<_$SignUpStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

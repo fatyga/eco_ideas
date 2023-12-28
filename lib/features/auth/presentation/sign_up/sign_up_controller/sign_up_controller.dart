@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
+import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -146,6 +149,7 @@ class SignUpController extends _$SignUpController {
     final stateValue = state.valueOrNull;
     if (stateValue != null && stateValue.isValid) {
       final authRepository = ref.read(authRepositoryProvider);
+      final userRepository = ref.read(userRepositoryProvider);
       state = const AsyncLoading<SignUpState>();
 
       try {
@@ -153,8 +157,14 @@ class SignUpController extends _$SignUpController {
           email: stateValue.emailInput.value,
           password: stateValue.passwordInput.value,
           username: stateValue.usernameInput.value,
+          avatarUrl: stateValue.avatarUrl,
         );
+
+        if (stateValue.avatarUrl != null) {
+          await userRepository.uploadAvatar(File(stateValue.avatarUrl!));
+        }
       } catch (e) {
+        print(e);
         state = AsyncError<SignUpState>(e, StackTrace.current);
         return;
       }

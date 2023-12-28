@@ -57,8 +57,7 @@ class AuthRoute extends GoRouteData {
     return null;
   }
 
-  // TODO(fatyga): this override should be unecessary if [redirect] is overriden
-  //, but without override it throws
+  // TODO(fatyga): this override should be unecessary if [redirect] is overriden, but without override it throws
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const AuthScreen();
