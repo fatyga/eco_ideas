@@ -13,7 +13,7 @@ UserRepository userRepository(UserRepositoryRef ref) =>
 abstract class UserRepository {
   UserRepository();
 
-  Future<void> uploadAvatar(File image);
+  Future<void> uploadAvatar({required String userId, required File image});
 }
 
 class UserFailure implements Exception {}

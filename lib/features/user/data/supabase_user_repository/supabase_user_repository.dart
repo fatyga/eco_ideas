@@ -13,15 +13,7 @@ class SupabaseUserRepository implements UserRepository {
         .read(supabaseClientProvider)
         .auth
         .onAuthStateChange
-        .listen((state) async {
-      if (state.event == AuthChangeEvent.signedIn ||
-          state.event == AuthChangeEvent.userUpdated) {
-        final id = ref.read(supabaseClientProvider).auth.currentUser?.id;
-        if (id != null) {
-          currentUser = await _getUserProfile(id);
-        }
-      }
-    });
+        .listen(_onUserChange);
 
     ref.onDispose(() async => _userChanges.cancel());
   }
@@ -30,6 +22,18 @@ class SupabaseUserRepository implements UserRepository {
 
   late final StreamSubscription<void> _userChanges;
   UserProfile? currentUser;
+
+  Future<void> _onUserChange(AuthState state) async {
+    if (state.event == AuthChangeEvent.signedIn ||
+        state.event == AuthChangeEvent.userUpdated) {
+      final id = state.session?.user.id;
+      if (id != null) {
+        currentUser = await _getUserProfile(id);
+      }
+    } else {
+      currentUser = null;
+    }
+  }
 
   Future<UserProfile?> _getUserProfile(String id) async {
     final json = await ref
@@ -44,15 +48,14 @@ class SupabaseUserRepository implements UserRepository {
   }
 
   @override
-  Future<void> uploadAvatar(
-    File image,
-  ) async {
-    if (currentUser != null) {
-      await ref
-          .read(supabaseClientProvider)
-          .storage
-          .from('avatars')
-          .upload('${currentUser!.id}/avatar', image);
-    }
+  Future<void> uploadAvatar({
+    required String userId,
+    required File image,
+  }) async {
+    await ref
+        .read(supabaseClientProvider)
+        .storage
+        .from('avatars')
+        .upload('$userId/avatar', image);
   }
 }

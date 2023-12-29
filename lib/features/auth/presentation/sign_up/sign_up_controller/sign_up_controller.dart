@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
@@ -153,7 +154,7 @@ class SignUpController extends _$SignUpController {
       state = const AsyncLoading<SignUpState>();
 
       try {
-        await authRepository.signUpWithEmail(
+        final newUserId = await authRepository.signUpWithEmail(
           email: stateValue.emailInput.value,
           password: stateValue.passwordInput.value,
           username: stateValue.usernameInput.value,
@@ -161,10 +162,12 @@ class SignUpController extends _$SignUpController {
         );
 
         if (stateValue.avatarUrl != null) {
-          await userRepository.uploadAvatar(File(stateValue.avatarUrl!));
+          await userRepository.uploadAvatar(
+            userId: newUserId!,
+            image: File(stateValue.avatarUrl!),
+          );
         }
       } catch (e) {
-        print(e);
         state = AsyncError<SignUpState>(e, StackTrace.current);
         return;
       }
