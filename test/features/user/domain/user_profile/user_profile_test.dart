@@ -4,11 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('UserProfile', () {
     UserProfile createSubject({
-      String uid = '123',
+      String id = '123',
       String username = 'John',
-      String avatarURL = 'john_avatar.png',
+      bool isAvatarPresent = false,
     }) {
-      return UserProfile(uid: uid, username: username, avatarURL: avatarURL);
+      return UserProfile(
+          id: id, username: username, isAvatarPresent: isAvatarPresent);
     }
 
     group('constructor', () {
@@ -28,15 +29,15 @@ void main() {
           () {
         expect(
           createSubject().copyWith(
-            uid: '1234',
+            id: '1234',
             username: 'username123',
-            avatarURL: 'avatar123',
+            isAvatarPresent: true,
           ),
           equals(
             createSubject(
-              uid: '1234',
+              id: '1234',
               username: 'username123',
-              avatarURL: 'avatar123',
+              isAvatarPresent: true,
             ),
           ),
         );
@@ -46,9 +47,9 @@ void main() {
     group('formJson', () {
       test('works correctly', () {
         final json = <String, dynamic>{
-          'uid': '123',
+          'id': '123',
           'username': 'John',
-          'avatarURL': 'john_avatar.png',
+          'is_avatar_present': false,
         };
 
         expect(UserProfile.fromJson(json), equals(createSubject()));
@@ -58,9 +59,9 @@ void main() {
     group('toJson', () {
       test('works correctly', () {
         final json = <String, dynamic>{
-          'uid': '123',
+          'id': '123',
           'username': 'John',
-          'avatarURL': 'john_avatar.png',
+          'is_avatar_present': false,
         };
 
         expect(createSubject().toJson(), equals(json));

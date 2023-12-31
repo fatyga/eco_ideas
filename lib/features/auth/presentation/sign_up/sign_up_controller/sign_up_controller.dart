@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/auth.dart';
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -158,7 +156,6 @@ class SignUpController extends _$SignUpController {
           email: stateValue.emailInput.value,
           password: stateValue.passwordInput.value,
           username: stateValue.usernameInput.value,
-          avatarUrl: stateValue.avatarUrl,
         );
 
         if (stateValue.avatarUrl != null) {
@@ -171,7 +168,6 @@ class SignUpController extends _$SignUpController {
         state = AsyncError<SignUpState>(e, StackTrace.current);
         return;
       }
-      state = AsyncData<SignUpState>(state.requireValue);
     }
   }
 }

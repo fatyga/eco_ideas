@@ -6,7 +6,6 @@ import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.d
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
-import 'package:eco_ideas/features/user/user.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -157,13 +156,12 @@ class SupabaseAuthRepository implements AuthRepository {
     required String email,
     required String password,
     required String username,
-    String? avatarUrl,
   }) async {
     try {
       final response = await ref.read(supabaseClientProvider).auth.signUp(
         email: email,
         password: password,
-        data: {'username': username, 'avatarUrl': avatarUrl},
+        data: {'username': username},
       );
 
       if (response.session == null || response.user == null) {
