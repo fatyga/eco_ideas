@@ -9,7 +9,10 @@ void main() {
       bool isAvatarPresent = false,
     }) {
       return UserProfile(
-          id: id, username: username, isAvatarPresent: isAvatarPresent);
+        id: id,
+        username: username,
+        isAvatarPresent: isAvatarPresent,
+      );
     }
 
     group('constructor', () {

@@ -72,7 +72,9 @@ void main() {
 
           verifyInOrder([
             () => listener.call(
-                null, const AsyncData<SignInState>(SignInState())),
+                  null,
+                  const AsyncData<SignInState>(SignInState()),
+                ),
             () => listener.call(
                   const AsyncData<SignInState>(SignInState()),
                   const AsyncData<SignInState>(SignInState()),
@@ -82,7 +84,8 @@ void main() {
           verifyNoMoreInteractions(listener);
         });
 
-        test('''
+        test(
+            '''
 set email to EmailInput.dirty(value: newValue) when [newValue] is provided ''',
             () {
           final container = makeProviderContainer();
@@ -99,7 +102,9 @@ set email to EmailInput.dirty(value: newValue) when [newValue] is provided ''',
 
           verifyInOrder([
             () => listener.call(
-                null, const AsyncData<SignInState>(SignInState())),
+                  null,
+                  const AsyncData<SignInState>(SignInState()),
+                ),
             () => listener.call(
                   const AsyncData<SignInState>(SignInState()),
                   const AsyncData<SignInState>(
@@ -133,7 +138,9 @@ set email to EmailInput.dirty(value: newValue) when [newValue] is provided ''',
 
           verifyInOrder([
             () => listener.call(
-                null, const AsyncData<SignInState>(SignInState())),
+                  null,
+                  const AsyncData<SignInState>(SignInState()),
+                ),
             () => listener.call(
                   const AsyncData<SignInState>(SignInState()),
                   const AsyncData<SignInState>(SignInState()),
@@ -143,9 +150,11 @@ set email to EmailInput.dirty(value: newValue) when [newValue] is provided ''',
           verifyNoMoreInteractions(listener);
         });
 
-        test('''
+        test(
+            '''
 sets email to PasswordInput.dirty(value: newValue) when [newValue] is provided
-           ''', () {
+           ''',
+            () {
           final container = makeProviderContainer();
           final listener = Listener<AsyncValue<SignInState>>();
           container.listen(
@@ -160,7 +169,9 @@ sets email to PasswordInput.dirty(value: newValue) when [newValue] is provided
 
           verifyInOrder([
             () => listener.call(
-                null, const AsyncData<SignInState>(SignInState())),
+                  null,
+                  const AsyncData<SignInState>(SignInState()),
+                ),
             () => listener.call(
                   const AsyncData<SignInState>(SignInState()),
                   const AsyncData<SignInState>(

@@ -47,6 +47,12 @@ GoRouter goRouter(GoRouterRef ref) {
 
       if (isLoggingIn) return auth ? const HomeRoute().location : null;
 
+      final isHome = state.uri.path == const HomeRoute().location;
+
+      if (isHome) {
+        return auth ? null : const SignInRoute().location;
+      }
+
       //return auth ? null : const SplashRoute().location; // this doesn't allow to navigate for example to PasswordRecoveryRoute
       return null;
     },

@@ -36,7 +36,7 @@ class SupabaseAuthRepository implements AuthRepository {
 
     await for (final supabase.AuthState state
         in ref.read(supabaseClientProvider).auth.onAuthStateChange) {
-      if (state.session != null) {
+      if (state.session?.user != null) {
         yield AuthStatus.authenticated;
       } else {
         yield AuthStatus.unauthenticated;
