@@ -49,13 +49,14 @@ class HomeRoute extends GoRouteData {
 class AuthRoute extends GoRouteData {
   const AuthRoute();
 
-  @override
-  FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
-    if (state.uri.path == const AuthRoute().location) {
-      return const SignInRoute().location;
-    }
-    return null;
-  }
+  // @override
+  // FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
+  //   print('path: state.uri.path');
+  //   if (state.uri.path == const AuthRoute().location) {
+  //     return const SignInRoute().location;
+  //   }
+  //   return null;
+  // }
 
   // TODO(fatyga): this override should be unecessary if [redirect] is overriden, but without override it throws
   @override

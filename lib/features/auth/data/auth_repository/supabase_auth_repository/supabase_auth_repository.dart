@@ -36,7 +36,7 @@ class SupabaseAuthRepository implements AuthRepository {
 
     await for (final supabase.AuthState state
         in ref.read(supabaseClientProvider).auth.onAuthStateChange) {
-      if (state.session?.user != null) {
+      if (state.session != null) {
         yield AuthStatus.authenticated;
       } else {
         yield AuthStatus.unauthenticated;
@@ -164,7 +164,7 @@ class SupabaseAuthRepository implements AuthRepository {
         data: {'username': username},
       );
 
-      if (response.session == null || response.user == null) {
+      if (response.session == null) {
         throw SignUpFail();
       }
       return response.user?.id;

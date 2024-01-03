@@ -408,6 +408,7 @@ void main() {
       );
     });
     group('signUpWithEmail', () {
+      const id = 'user_id';
       const email = 'email@domain.com';
       const password = 'qwerty';
       const username = 'johnDoe';
@@ -423,6 +424,7 @@ void main() {
 
         when(() => authResponse.session).thenReturn(session);
         when(() => authResponse.user).thenReturn(user);
+        when(() => user.id).thenReturn(id);
 
         when(
           () => goTrueClient.signUp(
@@ -437,6 +439,39 @@ void main() {
               password: password,
               username: username,
             );
+        verify(
+          () =>
+              goTrueClient.signUp(email: email, password: password, data: data),
+        ).called(1);
+      });
+
+      test('returns id of newly created user', () async {
+        final goTrueClient = MockGoTrueClient();
+        final authResponse = MockAuthResponse();
+        final session = MockSession();
+        final user = MockUser();
+
+        final container = createContainer(goTrueClient: goTrueClient);
+
+        when(() => authResponse.session).thenReturn(session);
+        when(() => authResponse.user).thenReturn(user);
+        when(() => user.id).thenReturn(id);
+
+        when(
+          () => goTrueClient.signUp(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+            data: data,
+          ),
+        ).thenAnswer((_) async => authResponse);
+
+        final actual =
+            await container.read(authRepositoryProvider).signUpWithEmail(
+                  email: email,
+                  password: password,
+                  username: username,
+                );
+        expect(actual, equals(id));
         verify(
           () =>
               goTrueClient.signUp(email: email, password: password, data: data),
@@ -468,15 +503,13 @@ void main() {
         );
       });
 
-      test('throws SignUpFail, if user is null', () async {
+      test('throws SignUpFail, if session is null', () async {
         final goTrueClient = MockGoTrueClient();
         final authResponse = MockAuthResponse();
-        final session = MockSession();
 
         final container = createContainer(goTrueClient: goTrueClient);
 
-        when(() => authResponse.session).thenReturn(session);
-        when(() => authResponse.user).thenReturn(null);
+        when(() => authResponse.session).thenReturn(null);
 
         when(
           () => goTrueClient.signUp(
