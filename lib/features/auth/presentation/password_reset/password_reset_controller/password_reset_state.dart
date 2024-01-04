@@ -1,3 +1,5 @@
+import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'password_reset_state.freezed.dart';
@@ -8,6 +10,14 @@ enum PasswordResetStep { initial, sendingLink, settingPassword }
 class PasswordResetState with _$PasswordResetState {
   const factory PasswordResetState({
     @Default(PasswordResetStep.initial) PasswordResetStep step,
-    String? email,
+    @Default(EmailInput.pure()) EmailInput emailInput,
   }) = _PasswordResetState;
+}
+
+extension FieldsValidity on PasswordResetState {
+  bool get isValid => Formz.validate(
+        [
+          emailInput,
+        ],
+      );
 }

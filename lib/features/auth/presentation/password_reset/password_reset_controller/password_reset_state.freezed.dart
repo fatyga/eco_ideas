@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PasswordResetState {
   PasswordResetStep get step => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
+  EmailInput get emailInput => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PasswordResetStateCopyWith<PasswordResetState> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $PasswordResetStateCopyWith<$Res> {
           PasswordResetState value, $Res Function(PasswordResetState) then) =
       _$PasswordResetStateCopyWithImpl<$Res, PasswordResetState>;
   @useResult
-  $Res call({PasswordResetStep step, String? email});
+  $Res call({PasswordResetStep step, EmailInput emailInput});
 }
 
 /// @nodoc
@@ -47,17 +47,17 @@ class _$PasswordResetStateCopyWithImpl<$Res, $Val extends PasswordResetState>
   @override
   $Res call({
     Object? step = null,
-    Object? email = freezed,
+    Object? emailInput = null,
   }) {
     return _then(_value.copyWith(
       step: null == step
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
               as PasswordResetStep,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+      emailInput: null == emailInput
+          ? _value.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
+              as EmailInput,
     ) as $Val);
   }
 }
@@ -70,7 +70,7 @@ abstract class _$$PasswordResetStateImplCopyWith<$Res>
       __$$PasswordResetStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PasswordResetStep step, String? email});
+  $Res call({PasswordResetStep step, EmailInput emailInput});
 }
 
 /// @nodoc
@@ -85,17 +85,17 @@ class __$$PasswordResetStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? step = null,
-    Object? email = freezed,
+    Object? emailInput = null,
   }) {
     return _then(_$PasswordResetStateImpl(
       step: null == step
           ? _value.step
           : step // ignore: cast_nullable_to_non_nullable
               as PasswordResetStep,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+      emailInput: null == emailInput
+          ? _value.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
+              as EmailInput,
     ));
   }
 }
@@ -104,17 +104,19 @@ class __$$PasswordResetStateImplCopyWithImpl<$Res>
 
 class _$PasswordResetStateImpl implements _PasswordResetState {
   const _$PasswordResetStateImpl(
-      {this.step = PasswordResetStep.initial, this.email});
+      {this.step = PasswordResetStep.initial,
+      this.emailInput = const EmailInput.pure()});
 
   @override
   @JsonKey()
   final PasswordResetStep step;
   @override
-  final String? email;
+  @JsonKey()
+  final EmailInput emailInput;
 
   @override
   String toString() {
-    return 'PasswordResetState(step: $step, email: $email)';
+    return 'PasswordResetState(step: $step, emailInput: $emailInput)';
   }
 
   @override
@@ -123,11 +125,12 @@ class _$PasswordResetStateImpl implements _PasswordResetState {
         (other.runtimeType == runtimeType &&
             other is _$PasswordResetStateImpl &&
             (identical(other.step, step) || other.step == step) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, step, email);
+  int get hashCode => Object.hash(runtimeType, step, emailInput);
 
   @JsonKey(ignore: true)
   @override
@@ -140,12 +143,12 @@ class _$PasswordResetStateImpl implements _PasswordResetState {
 abstract class _PasswordResetState implements PasswordResetState {
   const factory _PasswordResetState(
       {final PasswordResetStep step,
-      final String? email}) = _$PasswordResetStateImpl;
+      final EmailInput emailInput}) = _$PasswordResetStateImpl;
 
   @override
   PasswordResetStep get step;
   @override
-  String? get email;
+  EmailInput get emailInput;
   @override
   @JsonKey(ignore: true)
   _$$PasswordResetStateImplCopyWith<_$PasswordResetStateImpl> get copyWith =>
