@@ -1,4 +1,4 @@
-import 'package:eco_ideas/common/widgets/indicator_button.dart';
+import 'package:eco_ideas/common/widgets/primary_button.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_state.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
@@ -25,7 +25,7 @@ class SignInButton extends ConsumerWidget {
       signInControllerProvider
           .select((controllerState) => controllerState.valueOrNull?.isValid),
     );
-    return IndicatorButton(
+    return PrimaryButton(
       isLoading: isSigningIn,
       onPressed: isSigningIn || canAttemptSigningIn == null
           ? null

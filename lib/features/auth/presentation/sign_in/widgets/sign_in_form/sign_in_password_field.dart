@@ -17,8 +17,8 @@ class SignInPasswordField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final inputState = ref.watch(
-      signInControllerProvider
-          .select((controllerState) => controllerState.valueOrNull?.password),
+      signInControllerProvider.select(
+          (controllerState) => controllerState.valueOrNull?.passwordInput),
     );
     final isLoading = ref.watch(
       signInControllerProvider

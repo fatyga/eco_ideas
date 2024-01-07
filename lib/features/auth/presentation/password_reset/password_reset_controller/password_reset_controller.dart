@@ -38,12 +38,12 @@ class PasswordResetController extends _$PasswordResetController {
   Future<void> resetPasswordForEmail() async {
     final stateValue = state.valueOrNull;
     if (stateValue != null && stateValue.isValid) {
-      state = const AsyncLoading<PasswordResetState>().copyWithPrevious(state);
+      state = const AsyncLoading<PasswordResetState>();
       await ref
           .read(authRepositoryProvider)
           .resetPasswordForEmail(email: stateValue.emailInput.value);
       state = AsyncData(
-        state.requireValue.copyWith(step: PasswordResetStep.sendingLink),
+        state.requireValue.copyWith(step: PasswordResetStep.linkSent),
       );
     }
   }

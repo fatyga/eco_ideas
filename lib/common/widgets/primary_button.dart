@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class IndicatorButton extends StatelessWidget {
-  const IndicatorButton({
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({
     required this.isLoading,
     required this.onPressed,
     required this.child,

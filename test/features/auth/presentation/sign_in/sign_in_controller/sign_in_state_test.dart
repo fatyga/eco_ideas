@@ -11,12 +11,12 @@ class MockPasswordInput extends Mock implements PasswordInput {}
 void main() {
   group('SignInState', () {
     SignInState createSubject({
-      EmailInput email = const EmailInput.pure(),
-      PasswordInput password = const PasswordInput.pure(),
+      EmailInput emailInput = const EmailInput.pure(),
+      PasswordInput passwordInput = const PasswordInput.pure(),
     }) {
       return SignInState(
-        email: email,
-        password: password,
+        emailInput: emailInput,
+        passwordInput: passwordInput,
       );
     }
 
@@ -36,11 +36,11 @@ void main() {
       test('replaces every provided argument', () {
         expect(
           createSubject().copyWith(
-            email: const EmailInput.dirty(value: 'email'),
+            emailInput: const EmailInput.dirty(value: 'email'),
           ),
           equals(
             createSubject(
-              email: const EmailInput.dirty(value: 'email'),
+              emailInput: const EmailInput.dirty(value: 'email'),
             ),
           ),
         );
@@ -60,7 +60,8 @@ void main() {
         when(() => passwordInput.isValid).thenReturn(false);
 
         expect(
-          createSubject(email: emailInput, password: passwordInput).isValid,
+          createSubject(emailInput: emailInput, passwordInput: passwordInput)
+              .isValid,
           equals(false),
         );
       });
@@ -73,7 +74,8 @@ void main() {
         when(() => passwordInput.isValid).thenReturn(true);
 
         expect(
-          createSubject(email: emailInput, password: passwordInput).isValid,
+          createSubject(emailInput: emailInput, passwordInput: passwordInput)
+              .isValid,
           equals(false),
         );
       });
@@ -86,7 +88,8 @@ void main() {
         when(() => passwordInput.isValid).thenReturn(true);
 
         expect(
-          createSubject(email: emailInput, password: passwordInput).isValid,
+          createSubject(emailInput: emailInput, passwordInput: passwordInput)
+              .isValid,
           equals(true),
         );
       });

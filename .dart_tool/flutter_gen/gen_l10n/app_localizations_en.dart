@@ -44,10 +44,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signInLabeledDividerText => 'OR';
 
   @override
-  String get passwordRecoveryAppBarTitle => 'Reset your password';
+  String get passwordResetAppBarTitle => 'Reset your password';
 
   @override
-  String get passwordRecoveryFirstStepDescription => 'In this step, please enter email address with which your account was created.';
+  String get passwordResetFirstStepDescription => 'Please enter an email address with which your account was created.';
+
+  @override
+  String get passwordResetLinkSentTitle => 'Link was sent!';
+
+  @override
+  String get passwordResetLinkSentDescription => 'We\'ve sent a link to given email address. Please open it to finish the proccess of resetting password.';
+
+  @override
+  String get passwordResetConfirmButtonText => 'Confirm';
 
   @override
   String get passwordInputEmptyErrorText => 'Password can\'t be empty';

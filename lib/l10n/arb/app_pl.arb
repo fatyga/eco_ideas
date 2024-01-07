@@ -13,8 +13,13 @@
     "googleAuthButtonLabelText": "Kontynuuj z Google",
     "signInButtonText": "Zaloguj się",
     "signInLabeledDividerText": "LUB",
-    "passwordRecoveryAppBarTitle": "Zresetuj swoje hasło",
-    "passwordRecoveryFirstStepDescription": "W tym kroku podaj adres e-mail, za pomocą którego utworzono konto.",
+
+    "passwordResetAppBarTitle": "Zresetuj swoje hasło",
+    "passwordResetFirstStepDescription": "Podaj adres e-mail, za pomocą którego utworzono konto.",
+    "passwordResetLinkSentTitle": "Link został wysłany",
+    "passwordResetLinkSentDescription": "Wysłaliśmy ci link na podany przez ciebie adres email. Proszę otwórz go, aby dokończyć proces resetowania hasła",
+    "passwordResetConfirmButtonText": "Zatwierdź",
+
     "passwordInputEmptyErrorText": "To pole nie może być puste",
     "passwordInputTooShortErrorText": "Hasło jest za krótkie(co najmniej 6 znaków)",
     "signUpPasswordInputErrorSpecialCharacterNotPresentText": "Co najmniej jeden znak specjalny(!@#$%^&*) jest wymagany",

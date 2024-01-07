@@ -109,7 +109,7 @@ set email to EmailInput.dirty(value: newValue) when [newValue] is provided ''',
                   const AsyncData<SignInState>(SignInState()),
                   const AsyncData<SignInState>(
                     SignInState(
-                      email: EmailInput.dirty(value: enteredValue),
+                      emailInput: EmailInput.dirty(value: enteredValue),
                     ),
                   ),
                 ),
@@ -176,7 +176,7 @@ sets email to PasswordInput.dirty(value: newValue) when [newValue] is provided
                   const AsyncData<SignInState>(SignInState()),
                   const AsyncData<SignInState>(
                     SignInState(
-                      password: PasswordInput.dirty(value: enteredValue),
+                      passwordInput: PasswordInput.dirty(value: enteredValue),
                     ),
                   ),
                 ),
@@ -237,8 +237,8 @@ sets email to PasswordInput.dirty(value: newValue) when [newValue] is provided
           () => listener.call(
                 const AsyncData<SignInState>(
                   SignInState(
-                    email: EmailInput.dirty(value: email),
-                    password: PasswordInput.dirty(value: password),
+                    emailInput: EmailInput.dirty(value: email),
+                    passwordInput: PasswordInput.dirty(value: password),
                   ),
                 ),
                 any(that: isA<AsyncLoading<SignInState>>()),
@@ -247,8 +247,8 @@ sets email to PasswordInput.dirty(value: newValue) when [newValue] is provided
                 any(that: isA<AsyncLoading<SignInState>>()),
                 const AsyncData<SignInState>(
                   SignInState(
-                    email: EmailInput.dirty(value: email),
-                    password: PasswordInput.dirty(value: password),
+                    emailInput: EmailInput.dirty(value: email),
+                    passwordInput: PasswordInput.dirty(value: password),
                   ),
                 ),
               ),
@@ -289,8 +289,8 @@ sets email to PasswordInput.dirty(value: newValue) when [newValue] is provided
           () => listener.call(
                 const AsyncData<SignInState>(
                   SignInState(
-                    email: EmailInput.dirty(value: email),
-                    password: PasswordInput.dirty(value: password),
+                    emailInput: EmailInput.dirty(value: email),
+                    passwordInput: PasswordInput.dirty(value: password),
                   ),
                 ),
                 any(that: isA<AsyncLoading<SignInState>>()),

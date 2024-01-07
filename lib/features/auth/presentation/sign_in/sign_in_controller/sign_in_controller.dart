@@ -21,7 +21,7 @@ class SignInController extends _$SignInController {
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            email: email,
+            emailInput: email,
           ),
         );
       } else {
@@ -29,7 +29,7 @@ class SignInController extends _$SignInController {
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            email: email,
+            emailInput: email,
           ),
         );
       }
@@ -44,7 +44,7 @@ class SignInController extends _$SignInController {
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            password: password,
+            passwordInput: password,
           ),
         );
       } else {
@@ -52,7 +52,7 @@ class SignInController extends _$SignInController {
 
         state = AsyncValue.data(
           stateValue.copyWith(
-            password: password,
+            passwordInput: password,
           ),
         );
       }
@@ -67,8 +67,8 @@ class SignInController extends _$SignInController {
 
       try {
         await authRepository.signInWithEmail(
-          email: stateValue.email.value,
-          password: stateValue.password.value,
+          email: stateValue.emailInput.value,
+          password: stateValue.passwordInput.value,
         );
       } catch (e) {
         state = AsyncError<SignInState>(e, StackTrace.current);

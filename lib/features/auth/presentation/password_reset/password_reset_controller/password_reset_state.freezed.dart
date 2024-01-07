@@ -102,10 +102,11 @@ class __$$PasswordResetStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PasswordResetStateImpl implements _PasswordResetState {
+class _$PasswordResetStateImpl extends _PasswordResetState {
   const _$PasswordResetStateImpl(
       {this.step = PasswordResetStep.initial,
-      this.emailInput = const EmailInput.pure()});
+      this.emailInput = const EmailInput.pure()})
+      : super._();
 
   @override
   @JsonKey()
@@ -140,10 +141,11 @@ class _$PasswordResetStateImpl implements _PasswordResetState {
           this, _$identity);
 }
 
-abstract class _PasswordResetState implements PasswordResetState {
+abstract class _PasswordResetState extends PasswordResetState {
   const factory _PasswordResetState(
       {final PasswordResetStep step,
       final EmailInput emailInput}) = _$PasswordResetStateImpl;
+  const _PasswordResetState._() : super._();
 
   @override
   PasswordResetStep get step;

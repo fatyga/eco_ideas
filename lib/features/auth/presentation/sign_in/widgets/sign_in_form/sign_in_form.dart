@@ -3,9 +3,8 @@ import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
 import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignInForm extends ConsumerWidget {
+class SignInForm extends StatelessWidget {
   const SignInForm({
     required this.emailFocusNode,
     required this.passwordFocusNode,
@@ -16,7 +15,7 @@ class SignInForm extends ConsumerWidget {
   final FocusNode passwordFocusNode;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Column(
       children: <Widget>[
@@ -26,13 +25,7 @@ class SignInForm extends ConsumerWidget {
         Container(
           padding: const EdgeInsets.only(top: 4),
           alignment: Alignment.centerRight,
-          child: ForgotPasswordActionButton(
-            onPressed: () {
-              ref
-                  .read(goRouterProvider)
-                  .go(const PasswordResetRoute().location);
-            },
-          ),
+          child: ForgotPasswordActionButton(),
         ),
         const SizedBox(height: 12),
         const SignInButton(),

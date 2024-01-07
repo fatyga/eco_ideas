@@ -13,8 +13,13 @@
     "googleAuthButtonLabelText": "Continue with Google", 
     "signInButtonText": "Sign In",
     "signInLabeledDividerText": "OR",
-    "passwordRecoveryAppBarTitle": "Reset your password",
-    "passwordRecoveryFirstStepDescription": "In this step, please enter email address with which your account was created.",
+
+    "passwordResetAppBarTitle": "Reset your password",
+    "passwordResetFirstStepDescription": "Please enter an email address with which your account was created.",
+    "passwordResetLinkSentTitle": "Link was sent!",
+    "passwordResetLinkSentDescription": "We've sent a link to given email address. Please open it to finish the proccess of resetting password.",
+    "passwordResetConfirmButtonText": "Confirm",
+    
     "passwordInputEmptyErrorText": "Password can't be empty",
     "passwordInputTooShortErrorText": "Password is too short(at least 6 characters)",
     "signUpPasswordInputErrorSpecialCharacterNotPresentText": "At least one special character(!@#$%^&*) is required",
