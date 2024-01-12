@@ -1,15 +1,17 @@
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_controller/password_reset_state.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/password_reset_first_step_controller/password_reset_first_step_state.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'password_reset_controller.g.dart';
+part 'password_reset_first_step_controller.g.dart';
 
 @riverpod
-class PasswordResetController extends _$PasswordResetController {
+class PasswordResetFirstStepController
+    extends _$PasswordResetFirstStepController {
   @override
-  FutureOr<PasswordResetState> build() {
-    return const PasswordResetState();
+  FutureOr<PasswordResetFirstStepState> build() {
+    return const PasswordResetFirstStepState();
   }
 
   void updateEmailField(String newValue) {
@@ -38,12 +40,13 @@ class PasswordResetController extends _$PasswordResetController {
   Future<void> resetPasswordForEmail() async {
     final stateValue = state.valueOrNull;
     if (stateValue != null && stateValue.isValid) {
-      state = const AsyncLoading<PasswordResetState>();
+      state = const AsyncLoading<PasswordResetFirstStepState>();
       await ref
           .read(authRepositoryProvider)
           .resetPasswordForEmail(email: stateValue.emailInput.value);
       state = AsyncData(
-        state.requireValue.copyWith(step: PasswordResetStep.linkSent),
+        state.requireValue
+            .copyWith(status: PasswordResetFirstStepStatus.linkSent),
       );
     }
   }

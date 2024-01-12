@@ -1,6 +1,6 @@
-import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_controller/password_reset_controller.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/widgets/link_sent.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/widgets/password_reset_form/password_reset_email_form.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/password_reset_first_step.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/widgets/link_sent.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/widgets/password_reset_first_step_form/password_reset_email_form.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,7 +15,7 @@ class PasswordResetScreen extends ConsumerWidget {
     final l10n = context.l10n;
 
     final isLinkSent = ref.watch(
-      passwordResetControllerProvider
+      passwordResetFirstStepControllerProvider
           .select((state) => state.valueOrNull?.isLinkSent),
     );
 

@@ -38,13 +38,6 @@ GoRouter goRouter(GoRouterRef ref) {
 
       final auth = isAuth.value.requireValue;
 
-      final isPasswordResetLinkOpened =
-          state.uri.fragment.contains('type=recovery');
-
-      if (isPasswordResetLinkOpened) {
-        return const PasswordResetRoute().location;
-      }
-
       final isSplash = state.uri.path == const SplashRoute().location;
       if (isSplash) {
         return auth ? const HomeRoute().location : const SignInRoute().location;
