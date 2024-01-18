@@ -2,13 +2,15 @@ import 'package:eco_ideas/features/auth/presentation/password_reset/password_res
 import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/widgets/link_sent.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/widgets/password_reset_first_step_form/password_reset_email_form.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
+import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
+import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PasswordResetScreen extends ConsumerWidget {
-  const PasswordResetScreen({super.key});
+class PasswordResetFirstStepScreen extends ConsumerWidget {
+  const PasswordResetFirstStepScreen({super.key});
 
-  static const String path = 'passwordReset';
+  static const String path = 'firstStep';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,11 +23,20 @@ class PasswordResetScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.passwordResetAppBarTitle)),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: isLinkSent != null && isLinkSent
-            ? const LinkSentWidget()
-            : const PasswordResetEmailForm(),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: isLinkSent != null && isLinkSent
+                ? const LinkSentWidget()
+                : const PasswordResetEmailForm(),
+          ),
+          TextButton(
+              child: Text('Back'),
+              onPressed: () => ref
+                  .read(goRouterProvider)
+                  .go(const PasswordResetRoute().location))
+        ],
       ),
     );
   }

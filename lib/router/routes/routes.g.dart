@@ -63,16 +63,24 @@ RouteBase get $authRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'signIn',
           factory: $SignInRouteExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: 'passwordReset',
-              factory: $PasswordResetRouteExtension._fromState,
-            ),
-          ],
         ),
         GoRouteData.$route(
           path: 'signUp',
           factory: $SignUpRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'passwordReset',
+          factory: $PasswordResetRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'firstStep',
+              factory: $PasswordResetFirstStepRouteExtension._fromState,
+            ),
+            GoRouteData.$route(
+              path: 'secondStep',
+              factory: $PasswordResetSecondStepRouteExtension._fromState,
+            ),
+          ],
         ),
       ],
     );
@@ -111,12 +119,11 @@ extension $SignInRouteExtension on SignInRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $PasswordResetRouteExtension on PasswordResetRoute {
-  static PasswordResetRoute _fromState(GoRouterState state) =>
-      const PasswordResetRoute();
+extension $SignUpRouteExtension on SignUpRoute {
+  static SignUpRoute _fromState(GoRouterState state) => const SignUpRoute();
 
   String get location => GoRouteData.$location(
-        '/auth/signIn/passwordReset',
+        '/auth/signUp',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -129,11 +136,49 @@ extension $PasswordResetRouteExtension on PasswordResetRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $SignUpRouteExtension on SignUpRoute {
-  static SignUpRoute _fromState(GoRouterState state) => const SignUpRoute();
+extension $PasswordResetRouteExtension on PasswordResetRoute {
+  static PasswordResetRoute _fromState(GoRouterState state) =>
+      const PasswordResetRoute();
 
   String get location => GoRouteData.$location(
-        '/auth/signUp',
+        '/auth/passwordReset',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $PasswordResetFirstStepRouteExtension on PasswordResetFirstStepRoute {
+  static PasswordResetFirstStepRoute _fromState(GoRouterState state) =>
+      const PasswordResetFirstStepRoute();
+
+  String get location => GoRouteData.$location(
+        '/auth/passwordReset/firstStep',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $PasswordResetSecondStepRouteExtension
+    on PasswordResetSecondStepRoute {
+  static PasswordResetSecondStepRoute _fromState(GoRouterState state) =>
+      const PasswordResetSecondStepRoute();
+
+  String get location => GoRouteData.$location(
+        '/auth/passwordReset/secondStep',
       );
 
   void go(BuildContext context) => context.go(location);

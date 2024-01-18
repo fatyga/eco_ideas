@@ -15,15 +15,15 @@ class PasswordResetConfirmButton extends ConsumerWidget {
           .select((state) => state.isLoading),
     );
 
-    final canAttemptPasswordReset = ref.watch(
+    final canSendLink = ref.watch(
       passwordResetFirstStepControllerProvider
-          .select((state) => state.valueOrNull?.isLinkSent),
+          .select((state) => state.valueOrNull?.isValid),
     );
     return PrimaryButton(
       isLoading: isLoading,
-      onPressed: isLoading || canAttemptPasswordReset == null
+      onPressed: isLoading || canSendLink == null
           ? null
-          : canAttemptPasswordReset
+          : canSendLink
               ? ref
                   .read(passwordResetFirstStepControllerProvider.notifier)
                   .resetPasswordForEmail
