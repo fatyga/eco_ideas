@@ -1,5 +1,5 @@
-import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/widgets/password_reset_first_step_form/password_reset_first_step_confirm_button.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/widgets/password_reset_first_step_form/password_reset_first_step_email_field.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/widgets/form/confirm_button.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/widgets/form/email_field.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 

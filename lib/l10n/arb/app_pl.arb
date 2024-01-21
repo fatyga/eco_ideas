@@ -14,8 +14,10 @@
     "signInButtonText": "Zaloguj się",
     "signInLabeledDividerText": "LUB",
 
-    "passwordResetAppBarTitle": "Zresetuj swoje hasło",
+    "passwordResetFirstStepAppBarTitleText": "Zresetuj swoje hasło",
+    "passwordResetSecondStepAppBarTitleText": "Podaj nowe hasło",
     "passwordResetFirstStepDescription": "Podaj adres e-mail, za pomocą którego utworzono konto.",
+    "passwordResetSecondStepDescription": "Aby ukończyć procedurę zmiany hasła, wprowadź nowe hasło.",
     "passwordResetLinkSentTitle": "Link został wysłany",
     "passwordResetLinkSentDescription": "Wysłaliśmy ci link na podany przez ciebie adres email. Proszę otwórz go, aby dokończyć proces resetowania hasła",
     "passwordResetConfirmButtonText": "Zatwierdź",

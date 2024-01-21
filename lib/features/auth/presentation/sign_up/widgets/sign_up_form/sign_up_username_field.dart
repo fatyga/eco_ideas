@@ -6,16 +6,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignUpUsernameField extends ConsumerWidget {
   const SignUpUsernameField({
-    required this.l10n,
     this.focusNode,
     super.key,
   });
 
   final FocusNode? focusNode;
-  final AppLocalizations l10n;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
     final inputState = ref.watch(
       signUpControllerProvider.select(
         (controllerState) => controllerState.valueOrNull?.usernameInput,

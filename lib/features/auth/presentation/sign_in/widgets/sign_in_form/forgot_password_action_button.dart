@@ -23,8 +23,9 @@ class ForgotPasswordActionButton extends ConsumerWidget {
         style: theme.textTheme.labelMedium!
             .copyWith(color: theme.colorScheme.primary),
       ),
-      onActionTap: () =>
-          ref.read(goRouterProvider).go(const PasswordResetRoute().location),
+      onActionTap: () => ref
+          .read(goRouterProvider)
+          .go(const PasswordResetFirstStepRoute().location),
     );
   }
 }

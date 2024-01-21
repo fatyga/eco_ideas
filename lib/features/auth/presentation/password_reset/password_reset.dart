@@ -1,1 +1,2 @@
-export 'password_reset_first_step/password_reset_first_step_screen.dart';
+export 'first_step/first_step.dart';
+export 'second_step/second_step.dart';

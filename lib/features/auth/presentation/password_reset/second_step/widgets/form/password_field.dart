@@ -1,34 +1,31 @@
 import 'package:eco_ideas/common/widgets/password_field.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_controller.dart';
+import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpPasswordField extends ConsumerWidget {
-  const SignUpPasswordField({
-    this.focusNode,
-    super.key,
-  });
+class PasswordResetSecondStepPasswordField extends ConsumerWidget {
+  const PasswordResetSecondStepPasswordField({super.key, this.focusNode});
 
   final FocusNode? focusNode;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final inputState = ref.watch(
-      signUpControllerProvider.select(
+      passwordResetSecondStepControllerProvider.select(
         (controllerState) => controllerState.valueOrNull?.passwordInput,
       ),
     );
     final isLoading = ref.watch(
-      signUpControllerProvider
+      passwordResetSecondStepControllerProvider
           .select((controllerState) => controllerState.isLoading),
     );
     return PasswordField(
       enabled: !isLoading,
       focusNode: focusNode,
-      onChanged:
-          ref.read(signUpControllerProvider.notifier).updatePasswordField,
+      onChanged: ref
+          .read(passwordResetSecondStepControllerProvider.notifier)
+          .updatePasswordField,
       errorText: inputState == null
           ? null
           : inputState.isPure

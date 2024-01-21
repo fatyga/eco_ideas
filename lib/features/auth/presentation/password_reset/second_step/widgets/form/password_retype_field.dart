@@ -1,32 +1,28 @@
 import 'package:eco_ideas/common/widgets/password_field.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_controller.dart';
+import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpPasswordRetypeField extends ConsumerWidget {
-  const SignUpPasswordRetypeField({
-    this.focusNode,
-    super.key,
-  });
+class PasswordResetSecondStepPasswordRetypeField extends ConsumerWidget {
+  const PasswordResetSecondStepPasswordRetypeField({super.key, this.focusNode});
 
   final FocusNode? focusNode;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final inputState = ref.watch(
-      signUpControllerProvider.select(
+      passwordResetSecondStepControllerProvider.select(
         (controllerState) => controllerState.valueOrNull?.passwordRetypeInput,
       ),
     );
     final isLoading = ref.watch(
-      signUpControllerProvider
+      passwordResetSecondStepControllerProvider
           .select((controllerState) => controllerState.isLoading),
     );
 
     final passwordInputState = ref.watch(
-      signUpControllerProvider.select(
+      passwordResetSecondStepControllerProvider.select(
         (controllerState) => controllerState.valueOrNull?.passwordInput,
       ),
     );
@@ -41,10 +37,11 @@ class SignUpPasswordRetypeField extends ConsumerWidget {
 
     return PasswordField(
       forRetype: true,
-      enabled: shouldBeEnabled,
       focusNode: focusNode,
-      onChanged:
-          ref.read(signUpControllerProvider.notifier).updatePasswordRetypeField,
+      enabled: shouldBeEnabled,
+      onChanged: ref
+          .read(passwordResetSecondStepControllerProvider.notifier)
+          .updatePasswordRetypeField,
       errorText: inputState == null ||
               !shouldBeEnabled // if passwordInput is invalid, we don't want to show errorText
           ? null

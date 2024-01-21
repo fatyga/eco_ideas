@@ -5,12 +5,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignUpEmailField extends ConsumerWidget {
-  const SignUpEmailField({required this.l10n, this.focusNode, super.key});
+  const SignUpEmailField({this.focusNode, super.key});
 
   final FocusNode? focusNode;
-  final AppLocalizations l10n;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
     final inputState = ref.watch(
       signUpControllerProvider
           .select((controllerState) => controllerState.valueOrNull?.emailInput),

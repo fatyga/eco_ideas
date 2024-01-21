@@ -1,10 +1,9 @@
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/password_reset_first_step_controller/password_reset_first_step_state.dart';
-
+import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'password_reset_first_step_controller.g.dart';
+part 'controller.g.dart';
 
 @riverpod
 class PasswordResetFirstStepController

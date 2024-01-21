@@ -14,8 +14,10 @@
     "signInButtonText": "Sign In",
     "signInLabeledDividerText": "OR",
 
-    "passwordResetAppBarTitle": "Reset your password",
+    "passwordResetFirstStepAppBarTitleText": "Reset your password",
+    "passwordResetSecondStepAppBarTitleText": "Provide new password",
     "passwordResetFirstStepDescription": "Please enter an email address with which your account was created.",
+    "passwordResetSecondStepDescription": "In order to finish password reset procedure, please provide new password",
     "passwordResetLinkSentTitle": "Link was sent!",
     "passwordResetLinkSentDescription": "We've sent a link to given email address. Please open it to finish the proccess of resetting password.",
     "passwordResetConfirmButtonText": "Confirm",

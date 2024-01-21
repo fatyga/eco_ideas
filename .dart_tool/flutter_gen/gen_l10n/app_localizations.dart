@@ -171,17 +171,29 @@ abstract class AppLocalizations {
   /// **'OR'**
   String get signInLabeledDividerText;
 
-  /// No description provided for @passwordResetAppBarTitle.
+  /// No description provided for @passwordResetFirstStepAppBarTitleText.
   ///
   /// In en, this message translates to:
   /// **'Reset your password'**
-  String get passwordResetAppBarTitle;
+  String get passwordResetFirstStepAppBarTitleText;
+
+  /// No description provided for @passwordResetSecondStepAppBarTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Provide new password'**
+  String get passwordResetSecondStepAppBarTitleText;
 
   /// No description provided for @passwordResetFirstStepDescription.
   ///
   /// In en, this message translates to:
   /// **'Please enter an email address with which your account was created.'**
   String get passwordResetFirstStepDescription;
+
+  /// No description provided for @passwordResetSecondStepDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'In order to finish password reset procedure, please provide new password'**
+  String get passwordResetSecondStepDescription;
 
   /// No description provided for @passwordResetLinkSentTitle.
   ///

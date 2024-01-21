@@ -1,6 +1,6 @@
-import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/password_reset_first_step.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/widgets/link_sent.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_first_step/widgets/password_reset_first_step_form/password_reset_email_form.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/controller.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/widgets/form/form.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/widgets/link_sent.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
 import 'package:eco_ideas/router/routes/routes.dart';
@@ -22,7 +22,7 @@ class PasswordResetFirstStepScreen extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.passwordResetAppBarTitle)),
+      appBar: AppBar(title: Text(l10n.passwordResetFirstStepAppBarTitleText)),
       body: Column(
         children: [
           Padding(
@@ -32,10 +32,11 @@ class PasswordResetFirstStepScreen extends ConsumerWidget {
                 : const PasswordResetEmailForm(),
           ),
           TextButton(
-              child: Text('Back'),
-              onPressed: () => ref
-                  .read(goRouterProvider)
-                  .go(const PasswordResetRoute().location))
+            child: const Text('Back'),
+            onPressed: () => ref
+                .read(goRouterProvider)
+                .go(const PasswordResetSecondStepRoute().location),
+          ),
         ],
       ),
     );

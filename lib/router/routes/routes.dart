@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:eco_ideas/features/auth/presentation/auth/auth_screen.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/password_reset_second_step/password_reset_screen.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/first_step.dart';
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
 import 'package:eco_ideas/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 part 'routes.g.dart';
