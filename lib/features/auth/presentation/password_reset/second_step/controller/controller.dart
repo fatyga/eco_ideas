@@ -1,7 +1,10 @@
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/second_step/controller/state.dart';
+import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
+import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'controller.g.dart';
 
@@ -96,6 +99,19 @@ class PasswordResetSecondStepController
 
     if (stateValue != null && stateValue.isValid) {
       state = const AsyncLoading<PasswordResetSecondStepState>();
+
+      try {
+        await ref
+            .read(authRepositoryProvider)
+            .setNewPassword(newPassword: stateValue.passwordInput.value);
+      } on AuthException catch (e) {
+        state = AsyncError(e, StackTrace.current);
+      }
+      state = AsyncData<PasswordResetSecondStepState>(
+        state.requireValue.copyWith(
+          status: PasswordResetSecondStepStatus.passwordUpdated,
+        ),
+      );
     }
   }
 }

@@ -180,4 +180,12 @@ class SupabaseAuthRepository implements AuthRepository {
           redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL'],
         );
   }
+
+  @override
+  Future<void> setNewPassword({required String newPassword}) async {
+    await ref
+        .read(supabaseClientProvider)
+        .auth
+        .updateUser(supabase.UserAttributes(password: newPassword));
+  }
 }

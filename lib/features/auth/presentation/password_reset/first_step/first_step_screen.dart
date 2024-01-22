@@ -6,6 +6,7 @@ import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
 import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class PasswordResetFirstStepScreen extends ConsumerWidget {
   const PasswordResetFirstStepScreen({super.key});
@@ -21,23 +22,21 @@ class PasswordResetFirstStepScreen extends ConsumerWidget {
           .select((state) => state.valueOrNull?.isLinkSent),
     );
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.passwordResetFirstStepAppBarTitleText)),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: isLinkSent != null && isLinkSent
-                ? const LinkSentWidget()
-                : const PasswordResetEmailForm(),
-          ),
-          TextButton(
-            child: const Text('Back'),
-            onPressed: () => ref
-                .read(goRouterProvider)
-                .go(const PasswordResetSecondStepRoute().location),
-          ),
-        ],
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) => context.go(const AuthRoute().location),
+      child: Scaffold(
+        appBar: AppBar(title: Text(l10n.passwordResetFirstStepAppBarTitleText)),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: isLinkSent != null && isLinkSent
+                  ? const LinkSentWidget()
+                  : const PasswordResetEmailForm(),
+            ),
+          ],
+        ),
       ),
     );
   }

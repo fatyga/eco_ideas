@@ -1,5 +1,6 @@
 import 'package:eco_ideas/common/widgets/primary_button.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/controller.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/state.dart';
 
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class PasswordResetConfirmButton extends ConsumerWidget {
 
     final canSendLink = ref.watch(
       passwordResetFirstStepControllerProvider
-          .select((state) => state.valueOrNull?.isLinkSent),
+          .select((state) => state.valueOrNull?.isValid),
     );
     return PrimaryButton(
       isLoading: isLoading,

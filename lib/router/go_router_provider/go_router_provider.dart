@@ -43,14 +43,14 @@ GoRouter goRouter(GoRouterRef ref) {
         return auth ? const HomeRoute().location : const SignInRoute().location;
       }
 
-      // final isPasswordReset =
-      //     state.uri.path.contains(const PasswordResetRoute().location);
+      final isPasswordReset =
+          state.uri.path.contains(const PasswordResetRoute().location);
 
-      // if (isPasswordReset) {
-      //   return auth
-      //       ? const PasswordResetSecondStepRoute().location
-      //       : const PasswordResetFirstStepRoute().location;
-      // }
+      if (isPasswordReset) {
+        return auth
+            ? const PasswordResetSecondStepRoute().location
+            : const PasswordResetFirstStepRoute().location;
+      }
       final isLoggingIn = state.uri.path.contains(const AuthRoute().location);
 
       if (isLoggingIn) return auth ? const HomeRoute().location : null;
