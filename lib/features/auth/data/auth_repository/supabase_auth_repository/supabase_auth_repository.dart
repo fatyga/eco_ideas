@@ -36,10 +36,19 @@ class SupabaseAuthRepository implements AuthRepository {
 
     await for (final supabase.AuthState state
         in ref.read(supabaseClientProvider).auth.onAuthStateChange) {
-      if (state.session != null) {
-        yield AuthStatus.authenticated;
-      } else {
-        yield AuthStatus.unauthenticated;
+      final event = state.event;
+
+      switch (event) {
+        case supabase.AuthChangeEvent.signedIn:
+        case supabase.AuthChangeEvent.tokenRefreshed:
+        case supabase.AuthChangeEvent.userUpdated:
+        case supabase.AuthChangeEvent.mfaChallengeVerified:
+          yield AuthStatus.authenticated;
+        case supabase.AuthChangeEvent.passwordRecovery:
+          yield AuthStatus.passwordReset;
+        case supabase.AuthChangeEvent.signedOut:
+        case supabase.AuthChangeEvent.userDeleted:
+          yield AuthStatus.unauthenticated;
       }
     }
   }

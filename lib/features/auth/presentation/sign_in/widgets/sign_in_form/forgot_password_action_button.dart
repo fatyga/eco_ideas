@@ -23,7 +23,8 @@ class ForgotPasswordActionButton extends StatelessWidget {
         style: theme.textTheme.labelMedium!
             .copyWith(color: theme.colorScheme.primary),
       ),
-      onActionTap: () => context.go(const PasswordResetRoute().location),
+      onActionTap: () =>
+          context.go(const PasswordResetFirstStepRoute().location),
     );
   }
 }

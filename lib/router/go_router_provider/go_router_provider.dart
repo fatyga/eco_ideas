@@ -10,16 +10,17 @@ part 'go_router_provider.g.dart';
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
-  final isAuth = ValueNotifier<AsyncValue<bool>>(const AsyncLoading());
+  final isAuth =
+      ValueNotifier<AsyncValue<AuthStatus>>(const AsyncLoading<AuthStatus>());
 
   ref
     ..onDispose(isAuth.dispose)
     ..listen(authChangesProvider, (_, next) {
       next.when(
-        data: (status) => isAuth.value = AsyncData(status.isAuthenticated),
+        data: (status) => isAuth.value = AsyncData<AuthStatus>(status),
         error: (error, stackTrace) =>
-            isAuth.value = AsyncError(error, stackTrace),
-        loading: () => isAuth.value = const AsyncLoading(),
+            isAuth.value = AsyncError<AuthStatus>(error, stackTrace),
+        loading: () => isAuth.value = const AsyncLoading<AuthStatus>(),
       );
     });
 
@@ -36,33 +37,66 @@ GoRouter goRouter(GoRouterRef ref) {
         return const SplashRoute().location;
       }
 
-      final auth = isAuth.value.requireValue;
+      final authStatus = isAuth.value.requireValue;
 
-      final isSplash = state.uri.path == const SplashRoute().location;
-      if (isSplash) {
-        return auth ? const HomeRoute().location : const SignInRoute().location;
+      switch (authStatus) {
+        case AuthStatus.unknown:
+          return const SplashRoute().location;
+        case AuthStatus.unauthenticated:
+          final path = state.uri.path;
+
+          if (!path.contains(const AuthRoute().location)) {
+            return const SignInRoute().location;
+          }
+          return null;
+        case AuthStatus.authenticated:
+          final path = state.uri.path;
+
+          if (!path.contains(const HomeRoute().location)) {
+            return const HomeRoute().location;
+          }
+          return null;
+        case AuthStatus.passwordReset:
+          return const PasswordResetSecondStepRoute().location;
       }
 
-      final isPasswordReset =
-          state.uri.path.contains(const PasswordResetRoute().location);
+      // if (authStatus.isUnknown) return const SplashRoute().location;
 
-      if (isPasswordReset) {
-        return auth
-            ? const PasswordResetSecondStepRoute().location
-            : const PasswordResetFirstStepRoute().location;
-      }
-      final isLoggingIn = state.uri.path.contains(const AuthRoute().location);
+      // final isSplash = state.uri.path == const SplashRoute().location;
+      // if (isSplash) {
+      //   return authStatus.isAuthenticated
+      //       ? const HomeRoute().location
+      //       : const SignInRoute().location;
+      // }
 
-      if (isLoggingIn) return auth ? const HomeRoute().location : null;
+      // final isPasswordResetStatus = authStatus.isPasswordReset;
 
-      final isHome = state.uri.path == const HomeRoute().location;
+      // if (isPasswordResetStatus) {
+      //   return const PasswordResetSecondStepRoute().location;
+      // }
 
-      if (isHome) {
-        return auth ? null : const SignInRoute().location;
-      }
+      // final isPasswordReset =
+      //     state.uri.path.contains(const PasswordResetRoute().location);
 
-      //return auth ? null : const SplashRoute().location; // this doesn't allow to navigate for example to PasswordRecoveryRoute
-      return null;
+      // if (isPasswordReset) {
+      //   return authStatus.isPasswordReset
+      //       ? const PasswordResetSecondStepRoute().location
+      //       : const PasswordResetFirstStepRoute().location;
+      // }
+      // final isLoggingIn = state.uri.path.contains(const AuthRoute().location);
+
+      // if (isLoggingIn) {
+      //   return authStatus.isAuthenticated ? const HomeRoute().location : null;
+      // }
+
+      // final isHome = state.uri.path == const HomeRoute().location;
+
+      // if (isHome) {
+      //   return authStatus.isAuthenticated ? null : const SignInRoute().location;
+      // }
+
+      // //return auth ? null : const SplashRoute().location; // this doesn't allow to navigate for example to PasswordRecoveryRoute
+      // return null;
     },
   );
 
