@@ -1,5 +1,6 @@
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
+import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/second_step/controller/state.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -111,6 +112,19 @@ class PasswordResetSecondStepController
           status: PasswordResetSecondStepStatus.passwordUpdated,
         ),
       );
+    }
+  }
+
+  Future<void> abortPasswordReset() async {
+    final stateValue = state.valueOrNull;
+
+    final isPasswordResetStillActive =
+        ref.read(authChangesProvider).value?.isPasswordReset;
+
+    if (stateValue != null && isPasswordResetStillActive != null) {
+      if (isPasswordResetStillActive) {
+        await ref.read(authRepositoryProvider).signOut();
+      }
     }
   }
 }

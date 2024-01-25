@@ -65,6 +65,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordResetConfirmButtonText => 'Confirm';
 
   @override
+  String get passwordResetExitDialogTitleText => 'Are you want to cancel?';
+
+  @override
+  String get passwordResetExitDescriptionText => 'Password reset procedure will fail.';
+
+  @override
   String get passwordInputEmptyErrorText => 'Password can\'t be empty';
 
   @override

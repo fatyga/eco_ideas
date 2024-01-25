@@ -21,6 +21,8 @@
     "passwordResetLinkSentTitle": "Link został wysłany",
     "passwordResetLinkSentDescription": "Wysłaliśmy ci link na podany przez ciebie adres email. Proszę otwórz go, aby dokończyć proces resetowania hasła",
     "passwordResetConfirmButtonText": "Zatwierdź",
+    "passwordResetExitDialogTitleText": "Czy chcesz przerwać?",
+    "passwordResetExitDescriptionText": "Procedura zmiany hasła zakończy się niepowodzeniem.",
 
     "passwordInputEmptyErrorText": "To pole nie może być puste",
     "passwordInputTooShortErrorText": "Hasło jest za krótkie(co najmniej 6 znaków)",

@@ -21,6 +21,8 @@
     "passwordResetLinkSentTitle": "Link was sent!",
     "passwordResetLinkSentDescription": "We've sent a link to given email address. Please open it to finish the proccess of resetting password.",
     "passwordResetConfirmButtonText": "Confirm",
+    "passwordResetExitDialogTitleText": "Are you want to cancel?",
+    "passwordResetExitDescriptionText": "Password reset procedure will fail.",
     
     "passwordInputEmptyErrorText": "Password can't be empty",
     "passwordInputTooShortErrorText": "Password is too short(at least 6 characters)",

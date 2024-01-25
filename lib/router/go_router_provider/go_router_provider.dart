@@ -45,6 +45,11 @@ GoRouter goRouter(GoRouterRef ref) {
         case AuthStatus.unauthenticated:
           final path = state.uri.path;
 
+          // Forbid access to password reset form
+          if (path == const PasswordResetSecondStepRoute().location) {
+            return const PasswordResetFirstStepRoute().location;
+          }
+          // Forbid access to no authentication-related routes
           if (!path.contains(const AuthRoute().location)) {
             return const SignInRoute().location;
           }
@@ -52,51 +57,15 @@ GoRouter goRouter(GoRouterRef ref) {
         case AuthStatus.authenticated:
           final path = state.uri.path;
 
+          // Redirect user from authentication-related routes
           if (!path.contains(const HomeRoute().location)) {
             return const HomeRoute().location;
           }
           return null;
         case AuthStatus.passwordReset:
+          // Restrict access only for password reset form route
           return const PasswordResetSecondStepRoute().location;
       }
-
-      // if (authStatus.isUnknown) return const SplashRoute().location;
-
-      // final isSplash = state.uri.path == const SplashRoute().location;
-      // if (isSplash) {
-      //   return authStatus.isAuthenticated
-      //       ? const HomeRoute().location
-      //       : const SignInRoute().location;
-      // }
-
-      // final isPasswordResetStatus = authStatus.isPasswordReset;
-
-      // if (isPasswordResetStatus) {
-      //   return const PasswordResetSecondStepRoute().location;
-      // }
-
-      // final isPasswordReset =
-      //     state.uri.path.contains(const PasswordResetRoute().location);
-
-      // if (isPasswordReset) {
-      //   return authStatus.isPasswordReset
-      //       ? const PasswordResetSecondStepRoute().location
-      //       : const PasswordResetFirstStepRoute().location;
-      // }
-      // final isLoggingIn = state.uri.path.contains(const AuthRoute().location);
-
-      // if (isLoggingIn) {
-      //   return authStatus.isAuthenticated ? const HomeRoute().location : null;
-      // }
-
-      // final isHome = state.uri.path == const HomeRoute().location;
-
-      // if (isHome) {
-      //   return authStatus.isAuthenticated ? null : const SignInRoute().location;
-      // }
-
-      // //return auth ? null : const SplashRoute().location; // this doesn't allow to navigate for example to PasswordRecoveryRoute
-      // return null;
     },
   );
 

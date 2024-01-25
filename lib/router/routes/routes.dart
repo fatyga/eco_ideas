@@ -96,6 +96,14 @@ class PasswordResetRoute extends GoRouteData {
   const PasswordResetRoute();
 
   @override
+  FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
+    if (state.uri.path == const PasswordResetRoute().location) {
+      return const PasswordResetFirstStepRoute().location;
+    }
+    return null;
+  }
+
+  @override
   Widget build(BuildContext context, GoRouterState state) {
     return const Scaffold();
   }

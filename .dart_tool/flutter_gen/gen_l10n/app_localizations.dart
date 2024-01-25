@@ -213,6 +213,18 @@ abstract class AppLocalizations {
   /// **'Confirm'**
   String get passwordResetConfirmButtonText;
 
+  /// No description provided for @passwordResetExitDialogTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you want to cancel?'**
+  String get passwordResetExitDialogTitleText;
+
+  /// No description provided for @passwordResetExitDescriptionText.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset procedure will fail.'**
+  String get passwordResetExitDescriptionText;
+
   /// No description provided for @passwordInputEmptyErrorText.
   ///
   /// In en, this message translates to:
