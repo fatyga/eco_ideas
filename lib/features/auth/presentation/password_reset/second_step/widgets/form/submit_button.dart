@@ -15,8 +15,9 @@ class PasswordResetSecondStepSubmitButton extends ConsumerWidget {
         ref.watch(passwordResetSecondStepControllerProvider).isLoading;
 
     final canAttemptSettingNewPassword = ref.watch(
-        passwordResetSecondStepControllerProvider
-            .select((controllerState) => controllerState.valueOrNull?.isValid));
+      passwordResetSecondStepControllerProvider
+          .select((controllerState) => controllerState.valueOrNull?.isValid),
+    );
 
     return PrimaryButton(
       isLoading: isLoading,

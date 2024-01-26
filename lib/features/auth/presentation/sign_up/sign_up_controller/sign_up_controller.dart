@@ -139,7 +139,10 @@ class SignUpController extends _$SignUpController {
 
   void updateAvatar(String? avatarUrl) {
     final stateValue = state.valueOrNull;
-    if (stateValue != null && avatarUrl != stateValue.avatarUrl) {
+    if (avatarUrl != null &&
+        avatarUrl.isNotEmpty &&
+        stateValue != null &&
+        avatarUrl != stateValue.avatarUrl) {
       state = AsyncValue.data(stateValue.copyWith(avatarUrl: avatarUrl));
     }
   }
@@ -148,7 +151,7 @@ class SignUpController extends _$SignUpController {
     final stateValue = state.valueOrNull;
     if (stateValue != null && stateValue.isValid) {
       final authRepository = ref.read(authRepositoryProvider);
-      final userRepository = ref.read(userRepositoryProvider);
+
       state = const AsyncLoading<SignUpState>();
 
       try {
@@ -158,9 +161,10 @@ class SignUpController extends _$SignUpController {
           username: stateValue.usernameInput.value,
         );
 
-        if (stateValue.avatarUrl != null) {
+        if (newUserId != null && stateValue.avatarUrl != null) {
+          final userRepository = ref.read(userRepositoryProvider);
           await userRepository.uploadAvatar(
-            userId: newUserId!,
+            userId: newUserId,
             image: File(stateValue.avatarUrl!),
           );
         }

@@ -2,7 +2,7 @@
 
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
+import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_controller.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,16 +11,23 @@ import 'package:mocktail/mocktail.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 
+class MockUserRepository extends Mock implements UserRepository {}
+
 class Listener<T> extends Mock {
   void call(T? current, T next);
 }
 
 void main() {
-  ProviderContainer makeProviderContainer({AuthRepository? authRepository}) {
+  ProviderContainer makeProviderContainer({
+    AuthRepository? authRepository,
+    UserRepository? userRepository,
+  }) {
     final container = ProviderContainer(
       overrides: [
         if (authRepository != null)
           authRepositoryProvider.overrideWith((_) => authRepository),
+        if (userRepository != null)
+          userRepositoryProvider.overrideWith((ref) => userRepository),
       ],
     );
 
@@ -824,6 +831,7 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
 
       test('sign up fail', () async {
         final authRepository = MockAuthRepository();
+        final userRepository = MockUserRepository();
 
         when(
           () => authRepository.signUpWithEmail(
@@ -832,6 +840,7 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
             username: any(named: 'username'),
           ),
         ).thenThrow(SignUpFail());
+
         final container = makeProviderContainer(authRepository: authRepository);
         final listener = Listener<AsyncValue<SignUpState>>();
 

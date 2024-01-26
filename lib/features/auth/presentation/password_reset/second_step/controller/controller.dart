@@ -61,7 +61,6 @@ class PasswordResetSecondStepController
         }
       }
     }
-    print(state.error);
   }
 
   void updatePasswordRetypeField(String newValue) {

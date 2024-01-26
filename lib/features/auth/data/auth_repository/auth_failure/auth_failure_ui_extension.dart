@@ -8,8 +8,8 @@ extension AuthFailureUI on AuthFailure {
 
     if (this is BadEmailOrPassword) {
       return l10n.badEmailOrPasswordFailureSnackBarText;
-    }
-    //TODO(fatyga): implement messages for the rest of errors
+    } //TODO(fatyga): implement messages for the rest of errors
+
     return 'unimplemented error';
   }
 }

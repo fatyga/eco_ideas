@@ -16,7 +16,7 @@ class PasswordResetSecondStepForm extends StatelessWidget {
         const SizedBox(height: 12),
         const PasswordResetSecondStepPasswordRetypeField(),
         const SizedBox(height: 16),
-        const PasswordResetSecondStepSubmitButton()
+        const PasswordResetSecondStepSubmitButton(),
       ],
     );
   }
