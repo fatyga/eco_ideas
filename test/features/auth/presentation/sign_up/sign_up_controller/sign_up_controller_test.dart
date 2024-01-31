@@ -61,35 +61,6 @@ void main() {
       group('updateEmailField', () {
         const enteredValue = 'john.doe@gmail.com';
 
-        // test('does nothing, if state could not be resolved', () {
-        //   final container = makeProviderContainer();
-        //   final listener = Listener<AsyncValue<SignUpState>>();
-
-        //   container.listen(
-        //     signUpControllerProvider,
-        //     listener.call,
-        //     fireImmediately: true,
-        //   );
-
-        //   final controller = container.read(signUpControllerProvider.notifier);
-        //   // set state diffrent than data, with no previous value
-
-        //   controller.state =
-        //       const AsyncValue<SignUpState>.loading().unwrapPrevious();
-
-        //   controller.updateEmailField(enteredValue);
-        //   verifyInOrder([
-        //     () => listener.call(
-        //           null,
-        //           const AsyncData<SignUpState>(SignUpState()),
-        //         ),
-        //     () => listener.call(
-        //           const AsyncData<SignUpState>(SignUpState()),
-        //           const AsyncLoading<SignUpState>(),
-        //         )
-        //   ]);
-        //   verifyNoMoreInteractions(listener);
-        // });
         test('set email to EmailInput.pure() when newValue is empty', () {
           final container = makeProviderContainer();
           final listener = Listener<AsyncValue<SignUpState>>();

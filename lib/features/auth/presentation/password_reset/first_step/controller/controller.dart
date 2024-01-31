@@ -1,4 +1,5 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -40,13 +41,18 @@ class PasswordResetFirstStepController
     final stateValue = state.valueOrNull;
     if (stateValue != null && stateValue.isValid) {
       state = const AsyncLoading<PasswordResetFirstStepState>();
-      await ref
-          .read(authRepositoryProvider)
-          .resetPasswordForEmail(email: stateValue.emailInput.value);
-      state = AsyncData(
-        state.requireValue
-            .copyWith(status: PasswordResetFirstStepStatus.linkSent),
-      );
+      try {
+        await ref
+            .read(authRepositoryProvider)
+            .resetPasswordForEmail(email: stateValue.emailInput.value);
+
+        state = AsyncData(
+          state.requireValue
+              .copyWith(status: PasswordResetFirstStepStatus.linkSent),
+        );
+      } on AuthFailure catch (e) {
+        state = AsyncError(e, StackTrace.current);
+      }
     }
   }
 }

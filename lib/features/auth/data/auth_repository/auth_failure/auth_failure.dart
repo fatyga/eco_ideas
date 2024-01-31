@@ -7,3 +7,5 @@ class SignOutFail extends AuthFailure {}
 class BadEmailOrPassword extends AuthFailure {}
 
 class GoogleSignInFail extends AuthFailure {}
+
+class PasswordResetFail extends AuthFailure {}
