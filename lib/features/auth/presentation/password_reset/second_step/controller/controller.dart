@@ -20,7 +20,7 @@ class PasswordResetSecondStepController
     final stateValue = state.valueOrNull;
     if (stateValue != null) {
       if (newValue.isEmpty) {
-        const passwordInput = SignUpPasswordInput.pure();
+        const passwordInput = RestrictedPasswordInput.pure();
 
         state = AsyncValue.data(
           stateValue.copyWith(
@@ -28,7 +28,7 @@ class PasswordResetSecondStepController
           ),
         );
       } else {
-        final passwordInput = SignUpPasswordInput.dirty(value: newValue);
+        final passwordInput = RestrictedPasswordInput.dirty(value: newValue);
 
         if (passwordInput.isValid) {
           final PasswordRetypeInput passwordRetypeInput;

@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PasswordResetSecondStepState {
   PasswordResetSecondStepStatus get status =>
       throw _privateConstructorUsedError;
-  SignUpPasswordInput get passwordInput => throw _privateConstructorUsedError;
+  RestrictedPasswordInput get passwordInput =>
+      throw _privateConstructorUsedError;
   PasswordRetypeInput get passwordRetypeInput =>
       throw _privateConstructorUsedError;
 
@@ -37,7 +38,7 @@ abstract class $PasswordResetSecondStepStateCopyWith<$Res> {
   @useResult
   $Res call(
       {PasswordResetSecondStepStatus status,
-      SignUpPasswordInput passwordInput,
+      RestrictedPasswordInput passwordInput,
       PasswordRetypeInput passwordRetypeInput});
 }
 
@@ -67,7 +68,7 @@ class _$PasswordResetSecondStepStateCopyWithImpl<$Res,
       passwordInput: null == passwordInput
           ? _value.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
-              as SignUpPasswordInput,
+              as RestrictedPasswordInput,
       passwordRetypeInput: null == passwordRetypeInput
           ? _value.passwordRetypeInput
           : passwordRetypeInput // ignore: cast_nullable_to_non_nullable
@@ -87,7 +88,7 @@ abstract class _$$PasswordResetSecondStepStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {PasswordResetSecondStepStatus status,
-      SignUpPasswordInput passwordInput,
+      RestrictedPasswordInput passwordInput,
       PasswordRetypeInput passwordRetypeInput});
 }
 
@@ -116,7 +117,7 @@ class __$$PasswordResetSecondStepStateImplCopyWithImpl<$Res>
       passwordInput: null == passwordInput
           ? _value.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
-              as SignUpPasswordInput,
+              as RestrictedPasswordInput,
       passwordRetypeInput: null == passwordRetypeInput
           ? _value.passwordRetypeInput
           : passwordRetypeInput // ignore: cast_nullable_to_non_nullable
@@ -130,7 +131,7 @@ class __$$PasswordResetSecondStepStateImplCopyWithImpl<$Res>
 class _$PasswordResetSecondStepStateImpl extends _PasswordResetSecondStepState {
   const _$PasswordResetSecondStepStateImpl(
       {this.status = PasswordResetSecondStepStatus.initial,
-      this.passwordInput = const SignUpPasswordInput.pure(),
+      this.passwordInput = const RestrictedPasswordInput.pure(),
       this.passwordRetypeInput = const PasswordRetypeInput.pure()})
       : super._();
 
@@ -139,7 +140,7 @@ class _$PasswordResetSecondStepStateImpl extends _PasswordResetSecondStepState {
   final PasswordResetSecondStepStatus status;
   @override
   @JsonKey()
-  final SignUpPasswordInput passwordInput;
+  final RestrictedPasswordInput passwordInput;
   @override
   @JsonKey()
   final PasswordRetypeInput passwordRetypeInput;
@@ -178,7 +179,7 @@ abstract class _PasswordResetSecondStepState
     extends PasswordResetSecondStepState {
   const factory _PasswordResetSecondStepState(
           {final PasswordResetSecondStepStatus status,
-          final SignUpPasswordInput passwordInput,
+          final RestrictedPasswordInput passwordInput,
           final PasswordRetypeInput passwordRetypeInput}) =
       _$PasswordResetSecondStepStateImpl;
   const _PasswordResetSecondStepState._() : super._();
@@ -186,7 +187,7 @@ abstract class _PasswordResetSecondStepState
   @override
   PasswordResetSecondStepStatus get status;
   @override
-  SignUpPasswordInput get passwordInput;
+  RestrictedPasswordInput get passwordInput;
   @override
   PasswordRetypeInput get passwordRetypeInput;
   @override

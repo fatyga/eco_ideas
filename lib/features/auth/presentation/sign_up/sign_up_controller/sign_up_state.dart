@@ -3,7 +3,7 @@ import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_f
 import 'package:eco_ideas/features/auth/domain/input_models/email_input.dart';
 
 import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
-import 'package:eco_ideas/features/auth/domain/input_models/sign_up_password_input.dart';
+import 'package:eco_ideas/features/auth/domain/input_models/restricted_password_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/username_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +17,8 @@ class SignUpState with _$SignUpState {
   const factory SignUpState({
     @Default(UsernameInput.pure()) UsernameInput usernameInput,
     @Default(EmailInput.pure()) EmailInput emailInput,
-    @Default(SignUpPasswordInput.pure()) SignUpPasswordInput passwordInput,
+    @Default(RestrictedPasswordInput.pure())
+    RestrictedPasswordInput passwordInput,
     @Default(PasswordRetypeInput.pure())
     PasswordRetypeInput passwordRetypeInput,
     String? avatarUrl,

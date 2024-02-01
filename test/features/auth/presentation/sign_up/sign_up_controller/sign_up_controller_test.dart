@@ -39,7 +39,7 @@ void main() {
     setUpAll(() {
       registerFallbackValue(const AsyncLoading<SignUpState>());
     });
-    group('constructor', () {
+    group('build method', () {
       test('initial state is AsyncData', () {
         final container = makeProviderContainer();
 
@@ -304,7 +304,7 @@ set passwordInput to PasswordInput.dirty(value: newValue) when [newValue] is pro
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput:
-                          SignUpPasswordInput.dirty(value: validValue),
+                          RestrictedPasswordInput.dirty(value: validValue),
                     ),
                   ),
                 ),
@@ -346,7 +346,7 @@ set passwordInput to PasswordInput.dirty(value: newValue) when [newValue] is pro
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput:
-                          SignUpPasswordInput.dirty(value: invalidValue),
+                          RestrictedPasswordInput.dirty(value: invalidValue),
                     ),
                   ),
                 ),
@@ -392,7 +392,7 @@ if [newValue] is valid && passwordRetypeInput is pure, update passwordRetypeInpu
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput:
-                          SignUpPasswordInput.dirty(value: validValue),
+                          RestrictedPasswordInput.dirty(value: validValue),
                       passwordRetypeInput: PasswordRetypeInput.pure(
                         passwordToMatch: validValue,
                       ),
@@ -465,7 +465,7 @@ if [newValue] is valid && passwordRetypeInput is dirty, update passwordRetypeInp
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput:
-                          SignUpPasswordInput.dirty(value: validValue),
+                          RestrictedPasswordInput.dirty(value: validValue),
                       passwordRetypeInput: PasswordRetypeInput.dirty(
                         value: passwordRetypeInputValue,
                         passwordToMatch: validValue,
@@ -600,7 +600,7 @@ if [newValue] is valid && passwordRetypeInput is dirty, update passwordRetypeInp
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput:
-                          SignUpPasswordInput.dirty(value: enteredValue),
+                          RestrictedPasswordInput.dirty(value: enteredValue),
                     ),
                   ),
                 ),
@@ -608,13 +608,13 @@ if [newValue] is valid && passwordRetypeInput is dirty, update passwordRetypeInp
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput:
-                          SignUpPasswordInput.dirty(value: enteredValue),
+                          RestrictedPasswordInput.dirty(value: enteredValue),
                     ),
                   ),
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput:
-                          SignUpPasswordInput.dirty(value: enteredValue),
+                          RestrictedPasswordInput.dirty(value: enteredValue),
                       passwordRetypeInput: PasswordRetypeInput.pure(
                         passwordToMatch: enteredValue,
                       ),
@@ -665,22 +665,22 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
                   const AsyncData<SignUpState>(SignUpState()),
                   const AsyncData<SignUpState>(
                     SignUpState(
-                      passwordInput:
-                          SignUpPasswordInput.dirty(value: passwordFieldValue),
+                      passwordInput: RestrictedPasswordInput.dirty(
+                          value: passwordFieldValue),
                     ),
                   ),
                 ),
             () => listener.call(
                   const AsyncData<SignUpState>(
                     SignUpState(
-                      passwordInput:
-                          SignUpPasswordInput.dirty(value: passwordFieldValue),
+                      passwordInput: RestrictedPasswordInput.dirty(
+                          value: passwordFieldValue),
                     ),
                   ),
                   const AsyncData<SignUpState>(
                     SignUpState(
-                      passwordInput:
-                          SignUpPasswordInput.dirty(value: passwordFieldValue),
+                      passwordInput: RestrictedPasswordInput.dirty(
+                          value: passwordFieldValue),
                       passwordRetypeInput: PasswordRetypeInput.dirty(
                         value: enteredValue,
                         passwordToMatch: passwordFieldValue,
@@ -796,7 +796,6 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
 
       test('sign up fail', () async {
         final authRepository = MockAuthRepository();
-        final userRepository = MockUserRepository();
 
         when(
           () => authRepository.signUpWithEmail(
@@ -831,7 +830,8 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
                   SignUpState(
                     usernameInput: UsernameInput.dirty(value: username),
                     emailInput: EmailInput.dirty(value: email),
-                    passwordInput: SignUpPasswordInput.dirty(value: password),
+                    passwordInput:
+                        RestrictedPasswordInput.dirty(value: password),
                     passwordRetypeInput:
                         PasswordRetypeInput.dirty(value: password),
                   ),
@@ -888,7 +888,8 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
                   SignUpState(
                     usernameInput: UsernameInput.dirty(value: username),
                     emailInput: EmailInput.dirty(value: email),
-                    passwordInput: SignUpPasswordInput.dirty(value: password),
+                    passwordInput:
+                        RestrictedPasswordInput.dirty(value: password),
                     passwordRetypeInput:
                         PasswordRetypeInput.dirty(value: password),
                   ),
@@ -901,7 +902,8 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
                   SignUpState(
                     usernameInput: UsernameInput.dirty(value: username),
                     emailInput: EmailInput.dirty(value: email),
-                    passwordInput: SignUpPasswordInput.dirty(value: password),
+                    passwordInput:
+                        RestrictedPasswordInput.dirty(value: password),
                     passwordRetypeInput:
                         PasswordRetypeInput.dirty(value: password),
                   ),

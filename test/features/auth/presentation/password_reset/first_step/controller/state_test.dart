@@ -4,13 +4,15 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:mocktail/mocktail.dart';
 
-class MockSignUpPasswordInput extends Mock implements SignUpPasswordInput {}
+class MockRestrictedPasswordInput extends Mock
+    implements RestrictedPasswordInput {}
 
 class MockPasswordRetypeInput extends Mock implements PasswordRetypeInput {}
 
 void main() {
   PasswordResetSecondStepState createSubject({
-    SignUpPasswordInput passwordInput = const SignUpPasswordInput.pure(),
+    RestrictedPasswordInput passwordInput =
+        const RestrictedPasswordInput.pure(),
     PasswordRetypeInput passwordRetypeInput = const PasswordRetypeInput.pure(),
   }) {
     return PasswordResetSecondStepState(
@@ -33,7 +35,7 @@ void main() {
       });
 
       test('replaces every provided argument', () {
-        const password = SignUpPasswordInput.dirty(value: 'qwerty123');
+        const password = RestrictedPasswordInput.dirty(value: 'qwerty123');
         const passwordRetype = PasswordRetypeInput.dirty(value: 'qwerty123');
 
         final actual = createSubject().copyWith(
@@ -56,7 +58,7 @@ void main() {
       });
 
       test('equals false when at least one of inputs is invalid', () {
-        final passwordInput = MockSignUpPasswordInput();
+        final passwordInput = MockRestrictedPasswordInput();
 
         when(() => passwordInput.isValid).thenReturn(false);
 
@@ -67,7 +69,7 @@ void main() {
       });
 
       test('equals false when all inputs are invalid', () {
-        final passwordInput = MockSignUpPasswordInput();
+        final passwordInput = MockRestrictedPasswordInput();
         final passwordRetypeInput = MockPasswordRetypeInput();
 
         when(() => passwordInput.isValid).thenReturn(false);
@@ -82,7 +84,7 @@ void main() {
       });
 
       test('equals true when all inputs are valid', () {
-        final passwordInput = MockSignUpPasswordInput();
+        final passwordInput = MockRestrictedPasswordInput();
         final passwordRetypeInput = MockPasswordRetypeInput();
 
         when(() => passwordInput.isValid).thenReturn(true);

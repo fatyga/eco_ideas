@@ -8,7 +8,7 @@ import 'package:mocktail/mocktail.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 
-class Listener<T> {
+class Listener<T> extends Mock {
   void call(T? current, T next) {}
 }
 
@@ -179,10 +179,14 @@ set email to EmailInput.dirty(value: newValue) when [newValue] is provided''',
       test('''
 if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and change status to linkSent'
           ''', () async {
+        const emailValue = validEmail;
         final authRepository = MockAuthRepository();
 
-        when(() => authRepository.resetPasswordForEmail(email: 'email'))
-            .thenAnswer((_) => Future.value());
+        when(
+          () => authRepository.resetPasswordForEmail(
+            email: emailValue,
+          ),
+        ).thenAnswer((_) => Future.value());
 
         final container = makeProviderContainer(authRepository: authRepository);
 
@@ -196,9 +200,11 @@ if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and chang
 
         final controller = container
             .read(passwordResetFirstStepControllerProvider.notifier)
-          ..updateEmailField(validEmail);
+          ..updateEmailField(emailValue);
         await controller.resetPasswordForEmail();
 
+        verify(() => authRepository.resetPasswordForEmail(email: emailValue))
+            .called(1);
         verifyInOrder([
           () => listener.call(
                 const AsyncData<PasswordResetFirstStepState>(
@@ -216,18 +222,19 @@ if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and chang
                 ),
               ),
         ]);
-
-        verify(() => authRepository.resetPasswordForEmail(email: validEmail))
-            .called(1);
       });
 
       test(
         '''emits AsyncError, when AuthRepository.resetPasswordForEmail throws an error''',
         () async {
+          const emailValue = invalidEmail;
           final authRepository = MockAuthRepository();
 
-          when(() => authRepository.resetPasswordForEmail(email: 'email'))
-              .thenThrow(PasswordResetFail());
+          when(
+            () => authRepository.resetPasswordForEmail(
+              email: emailValue,
+            ),
+          ).thenThrow(PasswordResetFail());
 
           final container =
               makeProviderContainer(authRepository: authRepository);
@@ -242,8 +249,12 @@ if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and chang
 
           final controller = container
               .read(passwordResetFirstStepControllerProvider.notifier)
-            ..updateEmailField(validEmail);
+            ..updateEmailField(emailValue);
           await controller.resetPasswordForEmail();
+
+          verifyNever(
+            () => authRepository.resetPasswordForEmail(email: emailValue),
+          );
 
           verifyInOrder([
             () => listener.call(
@@ -257,9 +268,6 @@ if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and chang
                   any(that: isA<AsyncError<PasswordResetFirstStepScreen>>()),
                 ),
           ]);
-
-          verify(() => authRepository.resetPasswordForEmail(email: validEmail))
-              .called(1);
         },
       );
     });

@@ -8,7 +8,7 @@ class MockUsernameInput extends Mock implements UsernameInput {}
 
 class MockEmailInput extends Mock implements EmailInput {}
 
-class MockSignUpPasswordInput extends Mock implements SignUpPasswordInput {}
+class MockSignUpPasswordInput extends Mock implements RestrictedPasswordInput {}
 
 class MockPasswordRetypeInput extends Mock implements PasswordRetypeInput {}
 
@@ -16,7 +16,8 @@ void main() {
   SignUpState createSubject({
     UsernameInput usernameInput = const UsernameInput.pure(),
     EmailInput emailInput = const EmailInput.pure(),
-    SignUpPasswordInput passwordInput = const SignUpPasswordInput.pure(),
+    RestrictedPasswordInput passwordInput =
+        const RestrictedPasswordInput.pure(),
     PasswordRetypeInput passwordRetypeInput = const PasswordRetypeInput.pure(),
   }) {
     return SignUpState(
@@ -43,7 +44,7 @@ void main() {
       test('replaces every provided argument', () {
         const username = UsernameInput.dirty(value: 'johnDoe123');
         const email = EmailInput.dirty(value: 'john.doe@gmail.com');
-        const password = SignUpPasswordInput.dirty(value: 'qwerty123');
+        const password = RestrictedPasswordInput.dirty(value: 'qwerty123');
         const passwordRetype = PasswordRetypeInput.dirty(value: 'qwerty123');
 
         final actual = createSubject().copyWith(

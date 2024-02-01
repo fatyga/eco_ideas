@@ -11,7 +11,8 @@ class PasswordResetSecondStepState with _$PasswordResetSecondStepState {
   const factory PasswordResetSecondStepState({
     @Default(PasswordResetSecondStepStatus.initial)
     PasswordResetSecondStepStatus status,
-    @Default(SignUpPasswordInput.pure()) SignUpPasswordInput passwordInput,
+    @Default(RestrictedPasswordInput.pure())
+    RestrictedPasswordInput passwordInput,
     @Default(PasswordRetypeInput.pure())
     PasswordRetypeInput passwordRetypeInput,
   }) = _PasswordResetSecondStepState;
