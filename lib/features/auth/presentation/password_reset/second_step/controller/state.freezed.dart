@@ -16,8 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PasswordResetSecondStepState {
-  PasswordResetSecondStepStatus get status =>
-      throw _privateConstructorUsedError;
   RestrictedPasswordInput get passwordInput =>
       throw _privateConstructorUsedError;
   PasswordRetypeInput get passwordRetypeInput =>
@@ -37,8 +35,7 @@ abstract class $PasswordResetSecondStepStateCopyWith<$Res> {
           PasswordResetSecondStepState>;
   @useResult
   $Res call(
-      {PasswordResetSecondStepStatus status,
-      RestrictedPasswordInput passwordInput,
+      {RestrictedPasswordInput passwordInput,
       PasswordRetypeInput passwordRetypeInput});
 }
 
@@ -56,15 +53,10 @@ class _$PasswordResetSecondStepStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
     Object? passwordInput = null,
     Object? passwordRetypeInput = null,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as PasswordResetSecondStepStatus,
       passwordInput: null == passwordInput
           ? _value.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
@@ -87,8 +79,7 @@ abstract class _$$PasswordResetSecondStepStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PasswordResetSecondStepStatus status,
-      RestrictedPasswordInput passwordInput,
+      {RestrictedPasswordInput passwordInput,
       PasswordRetypeInput passwordRetypeInput});
 }
 
@@ -105,15 +96,10 @@ class __$$PasswordResetSecondStepStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
     Object? passwordInput = null,
     Object? passwordRetypeInput = null,
   }) {
     return _then(_$PasswordResetSecondStepStateImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as PasswordResetSecondStepStatus,
       passwordInput: null == passwordInput
           ? _value.passwordInput
           : passwordInput // ignore: cast_nullable_to_non_nullable
@@ -130,14 +116,10 @@ class __$$PasswordResetSecondStepStateImplCopyWithImpl<$Res>
 
 class _$PasswordResetSecondStepStateImpl extends _PasswordResetSecondStepState {
   const _$PasswordResetSecondStepStateImpl(
-      {this.status = PasswordResetSecondStepStatus.initial,
-      this.passwordInput = const RestrictedPasswordInput.pure(),
+      {this.passwordInput = const RestrictedPasswordInput.pure(),
       this.passwordRetypeInput = const PasswordRetypeInput.pure()})
       : super._();
 
-  @override
-  @JsonKey()
-  final PasswordResetSecondStepStatus status;
   @override
   @JsonKey()
   final RestrictedPasswordInput passwordInput;
@@ -147,7 +129,7 @@ class _$PasswordResetSecondStepStateImpl extends _PasswordResetSecondStepState {
 
   @override
   String toString() {
-    return 'PasswordResetSecondStepState(status: $status, passwordInput: $passwordInput, passwordRetypeInput: $passwordRetypeInput)';
+    return 'PasswordResetSecondStepState(passwordInput: $passwordInput, passwordRetypeInput: $passwordRetypeInput)';
   }
 
   @override
@@ -155,7 +137,6 @@ class _$PasswordResetSecondStepStateImpl extends _PasswordResetSecondStepState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PasswordResetSecondStepStateImpl &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(other.passwordInput, passwordInput) ||
                 other.passwordInput == passwordInput) &&
             (identical(other.passwordRetypeInput, passwordRetypeInput) ||
@@ -164,7 +145,7 @@ class _$PasswordResetSecondStepStateImpl extends _PasswordResetSecondStepState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, status, passwordInput, passwordRetypeInput);
+      Object.hash(runtimeType, passwordInput, passwordRetypeInput);
 
   @JsonKey(ignore: true)
   @override
@@ -178,14 +159,11 @@ class _$PasswordResetSecondStepStateImpl extends _PasswordResetSecondStepState {
 abstract class _PasswordResetSecondStepState
     extends PasswordResetSecondStepState {
   const factory _PasswordResetSecondStepState(
-          {final PasswordResetSecondStepStatus status,
-          final RestrictedPasswordInput passwordInput,
+          {final RestrictedPasswordInput passwordInput,
           final PasswordRetypeInput passwordRetypeInput}) =
       _$PasswordResetSecondStepStateImpl;
   const _PasswordResetSecondStepState._() : super._();
 
-  @override
-  PasswordResetSecondStepStatus get status;
   @override
   RestrictedPasswordInput get passwordInput;
   @override

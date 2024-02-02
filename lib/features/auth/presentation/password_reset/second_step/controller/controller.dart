@@ -99,7 +99,7 @@ class PasswordResetSecondStepController
     if (stateValue != null && stateValue.isValid) {
       state = const AsyncLoading<PasswordResetSecondStepState>();
 
-      try {
+      try{
         await ref
             .read(authRepositoryProvider)
             .setNewPassword(newPassword: stateValue.passwordInput.value);
@@ -107,9 +107,7 @@ class PasswordResetSecondStepController
         state = AsyncError(e, StackTrace.current);
       }
       state = AsyncData<PasswordResetSecondStepState>(
-        state.requireValue.copyWith(
-          status: PasswordResetSecondStepStatus.passwordUpdated,
-        ),
+        state.requireValue.copyWith(),
       );
     }
   }

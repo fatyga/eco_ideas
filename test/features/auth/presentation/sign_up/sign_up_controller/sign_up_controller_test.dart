@@ -246,7 +246,7 @@ set usernameInput to UsernameInput.dirty(value: newValue) when [newValue] is pro
         const invalidValue = 'qwerty123';
 
         test(
-            'set passwordInput to SignUpPasswordInput.pure() when newValue is empty',
+            'set passwordInput to RestrictedPasswordInput.pure() when newValue is empty',
             () {
           final container = makeProviderContainer();
           final listener = Listener<AsyncValue<SignUpState>>();

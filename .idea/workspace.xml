@@ -10,7 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3416c2ad-4a83-42f4-b66f-fbbfb47e6f5e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/test/features/auth/presentation/password_reset/second_step/controller/controller_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/second_step/controller/controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/second_step/controller/controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/second_step/controller/controller.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/second_step/controller/controller.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/second_step/controller/state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/second_step/controller/state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/second_step/controller/state.freezed.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/second_step/controller/state.freezed.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,19 +40,37 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
     "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
     "last_opened_file_path": "C:/src/eco_ideas",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "flutter.settings",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Flutter Test.equals true when all inputs are valid">
     <configuration name="main_development.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="buildFlavor" value="development" />
       <option name="filePath" value="$PROJECT_DIR$/lib/main_development.dart" />
       <method v="2" />
     </configuration>
+    <configuration name="equals true when all inputs are valid" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
+      <option name="testName" value="equals true when all inputs are valid" />
+      <option name="testFile" value="$PROJECT_DIR$/test/features/auth/presentation/password_reset/second_step/controller/state_test.dart" />
+      <option name="useRegexp" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests in state_test.dart" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
+      <option name="testFile" value="$PROJECT_DIR$/test/features/auth/presentation/password_reset/second_step/controller/state_test.dart" />
+      <option name="useRegexp" value="false" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flutter Test.equals true when all inputs are valid" />
+        <item itemvalue="Flutter Test.tests in state_test.dart" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
