@@ -125,7 +125,9 @@ class SignUpController extends _$SignUpController {
       } else {
         final passwordRetypeInput = PasswordRetypeInput.dirty(
           value: newValue,
-          passwordToMatch: stateValue.passwordInput.value,
+          passwordToMatch: stateValue.passwordInput.isValid
+              ? stateValue.passwordInput.value
+              : null,
         );
 
         state = AsyncValue.data(
@@ -168,6 +170,8 @@ class SignUpController extends _$SignUpController {
             image: File(stateValue.avatarUrl!),
           );
         }
+
+        state = AsyncData<SignUpState>(state.requireValue);
       } catch (e) {
         state = AsyncError<SignUpState>(e, StackTrace.current);
         return;

@@ -31,8 +31,8 @@ void main() {
       registerFallbackValue(const SignInState());
       registerFallbackValue(const AsyncLoading<SignInState>());
     });
-    group('constructor', () {
-      test('initial state is AsyncData', () {
+    group('build', () {
+      test('returns AsyncData<SignInState> instance', () {
         final mockAuthRepository = MockAuthRepository();
         final container =
             makeProviderContainer(authRepository: mockAuthRepository);

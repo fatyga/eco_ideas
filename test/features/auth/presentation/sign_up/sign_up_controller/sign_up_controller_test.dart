@@ -39,8 +39,8 @@ void main() {
     setUpAll(() {
       registerFallbackValue(const AsyncLoading<SignUpState>());
     });
-    group('build method', () {
-      test('initial state is AsyncData', () {
+    group('build', () {
+      test('returns AsyncData<SignUpState> instance', () {
         final container = makeProviderContainer();
 
         final listener = Listener<AsyncValue<SignUpState>>();
@@ -281,7 +281,7 @@ set usernameInput to UsernameInput.dirty(value: newValue) when [newValue] is pro
         });
 
         test('''
-set passwordInput to PasswordInput.dirty(value: newValue) when [newValue] is provided''',
+set passwordInput to RestrictedPasswordInput.dirty(value: newValue) when [newValue] is provided''',
             () {
           final container = makeProviderContainer();
           final listener = Listener<AsyncValue<SignUpState>>();
@@ -506,37 +506,6 @@ if [newValue] is valid && passwordRetypeInput is dirty, update passwordRetypeInp
       group('updatePasswordRetypeInput', () {
         const enteredValue = 'Qwerty1!';
 
-        // test('does nothing, if state could not be resolved', () {
-        //   final container = makeProviderContainer();
-        //   final listener = Listener<AsyncValue<SignUpState>>();
-
-        //   container.listen(
-        //     signUpControllerProvider,
-        //     listener.call,
-        //     fireImmediately: true,
-        //   );
-
-        //   final controller = container.read(signUpControllerProvider.notifier);
-        //   // set state diffrent than data, with no previous data
-
-        //   controller.state =
-        //       const AsyncValue<SignUpState>.loading().unwrapPrevious();
-
-        //   controller.updateUsernameField(enteredValue);
-        //   verifyInOrder(
-        //     [
-        //       () => listener.call(
-        //             null,
-        //             const AsyncData<SignUpState>(SignUpState()),
-        //           ),
-        //       () => listener.call(
-        //             const AsyncData<SignUpState>(SignUpState()),
-        //             const AsyncLoading<SignUpState>(),
-        //           ),
-        //     ],
-        //   );
-        //   verifyNoMoreInteractions(listener);
-        // });
         test(
             'set passwordRetypeInput to PasswordRetypeInput.pure() when newValue is empty and passwordInput.isValid is false',
             () {
@@ -666,7 +635,8 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput: RestrictedPasswordInput.dirty(
-                          value: passwordFieldValue),
+                        value: passwordFieldValue,
+                      ),
                     ),
                   ),
                 ),
@@ -674,13 +644,15 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput: RestrictedPasswordInput.dirty(
-                          value: passwordFieldValue),
+                        value: passwordFieldValue,
+                      ),
                     ),
                   ),
                   const AsyncData<SignUpState>(
                     SignUpState(
                       passwordInput: RestrictedPasswordInput.dirty(
-                          value: passwordFieldValue),
+                        value: passwordFieldValue,
+                      ),
                       passwordRetypeInput: PasswordRetypeInput.dirty(
                         value: enteredValue,
                         passwordToMatch: passwordFieldValue,
@@ -719,8 +691,7 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
             fireImmediately: true,
           );
 
-          final controller = container.read(signUpControllerProvider.notifier)
-            ..updateAvatar('');
+          container.read(signUpControllerProvider.notifier).updateAvatar('');
 
           verifyInOrder([
             () => listener.call(
@@ -742,8 +713,7 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
             fireImmediately: true,
           );
 
-          final controller = container.read(signUpControllerProvider.notifier)
-            ..updateAvatar(path);
+          container.read(signUpControllerProvider.notifier).updateAvatar(path);
 
           verifyInOrder([
             () => listener.call(

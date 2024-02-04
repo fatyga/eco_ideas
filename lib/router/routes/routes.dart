@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:eco_ideas/features/auth/presentation/auth/auth_screen.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/first_step.dart';
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
@@ -67,7 +66,6 @@ class AuthRoute extends GoRouteData {
     return null;
   }
 
-  // TODO(fatyga): this override should be unecessary if [redirect] is overriden, but without override it throws
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const AuthScreen();

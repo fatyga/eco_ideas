@@ -6,13 +6,15 @@ void main() {
   group('RestrictedPasswordInput', () {
     group('constructor', () {
       test(
-          'RestrictedPasswordInput.pure() returns pure RestrictedPasswordInput',
+          '''
+RestrictedPasswordInput.pure() returns pure RestrictedPasswordInput''',
           () {
         const input = RestrictedPasswordInput.pure();
         expect(input.isPure, equals(true));
       });
       test(
-          'RestrictedPasswordInput.dirty() returns dirty RestrictedPasswordInput',
+          '''
+RestrictedPasswordInput.dirty() returns dirty RestrictedPasswordInput''',
           () {
         const input = RestrictedPasswordInput.dirty();
         expect(input.isPure, equals(false));
@@ -20,15 +22,19 @@ void main() {
     });
 
     group('validator', () {
-      test('returns RestrictedPasswordInputError.empty when value is empty',
+      test(
+          '''
+returns RestrictedPasswordInputError.empty when value is empty''',
           () {
         const input = RestrictedPasswordInput.dirty();
         expect(input.validator(''), equals(RestrictedPasswordInputError.empty));
       });
 
-      test('''
+      test(
+          '''
 returns RestrictedPasswordInputError.tooShort when the length of the password
-         is less than 6 characters''', () {
+         is less than 6 characters''',
+          () {
         const input = RestrictedPasswordInput.dirty();
         expect(
           input.validator('zaq1'),
@@ -36,7 +42,8 @@ returns RestrictedPasswordInputError.tooShort when the length of the password
         );
       });
 
-      test('''
+      test(
+          '''
 returns RestrictedPasswordInputError.specialCharacterNotPresent special character is not included''',
           () {
         const input = RestrictedPasswordInput.dirty();
@@ -46,7 +53,8 @@ returns RestrictedPasswordInputError.specialCharacterNotPresent special characte
         );
       });
 
-      test('''
+      test(
+          '''
 returns RestrictedPasswordInputError.digitNotPresent when digit is not included''',
           () {
         const input = RestrictedPasswordInput.dirty();
@@ -56,7 +64,8 @@ returns RestrictedPasswordInputError.digitNotPresent when digit is not included'
         );
       });
 
-      test('''
+      test(
+          '''
 returns RestrictedPasswordInputError.uppercaseNotPresent when uppercase character is not included''',
           () {
         const input = RestrictedPasswordInput.dirty();

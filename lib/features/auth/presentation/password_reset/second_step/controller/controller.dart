@@ -22,7 +22,7 @@ class PasswordResetSecondStepController
       if (newValue.isEmpty) {
         const passwordInput = RestrictedPasswordInput.pure();
 
-        state = AsyncValue.data(
+        state = AsyncData(
           stateValue.copyWith(
             passwordInput: passwordInput,
           ),
@@ -46,14 +46,14 @@ class PasswordResetSecondStepController
               passwordToMatch: passwordInput.value,
             );
           }
-          state = AsyncValue.data(
+          state = AsyncData(
             stateValue.copyWith(
               passwordInput: passwordInput,
               passwordRetypeInput: passwordRetypeInput,
             ),
           );
         } else {
-          state = AsyncValue.data(
+          state = AsyncData(
             stateValue.copyWith(
               passwordInput: passwordInput,
             ),
@@ -73,7 +73,7 @@ class PasswordResetSecondStepController
               : null,
         );
 
-        state = AsyncValue.data(
+        state = AsyncData(
           stateValue.copyWith(
             passwordRetypeInput: passwordRetypeInput,
           ),
@@ -81,10 +81,12 @@ class PasswordResetSecondStepController
       } else {
         final passwordRetypeInput = PasswordRetypeInput.dirty(
           value: newValue,
-          passwordToMatch: stateValue.passwordInput.value,
+          passwordToMatch: stateValue.passwordInput.isValid
+              ? stateValue.passwordInput.value
+              : null,
         );
 
-        state = AsyncValue.data(
+        state = AsyncData(
           stateValue.copyWith(
             passwordRetypeInput: passwordRetypeInput,
           ),
@@ -99,7 +101,7 @@ class PasswordResetSecondStepController
     if (stateValue != null && stateValue.isValid) {
       state = const AsyncLoading<PasswordResetSecondStepState>();
 
-      try{
+      try {
         await ref
             .read(authRepositoryProvider)
             .setNewPassword(newPassword: stateValue.passwordInput.value);
