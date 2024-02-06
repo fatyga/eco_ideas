@@ -184,17 +184,25 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   Future<void> resetPasswordForEmail({required String email}) async {
-    await ref.read(supabaseClientProvider).auth.resetPasswordForEmail(
-          email,
-          redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL'],
-        );
+    try {
+      await ref.read(supabaseClientProvider).auth.resetPasswordForEmail(
+            email,
+            redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL'],
+          );
+    } on supabase.AuthException catch (_) {
+      throw PasswordResetLinkFail();
+    }
   }
 
   @override
   Future<void> setNewPassword({required String newPassword}) async {
-    await ref
-        .read(supabaseClientProvider)
-        .auth
-        .updateUser(supabase.UserAttributes(password: newPassword));
+    try {
+      await ref
+          .read(supabaseClientProvider)
+          .auth
+          .updateUser(supabase.UserAttributes(password: newPassword));
+    } on supabase.AuthException catch (_) {
+      throw PasswordResetSettingUpNewPasswordFail();
+    }
   }
 }

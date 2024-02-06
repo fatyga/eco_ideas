@@ -1,5 +1,7 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
+import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/second_step/controller/state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -14,11 +16,14 @@ class Listener<T> extends Mock {
 void main() {
   ProviderContainer makeProviderContainer({
     AuthRepository? authRepository,
+    Stream<AuthStatus>? authChangesStream,
   }) {
     final container = ProviderContainer(
       overrides: [
         if (authRepository != null)
           authRepositoryProvider.overrideWith((_) => authRepository),
+        if (authChangesStream != null)
+          authChangesProvider.overrideWith((_) => authChangesStream),
       ],
     );
 
@@ -27,6 +32,9 @@ void main() {
   }
 
   group('PasswordResetSecondStepController', () {
+    setUpAll(() {
+      registerFallbackValue(const AsyncLoading<PasswordResetSecondStepState>());
+    });
     group('build method', () {
       test('returns AsyncData<PasswordResetSecondStepState> instance', () {
         final container = makeProviderContainer();
@@ -542,6 +550,7 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
     });
 
     group('setNewPassword', () {
+      const validPassword = 'Qwerty1!';
       test('does nothing, when state.isValid == false', () async {
         final authRepository = MockAuthRepository();
 
@@ -572,6 +581,241 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
           ),
         );
       });
+
+      test(
+        '''
+if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value''',
+        () async {
+          final passwordValue = validPassword;
+          final authRepository = MockAuthRepository();
+
+          when(
+            () => authRepository.setNewPassword(
+              newPassword: any(named: 'newPassword'),
+            ),
+          ).thenAnswer((_) => Future.value());
+
+          final container =
+              makeProviderContainer(authRepository: authRepository);
+          final listener = Listener<AsyncValue<PasswordResetSecondStepState>>();
+          container.listen(
+            passwordResetSecondStepControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller =
+              container.read(passwordResetSecondStepControllerProvider.notifier)
+                ..updatePasswordField(passwordValue)
+                ..updatePasswordRetypeField(passwordValue);
+
+          await controller.setNewPassword();
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<PasswordResetSecondStepState>(
+                    PasswordResetSecondStepState(),
+                  ),
+                ),
+            () => listener.call(
+                  AsyncData<PasswordResetSecondStepState>(
+                    PasswordResetSecondStepState(
+                      passwordInput: RestrictedPasswordInput.dirty(
+                        value: passwordValue,
+                      ),
+                      passwordRetypeInput:
+                          PasswordRetypeInput.dirty(value: passwordValue),
+                    ),
+                  ),
+                  any(that: isA<AsyncLoading<PasswordResetSecondStepState>>()),
+                ),
+            () => listener.call(
+                  any(that: isA<AsyncLoading<PasswordResetSecondStepState>>()),
+                  AsyncData<PasswordResetSecondStepState>(
+                    PasswordResetSecondStepState(
+                      passwordInput: RestrictedPasswordInput.dirty(
+                        value: passwordValue,
+                      ),
+                      passwordRetypeInput:
+                          PasswordRetypeInput.dirty(value: passwordValue),
+                    ),
+                  ),
+                ),
+          ]);
+
+          verify(
+            () => authRepository.setNewPassword(
+              newPassword: passwordValue,
+            ),
+          ).called(1);
+        },
+      );
+
+      test(
+        'emits AsyncError, when AuthRepository.setNewPassword throws an error',
+        () async {
+          final passwordValue = validPassword;
+          final authRepository = MockAuthRepository();
+
+          when(
+            () => authRepository.setNewPassword(
+              newPassword: validPassword,
+            ),
+          ).thenThrow(PasswordResetSettingUpNewPasswordFail());
+
+          final container =
+              makeProviderContainer(authRepository: authRepository);
+          final listener = Listener<AsyncValue<PasswordResetSecondStepState>>();
+          container.listen(
+            passwordResetSecondStepControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller =
+              container.read(passwordResetSecondStepControllerProvider.notifier)
+                ..updatePasswordField(passwordValue)
+                ..updatePasswordRetypeField(passwordValue);
+
+          await controller.setNewPassword();
+
+          verifyInOrder([
+            () => listener.call(
+                  null,
+                  const AsyncData<PasswordResetSecondStepState>(
+                    PasswordResetSecondStepState(),
+                  ),
+                ),
+            () => listener.call(
+                  AsyncData<PasswordResetSecondStepState>(
+                    PasswordResetSecondStepState(
+                      passwordInput: RestrictedPasswordInput.dirty(
+                        value: passwordValue,
+                      ),
+                      passwordRetypeInput: PasswordRetypeInput.dirty(
+                        value: passwordValue,
+                        passwordToMatch: passwordValue,
+                      ),
+                    ),
+                  ),
+                  any(that: isA<AsyncLoading<PasswordResetSecondStepState>>()),
+                ),
+            () => listener.call(
+                  any(that: isA<AsyncLoading<PasswordResetSecondStepState>>()),
+                  any(that: isA<AsyncError<PasswordResetSecondStepState>>()),
+                ),
+          ]);
+
+          verify(
+            () => authRepository.setNewPassword(
+              newPassword: passwordValue,
+            ),
+          ).called(1);
+        },
+      );
+    });
+
+    group('abortPasswordReset', () {
+      test(
+        'does nothing, if current authStatus is not AuthStatus.passwordReset',
+        () async {
+          final authRepository = MockAuthRepository();
+
+          final authChangesStream =
+              Stream.fromIterable([AuthStatus.passwordReset]);
+
+          final container = makeProviderContainer(
+            authRepository: authRepository,
+            authChangesStream: authChangesStream,
+          );
+
+          final listener = Listener<AsyncValue<PasswordResetSecondStepState>>();
+
+          container.listen(
+            passwordResetSecondStepControllerProvider,
+            listener.call,
+            fireImmediately: true,
+          );
+
+          final controller = container
+              .read(passwordResetSecondStepControllerProvider.notifier);
+
+          await controller.abortPasswordReset();
+
+          verifyInOrder(
+            [
+              () => listener.call(
+                    null,
+                    const AsyncData<PasswordResetSecondStepState>(
+                      PasswordResetSecondStepState(),
+                    ),
+                  ),
+            ],
+          );
+
+          verifyNever(authRepository.signOut);
+        },
+      );
+
+      test(
+        ''' if status is PasswordReset, then invokes AuthRepository.signOut''',
+        () async {
+          final authRepository = MockAuthRepository();
+          final authChangesStream = Stream.value(AuthStatus.passwordReset);
+
+          when(authRepository.signOut).thenAnswer((_) => Future.value());
+          final container = makeProviderContainer(
+            authRepository: authRepository,
+            authChangesStream: authChangesStream,
+          );
+
+          final listener = Listener<AsyncValue<PasswordResetSecondStepState>>();
+
+          container
+            ..listen(
+              passwordResetSecondStepControllerProvider,
+              listener.call,
+              fireImmediately: true,
+            )
+            //
+            ..listen(authChangesProvider, (_, __) {});
+
+          // this delay ensures that controller reads active authChangesProvider
+          await Future<void>.delayed(Duration.zero);
+          final controller = container
+              .read(passwordResetSecondStepControllerProvider.notifier);
+
+          await controller.abortPasswordReset();
+
+          verifyInOrder(
+            [
+              () => listener.call(
+                    null,
+                    const AsyncData<PasswordResetSecondStepState>(
+                      PasswordResetSecondStepState(),
+                    ),
+                  ),
+              () => listener.call(
+                    const AsyncData<PasswordResetSecondStepState>(
+                      PasswordResetSecondStepState(),
+                    ),
+                    any(
+                      that: isA<AsyncLoading<PasswordResetSecondStepState>>(),
+                    ),
+                  ),
+              () => listener.call(
+                    any(
+                      that: isA<AsyncLoading<PasswordResetSecondStepState>>(),
+                    ),
+                    const AsyncData<PasswordResetSecondStepState>(
+                      PasswordResetSecondStepState(),
+                    ),
+                  ),
+            ],
+          );
+        },
+      );
     });
   });
 }

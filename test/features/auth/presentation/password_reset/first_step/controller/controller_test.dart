@@ -93,7 +93,8 @@ void main() {
         verifyNoMoreInteractions(listener);
       });
 
-      test('''
+      test(
+          '''
 set email to EmailInput.dirty(value: newValue) when [newValue] is provided''',
           () {
         final container = makeProviderContainer();
@@ -176,9 +177,11 @@ set email to EmailInput.dirty(value: newValue) when [newValue] is provided''',
         );
       });
 
-      test('''
+      test(
+          '''
 if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and change status to linkSent'
-          ''', () async {
+          ''',
+          () async {
         const emailValue = validEmail;
         final authRepository = MockAuthRepository();
 
@@ -234,7 +237,7 @@ if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and chang
             () => authRepository.resetPasswordForEmail(
               email: emailValue,
             ),
-          ).thenThrow(PasswordResetFail());
+          ).thenThrow(PasswordResetLinkFail());
 
           final container =
               makeProviderContainer(authRepository: authRepository);
@@ -251,10 +254,6 @@ if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and chang
               .read(passwordResetFirstStepControllerProvider.notifier)
             ..updateEmailField(emailValue);
           await controller.resetPasswordForEmail();
-
-          verifyNever(
-            () => authRepository.resetPasswordForEmail(email: emailValue),
-          );
 
           verifyInOrder([
             () => listener.call(

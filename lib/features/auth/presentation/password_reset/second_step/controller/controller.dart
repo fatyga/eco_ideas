@@ -1,10 +1,10 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/second_step/controller/state.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'controller.g.dart';
 
@@ -105,8 +105,9 @@ class PasswordResetSecondStepController
         await ref
             .read(authRepositoryProvider)
             .setNewPassword(newPassword: stateValue.passwordInput.value);
-      } on AuthException catch (e) {
+      } on AuthFailure catch (e) {
         state = AsyncError(e, StackTrace.current);
+        return;
       }
       state = AsyncData<PasswordResetSecondStepState>(
         state.requireValue.copyWith(),
@@ -118,11 +119,18 @@ class PasswordResetSecondStepController
     final stateValue = state.valueOrNull;
 
     final isPasswordResetStillActive =
-        ref.read(authChangesProvider).value?.isPasswordReset;
+        ref.read(authChangesProvider).valueOrNull?.isPasswordReset;
 
     if (stateValue != null && isPasswordResetStillActive != null) {
       if (isPasswordResetStillActive) {
-        await ref.read(authRepositoryProvider).signOut();
+        state = const AsyncLoading<PasswordResetSecondStepState>();
+        try {
+          await ref.read(authRepositoryProvider).signOut();
+          state = AsyncData<PasswordResetSecondStepState>(state.requireValue);
+        } on AuthFailure catch (e) {
+          state =
+              AsyncError<PasswordResetSecondStepState>(e, StackTrace.current);
+        }
       }
     }
   }
