@@ -1,5 +1,6 @@
 import 'package:eco_ideas/common/widgets/primary_button.dart';
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/auth/presentation/auth_state_mixin.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/second_step/controller/state.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,10 @@ class PasswordResetSecondStepSubmitButton extends ConsumerWidget {
           .select((controllerState) => controllerState.valueOrNull?.isValid),
     );
 
+    ref.listen(
+      passwordResetFirstStepControllerProvider,
+      (_, next) => next.showSnackBarOnError(context),
+    );
     return PrimaryButton(
       isLoading: isLoading,
       onPressed: isLoading || canAttemptSettingNewPassword == null

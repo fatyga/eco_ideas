@@ -1,4 +1,5 @@
 import 'package:eco_ideas/common/widgets/primary_button.dart';
+import 'package:eco_ideas/features/auth/presentation/auth_state_mixin.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/controller.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/state.dart';
 
@@ -21,6 +22,11 @@ class PasswordResetConfirmButton extends ConsumerWidget {
       passwordResetFirstStepControllerProvider
           .select((state) => state.valueOrNull?.isValid),
     );
+
+    ref.listen(
+      passwordResetFirstStepControllerProvider,
+      (_, state) => state.showSnackBarOnError(context),
+    );
     return PrimaryButton(
       isLoading: isLoading,
       onPressed: isLoading || canSendLink == null
@@ -28,7 +34,7 @@ class PasswordResetConfirmButton extends ConsumerWidget {
           : canSendLink
               ? ref
                   .read(passwordResetFirstStepControllerProvider.notifier)
-                  .resetPasswordForEmail
+                  .sentResetPasswordLink
               : null,
       child: Text(l10n.passwordResetConfirmButtonText),
     );

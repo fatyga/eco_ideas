@@ -159,7 +159,7 @@ set email to EmailInput.dirty(value: newValue) when [newValue] is provided''',
         final controller = container
             .read(passwordResetFirstStepControllerProvider.notifier)
           ..updateEmailField(invalidEmail);
-        await controller.resetPasswordForEmail();
+        await controller.sentResetPasswordLink();
 
         verifyInOrder([
           () => listener.call(
@@ -204,7 +204,7 @@ if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and chang
         final controller = container
             .read(passwordResetFirstStepControllerProvider.notifier)
           ..updateEmailField(emailValue);
-        await controller.resetPasswordForEmail();
+        await controller.sentResetPasswordLink();
 
         verify(() => authRepository.resetPasswordForEmail(email: emailValue))
             .called(1);
@@ -253,7 +253,7 @@ if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and chang
           final controller = container
               .read(passwordResetFirstStepControllerProvider.notifier)
             ..updateEmailField(emailValue);
-          await controller.resetPasswordForEmail();
+          await controller.sentResetPasswordLink();
 
           verifyInOrder([
             () => listener.call(

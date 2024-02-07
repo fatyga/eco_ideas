@@ -3,7 +3,7 @@ import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/widgets.dart';
 
 extension AuthFailureUI on AuthFailure {
-  String resloveMessageForUser(BuildContext context) {
+  String resloveErrorMessageForUser(BuildContext context) {
     final l10n = context.l10n;
 
     if (this is BadEmailOrPassword) {

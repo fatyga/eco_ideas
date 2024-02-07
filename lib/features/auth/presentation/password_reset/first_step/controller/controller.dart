@@ -37,7 +37,7 @@ class PasswordResetFirstStepController
     }
   }
 
-  Future<void> resetPasswordForEmail() async {
+  Future<void> sentResetPasswordLink() async {
     final stateValue = state.valueOrNull;
     if (stateValue != null && stateValue.isValid) {
       state = const AsyncLoading<PasswordResetFirstStepState>();

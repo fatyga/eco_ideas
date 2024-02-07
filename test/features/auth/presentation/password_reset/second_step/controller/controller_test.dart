@@ -723,7 +723,7 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
           final authRepository = MockAuthRepository();
 
           final authChangesStream =
-              Stream.fromIterable([AuthStatus.passwordReset]);
+              Stream.fromIterable([AuthStatus.unauthenticated]);
 
           final container = makeProviderContainer(
             authRepository: authRepository,
@@ -732,15 +732,19 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
 
           final listener = Listener<AsyncValue<PasswordResetSecondStepState>>();
 
-          container.listen(
-            passwordResetSecondStepControllerProvider,
-            listener.call,
-            fireImmediately: true,
-          );
+          container
+            ..listen(
+              passwordResetSecondStepControllerProvider,
+              listener.call,
+              fireImmediately: true,
+            )
+            ..listen(authChangesProvider, (_, __) {});
 
           final controller = container
               .read(passwordResetSecondStepControllerProvider.notifier);
 
+          // this delay ensures that controller reads active authChangesProvider
+          await Future<void>.delayed(Duration.zero);
           await controller.abortPasswordReset();
 
           verifyInOrder(
@@ -778,7 +782,6 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
               listener.call,
               fireImmediately: true,
             )
-            //
             ..listen(authChangesProvider, (_, __) {});
 
           // this delay ensures that controller reads active authChangesProvider
@@ -814,6 +817,8 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
                   ),
             ],
           );
+
+          verify(authRepository.signOut).called(1);
         },
       );
     });
