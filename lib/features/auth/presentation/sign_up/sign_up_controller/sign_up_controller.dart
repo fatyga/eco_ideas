@@ -171,7 +171,9 @@ class SignUpController extends _$SignUpController {
           );
         }
 
-        state = AsyncData<SignUpState>(state.requireValue);
+        state = AsyncData<SignUpState>(
+          state.requireValue.copyWith(status: SignUpStateStatus.linkSent),
+        );
       } catch (e) {
         state = AsyncError<SignUpState>(e, StackTrace.current);
         return;

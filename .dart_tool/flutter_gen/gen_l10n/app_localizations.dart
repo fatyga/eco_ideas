@@ -303,6 +303,24 @@ abstract class AppLocalizations {
   /// **'Username is too short(at least 6 characters)'**
   String get signUpUsernameInputErrorTooShortText;
 
+  /// No description provided for @signUpConfirmEmailAppBarTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your email'**
+  String get signUpConfirmEmailAppBarTitleText;
+
+  /// No description provided for @signUpConfirmEmailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Activation link was sent'**
+  String get signUpConfirmEmailTitle;
+
+  /// No description provided for @signUpConfirmEmailDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up'**
+  String get signUpConfirmEmailDescription;
+
   /// Text shown in the AppBar of the Counter Page
   ///
   /// In en, this message translates to:

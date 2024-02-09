@@ -110,6 +110,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpUsernameInputErrorTooShortText => 'Username is too short(at least 6 characters)';
 
   @override
+  String get signUpConfirmEmailAppBarTitleText => 'Confirm your email';
+
+  @override
+  String get signUpConfirmEmailTitle => 'Activation link was sent';
+
+  @override
+  String get signUpConfirmEmailDescription => 'We\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up';
+
+  @override
   String get counterAppBarTitle => 'Counter';
 
   @override

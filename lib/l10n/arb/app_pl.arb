@@ -37,6 +37,9 @@
     "signUpPasswordretypeInputemptyErrorText": "To pole nie może być puste",
     "signUpUsernameInputErrorEmptyText" : "To pole nie może być puste",
     "signUpUsernameInputErrorTooShortText": "Nazwa użytkownika jest za krótka(co najmniej 6 znaków",
+    "signUpConfirmEmailAppBarTitleText": "Potwierdź swój email",
+    "signUpConfirmEmailTitle": "Link aktywacjny został wysłany",
+    "signUpConfirmEmailDescription": "Wysłaliśmy maila z linkiem aktywacyjnym na twoją skrzynkę pocztową. Otwórz go, aby aktywować konto, i ukończyć zakładanie konta.",
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"

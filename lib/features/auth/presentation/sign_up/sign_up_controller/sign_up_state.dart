@@ -11,6 +11,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sign_up_state.freezed.dart';
 
+enum SignUpStateStatus { initial, linkSent }
+
 @freezed
 class SignUpState with _$SignUpState, AuthStateSnackBarOnErrorMixin {
   const factory SignUpState({
@@ -20,6 +22,7 @@ class SignUpState with _$SignUpState, AuthStateSnackBarOnErrorMixin {
     RestrictedPasswordInput passwordInput,
     @Default(PasswordRetypeInput.pure())
     PasswordRetypeInput passwordRetypeInput,
+    @Default(SignUpStateStatus.initial) SignUpStateStatus status,
     String? avatarUrl,
   }) = _SignUpState;
 }
