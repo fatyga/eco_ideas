@@ -1,5 +1,3 @@
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure_ui_extension.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/email_input.dart';
 
 import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
@@ -25,6 +23,9 @@ class SignUpState with _$SignUpState, AuthStateSnackBarOnErrorMixin {
     @Default(SignUpStateStatus.initial) SignUpStateStatus status,
     String? avatarUrl,
   }) = _SignUpState;
+  const SignUpState._();
+
+  bool get isLinkSent => status == SignUpStateStatus.linkSent;
 }
 
 extension FieldsValidity on SignUpState {

@@ -119,6 +119,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpConfirmEmailDescription => 'We\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up';
 
   @override
+  String get signUpFinishedTitle => 'Congratulations!';
+
+  @override
+  String get signUpFinishedDescription => 'Your account was created successfully. You can start use the app';
+
+  @override
+  String get signUpFinishedButtonText => 'Let\'s start!';
+
+  @override
   String get counterAppBarTitle => 'Counter';
 
   @override

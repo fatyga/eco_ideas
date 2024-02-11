@@ -18,7 +18,7 @@ class ConfirmEmail extends StatelessWidget {
               .copyWith(color: theme.colorScheme.primary),
         ),
         const SizedBox(height: 16),
-        Text(l10n.passwordResetLinkSentDescription),
+        Text(l10n.signUpConfirmEmailDescription),
       ],
     );
   }

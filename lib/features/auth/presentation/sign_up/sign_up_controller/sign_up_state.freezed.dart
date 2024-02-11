@@ -160,14 +160,15 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SignUpStateImpl implements _SignUpState {
+class _$SignUpStateImpl extends _SignUpState {
   const _$SignUpStateImpl(
       {this.usernameInput = const UsernameInput.pure(),
       this.emailInput = const EmailInput.pure(),
       this.passwordInput = const RestrictedPasswordInput.pure(),
       this.passwordRetypeInput = const PasswordRetypeInput.pure(),
       this.status = SignUpStateStatus.initial,
-      this.avatarUrl});
+      this.avatarUrl})
+      : super._();
 
   @override
   @JsonKey()
@@ -221,7 +222,7 @@ class _$SignUpStateImpl implements _SignUpState {
       __$$SignUpStateImplCopyWithImpl<_$SignUpStateImpl>(this, _$identity);
 }
 
-abstract class _SignUpState implements SignUpState {
+abstract class _SignUpState extends SignUpState {
   const factory _SignUpState(
       {final UsernameInput usernameInput,
       final EmailInput emailInput,
@@ -229,6 +230,7 @@ abstract class _SignUpState implements SignUpState {
       final PasswordRetypeInput passwordRetypeInput,
       final SignUpStateStatus status,
       final String? avatarUrl}) = _$SignUpStateImpl;
+  const _SignUpState._() : super._();
 
   @override
   UsernameInput get usernameInput;

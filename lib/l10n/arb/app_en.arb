@@ -40,6 +40,10 @@
     "signUpConfirmEmailAppBarTitleText": "Confirm your email",
     "signUpConfirmEmailTitle": "Activation link was sent",
     "signUpConfirmEmailDescription": "We've sent you an activation link to your mailbox. Please open it to finish the process of signing up",
+    
+    "signUpFinishedTitle": "Congratulations!",
+    "signUpFinishedDescription": "Your account was created successfully. You can start use the app",
+    "signUpFinishedButtonText": "Let's start!", 
 
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {

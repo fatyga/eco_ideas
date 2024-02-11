@@ -40,6 +40,9 @@
     "signUpConfirmEmailAppBarTitleText": "Potwierdź swój email",
     "signUpConfirmEmailTitle": "Link aktywacjny został wysłany",
     "signUpConfirmEmailDescription": "Wysłaliśmy maila z linkiem aktywacyjnym na twoją skrzynkę pocztową. Otwórz go, aby aktywować konto, i ukończyć zakładanie konta.",
+    "signUpFinishedTitle": "Gratulacje!",
+    "signUpFinishedDescription": "Rejestracja przebiegła pomyślnie. Możesz zacząć korzystać z aplikacji",
+    "signUpFinishedButtonText": "Zaczynajmy", 
     "counterAppBarTitle": "Licznik",
     "@counterAppBarTitle": {
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"

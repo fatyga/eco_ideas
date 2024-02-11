@@ -176,7 +176,6 @@ class SignUpController extends _$SignUpController {
         );
       } catch (e) {
         state = AsyncError<SignUpState>(e, StackTrace.current);
-        return;
       }
     }
   }

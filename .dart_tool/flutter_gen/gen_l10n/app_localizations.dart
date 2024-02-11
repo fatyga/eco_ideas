@@ -321,6 +321,24 @@ abstract class AppLocalizations {
   /// **'We\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up'**
   String get signUpConfirmEmailDescription;
 
+  /// No description provided for @signUpFinishedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations!'**
+  String get signUpFinishedTitle;
+
+  /// No description provided for @signUpFinishedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account was created successfully. You can start use the app'**
+  String get signUpFinishedDescription;
+
+  /// No description provided for @signUpFinishedButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s start!'**
+  String get signUpFinishedButtonText;
+
   /// Text shown in the AppBar of the Counter Page
   ///
   /// In en, this message translates to:

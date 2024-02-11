@@ -168,16 +168,14 @@ class SupabaseAuthRepository implements AuthRepository {
   }) async {
     try {
       final response = await ref.read(supabaseClientProvider).auth.signUp(
+        emailRedirectTo: dotenv.env['SIGN_UP_FINISHED_REDIRECT_URL'],
         email: email,
         password: password,
         data: {'username': username},
       );
 
-      if (response.session == null) {
-        throw SignUpFail();
-      }
       return response.user?.id;
-    } on supabase.AuthException catch (_) {
+    } on supabase.AuthException catch (e) {
       throw SignUpFail();
     }
   }
