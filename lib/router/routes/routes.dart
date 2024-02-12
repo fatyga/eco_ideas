@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:eco_ideas/features/auth/presentation/auth/auth_screen.dart';
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_finished_screen.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_screen.dart';
+import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_screen.dart';
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
 import 'package:eco_ideas/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +23,26 @@ class SplashRoute extends GoRouteData {
 }
 
 // Home
-@TypedGoRoute<HomeRoute>(path: HomeScreen.path)
+@TypedGoRoute<HomeRoute>(path: HomeScreen.path, routes: [
+  TypedGoRoute<SignUpCompletionRoute>(
+    path: SignUpCompletionScreen.path,
+  ),
+])
 class HomeRoute extends GoRouteData {
   const HomeRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const HomeScreen();
+  }
+}
+
+class SignUpCompletionRoute extends GoRouteData {
+  const SignUpCompletionRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const SignUpCompletionScreen();
   }
 }
 
@@ -42,9 +55,6 @@ class HomeRoute extends GoRouteData {
     ),
     TypedGoRoute<SignUpRoute>(
       path: SignUpScreen.path,
-    ),
-    TypedGoRoute<SignUpFinishedRoute>(
-      path: SignUpFinishedScreen.path,
     ),
     TypedGoRoute<PasswordResetRoute>(
       path: 'passwordReset',
@@ -91,15 +101,6 @@ class SignUpRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const SignUpScreen();
-  }
-}
-
-class SignUpFinishedRoute extends GoRouteData {
-  const SignUpFinishedRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const SignUpFinishedScreen();
   }
 }
 

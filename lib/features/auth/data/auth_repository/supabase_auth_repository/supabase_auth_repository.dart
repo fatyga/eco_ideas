@@ -175,7 +175,7 @@ class SupabaseAuthRepository implements AuthRepository {
       );
 
       return response.user?.id;
-    } on supabase.AuthException catch (e) {
+    } on supabase.AuthException catch (_) {
       throw SignUpFail();
     }
   }

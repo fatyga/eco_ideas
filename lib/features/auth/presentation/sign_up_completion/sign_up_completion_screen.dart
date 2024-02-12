@@ -3,9 +3,9 @@ import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpFinishedScreen extends StatelessWidget {
-  const SignUpFinishedScreen({super.key});
-  static const String path = 'signUpFinished';
+class SignUpCompletionScreen extends StatelessWidget {
+  const SignUpCompletionScreen({super.key});
+  static const String path = 'signUpCompletion';
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
