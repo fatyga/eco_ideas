@@ -35,6 +35,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgotPasswordButtonActionText => 'Change it!';
 
   @override
+  String get aboutMeTextFieldLabelText => 'About me';
+
+  @override
   String get googleAuthButtonLabelText => 'Continue with Google';
 
   @override
@@ -119,13 +122,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpConfirmEmailDescription => 'We\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up';
 
   @override
-  String get signUpFinishedTitle => 'Congratulations!';
+  String get signUpCompletionFormTitle => 'Express yourself';
 
   @override
-  String get signUpFinishedDescription => 'Your account was created successfully. You can start use the app';
+  String get signUpCompletionFormSubmitButton => 'Submit';
 
   @override
-  String get signUpFinishedButtonText => 'Let\'s start!';
+  String get signUpCompletionDoneTitle => 'Congratulations!';
+
+  @override
+  String get signUpCompletionDoneDescription => 'Your account was created successfully. You can start use the app';
+
+  @override
+  String get signUpCompletionDoneButtonText => 'Let\'s start!';
 
   @override
   String get counterAppBarTitle => 'Counter';

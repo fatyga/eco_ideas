@@ -19,7 +19,7 @@ class SignUpButton extends ConsumerWidget {
       (_, state) => state.showSnackBarOnError(context),
     );
 
-    final isSigningIn = ref.watch(
+    final isLoading = ref.watch(
       signUpControllerProvider
           .select((controllerState) => controllerState.isLoading),
     );
@@ -28,8 +28,8 @@ class SignUpButton extends ConsumerWidget {
           .select((controllerState) => controllerState.valueOrNull?.isValid),
     );
     return PrimaryButton(
-      isLoading: isSigningIn,
-      onPressed: isSigningIn || canAttemptSigningIn == null
+      isLoading: isLoading,
+      onPressed: isLoading || canAttemptSigningIn == null
           ? null
           : canAttemptSigningIn
               ? ref.read(signUpControllerProvider.notifier).signUpWithEmail

@@ -1,4 +1,4 @@
-import 'package:eco_ideas/common/widgets/email_field.dart';
+import 'package:eco_ideas/common/widgets/auth_forms_fields/email_field.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/controller.dart';
 
 import 'package:eco_ideas/l10n/l10n.dart';
@@ -15,8 +15,10 @@ class PasswordResetEmailField extends ConsumerWidget {
           .select((state) => state.valueOrNull?.emailInput),
     );
 
-    final isLoading = ref.watch(passwordResetFirstStepControllerProvider
-        .select((state) => state.isLoading),);
+    final isLoading = ref.watch(
+      passwordResetFirstStepControllerProvider
+          .select((state) => state.isLoading),
+    );
 
     final l10n = context.l10n;
     return EmailField(

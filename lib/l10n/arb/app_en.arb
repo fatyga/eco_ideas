@@ -10,6 +10,7 @@
     "registerTextButtonActionText": "Register!",
     "forgotPasswordButtonLabelText": "Forget password? ",
     "forgotPasswordButtonActionText": "Change it!",
+    "aboutMeTextFieldLabelText": "About me",
     "googleAuthButtonLabelText": "Continue with Google", 
     "signInButtonText": "Sign In",
     "signInLabeledDividerText": "OR",
@@ -41,9 +42,12 @@
     "signUpConfirmEmailTitle": "Activation link was sent",
     "signUpConfirmEmailDescription": "We've sent you an activation link to your mailbox. Please open it to finish the process of signing up",
     
-    "signUpFinishedTitle": "Congratulations!",
-    "signUpFinishedDescription": "Your account was created successfully. You can start use the app",
-    "signUpFinishedButtonText": "Let's start!", 
+    "signUpCompletionFormTitle": "Express yourself",
+    "signUpCompletionFormSubmitButton": "Submit",
+     
+    "signUpCompletionDoneTitle": "Congratulations!",
+    "signUpCompletionDoneDescription": "Your account was created successfully. You can start use the app",
+    "signUpCompletionDoneButtonText": "Let's start!", 
 
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {

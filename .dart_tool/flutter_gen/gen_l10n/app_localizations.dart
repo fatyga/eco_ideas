@@ -153,6 +153,12 @@ abstract class AppLocalizations {
   /// **'Change it!'**
   String get forgotPasswordButtonActionText;
 
+  /// No description provided for @aboutMeTextFieldLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'About me'**
+  String get aboutMeTextFieldLabelText;
+
   /// No description provided for @googleAuthButtonLabelText.
   ///
   /// In en, this message translates to:
@@ -321,23 +327,35 @@ abstract class AppLocalizations {
   /// **'We\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up'**
   String get signUpConfirmEmailDescription;
 
-  /// No description provided for @signUpFinishedTitle.
+  /// No description provided for @signUpCompletionFormTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Express yourself'**
+  String get signUpCompletionFormTitle;
+
+  /// No description provided for @signUpCompletionFormSubmitButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get signUpCompletionFormSubmitButton;
+
+  /// No description provided for @signUpCompletionDoneTitle.
   ///
   /// In en, this message translates to:
   /// **'Congratulations!'**
-  String get signUpFinishedTitle;
+  String get signUpCompletionDoneTitle;
 
-  /// No description provided for @signUpFinishedDescription.
+  /// No description provided for @signUpCompletionDoneDescription.
   ///
   /// In en, this message translates to:
   /// **'Your account was created successfully. You can start use the app'**
-  String get signUpFinishedDescription;
+  String get signUpCompletionDoneDescription;
 
-  /// No description provided for @signUpFinishedButtonText.
+  /// No description provided for @signUpCompletionDoneButtonText.
   ///
   /// In en, this message translates to:
   /// **'Let\'s start!'**
-  String get signUpFinishedButtonText;
+  String get signUpCompletionDoneButtonText;
 
   /// Text shown in the AppBar of the Counter Page
   ///

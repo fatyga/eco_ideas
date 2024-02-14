@@ -43,4 +43,6 @@ class SignUpCompletionController extends _$SignUpCompletionController {
       }
     }
   }
+
+  Future<void> completeSignUp() async {}
 }
