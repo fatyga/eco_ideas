@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:eco_ideas/features/user/user.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -13,7 +11,7 @@ UserRepository userRepository(UserRepositoryRef ref) =>
 abstract class UserRepository {
   UserRepository();
 
-  Future<void> uploadAvatar({required String userId, required File image});
+  Future<void> uploadAvatar({required String imagePath});
 }
 
 class UserFailure implements Exception {}

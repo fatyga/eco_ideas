@@ -49,20 +49,22 @@ class SupabaseUserRepository implements UserRepository {
 
   @override
   Future<void> uploadAvatar({
-    required String userId,
-    required File image,
+    required String imagePath,
   }) async {
-    // upload avatar to 'avatars' bucket
-    await ref
-        .read(supabaseClientProvider)
-        .storage
-        .from('avatars')
-        .upload('$userId/avatar', image);
+    if (currentUser != null) {
+      final imageFile = File(imagePath);
+      // upload avatar to 'avatars' bucket
+      await ref
+          .read(supabaseClientProvider)
+          .storage
+          .from('avatars')
+          .upload('${currentUser!.id}/avatar', imageFile);
 
-    // update flag isAvatarPresent, when avatar is uploaded successfully
-    await ref
-        .read(supabaseClientProvider)
-        .from('profiles')
-        .update({'is_avatar_present': true}).eq('id', userId);
+      // update flag isAvatarPresent, when avatar is uploaded successfully
+      await ref
+          .read(supabaseClientProvider)
+          .from('profiles')
+          .update({'is_avatar_present': true}).eq('id', currentUser!.id);
+    }
   }
 }

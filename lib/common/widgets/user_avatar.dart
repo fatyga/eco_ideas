@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 
 class UserAvatar extends StatelessWidget {
   const UserAvatar({
-    this.imagePath,
+    this.imagePath = '',
     this.radius = 20,
     this.editable = false,
     this.onPickingImageFinish,
     super.key,
   });
 
-  final String? imagePath;
+  final String imagePath;
+
   final double radius;
 
   final void Function(String? image)? onPickingImageFinish;
@@ -20,7 +21,7 @@ class UserAvatar extends StatelessWidget {
 
   Future<String?> _showAvatarDialog(
     BuildContext context,
-    String? imagePath,
+    String imagePath,
   ) async {
     return showDialog<String?>(
       context: context,
@@ -35,13 +36,13 @@ class UserAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final avatar = CircleAvatar(
-      foregroundImage: imagePath != null
+      foregroundImage: imagePath.isEmpty
           ? Image.file(
-              File(imagePath!),
+              File(imagePath),
             ).image
           : null,
       radius: radius,
-      child: imagePath == null ? Icon(Icons.person, size: radius / 1.1) : null,
+      child: imagePath.isEmpty ? Icon(Icons.person, size: radius / 1.1) : null,
     );
 
     if (editable) {

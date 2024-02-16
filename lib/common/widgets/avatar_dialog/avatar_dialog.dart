@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AvatarDialog extends StatefulWidget {
-  const AvatarDialog({this.imagePath, super.key});
+  const AvatarDialog({this.imagePath = '', super.key});
 
-  final String? imagePath;
+  final String imagePath;
 
   @override
   State<AvatarDialog> createState() => _AvatarDialogState();
@@ -18,9 +18,9 @@ class AvatarDialog extends StatefulWidget {
 
 class _AvatarDialogState extends State<AvatarDialog> {
   late final ImagePicker _imagePicker;
-  bool get isAvatarPresent => imagePath != null;
+  bool get isAvatarPresent => imagePath.isEmpty;
   bool get imageChanged => widget.imagePath != imagePath;
-  late String? imagePath;
+  late String imagePath;
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _AvatarDialogState extends State<AvatarDialog> {
 
   void _deleteAvatar() {
     setState(() {
-      imagePath = null;
+      imagePath = '';
     });
   }
 
