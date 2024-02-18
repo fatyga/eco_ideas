@@ -168,7 +168,7 @@ class SupabaseAuthRepository implements AuthRepository {
   }) async {
     try {
       await ref.read(supabaseClientProvider).auth.signUp(
-        emailRedirectTo: dotenv.env['SIGN_UP_FINISHED_REDIRECT_URL'],
+        emailRedirectTo: dotenv.env['SIGN_UP_COMPLETION_REDIRECT_URL'],
         email: email,
         password: password,
         data: {'username': username},

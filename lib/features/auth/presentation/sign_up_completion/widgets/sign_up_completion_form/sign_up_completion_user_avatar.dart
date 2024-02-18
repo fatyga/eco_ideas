@@ -17,7 +17,7 @@ class SignUpCompletionAvatar extends ConsumerWidget {
     );
 
     return UserAvatar(
-      imagePath: avatarInput!.value,
+      imagePath: avatarInput?.value ?? '',
       editable: true,
       radius: radius,
       onPickingImageFinish: (path) {

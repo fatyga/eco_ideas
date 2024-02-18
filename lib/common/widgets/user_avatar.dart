@@ -36,7 +36,7 @@ class UserAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final avatar = CircleAvatar(
-      foregroundImage: imagePath.isEmpty
+      foregroundImage: imagePath.isNotEmpty
           ? Image.file(
               File(imagePath),
             ).image

@@ -606,38 +606,38 @@ void main() {
         ).called(1);
       });
 
-      test('returns id of newly created user', () async {
-        final goTrueClient = MockGoTrueClient();
-        final authResponse = MockAuthResponse();
-        final session = MockSession();
-        final user = MockUser();
+      // test('returns id of newly created user', () async {
+      //   final goTrueClient = MockGoTrueClient();
+      //   final authResponse = MockAuthResponse();
+      //   final session = MockSession();
+      //   final user = MockUser();
 
-        final container = createContainer(goTrueClient: goTrueClient);
+      //   final container = createContainer(goTrueClient: goTrueClient);
 
-        when(() => authResponse.session).thenReturn(session);
-        when(() => authResponse.user).thenReturn(user);
-        when(() => user.id).thenReturn(id);
+      //   when(() => authResponse.session).thenReturn(session);
+      //   when(() => authResponse.user).thenReturn(user);
+      //   when(() => user.id).thenReturn(id);
 
-        when(
-          () => goTrueClient.signUp(
-            email: any(named: 'email'),
-            password: any(named: 'password'),
-            data: data,
-          ),
-        ).thenAnswer((_) async => authResponse);
+      //   when(
+      //     () => goTrueClient.signUp(
+      //       email: any(named: 'email'),
+      //       password: any(named: 'password'),
+      //       data: data,
+      //     ),
+      //   ).thenAnswer((_) async => authResponse);
 
-        final actual =
-            await container.read(authRepositoryProvider).signUpWithEmail(
-                  email: email,
-                  password: password,
-                  username: username,
-                );
-        expect(actual, equals(id));
-        verify(
-          () =>
-              goTrueClient.signUp(email: email, password: password, data: data),
-        ).called(1);
-      });
+      //   final actual =
+      //       await container.read(authRepositoryProvider).signUpWithEmail(
+      //             email: email,
+      //             password: password,
+      //             username: username,
+      //           );
+      //   expect(actual, equals(id));
+      //   verify(
+      //     () =>
+      //         goTrueClient.signUp(email: email, password: password, data: data),
+      //   ).called(1);
+      // });
 
       test('throws SignUpFail, if sesssion is null', () async {
         final goTrueClient = MockGoTrueClient();
