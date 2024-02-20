@@ -1,3 +1,9 @@
+import 'package:eco_ideas/common/exceptions/ei_exception.dart';
+
+class EIAuthException extends EIException {
+  const EIAuthException({required super.message, super.messageForUser});
+}
+
 class AuthFailure implements Exception {}
 
 class SignUpFail extends AuthFailure {}

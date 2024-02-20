@@ -11,7 +11,7 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Home')),
       body: ElevatedButton(
-        onPressed: () => () => ref.read(authRepositoryProvider).signOut(),
+        onPressed: () => ref.read(authRepositoryProvider).signOut(),
         child: const Text('Logout'),
       ),
     );

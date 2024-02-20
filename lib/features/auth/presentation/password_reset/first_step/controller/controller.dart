@@ -1,5 +1,5 @@
 import 'package:eco_ideas/features/auth/auth.dart';
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -50,7 +50,7 @@ class PasswordResetFirstStepController
           state.requireValue
               .copyWith(status: PasswordResetFirstStepStatus.linkSent),
         );
-      } on AuthFailure catch (e) {
+      } on EIAuthException catch (e) {
         state = AsyncError(e, StackTrace.current);
       }
     }

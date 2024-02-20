@@ -1,7 +1,7 @@
 // ignore_for_file: cascade_invocations, lines_longer_than_80_chars
 
 import 'package:eco_ideas/features/auth/auth.dart';
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_controller.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';

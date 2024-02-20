@@ -1,5 +1,5 @@
 import 'package:eco_ideas/features/auth/auth.dart';
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_state.dart';

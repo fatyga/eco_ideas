@@ -1,5 +1,5 @@
 import 'package:eco_ideas/features/auth/auth.dart';
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/second_step/controller/state.dart';

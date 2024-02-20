@@ -17,7 +17,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await Supabase.initialize(
     url: 'https://${dotenv.env['SUPBASE_PROJECT_ID']}.supabase.co',
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
-    authCallbackUrlHostname: 'auth',
   );
 
   runApp(ProviderScope(child: await builder()));

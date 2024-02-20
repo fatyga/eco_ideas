@@ -1,5 +1,5 @@
 import 'package:eco_ideas/features/auth/auth.dart';
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_failure/auth_failure.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/second_step/controller/state.dart';
@@ -105,7 +105,7 @@ class PasswordResetSecondStepController
         await ref
             .read(authRepositoryProvider)
             .setNewPassword(newPassword: stateValue.passwordInput.value);
-      } on AuthFailure catch (e) {
+      } on EIAuthException catch (e) {
         state = AsyncError(e, StackTrace.current);
         return;
       }
@@ -127,7 +127,7 @@ class PasswordResetSecondStepController
         try {
           await ref.read(authRepositoryProvider).signOut();
           state = AsyncData<PasswordResetSecondStepState>(state.requireValue);
-        } on AuthFailure catch (e) {
+        } on EIAuthException catch (e) {
           state =
               AsyncError<PasswordResetSecondStepState>(e, StackTrace.current);
         }

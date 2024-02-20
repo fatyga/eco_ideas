@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:eco_ideas/features/auth/presentation/auth/auth_screen.dart';
+import 'package:eco_ideas/features/auth/presentation/email_confirmed/email_confirmed_screen.dart';
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_screen.dart';
@@ -67,6 +68,7 @@ class SignUpCompletionRoute extends GoRouteData {
         ),
       ],
     ),
+    TypedGoRoute<EmailConfirmedRoute>(path: EmailConfirmedScreen.path)
   ],
 )
 class AuthRoute extends GoRouteData {
@@ -136,5 +138,14 @@ class PasswordResetSecondStepRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const PasswordResetSecondStepScreen();
+  }
+}
+
+class EmailConfirmedRoute extends GoRouteData {
+  const EmailConfirmedRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const EmailConfirmedScreen();
   }
 }
