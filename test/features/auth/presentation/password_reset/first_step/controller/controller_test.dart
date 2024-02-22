@@ -237,7 +237,7 @@ if state.isValid == true, invokes AuthRepository.resetPasswordForEmail and chang
             () => authRepository.resetPasswordForEmail(
               email: emailValue,
             ),
-          ).thenThrow(PasswordResetLinkFail());
+          ).thenThrow(FailToSendPasswordResetLink());
 
           final container =
               makeProviderContainer(authRepository: authRepository);

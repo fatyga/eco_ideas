@@ -1,19 +1,48 @@
 import 'package:eco_ideas/common/exceptions/ei_exception.dart';
 
-class EIAuthException extends EIException {
-  const EIAuthException({required super.message, super.messageForUser});
+sealed class EIAuthException extends EIException {
+  const EIAuthException({
+    required super.message,
+  });
 }
 
-class AuthFailure implements Exception {}
+class SignUpFail implements EIAuthException {
+  @override
+  String get message => '';
+}
 
-class SignUpFail extends AuthFailure {}
+class InvalidConfirmEmailLink implements EIAuthException {
+  @override
+  String get message => 'Link is invalid, or was opened more than once';
+}
 
-class SignOutFail extends AuthFailure {}
+class SignOutFail implements EIAuthException {
+  @override
+  String get message => 'Failed to sign out the current user.';
+}
 
-class BadEmailOrPassword extends AuthFailure {}
+class BadEmailOrPassword implements EIAuthException {
+  @override
+  String get message =>
+      'There is no account for provided credentials, or account does not exists.';
+}
 
-class GoogleSignInFail extends AuthFailure {}
+class GoogleSignInFail implements EIAuthException {
+  @override
+  String get message => '';
+}
 
-class PasswordResetLinkFail extends AuthFailure {}
+class FailToSendPasswordResetLink implements EIAuthException {
+  @override
+  String get message => '';
+}
 
-class PasswordResetSettingUpNewPasswordFail extends AuthFailure {}
+class InvalidPasswordResetLink implements EIAuthException {
+  @override
+  String get message => 'Link is invalid, or was opened more than once.';
+}
+
+class PasswordResetSettingUpNewPasswordFail implements EIException {
+  @override
+  String get message => '';
+}

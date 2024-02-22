@@ -2,7 +2,7 @@ import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/widgets.dart';
 
-extension AuthFailureUI on EIAuthException {
+extension EIAuthExceptionUI on EIAuthException {
   String resloveErrorMessageForUser(BuildContext context) {
     final l10n = context.l10n;
 
