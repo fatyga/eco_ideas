@@ -8,10 +8,10 @@ sealed class EIAuthException extends EIException {
 
 class SignUpFail implements EIAuthException {
   @override
-  String get message => '';
+  String get message => 'Fail to create new user account.';
 }
 
-class InvalidConfirmEmailLink implements EIAuthException {
+class InvalidDeepLinkLink implements EIAuthException {
   @override
   String get message => 'Link is invalid, or was opened more than once';
 }
@@ -21,28 +21,18 @@ class SignOutFail implements EIAuthException {
   String get message => 'Failed to sign out the current user.';
 }
 
-class BadEmailOrPassword implements EIAuthException {
+class SignInFail implements EIAuthException {
   @override
   String get message =>
       'There is no account for provided credentials, or account does not exists.';
 }
 
-class GoogleSignInFail implements EIAuthException {
+class PasswordResetLinkSendFail implements EIAuthException {
   @override
-  String get message => '';
+  String get message => 'Fail to send password reset link.';
 }
 
-class FailToSendPasswordResetLink implements EIAuthException {
+class SetUpNewPasswordFail implements EIException {
   @override
-  String get message => '';
-}
-
-class InvalidPasswordResetLink implements EIAuthException {
-  @override
-  String get message => 'Link is invalid, or was opened more than once.';
-}
-
-class PasswordResetSettingUpNewPasswordFail implements EIException {
-  @override
-  String get message => '';
+  String get message => 'Fail to set up new password.';
 }

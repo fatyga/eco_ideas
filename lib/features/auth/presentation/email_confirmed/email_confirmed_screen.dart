@@ -8,6 +8,7 @@ class EmailConfirmedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
-        body: Column(children: [Text('Your account is fully activated!')]));
+        body: const Column(
+            children: [const Text('Your account is fully activated!')]));
   }
 }

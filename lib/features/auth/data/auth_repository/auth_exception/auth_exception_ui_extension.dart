@@ -6,10 +6,12 @@ extension EIAuthExceptionUI on EIAuthException {
   String resloveErrorMessageForUser(BuildContext context) {
     final l10n = context.l10n;
 
-    if (this is BadEmailOrPassword) {
-      return l10n.badEmailOrPasswordFailureSnackBarText;
-    } //TODO(fatyga): implement messages for the rest of errors
-
-    return 'unimplemented error';
+    return switch (this) {
+      SignUpFail() => l10n.signUpFailSnackBarText,
+      SignOutFail() => l10n.signOutFailSnackBarText,
+      SignInFail() => l10n.signInFailSnackBarText,
+      PasswordResetLinkSendFail() => l10n.passwordResetLinkSentFailSnackBarText,
+      InvalidDeepLinkLink() => l10n.invalidDeepLinkSnackBarText,
+    };
   }
 }

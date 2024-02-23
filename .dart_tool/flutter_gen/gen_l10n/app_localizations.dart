@@ -405,11 +405,41 @@ abstract class AppLocalizations {
   /// **'camera'**
   String get avatarDialogCameraOptionLabelText;
 
-  /// No description provided for @badEmailOrPasswordFailureSnackBarText.
+  /// No description provided for @signUpFailSnackBarText.
   ///
   /// In en, this message translates to:
-  /// **'Incorrect email address or password.'**
-  String get badEmailOrPasswordFailureSnackBarText;
+  /// **'Account could not be created.'**
+  String get signUpFailSnackBarText;
+
+  /// No description provided for @invalidDeepLinkSnackBarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Link has expired or is invalid.'**
+  String get invalidDeepLinkSnackBarText;
+
+  /// No description provided for @signInFailSnackBarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful sign-in attempt.'**
+  String get signInFailSnackBarText;
+
+  /// No description provided for @passwordResetLinkSentFailSnackBarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful attempt to send a link.'**
+  String get passwordResetLinkSentFailSnackBarText;
+
+  /// No description provided for @setUpNewPasswordFailSnackBarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful attempt to set up new password.'**
+  String get setUpNewPasswordFailSnackBarText;
+
+  /// No description provided for @signOutFailSnackBarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful attempt to sign out.'**
+  String get signOutFailSnackBarText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

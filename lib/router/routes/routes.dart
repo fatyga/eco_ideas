@@ -24,11 +24,14 @@ class SplashRoute extends GoRouteData {
 }
 
 // Home
-@TypedGoRoute<HomeRoute>(path: HomeScreen.path, routes: [
-  TypedGoRoute<SignUpCompletionRoute>(
-    path: SignUpCompletionScreen.path,
-  ),
-])
+@TypedGoRoute<HomeRoute>(
+  path: HomeScreen.path,
+  routes: [
+    TypedGoRoute<SignUpCompletionRoute>(
+      path: SignUpCompletionScreen.path,
+    ),
+  ],
+)
 class HomeRoute extends GoRouteData {
   const HomeRoute();
 
@@ -68,7 +71,7 @@ class SignUpCompletionRoute extends GoRouteData {
         ),
       ],
     ),
-    TypedGoRoute<EmailConfirmedRoute>(path: EmailConfirmedScreen.path)
+    TypedGoRoute<EmailConfirmedRoute>(path: EmailConfirmedScreen.path),
   ],
 )
 class AuthRoute extends GoRouteData {

@@ -586,7 +586,7 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
         '''
 if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value''',
         () async {
-          final passwordValue = validPassword;
+          const passwordValue = validPassword;
           final authRepository = MockAuthRepository();
 
           when(
@@ -619,7 +619,7 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
                   ),
                 ),
             () => listener.call(
-                  AsyncData<PasswordResetSecondStepState>(
+                  const AsyncData<PasswordResetSecondStepState>(
                     PasswordResetSecondStepState(
                       passwordInput: RestrictedPasswordInput.dirty(
                         value: passwordValue,
@@ -632,7 +632,7 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
                 ),
             () => listener.call(
                   any(that: isA<AsyncLoading<PasswordResetSecondStepState>>()),
-                  AsyncData<PasswordResetSecondStepState>(
+                  const AsyncData<PasswordResetSecondStepState>(
                     PasswordResetSecondStepState(
                       passwordInput: RestrictedPasswordInput.dirty(
                         value: passwordValue,
@@ -655,14 +655,14 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
       test(
         'emits AsyncError, when AuthRepository.setNewPassword throws an error',
         () async {
-          final passwordValue = validPassword;
+          const passwordValue = validPassword;
           final authRepository = MockAuthRepository();
 
           when(
             () => authRepository.setNewPassword(
               newPassword: validPassword,
             ),
-          ).thenThrow(PasswordResetSettingUpNewPasswordFail());
+          ).thenThrow(SetUpNewPasswordFail());
 
           final container =
               makeProviderContainer(authRepository: authRepository);
@@ -688,7 +688,7 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
                   ),
                 ),
             () => listener.call(
-                  AsyncData<PasswordResetSecondStepState>(
+                  const AsyncData<PasswordResetSecondStepState>(
                     PasswordResetSecondStepState(
                       passwordInput: RestrictedPasswordInput.dirty(
                         value: passwordValue,

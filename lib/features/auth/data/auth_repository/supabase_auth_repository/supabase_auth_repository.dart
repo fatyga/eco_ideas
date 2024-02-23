@@ -68,16 +68,12 @@ class SupabaseAuthRepository implements AuthRepository {
     required String password,
   }) async {
     try {
-      final response = await ref
+      await ref
           .read(supabaseClientProvider)
           .auth
           .signInWithPassword(email: email, password: password);
-
-      if (response.session == null || response.user == null) {
-        throw BadEmailOrPassword();
-      }
     } on supabase.AuthException catch (_) {
-      throw BadEmailOrPassword();
+      throw SignInFail();
     }
   }
 
@@ -123,7 +119,7 @@ class SupabaseAuthRepository implements AuthRepository {
     );
 
     if (result == null) {
-      throw GoogleSignInFail();
+      throw SignInFail();
     }
 
     // Request the access and id token to google
@@ -145,7 +141,7 @@ class SupabaseAuthRepository implements AuthRepository {
     final idToken = tokenResult?.idToken;
 
     if (idToken == null) {
-      throw GoogleSignInFail();
+      throw SignInFail();
     }
 
     try {
@@ -156,7 +152,7 @@ class SupabaseAuthRepository implements AuthRepository {
             nonce: rawNonce,
           );
     } on supabase.AuthException catch (_) {
-      throw GoogleSignInFail();
+      throw SignInFail();
     }
   }
 
@@ -186,7 +182,7 @@ class SupabaseAuthRepository implements AuthRepository {
             redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL'],
           );
     } on supabase.AuthException catch (_) {
-      throw FailToSendPasswordResetLink();
+      throw PasswordResetLinkSendFail();
     }
   }
 
@@ -198,7 +194,7 @@ class SupabaseAuthRepository implements AuthRepository {
           .auth
           .updateUser(supabase.UserAttributes(password: newPassword));
     } on supabase.AuthException catch (_) {
-      throw PasswordResetSettingUpNewPasswordFail();
+      throw SetUpNewPasswordFail();
     }
   }
 }

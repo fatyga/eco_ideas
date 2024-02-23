@@ -60,5 +60,11 @@
     "avatarDialogCloseButtonTooltipText": "Zamknij okno",
     "avatarDialogPickGalleryOptionLabelText": "galeria",
     "avatarDialogCameraOptionLabelText": "aparat",
-    "badEmailOrPasswordFailureSnackBarText" : "Nieprawidłowy adres email lub hasło." 
+ 
+    "signUpFailSnackBarText": "Nie udało się utworzyć konta.",
+    "invalidDeepLinkSnackBarText" : "Link wygasł lub jest nieprawidłowy.",
+    "signInFailSnackBarText" : "Nieudana próba logowania.",
+    "passwordResetLinkSentFailSnackBarText": "Nieudana próba wysłania linka.",
+    "setUpNewPasswordFailSnackBarText" : "Nieudana próba zmiany hasła.",
+    "signOutFailSnackBarText" : "Nieudana próba wylogowania."
 }

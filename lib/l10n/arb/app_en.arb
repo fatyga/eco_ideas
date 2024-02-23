@@ -61,5 +61,10 @@
     "avatarDialogPickGalleryOptionLabelText": "gallery",
     "avatarDialogCameraOptionLabelText": "camera",
 
-    "badEmailOrPasswordFailureSnackBarText": "Incorrect email address or password."
+    "signUpFailSnackBarText": "Account could not be created.",
+    "invalidDeepLinkSnackBarText" : "Link has expired or is invalid.",
+    "signInFailSnackBarText" : "Unsuccessful sign-in attempt.",
+    "passwordResetLinkSentFailSnackBarText": "Unsuccessful attempt to send a link.",
+    "setUpNewPasswordFailSnackBarText" : "Unsuccessful attempt to set up new password.",
+    "signOutFailSnackBarText" : "Unsuccessful attempt to sign out."
 }

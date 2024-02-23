@@ -45,8 +45,9 @@ class SignUpPasswordRetypeField extends ConsumerWidget {
       focusNode: focusNode,
       onChanged:
           ref.read(signUpControllerProvider.notifier).updatePasswordRetypeField,
-      errorText: inputState == null ||
-              !shouldBeEnabled // if passwordInput is invalid, we don't want to show errorText
+
+      /// if passwordInput is invalid, we don't want to show errorText
+      errorText: inputState == null || !shouldBeEnabled
           ? null
           : inputState.isPure
               ? null

@@ -161,5 +161,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get avatarDialogCameraOptionLabelText => 'camera';
 
   @override
-  String get badEmailOrPasswordFailureSnackBarText => 'Incorrect email address or password.';
+  String get signUpFailSnackBarText => 'Account could not be created.';
+
+  @override
+  String get invalidDeepLinkSnackBarText => 'Link has expired or is invalid.';
+
+  @override
+  String get signInFailSnackBarText => 'Unsuccessful sign-in attempt.';
+
+  @override
+  String get passwordResetLinkSentFailSnackBarText => 'Unsuccessful attempt to send a link.';
+
+  @override
+  String get setUpNewPasswordFailSnackBarText => 'Unsuccessful attempt to set up new password.';
+
+  @override
+  String get signOutFailSnackBarText => 'Unsuccessful attempt to sign out.';
 }

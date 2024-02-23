@@ -419,7 +419,7 @@ void main() {
         ).called(1);
       });
 
-      test('throws BadEmailOrPassword, if sesssion is null', () async {
+      test('throws SignInFail, if sesssion is null', () async {
         final goTrueClient = MockGoTrueClient();
         final authResponse = MockAuthResponse();
         final container = createContainer(goTrueClient: goTrueClient);
@@ -437,11 +437,11 @@ void main() {
           () async => container
               .read(authRepositoryProvider)
               .signInWithEmail(email: email, password: password),
-          throwsA(isA<BadEmailOrPassword>()),
+          throwsA(isA<SignInFail>()),
         );
       });
 
-      test('throws BadEmailOrPassword, if user is null', () async {
+      test('throws SignInFail, if user is null', () async {
         final goTrueClient = MockGoTrueClient();
         final authResponse = MockAuthResponse();
         final session = MockSession();
@@ -461,12 +461,11 @@ void main() {
           () async => container
               .read(authRepositoryProvider)
               .signInWithEmail(email: email, password: password),
-          throwsA(isA<BadEmailOrPassword>()),
+          throwsA(isA<SignInFail>()),
         );
       });
 
-      test(
-          '''throws BadEmailOrPassword, if GoTrueClient.signInWithPassword throws''',
+      test('''throws SignInFail, if GoTrueClient.signInWithPassword throws''',
           () async {
         final goTrueClient = MockGoTrueClient();
         final exception = MockAuthException();
@@ -484,7 +483,7 @@ void main() {
           () async => container
               .read(authRepositoryProvider)
               .signInWithEmail(email: email, password: password),
-          throwsA(isA<BadEmailOrPassword>()),
+          throwsA(isA<SignInFail>()),
         );
       });
     });
@@ -509,7 +508,7 @@ void main() {
           expect(
             () async =>
                 container.read(authRepositoryProvider).signInWithGoogle(),
-            throwsA(isA<GoogleSignInFail>()),
+            throwsA(isA<SignInFail>()),
           );
         },
       );
@@ -532,7 +531,7 @@ void main() {
           expect(
             () async =>
                 container.read(authRepositoryProvider).signInWithGoogle(),
-            throwsA(isA<GoogleSignInFail>()),
+            throwsA(isA<SignInFail>()),
           );
         },
       );
@@ -563,7 +562,7 @@ void main() {
           expect(
             () async =>
                 container.read(authRepositoryProvider).signInWithGoogle(),
-            throwsA(isA<GoogleSignInFail>()),
+            throwsA(isA<SignInFail>()),
           );
         },
       );
@@ -605,39 +604,6 @@ void main() {
               goTrueClient.signUp(email: email, password: password, data: data),
         ).called(1);
       });
-
-      // test('returns id of newly created user', () async {
-      //   final goTrueClient = MockGoTrueClient();
-      //   final authResponse = MockAuthResponse();
-      //   final session = MockSession();
-      //   final user = MockUser();
-
-      //   final container = createContainer(goTrueClient: goTrueClient);
-
-      //   when(() => authResponse.session).thenReturn(session);
-      //   when(() => authResponse.user).thenReturn(user);
-      //   when(() => user.id).thenReturn(id);
-
-      //   when(
-      //     () => goTrueClient.signUp(
-      //       email: any(named: 'email'),
-      //       password: any(named: 'password'),
-      //       data: data,
-      //     ),
-      //   ).thenAnswer((_) async => authResponse);
-
-      //   final actual =
-      //       await container.read(authRepositoryProvider).signUpWithEmail(
-      //             email: email,
-      //             password: password,
-      //             username: username,
-      //           );
-      //   expect(actual, equals(id));
-      //   verify(
-      //     () =>
-      //         goTrueClient.signUp(email: email, password: password, data: data),
-      //   ).called(1);
-      // });
 
       test('throws SignUpFail, if sesssion is null', () async {
         final goTrueClient = MockGoTrueClient();

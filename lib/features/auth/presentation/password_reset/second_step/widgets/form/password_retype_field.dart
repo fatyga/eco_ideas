@@ -43,7 +43,9 @@ class PasswordResetSecondStepPasswordRetypeField extends ConsumerWidget {
           .read(passwordResetSecondStepControllerProvider.notifier)
           .updatePasswordRetypeField,
       errorText: inputState == null ||
-              !shouldBeEnabled // if passwordInput is invalid, we don't want to show errorText
+
+              /// if passwordInput is invalid, we don't want to show errorText
+              !shouldBeEnabled
           ? null
           : inputState.isPure
               ? null

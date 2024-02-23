@@ -269,7 +269,7 @@ sets email to PasswordInput.dirty(value: newValue) when [newValue] is provided
             email: any(named: 'email'),
             password: any(named: 'password'),
           ),
-        ).thenThrow(BadEmailOrPassword());
+        ).thenThrow(SignInFail());
         final container = makeProviderContainer(authRepository: authRepository);
         final listener = Listener<AsyncValue<SignInState>>();
         container.listen(
