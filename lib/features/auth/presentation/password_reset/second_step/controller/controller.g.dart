@@ -7,7 +7,7 @@ part of 'controller.dart';
 // **************************************************************************
 
 String _$passwordResetSecondStepControllerHash() =>
-    r'838a1d90c99a40bcc480cec924b3c50b1d47f414';
+    r'a2fe33c78d44b7d695cfef71e24c42514c135c1f';
 
 /// See also [PasswordResetSecondStepController].
 @ProviderFor(PasswordResetSecondStepController)

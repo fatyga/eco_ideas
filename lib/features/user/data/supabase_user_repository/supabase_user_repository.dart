@@ -21,17 +21,18 @@ class SupabaseUserRepository implements UserRepository {
   final Ref ref;
 
   late final StreamSubscription<void> _userChanges;
-  UserProfile? currentUser;
+  @override
+  UserProfile? currentUserProfile;
 
   Future<void> _onUserChange(AuthState state) async {
     if (state.event == AuthChangeEvent.signedIn ||
         state.event == AuthChangeEvent.userUpdated) {
       final id = state.session?.user.id;
       if (id != null) {
-        currentUser = await _getUserProfile(id);
+        currentUserProfile = await _getUserProfile(id);
       }
     } else {
-      currentUser = null;
+      currentUserProfile = null;
     }
   }
 
@@ -51,20 +52,20 @@ class SupabaseUserRepository implements UserRepository {
   Future<void> uploadAvatar({
     required String imagePath,
   }) async {
-    if (currentUser != null) {
+    if (currentUserProfile != null) {
       final imageFile = File(imagePath);
       // upload avatar to 'avatars' bucket
       await ref
           .read(supabaseClientProvider)
           .storage
           .from('avatars')
-          .upload('${currentUser!.id}/avatar', imageFile);
+          .upload('${currentUserProfile!.id}/avatar', imageFile);
 
       // update flag isAvatarPresent, when avatar is uploaded successfully
       await ref
           .read(supabaseClientProvider)
           .from('profiles')
-          .update({'is_avatar_present': true}).eq('id', currentUser!.id);
+          .update({'is_avatar_present': true}).eq('id', currentUserProfile!.id);
     }
   }
 }

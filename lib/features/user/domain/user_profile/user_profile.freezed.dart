@@ -24,6 +24,8 @@ mixin _$UserProfile {
   String get username => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_avatar_present')
   bool get isAvatarPresent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sign_up_completed')
+  bool get isSignUpCompleted => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +42,8 @@ abstract class $UserProfileCopyWith<$Res> {
   $Res call(
       {String id,
       String username,
-      @JsonKey(name: 'is_avatar_present') bool isAvatarPresent});
+      @JsonKey(name: 'is_avatar_present') bool isAvatarPresent,
+      @JsonKey(name: 'sign_up_completed') bool isSignUpCompleted});
 }
 
 /// @nodoc
@@ -59,6 +62,7 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
     Object? id = null,
     Object? username = null,
     Object? isAvatarPresent = null,
+    Object? isSignUpCompleted = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -72,6 +76,10 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
       isAvatarPresent: null == isAvatarPresent
           ? _value.isAvatarPresent
           : isAvatarPresent // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSignUpCompleted: null == isSignUpCompleted
+          ? _value.isSignUpCompleted
+          : isSignUpCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -88,7 +96,8 @@ abstract class _$$UserProfileImplCopyWith<$Res>
   $Res call(
       {String id,
       String username,
-      @JsonKey(name: 'is_avatar_present') bool isAvatarPresent});
+      @JsonKey(name: 'is_avatar_present') bool isAvatarPresent,
+      @JsonKey(name: 'sign_up_completed') bool isSignUpCompleted});
 }
 
 /// @nodoc
@@ -105,6 +114,7 @@ class __$$UserProfileImplCopyWithImpl<$Res>
     Object? id = null,
     Object? username = null,
     Object? isAvatarPresent = null,
+    Object? isSignUpCompleted = null,
   }) {
     return _then(_$UserProfileImpl(
       id: null == id
@@ -119,6 +129,10 @@ class __$$UserProfileImplCopyWithImpl<$Res>
           ? _value.isAvatarPresent
           : isAvatarPresent // ignore: cast_nullable_to_non_nullable
               as bool,
+      isSignUpCompleted: null == isSignUpCompleted
+          ? _value.isSignUpCompleted
+          : isSignUpCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -129,7 +143,8 @@ class _$UserProfileImpl extends _UserProfile {
   const _$UserProfileImpl(
       {required this.id,
       required this.username,
-      @JsonKey(name: 'is_avatar_present') required this.isAvatarPresent})
+      @JsonKey(name: 'is_avatar_present') required this.isAvatarPresent,
+      @JsonKey(name: 'sign_up_completed') required this.isSignUpCompleted})
       : super._();
 
   factory _$UserProfileImpl.fromJson(Map<String, dynamic> json) =>
@@ -142,10 +157,13 @@ class _$UserProfileImpl extends _UserProfile {
   @override
   @JsonKey(name: 'is_avatar_present')
   final bool isAvatarPresent;
+  @override
+  @JsonKey(name: 'sign_up_completed')
+  final bool isSignUpCompleted;
 
   @override
   String toString() {
-    return 'UserProfile(id: $id, username: $username, isAvatarPresent: $isAvatarPresent)';
+    return 'UserProfile(id: $id, username: $username, isAvatarPresent: $isAvatarPresent, isSignUpCompleted: $isSignUpCompleted)';
   }
 
   @override
@@ -157,12 +175,15 @@ class _$UserProfileImpl extends _UserProfile {
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.isAvatarPresent, isAvatarPresent) ||
-                other.isAvatarPresent == isAvatarPresent));
+                other.isAvatarPresent == isAvatarPresent) &&
+            (identical(other.isSignUpCompleted, isSignUpCompleted) ||
+                other.isSignUpCompleted == isSignUpCompleted));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, isAvatarPresent);
+  int get hashCode => Object.hash(
+      runtimeType, id, username, isAvatarPresent, isSignUpCompleted);
 
   @JsonKey(ignore: true)
   @override
@@ -182,8 +203,9 @@ abstract class _UserProfile extends UserProfile {
   const factory _UserProfile(
       {required final String id,
       required final String username,
-      @JsonKey(name: 'is_avatar_present')
-      required final bool isAvatarPresent}) = _$UserProfileImpl;
+      @JsonKey(name: 'is_avatar_present') required final bool isAvatarPresent,
+      @JsonKey(name: 'sign_up_completed')
+      required final bool isSignUpCompleted}) = _$UserProfileImpl;
   const _UserProfile._() : super._();
 
   factory _UserProfile.fromJson(Map<String, dynamic> json) =
@@ -196,6 +218,9 @@ abstract class _UserProfile extends UserProfile {
   @override
   @JsonKey(name: 'is_avatar_present')
   bool get isAvatarPresent;
+  @override
+  @JsonKey(name: 'sign_up_completed')
+  bool get isSignUpCompleted;
   @override
   @JsonKey(ignore: true)
   _$$UserProfileImplCopyWith<_$UserProfileImpl> get copyWith =>

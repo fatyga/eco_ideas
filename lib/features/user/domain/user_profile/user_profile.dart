@@ -8,11 +8,12 @@ typedef UserProfileId = String;
 
 @freezed
 class UserProfile with _$UserProfile {
-  const factory UserProfile({
-    required UserProfileId id,
-    required String username,
-    @JsonKey(name: 'is_avatar_present') required bool isAvatarPresent,
-  }) = _UserProfile;
+  const factory UserProfile(
+      {required UserProfileId id,
+      required String username,
+      @JsonKey(name: 'is_avatar_present') required bool isAvatarPresent,
+      @JsonKey(name: 'sign_up_completed')
+      required bool isSignUpCompleted}) = _UserProfile;
 
   const UserProfile._();
 

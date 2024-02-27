@@ -1,4 +1,5 @@
-import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
+import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
+import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:flutter/foundation.dart';
@@ -56,6 +57,13 @@ GoRouter goRouter(GoRouterRef ref) {
           return null;
         case AuthStatus.authenticated:
           final path = state.uri.path;
+
+          final currentUser =
+              ref.read(userRepositoryProvider).currentUserProfile;
+
+          if (currentUser != null && !currentUser.isSignUpCompleted) {
+            return const SignUpCompletionRoute().location;
+          }
 
           // Redirect user from authentication-related routes
           if (!path.contains(const HomeRoute().location)) {

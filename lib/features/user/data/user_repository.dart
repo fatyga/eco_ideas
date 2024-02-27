@@ -10,7 +10,7 @@ UserRepository userRepository(UserRepositoryRef ref) =>
 
 abstract class UserRepository {
   UserRepository();
-
+  UserProfile? currentUserProfile;
   Future<void> uploadAvatar({required String imagePath});
 }
 
