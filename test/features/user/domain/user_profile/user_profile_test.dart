@@ -6,12 +6,10 @@ void main() {
     UserProfile createSubject({
       String id = '123',
       String username = 'John',
-      bool isAvatarPresent = false,
     }) {
       return UserProfile(
         id: id,
         username: username,
-        isAvatarPresent: isAvatarPresent,
       );
     }
 
@@ -34,13 +32,11 @@ void main() {
           createSubject().copyWith(
             id: '1234',
             username: 'username123',
-            isAvatarPresent: true,
           ),
           equals(
             createSubject(
               id: '1234',
               username: 'username123',
-              isAvatarPresent: true,
             ),
           ),
         );

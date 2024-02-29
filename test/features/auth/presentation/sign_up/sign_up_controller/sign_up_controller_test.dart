@@ -703,7 +703,7 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
           verifyNoMoreInteractions(listener);
         });
         test(
-            'updates state.avatarUrl to [avatarUrl], when state is AsyncData && [avatarUrl] is not empty',
+            'updates state.avatarUrl to AvatarInput.dirty(), when state is AsyncData && [avatarUrl] is not empty',
             () {
           final container = makeProviderContainer();
           final listener = Listener<AsyncValue<SignUpState>>();
@@ -722,7 +722,9 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
                 ),
             () => listener.call(
                   const AsyncData<SignUpState>(SignUpState()),
-                  const AsyncData<SignUpState>(SignUpState(avatarUrl: path)),
+                  const AsyncData<SignUpState>(
+                    SignUpState(avatarInput: AvatarInput.dirty(value: path)),
+                  ),
                 ),
           ]);
 

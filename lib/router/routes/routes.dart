@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:eco_ideas/features/auth/presentation/auth/auth_screen.dart';
-import 'package:eco_ideas/features/auth/presentation/email_confirmed/email_confirmed_screen.dart';
+
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_screen.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_screen.dart';
+
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
 import 'package:eco_ideas/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -26,11 +26,6 @@ class SplashRoute extends GoRouteData {
 // Home
 @TypedGoRoute<HomeRoute>(
   path: HomeScreen.path,
-  routes: [
-    TypedGoRoute<SignUpCompletionRoute>(
-      path: SignUpCompletionScreen.path,
-    ),
-  ],
 )
 class HomeRoute extends GoRouteData {
   const HomeRoute();
@@ -38,15 +33,6 @@ class HomeRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const HomeScreen();
-  }
-}
-
-class SignUpCompletionRoute extends GoRouteData {
-  const SignUpCompletionRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const SignUpCompletionScreen();
   }
 }
 
@@ -71,7 +57,6 @@ class SignUpCompletionRoute extends GoRouteData {
         ),
       ],
     ),
-    TypedGoRoute<EmailConfirmedRoute>(path: EmailConfirmedScreen.path),
   ],
 )
 class AuthRoute extends GoRouteData {
@@ -141,14 +126,5 @@ class PasswordResetSecondStepRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const PasswordResetSecondStepScreen();
-  }
-}
-
-class EmailConfirmedRoute extends GoRouteData {
-  const EmailConfirmedRoute();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const EmailConfirmedScreen();
   }
 }

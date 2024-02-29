@@ -157,18 +157,20 @@ class SupabaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> signUpWithEmail({
+  Future<String?> signUpWithEmail({
     required String email,
     required String password,
     required String username,
   }) async {
     try {
-      await ref.read(supabaseClientProvider).auth.signUp(
+      final response = await ref.read(supabaseClientProvider).auth.signUp(
         emailRedirectTo: dotenv.env['SIGN_UP_COMPLETION_REDIRECT_URL'],
         email: email,
         password: password,
         data: {'username': username},
       );
+
+      return response.user?.id;
     } on supabase.AuthException catch (_) {
       throw SignUpFail();
     }

@@ -1,3 +1,4 @@
+import 'package:eco_ideas/features/auth/domain/input_models/avatar_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/email_input.dart';
 
 import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
@@ -20,8 +21,8 @@ class SignUpState with _$SignUpState, AuthStateSnackBarOnErrorMixin {
     RestrictedPasswordInput passwordInput,
     @Default(PasswordRetypeInput.pure())
     PasswordRetypeInput passwordRetypeInput,
+    @Default(AvatarInput.pure()) AvatarInput avatarInput,
     @Default(SignUpStateStatus.initial) SignUpStateStatus status,
-    String? avatarUrl,
   }) = _SignUpState;
   const SignUpState._();
 
@@ -34,6 +35,7 @@ extension FieldsValidity on SignUpState {
           usernameInput,
           emailInput,
           passwordInput,
+          avatarInput,
           passwordRetypeInput,
         ],
       );

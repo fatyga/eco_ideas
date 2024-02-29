@@ -22,8 +22,8 @@ mixin _$SignUpState {
       throw _privateConstructorUsedError;
   PasswordRetypeInput get passwordRetypeInput =>
       throw _privateConstructorUsedError;
+  AvatarInput get avatarInput => throw _privateConstructorUsedError;
   SignUpStateStatus get status => throw _privateConstructorUsedError;
-  String? get avatarUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpStateCopyWith<SignUpState> get copyWith =>
@@ -41,8 +41,8 @@ abstract class $SignUpStateCopyWith<$Res> {
       EmailInput emailInput,
       RestrictedPasswordInput passwordInput,
       PasswordRetypeInput passwordRetypeInput,
-      SignUpStateStatus status,
-      String? avatarUrl});
+      AvatarInput avatarInput,
+      SignUpStateStatus status});
 }
 
 /// @nodoc
@@ -62,8 +62,8 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? emailInput = null,
     Object? passwordInput = null,
     Object? passwordRetypeInput = null,
+    Object? avatarInput = null,
     Object? status = null,
-    Object? avatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
       usernameInput: null == usernameInput
@@ -82,14 +82,14 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.passwordRetypeInput
           : passwordRetypeInput // ignore: cast_nullable_to_non_nullable
               as PasswordRetypeInput,
+      avatarInput: null == avatarInput
+          ? _value.avatarInput
+          : avatarInput // ignore: cast_nullable_to_non_nullable
+              as AvatarInput,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SignUpStateStatus,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -107,8 +107,8 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
       EmailInput emailInput,
       RestrictedPasswordInput passwordInput,
       PasswordRetypeInput passwordRetypeInput,
-      SignUpStateStatus status,
-      String? avatarUrl});
+      AvatarInput avatarInput,
+      SignUpStateStatus status});
 }
 
 /// @nodoc
@@ -126,8 +126,8 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
     Object? emailInput = null,
     Object? passwordInput = null,
     Object? passwordRetypeInput = null,
+    Object? avatarInput = null,
     Object? status = null,
-    Object? avatarUrl = freezed,
   }) {
     return _then(_$SignUpStateImpl(
       usernameInput: null == usernameInput
@@ -146,14 +146,14 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
           ? _value.passwordRetypeInput
           : passwordRetypeInput // ignore: cast_nullable_to_non_nullable
               as PasswordRetypeInput,
+      avatarInput: null == avatarInput
+          ? _value.avatarInput
+          : avatarInput // ignore: cast_nullable_to_non_nullable
+              as AvatarInput,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SignUpStateStatus,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -166,8 +166,8 @@ class _$SignUpStateImpl extends _SignUpState {
       this.emailInput = const EmailInput.pure(),
       this.passwordInput = const RestrictedPasswordInput.pure(),
       this.passwordRetypeInput = const PasswordRetypeInput.pure(),
-      this.status = SignUpStateStatus.initial,
-      this.avatarUrl})
+      this.avatarInput = const AvatarInput.pure(),
+      this.status = SignUpStateStatus.initial})
       : super._();
 
   @override
@@ -184,13 +184,14 @@ class _$SignUpStateImpl extends _SignUpState {
   final PasswordRetypeInput passwordRetypeInput;
   @override
   @JsonKey()
-  final SignUpStateStatus status;
+  final AvatarInput avatarInput;
   @override
-  final String? avatarUrl;
+  @JsonKey()
+  final SignUpStateStatus status;
 
   @override
   String toString() {
-    return 'SignUpState(usernameInput: $usernameInput, emailInput: $emailInput, passwordInput: $passwordInput, passwordRetypeInput: $passwordRetypeInput, status: $status, avatarUrl: $avatarUrl)';
+    return 'SignUpState(usernameInput: $usernameInput, emailInput: $emailInput, passwordInput: $passwordInput, passwordRetypeInput: $passwordRetypeInput, avatarInput: $avatarInput, status: $status)';
   }
 
   @override
@@ -206,14 +207,14 @@ class _$SignUpStateImpl extends _SignUpState {
                 other.passwordInput == passwordInput) &&
             (identical(other.passwordRetypeInput, passwordRetypeInput) ||
                 other.passwordRetypeInput == passwordRetypeInput) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl));
+            (identical(other.avatarInput, avatarInput) ||
+                other.avatarInput == avatarInput) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, usernameInput, emailInput,
-      passwordInput, passwordRetypeInput, status, avatarUrl);
+      passwordInput, passwordRetypeInput, avatarInput, status);
 
   @JsonKey(ignore: true)
   @override
@@ -228,8 +229,8 @@ abstract class _SignUpState extends SignUpState {
       final EmailInput emailInput,
       final RestrictedPasswordInput passwordInput,
       final PasswordRetypeInput passwordRetypeInput,
-      final SignUpStateStatus status,
-      final String? avatarUrl}) = _$SignUpStateImpl;
+      final AvatarInput avatarInput,
+      final SignUpStateStatus status}) = _$SignUpStateImpl;
   const _SignUpState._() : super._();
 
   @override
@@ -241,9 +242,9 @@ abstract class _SignUpState extends SignUpState {
   @override
   PasswordRetypeInput get passwordRetypeInput;
   @override
-  SignUpStateStatus get status;
+  AvatarInput get avatarInput;
   @override
-  String? get avatarUrl;
+  SignUpStateStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$SignUpStateImplCopyWith<_$SignUpStateImpl> get copyWith =>

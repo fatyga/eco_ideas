@@ -18,7 +18,7 @@ class AvatarDialog extends StatefulWidget {
 
 class _AvatarDialogState extends State<AvatarDialog> {
   late final ImagePicker _imagePicker;
-  bool get isAvatarPresent => imagePath.isEmpty;
+  bool get isAvatarPresent => imagePath.isNotEmpty;
   bool get imageChanged => widget.imagePath != imagePath;
   late String imagePath;
 
