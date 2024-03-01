@@ -1,3 +1,4 @@
+import 'package:eco_ideas/common/exceptions/ei_exception.dart';
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
@@ -142,7 +143,7 @@ class SignUpController extends _$SignUpController {
     if (stateValue != null) {
       state = AsyncValue.data(
         stateValue.copyWith(
-          avatarInput: AvatarInput.dirty(value: avatarUrl ?? ''),
+          avatarInput: AvatarInput.dirty(value: avatarUrl),
         ),
       );
     }
@@ -156,16 +157,23 @@ class SignUpController extends _$SignUpController {
       state = const AsyncLoading<SignUpState>();
 
       try {
-        await authRepository.signUpWithEmail(
+        final userId = await authRepository.signUpWithEmail(
           email: stateValue.emailInput.value,
           password: stateValue.passwordInput.value,
           username: stateValue.usernameInput.value,
         );
 
+        if (stateValue.avatarInput.value != null) {
+          final userRepository = ref.read(userRepositoryProvider);
+          await userRepository.uploadAvatar(
+            imagePath: stateValue.avatarInput.value!,
+          );
+        }
+
         state = AsyncData<SignUpState>(
           state.requireValue.copyWith(status: SignUpStateStatus.linkSent),
         );
-      } catch (e) {
+      } on EIException catch (e) {
         state = AsyncError<SignUpState>(e, StackTrace.current);
       }
     }

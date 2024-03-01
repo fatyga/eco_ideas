@@ -1,16 +1,17 @@
 import 'package:formz/formz.dart';
 
-enum AvatarInputError { nonExistingFile }
+enum AvatarInputError { nonExistingFile, emptyPath }
 
-class AvatarInput extends FormzInput<String, AvatarInputError> {
-  const AvatarInput.pure() : super.pure('');
+class AvatarInput extends FormzInput<String?, AvatarInputError> {
+  const AvatarInput.pure() : super.pure(null);
 
-  const AvatarInput.dirty({String value = ''}) : super.dirty(value);
+  const AvatarInput.dirty({String? value}) : super.dirty(value);
 
   @override
-  AvatarInputError? validator(String value) {
+  AvatarInputError? validator(String? value) {
+    if (value == null) return null;
     if (value.isEmpty) {
-      return AvatarInputError.nonExistingFile;
+      return AvatarInputError.emptyPath;
     }
     return null;
   }
