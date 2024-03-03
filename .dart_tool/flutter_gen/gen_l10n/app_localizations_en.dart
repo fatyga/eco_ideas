@@ -122,7 +122,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpConfirmEmailDescription => 'We\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up';
 
   @override
-  String get signUpCompletionFormTitle => 'Express yourself';
+  String get signUpCompletionFormTitle => 'Express yourself!';
 
   @override
   String get signUpCompletionFormSubmitButton => 'Submit';

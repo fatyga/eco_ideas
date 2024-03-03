@@ -60,12 +60,11 @@ class SupabaseUserRepository implements UserRepository {
           .storage
           .from('avatars')
           .upload('${currentUserProfile!.id}/avatar', imageFile);
-
-      // update flag isAvatarPresent, when avatar is uploaded successfully
-      await ref
-          .read(supabaseClientProvider)
-          .from('profiles')
-          .update({'is_avatar_present': true}).eq('id', currentUserProfile!.id);
     }
+  }
+
+  @override
+  Future<void> updateUserProfile(UserProfile modifiedUserProfile) async {
+    if (currentUserProfile != null) {}
   }
 }

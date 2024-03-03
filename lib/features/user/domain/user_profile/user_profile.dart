@@ -9,7 +9,7 @@ typedef UserProfileId = String;
 @freezed
 class UserProfile with _$UserProfile {
   const factory UserProfile({
-    required UserProfileId id,
+    @JsonKey(includeToJson: false) required UserProfileId id,
     required String username,
   }) = _UserProfile;
 

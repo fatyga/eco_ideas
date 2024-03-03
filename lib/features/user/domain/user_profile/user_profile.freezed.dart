@@ -20,6 +20,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserProfile {
+  @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
 
@@ -35,7 +36,7 @@ abstract class $UserProfileCopyWith<$Res> {
           UserProfile value, $Res Function(UserProfile) then) =
       _$UserProfileCopyWithImpl<$Res, UserProfile>;
   @useResult
-  $Res call({String id, String username});
+  $Res call({@JsonKey(includeToJson: false) String id, String username});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$UserProfileImplCopyWith<$Res>
       __$$UserProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String username});
+  $Res call({@JsonKey(includeToJson: false) String id, String username});
 }
 
 /// @nodoc
@@ -108,13 +109,15 @@ class __$$UserProfileImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserProfileImpl extends _UserProfile {
-  const _$UserProfileImpl({required this.id, required this.username})
+  const _$UserProfileImpl(
+      {@JsonKey(includeToJson: false) required this.id, required this.username})
       : super._();
 
   factory _$UserProfileImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserProfileImplFromJson(json);
 
   @override
+  @JsonKey(includeToJson: false)
   final String id;
   @override
   final String username;
@@ -154,7 +157,7 @@ class _$UserProfileImpl extends _UserProfile {
 
 abstract class _UserProfile extends UserProfile {
   const factory _UserProfile(
-      {required final String id,
+      {@JsonKey(includeToJson: false) required final String id,
       required final String username}) = _$UserProfileImpl;
   const _UserProfile._() : super._();
 
@@ -162,6 +165,7 @@ abstract class _UserProfile extends UserProfile {
       _$UserProfileImpl.fromJson;
 
   @override
+  @JsonKey(includeToJson: false)
   String get id;
   @override
   String get username;

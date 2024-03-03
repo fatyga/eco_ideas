@@ -167,11 +167,12 @@ class SupabaseAuthRepository implements AuthRepository {
         emailRedirectTo: dotenv.env['SIGN_UP_COMPLETION_REDIRECT_URL'],
         email: email,
         password: password,
-        data: {'username': username},
+        data: {'username': username, 'signUpCompleted': false},
       );
 
       return response.user?.id;
-    } on supabase.AuthException catch (_) {
+    } on supabase.AuthException catch (e) {
+      print(e);
       throw SignUpFail();
     }
   }

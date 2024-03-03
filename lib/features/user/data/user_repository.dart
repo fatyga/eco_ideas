@@ -11,6 +11,8 @@ UserRepository userRepository(UserRepositoryRef ref) =>
 abstract class UserRepository {
   UserRepository();
   UserProfile? currentUserProfile;
+
+  Future<void> updateUserProfile(UserProfile modifiedUserProfile);
   Future<void> uploadAvatar({required String imagePath});
 }
 

@@ -157,18 +157,11 @@ class SignUpController extends _$SignUpController {
       state = const AsyncLoading<SignUpState>();
 
       try {
-        final userId = await authRepository.signUpWithEmail(
+        await authRepository.signUpWithEmail(
           email: stateValue.emailInput.value,
           password: stateValue.passwordInput.value,
           username: stateValue.usernameInput.value,
         );
-
-        if (stateValue.avatarInput.value != null) {
-          final userRepository = ref.read(userRepositoryProvider);
-          await userRepository.uploadAvatar(
-            imagePath: stateValue.avatarInput.value!,
-          );
-        }
 
         state = AsyncData<SignUpState>(
           state.requireValue.copyWith(status: SignUpStateStatus.linkSent),

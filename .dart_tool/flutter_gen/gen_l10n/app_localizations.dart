@@ -330,7 +330,7 @@ abstract class AppLocalizations {
   /// No description provided for @signUpCompletionFormTitle.
   ///
   /// In en, this message translates to:
-  /// **'Express yourself'**
+  /// **'Express yourself!'**
   String get signUpCompletionFormTitle;
 
   /// No description provided for @signUpCompletionFormSubmitButton.
