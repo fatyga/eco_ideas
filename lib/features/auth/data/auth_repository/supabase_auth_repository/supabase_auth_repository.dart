@@ -167,12 +167,16 @@ class SupabaseAuthRepository implements AuthRepository {
         emailRedirectTo: dotenv.env['SIGN_UP_COMPLETION_REDIRECT_URL'],
         email: email,
         password: password,
-        data: {'username': username, 'signUpCompleted': false},
+        data: {
+          'username': username,
+
+          /// TODO(fatyga): find a way to remove null assertion operator
+          dotenv.env['SIGN_UP_COMPLETION_FLAG_NAME']!: false,
+        },
       );
 
       return response.user?.id;
-    } on supabase.AuthException catch (e) {
-      print(e);
+    } on supabase.AuthException catch (_) {
       throw SignUpFail();
     }
   }
@@ -198,6 +202,30 @@ class SupabaseAuthRepository implements AuthRepository {
           .updateUser(supabase.UserAttributes(password: newPassword));
     } on supabase.AuthException catch (_) {
       throw SetUpNewPasswordFail();
+    }
+  }
+
+  @override
+  Future<void> removeSignUpCompletedFlag() async {
+    final currentUser = ref.read(supabaseClientProvider).auth.currentUser;
+
+    if (currentUser != null) {
+      if (currentUser.userMetadata != null) {
+        if (currentUser.userMetadata!
+            .containsKey(dotenv.env['SIGN_UP_COMPLETION_FLAG_NAME'])) {
+          try {
+            final userMetadataCopy =
+                Map<String, dynamic>.from(currentUser.userMetadata!)
+                  ..remove(dotenv.env['SIGN_UP_COMPLETION_FLAG_NAME']);
+            print(userMetadataCopy);
+            await ref.read(supabaseClientProvider).auth.updateUser(
+                  supabase.UserAttributes(data: userMetadataCopy),
+                );
+          } on supabase.AuthException catch (_) {
+            throw UpdateUserFail();
+          }
+        }
+      }
     }
   }
 }

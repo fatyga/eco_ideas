@@ -12,7 +12,7 @@ part of 'user_profile.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
   return _UserProfile.fromJson(json);
@@ -23,6 +23,8 @@ mixin _$UserProfile {
   @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  @JsonKey(name: 'about_me')
+  String? get aboutMe => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,10 @@ abstract class $UserProfileCopyWith<$Res> {
           UserProfile value, $Res Function(UserProfile) then) =
       _$UserProfileCopyWithImpl<$Res, UserProfile>;
   @useResult
-  $Res call({@JsonKey(includeToJson: false) String id, String username});
+  $Res call(
+      {@JsonKey(includeToJson: false) String id,
+      String username,
+      @JsonKey(name: 'about_me') String? aboutMe});
 }
 
 /// @nodoc
@@ -54,6 +59,7 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
   $Res call({
     Object? id = null,
     Object? username = null,
+    Object? aboutMe = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -64,6 +70,10 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      aboutMe: freezed == aboutMe
+          ? _value.aboutMe
+          : aboutMe // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -76,7 +86,10 @@ abstract class _$$UserProfileImplCopyWith<$Res>
       __$$UserProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(includeToJson: false) String id, String username});
+  $Res call(
+      {@JsonKey(includeToJson: false) String id,
+      String username,
+      @JsonKey(name: 'about_me') String? aboutMe});
 }
 
 /// @nodoc
@@ -92,6 +105,7 @@ class __$$UserProfileImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? username = null,
+    Object? aboutMe = freezed,
   }) {
     return _then(_$UserProfileImpl(
       id: null == id
@@ -102,6 +116,10 @@ class __$$UserProfileImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      aboutMe: freezed == aboutMe
+          ? _value.aboutMe
+          : aboutMe // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -110,7 +128,9 @@ class __$$UserProfileImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserProfileImpl extends _UserProfile {
   const _$UserProfileImpl(
-      {@JsonKey(includeToJson: false) required this.id, required this.username})
+      {@JsonKey(includeToJson: false) required this.id,
+      required this.username,
+      @JsonKey(name: 'about_me') required this.aboutMe})
       : super._();
 
   factory _$UserProfileImpl.fromJson(Map<String, dynamic> json) =>
@@ -121,10 +141,13 @@ class _$UserProfileImpl extends _UserProfile {
   final String id;
   @override
   final String username;
+  @override
+  @JsonKey(name: 'about_me')
+  final String? aboutMe;
 
   @override
   String toString() {
-    return 'UserProfile(id: $id, username: $username)';
+    return 'UserProfile(id: $id, username: $username, aboutMe: $aboutMe)';
   }
 
   @override
@@ -134,12 +157,13 @@ class _$UserProfileImpl extends _UserProfile {
             other is _$UserProfileImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
-                other.username == username));
+                other.username == username) &&
+            (identical(other.aboutMe, aboutMe) || other.aboutMe == aboutMe));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username);
+  int get hashCode => Object.hash(runtimeType, id, username, aboutMe);
 
   @JsonKey(ignore: true)
   @override
@@ -157,8 +181,10 @@ class _$UserProfileImpl extends _UserProfile {
 
 abstract class _UserProfile extends UserProfile {
   const factory _UserProfile(
-      {@JsonKey(includeToJson: false) required final String id,
-      required final String username}) = _$UserProfileImpl;
+          {@JsonKey(includeToJson: false) required final String id,
+          required final String username,
+          @JsonKey(name: 'about_me') required final String? aboutMe}) =
+      _$UserProfileImpl;
   const _UserProfile._() : super._();
 
   factory _UserProfile.fromJson(Map<String, dynamic> json) =
@@ -169,6 +195,9 @@ abstract class _UserProfile extends UserProfile {
   String get id;
   @override
   String get username;
+  @override
+  @JsonKey(name: 'about_me')
+  String? get aboutMe;
   @override
   @JsonKey(ignore: true)
   _$$UserProfileImplCopyWith<_$UserProfileImpl> get copyWith =>

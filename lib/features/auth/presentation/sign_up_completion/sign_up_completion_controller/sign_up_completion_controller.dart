@@ -1,4 +1,5 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_controller/sign_up_completion_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -46,11 +47,21 @@ class SignUpCompletionController extends _$SignUpCompletionController {
     final stateValue = state.valueOrNull;
 
     if (stateValue != null && stateValue.isValid) {
-      await ref
-          .read(userRepositoryProvider)
+      state = const AsyncLoading<SignUpCompletionState>();
 
-          /// TODO(fatyga): find a way to remove null assertion operator
-          .uploadAvatar(imagePath: stateValue.avatarInput.value!);
+      try {
+        if (stateValue.avatarInput.value != null) {
+          await ref
+              .read(userRepositoryProvider)
+              .uploadAvatar(imagePath: stateValue.avatarInput.value!);
+        }
+
+        await ref.read(authRepositoryProvider).removeSignUpCompletedFlag();
+      } on EIAuthException catch (e) {
+        state = AsyncError<SignUpCompletionState>(e, StackTrace.current);
+      }
+
+      state = AsyncData<SignUpCompletionState>(state.requireValue);
     }
   }
 }

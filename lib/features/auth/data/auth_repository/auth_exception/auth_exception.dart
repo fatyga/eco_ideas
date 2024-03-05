@@ -32,7 +32,12 @@ class PasswordResetLinkSendFail implements EIAuthException {
   String get message => 'Fail to send password reset link.';
 }
 
-class SetUpNewPasswordFail implements EIException {
+class SetUpNewPasswordFail implements EIAuthException {
   @override
   String get message => 'Fail to set up new password.';
+}
+
+class UpdateUserFail implements EIAuthException {
+  @override
+  String get message => 'Fail to update user account';
 }

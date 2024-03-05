@@ -411,6 +411,18 @@ abstract class AppLocalizations {
   /// **'Account could not be created.'**
   String get signUpFailSnackBarText;
 
+  /// No description provided for @updateUserFail.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful attempt to update user account.'**
+  String get updateUserFail;
+
+  /// No description provided for @setNewPasswordFail.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful attempt to set new password'**
+  String get setNewPasswordFail;
+
   /// No description provided for @invalidDeepLinkSnackBarText.
   ///
   /// In en, this message translates to:

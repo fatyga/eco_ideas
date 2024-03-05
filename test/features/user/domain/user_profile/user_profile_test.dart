@@ -6,11 +6,9 @@ void main() {
     UserProfile createSubject({
       String id = '123',
       String username = 'John',
+      String aboutMe = 'I am John',
     }) {
-      return UserProfile(
-        id: id,
-        username: username,
-      );
+      return UserProfile(id: id, username: username, aboutMe: aboutMe);
     }
 
     group('constructor', () {

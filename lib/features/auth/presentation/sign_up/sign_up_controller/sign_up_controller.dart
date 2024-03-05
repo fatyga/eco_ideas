@@ -164,7 +164,7 @@ class SignUpController extends _$SignUpController {
         );
 
         state = AsyncData<SignUpState>(
-          state.requireValue.copyWith(status: SignUpStateStatus.linkSent),
+          stateValue.copyWith(status: SignUpStateStatus.linkSent),
         );
       } on EIException catch (e) {
         state = AsyncError<SignUpState>(e, StackTrace.current);

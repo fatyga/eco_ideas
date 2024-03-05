@@ -55,6 +55,7 @@ class SupabaseUserRepository implements UserRepository {
     if (currentUserProfile != null) {
       final imageFile = File(imagePath);
       // upload avatar to 'avatars' bucket
+
       await ref
           .read(supabaseClientProvider)
           .storage
@@ -65,6 +66,13 @@ class SupabaseUserRepository implements UserRepository {
 
   @override
   Future<void> updateUserProfile(UserProfile modifiedUserProfile) async {
-    if (currentUserProfile != null) {}
+    if (currentUserProfile != null &&
+        currentUserProfile != modifiedUserProfile) {
+      await ref
+          .read(supabaseClientProvider)
+          .from('profiles')
+          .update(modifiedUserProfile.toJson())
+          .eq('id', currentUserProfile!.id);
+    }
   }
 }

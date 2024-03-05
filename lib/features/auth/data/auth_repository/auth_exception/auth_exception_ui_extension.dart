@@ -12,6 +12,8 @@ extension EIAuthExceptionUI on EIAuthException {
       SignInFail() => l10n.signInFailSnackBarText,
       PasswordResetLinkSendFail() => l10n.passwordResetLinkSentFailSnackBarText,
       InvalidDeepLinkLink() => l10n.invalidDeepLinkSnackBarText,
+      SetUpNewPasswordFail() => l10n.setNewPasswordFail,
+      UpdateUserFail() => l10n.updateUserFail,
     };
   }
 }

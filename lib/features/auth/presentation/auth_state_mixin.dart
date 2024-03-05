@@ -5,8 +5,7 @@ import 'package:riverpod/riverpod.dart';
 
 mixin AuthStateSnackBarOnErrorMixin {}
 
-extension AuthStateSnackBarOnError
-    on AsyncValue<AuthStateSnackBarOnErrorMixin> {
+extension AuthStateSnackBarOnError on AsyncValue {
   void showSnackBarOnError(BuildContext context) => whenOrNull<void>(
         error: (error, __) {
           if (error is EIAuthException) {

@@ -62,6 +62,8 @@
     "avatarDialogCameraOptionLabelText": "aparat",
  
     "signUpFailSnackBarText": "Nie udało się utworzyć konta.",
+    "updateUserFail" : "Nie udało się zaktualizować informacji o koncie",
+    "setNewPasswordFail": "Nie udało się zmienić hasła",
     "invalidDeepLinkSnackBarText" : "Link wygasł lub jest nieprawidłowy.",
     "signInFailSnackBarText" : "Nieudana próba logowania.",
     "passwordResetLinkSentFailSnackBarText": "Nieudana próba wysłania linka.",

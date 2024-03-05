@@ -62,6 +62,8 @@
     "avatarDialogCameraOptionLabelText": "camera",
 
     "signUpFailSnackBarText": "Account could not be created.",
+    "updateUserFail" : "Unsuccessful attempt to update user account.",
+    "setNewPasswordFail": "Unsuccessful attempt to set new password",
     "invalidDeepLinkSnackBarText" : "Link has expired or is invalid.",
     "signInFailSnackBarText" : "Unsuccessful sign-in attempt.",
     "passwordResetLinkSentFailSnackBarText": "Unsuccessful attempt to send a link.",

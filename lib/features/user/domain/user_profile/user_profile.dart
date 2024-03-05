@@ -11,6 +11,7 @@ class UserProfile with _$UserProfile {
   const factory UserProfile({
     @JsonKey(includeToJson: false) required UserProfileId id,
     required String username,
+    @JsonKey(name: 'about_me') required String? aboutMe,
   }) = _UserProfile;
 
   const UserProfile._();

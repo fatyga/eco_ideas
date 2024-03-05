@@ -164,6 +164,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpFailSnackBarText => 'Account could not be created.';
 
   @override
+  String get updateUserFail => 'Unsuccessful attempt to update user account.';
+
+  @override
+  String get setNewPasswordFail => 'Unsuccessful attempt to set new password';
+
+  @override
   String get invalidDeepLinkSnackBarText => 'Link has expired or is invalid.';
 
   @override

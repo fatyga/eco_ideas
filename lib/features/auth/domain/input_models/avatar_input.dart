@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:formz/formz.dart';
 
 enum AvatarInputError { nonExistingFile, emptyPath }
@@ -13,6 +15,7 @@ class AvatarInput extends FormzInput<String?, AvatarInputError> {
     if (value.isEmpty) {
       return AvatarInputError.emptyPath;
     }
+    if (!File(value).existsSync()) return AvatarInputError.nonExistingFile;
     return null;
   }
 }
