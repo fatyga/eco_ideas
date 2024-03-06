@@ -1,5 +1,5 @@
 import 'package:eco_ideas/common/widgets/primary_button.dart';
-import 'package:eco_ideas/features/auth/presentation/auth_state_mixin.dart';
+import 'package:eco_ideas/features/auth/extensions/auth_state_error_extension.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_controller.dart';
 
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';

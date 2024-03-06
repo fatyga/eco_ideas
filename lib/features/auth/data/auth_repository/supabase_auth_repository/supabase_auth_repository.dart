@@ -43,6 +43,7 @@ class SupabaseAuthRepository implements AuthRepository {
         case supabase.AuthChangeEvent.tokenRefreshed:
         case supabase.AuthChangeEvent.userUpdated:
         case supabase.AuthChangeEvent.mfaChallengeVerified:
+          print(state.session!.user.userMetadata);
           yield AuthStatus.authenticated;
         case supabase.AuthChangeEvent.passwordRecovery:
           yield AuthStatus.passwordReset;
@@ -217,11 +218,14 @@ class SupabaseAuthRepository implements AuthRepository {
             final userMetadataCopy =
                 Map<String, dynamic>.from(currentUser.userMetadata!)
                   ..remove(dotenv.env['SIGN_UP_COMPLETION_FLAG_NAME']);
-            print(userMetadataCopy);
-            await ref.read(supabaseClientProvider).auth.updateUser(
-                  supabase.UserAttributes(data: userMetadataCopy),
-                );
-          } on supabase.AuthException catch (_) {
+
+            final response =
+                await ref.read(supabaseClientProvider).auth.updateUser(
+                      supabase.UserAttributes(data: userMetadataCopy),
+                    );
+            print(response.user!.userMetadata);
+          } on supabase.AuthException catch (e) {
+            print(e.message);
             throw UpdateUserFail();
           }
         }

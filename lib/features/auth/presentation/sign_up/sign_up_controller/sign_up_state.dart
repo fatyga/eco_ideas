@@ -4,7 +4,6 @@ import 'package:eco_ideas/features/auth/domain/input_models/email_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/restricted_password_input.dart';
 import 'package:eco_ideas/features/auth/domain/input_models/username_input.dart';
-import 'package:eco_ideas/features/auth/presentation/auth_state_mixin.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +12,7 @@ part 'sign_up_state.freezed.dart';
 enum SignUpStateStatus { initial, linkSent }
 
 @freezed
-class SignUpState with _$SignUpState, AuthStateSnackBarOnErrorMixin {
+class SignUpState with _$SignUpState {
   const factory SignUpState({
     @Default(UsernameInput.pure()) UsernameInput usernameInput,
     @Default(EmailInput.pure()) EmailInput emailInput,

@@ -1,12 +1,11 @@
 import 'package:eco_ideas/features/auth/auth.dart';
-import 'package:eco_ideas/features/auth/presentation/auth_state_mixin.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sign_in_state.freezed.dart';
 
 @freezed
-class SignInState with _$SignInState, AuthStateSnackBarOnErrorMixin {
+class SignInState with _$SignInState {
   const factory SignInState({
     @Default(EmailInput.pure()) EmailInput emailInput,
     @Default(PasswordInput.pure()) PasswordInput passwordInput,

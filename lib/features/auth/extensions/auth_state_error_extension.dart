@@ -3,9 +3,7 @@ import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 
-mixin AuthStateSnackBarOnErrorMixin {}
-
-extension AuthStateSnackBarOnError on AsyncValue {
+extension AuthStateSnackBarOnError<T> on AsyncValue<T> {
   void showSnackBarOnError(BuildContext context) => whenOrNull<void>(
         error: (error, __) {
           if (error is EIAuthException) {

@@ -1,5 +1,4 @@
 import 'package:eco_ideas/features/auth/auth.dart';
-import 'package:eco_ideas/features/auth/presentation/auth_state_mixin.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -8,8 +7,7 @@ part 'sign_up_completion_state.freezed.dart';
 enum SignUpCompletionStateStatus { initial, completed }
 
 @freezed
-class SignUpCompletionState
-    with _$SignUpCompletionState, AuthStateSnackBarOnErrorMixin {
+class SignUpCompletionState with _$SignUpCompletionState {
   const factory SignUpCompletionState({
     @Default(SignUpCompletionStateStatus.initial)
     SignUpCompletionStateStatus status,

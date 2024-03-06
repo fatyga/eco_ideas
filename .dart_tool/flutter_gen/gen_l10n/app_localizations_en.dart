@@ -125,7 +125,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpCompletionFormTitle => 'Express yourself!';
 
   @override
-  String get signUpCompletionFormSubmitButton => 'Submit';
+  String get signUpCompletionFormSubmitButton => 'Done!';
 
   @override
   String get signUpCompletionDoneTitle => 'Congratulations!';

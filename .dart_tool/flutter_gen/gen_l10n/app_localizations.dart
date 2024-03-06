@@ -336,7 +336,7 @@ abstract class AppLocalizations {
   /// No description provided for @signUpCompletionFormSubmitButton.
   ///
   /// In en, this message translates to:
-  /// **'Submit'**
+  /// **'Done!'**
   String get signUpCompletionFormSubmitButton;
 
   /// No description provided for @signUpCompletionDoneTitle.
