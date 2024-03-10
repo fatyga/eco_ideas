@@ -8,51 +8,40 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseUserRepository implements UserRepository {
-  SupabaseUserRepository(this.ref) {
-    _userChanges = ref
-        .read(supabaseClientProvider)
-        .auth
-        .onAuthStateChange
-        .listen(_onUserChange);
-
-    ref.onDispose(() async => _userChanges.cancel());
-  }
+  SupabaseUserRepository(this.ref);
 
   final Ref ref;
 
-  late final StreamSubscription<void> _userChanges;
+  UserProfile? _currentUserProfile;
+
   @override
-  UserProfile? currentUserProfile;
-
-  Future<void> _onUserChange(AuthState state) async {
-    if (state.event == AuthChangeEvent.signedIn ||
-        state.event == AuthChangeEvent.userUpdated) {
-      final id = state.session?.user.id;
-      if (id != null) {
-        currentUserProfile = await _getUserProfile(id);
+  Future<UserProfile?> getUserProfile() async {
+    final supabaseUser = ref.read(supabaseClientProvider).auth.currentUser;
+    if (supabaseUser != null) {
+      try {
+        final json = await ref
+            .read(supabaseClientProvider)
+            .from('profiles')
+            .select<PostgrestMap>()
+            .eq('id', supabaseUser.id)
+            .limit(1)
+            .single();
+        final userProfile = UserProfile.fromJson(json);
+        _currentUserProfile = userProfile;
+        return userProfile;
+      } catch (_) {
+        _currentUserProfile = null;
+        return null;
       }
-    } else {
-      currentUserProfile = null;
     }
-  }
-
-  Future<UserProfile?> _getUserProfile(String id) async {
-    final json = await ref
-        .read(supabaseClientProvider)
-        .from('profiles')
-        .select<PostgrestMap>()
-        .eq('id', id)
-        .limit(1)
-        .single();
-
-    return UserProfile.fromJson(json);
+    return null;
   }
 
   @override
   Future<void> uploadAvatar({
     required String imagePath,
   }) async {
-    if (currentUserProfile != null) {
+    if (_currentUserProfile != null) {
       final imageFile = File(imagePath);
       // upload avatar to 'avatars' bucket
 
@@ -60,19 +49,19 @@ class SupabaseUserRepository implements UserRepository {
           .read(supabaseClientProvider)
           .storage
           .from('avatars')
-          .upload('${currentUserProfile!.id}/avatar', imageFile);
+          .upload('${_currentUserProfile!.id}/avatar', imageFile);
     }
   }
 
   @override
   Future<void> updateUserProfile(UserProfile modifiedUserProfile) async {
-    if (currentUserProfile != null &&
-        currentUserProfile != modifiedUserProfile) {
+    if (_currentUserProfile != null &&
+        _currentUserProfile != modifiedUserProfile) {
       await ref
           .read(supabaseClientProvider)
           .from('profiles')
           .update(modifiedUserProfile.toJson())
-          .eq('id', currentUserProfile!.id);
+          .eq('id', _currentUserProfile!.id);
     }
   }
 }

@@ -43,7 +43,6 @@ class SupabaseAuthRepository implements AuthRepository {
         case supabase.AuthChangeEvent.tokenRefreshed:
         case supabase.AuthChangeEvent.userUpdated:
         case supabase.AuthChangeEvent.mfaChallengeVerified:
-          print(state.session!.user.userMetadata);
           yield AuthStatus.authenticated;
         case supabase.AuthChangeEvent.passwordRecovery:
           yield AuthStatus.passwordReset;

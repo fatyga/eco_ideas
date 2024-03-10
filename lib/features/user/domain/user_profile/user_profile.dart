@@ -13,10 +13,10 @@ class UserProfile with _$UserProfile {
     required String username,
     @JsonKey(name: 'about_me') required String? aboutMe,
   }) = _UserProfile;
+  factory UserProfile.fromJson(Map<String, dynamic> json) =>
+      _$UserProfileFromJson(json);
 
   const UserProfile._();
 
-  factory UserProfile.fromJson(Map<String, dynamic> json) =>
-      _$UserProfileFromJson(json);
   String get avatarUrl => '${dotenv.env['AVATAR_BASE_URL']}/$id/avatar';
 }
