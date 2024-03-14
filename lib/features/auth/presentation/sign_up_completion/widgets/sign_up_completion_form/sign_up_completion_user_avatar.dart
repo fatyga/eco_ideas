@@ -17,9 +17,12 @@ class SignUpCompletionUserAvatar extends ConsumerWidget {
       ),
     );
 
+    final isLoading = ref.watch(
+        signUpCompletionControllerProvider.select((state) => state.isLoading));
+
     return UserAvatar(
       imagePath: avatarInput?.value,
-      editable: true,
+      editable: !isLoading,
       radius: radius,
       onPickingImageFinish: (path) {
         ref
