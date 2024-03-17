@@ -333,6 +333,12 @@ abstract class AppLocalizations {
   /// **'Express yourself!'**
   String get signUpCompletionFormTitle;
 
+  /// No description provided for @signUpCompletionFormDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you start using EcoIdeas, you can let other users get to know you better!'**
+  String get signUpCompletionFormDescription;
+
   /// No description provided for @signUpCompletionFormSubmitButton.
   ///
   /// In en, this message translates to:

@@ -25,6 +25,8 @@ mixin _$UserProfile {
   String get username => throw _privateConstructorUsedError;
   @JsonKey(name: 'about_me')
   String? get aboutMe => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sign_up_completed')
+  bool get signUpCompleted => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +43,8 @@ abstract class $UserProfileCopyWith<$Res> {
   $Res call(
       {@JsonKey(includeToJson: false) String id,
       String username,
-      @JsonKey(name: 'about_me') String? aboutMe});
+      @JsonKey(name: 'about_me') String? aboutMe,
+      @JsonKey(name: 'sign_up_completed') bool signUpCompleted});
 }
 
 /// @nodoc
@@ -60,6 +63,7 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
     Object? id = null,
     Object? username = null,
     Object? aboutMe = freezed,
+    Object? signUpCompleted = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -74,6 +78,10 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
           ? _value.aboutMe
           : aboutMe // ignore: cast_nullable_to_non_nullable
               as String?,
+      signUpCompleted: null == signUpCompleted
+          ? _value.signUpCompleted
+          : signUpCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -89,7 +97,8 @@ abstract class _$$UserProfileImplCopyWith<$Res>
   $Res call(
       {@JsonKey(includeToJson: false) String id,
       String username,
-      @JsonKey(name: 'about_me') String? aboutMe});
+      @JsonKey(name: 'about_me') String? aboutMe,
+      @JsonKey(name: 'sign_up_completed') bool signUpCompleted});
 }
 
 /// @nodoc
@@ -106,6 +115,7 @@ class __$$UserProfileImplCopyWithImpl<$Res>
     Object? id = null,
     Object? username = null,
     Object? aboutMe = freezed,
+    Object? signUpCompleted = null,
   }) {
     return _then(_$UserProfileImpl(
       id: null == id
@@ -120,6 +130,10 @@ class __$$UserProfileImplCopyWithImpl<$Res>
           ? _value.aboutMe
           : aboutMe // ignore: cast_nullable_to_non_nullable
               as String?,
+      signUpCompleted: null == signUpCompleted
+          ? _value.signUpCompleted
+          : signUpCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -130,7 +144,8 @@ class _$UserProfileImpl extends _UserProfile {
   const _$UserProfileImpl(
       {@JsonKey(includeToJson: false) required this.id,
       required this.username,
-      @JsonKey(name: 'about_me') required this.aboutMe})
+      @JsonKey(name: 'about_me') required this.aboutMe,
+      @JsonKey(name: 'sign_up_completed') required this.signUpCompleted})
       : super._();
 
   factory _$UserProfileImpl.fromJson(Map<String, dynamic> json) =>
@@ -144,10 +159,13 @@ class _$UserProfileImpl extends _UserProfile {
   @override
   @JsonKey(name: 'about_me')
   final String? aboutMe;
+  @override
+  @JsonKey(name: 'sign_up_completed')
+  final bool signUpCompleted;
 
   @override
   String toString() {
-    return 'UserProfile(id: $id, username: $username, aboutMe: $aboutMe)';
+    return 'UserProfile(id: $id, username: $username, aboutMe: $aboutMe, signUpCompleted: $signUpCompleted)';
   }
 
   @override
@@ -158,12 +176,15 @@ class _$UserProfileImpl extends _UserProfile {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
                 other.username == username) &&
-            (identical(other.aboutMe, aboutMe) || other.aboutMe == aboutMe));
+            (identical(other.aboutMe, aboutMe) || other.aboutMe == aboutMe) &&
+            (identical(other.signUpCompleted, signUpCompleted) ||
+                other.signUpCompleted == signUpCompleted));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, aboutMe);
+  int get hashCode =>
+      Object.hash(runtimeType, id, username, aboutMe, signUpCompleted);
 
   @JsonKey(ignore: true)
   @override
@@ -181,10 +202,11 @@ class _$UserProfileImpl extends _UserProfile {
 
 abstract class _UserProfile extends UserProfile {
   const factory _UserProfile(
-          {@JsonKey(includeToJson: false) required final String id,
-          required final String username,
-          @JsonKey(name: 'about_me') required final String? aboutMe}) =
-      _$UserProfileImpl;
+      {@JsonKey(includeToJson: false) required final String id,
+      required final String username,
+      @JsonKey(name: 'about_me') required final String? aboutMe,
+      @JsonKey(name: 'sign_up_completed')
+      required final bool signUpCompleted}) = _$UserProfileImpl;
   const _UserProfile._() : super._();
 
   factory _UserProfile.fromJson(Map<String, dynamic> json) =
@@ -198,6 +220,9 @@ abstract class _UserProfile extends UserProfile {
   @override
   @JsonKey(name: 'about_me')
   String? get aboutMe;
+  @override
+  @JsonKey(name: 'sign_up_completed')
+  bool get signUpCompleted;
   @override
   @JsonKey(ignore: true)
   _$$UserProfileImplCopyWith<_$UserProfileImpl> get copyWith =>

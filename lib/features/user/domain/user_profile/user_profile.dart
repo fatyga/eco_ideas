@@ -12,6 +12,7 @@ class UserProfile with _$UserProfile {
     @JsonKey(includeToJson: false) required UserProfileId id,
     required String username,
     @JsonKey(name: 'about_me') required String? aboutMe,
+    @JsonKey(name: 'sign_up_completed') required bool signUpCompleted,
   }) = _UserProfile;
   factory UserProfile.fromJson(Map<String, dynamic> json) =>
       _$UserProfileFromJson(json);

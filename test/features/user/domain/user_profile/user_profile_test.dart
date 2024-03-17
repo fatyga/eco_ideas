@@ -3,12 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('UserProfile', () {
-    UserProfile createSubject({
-      String id = '123',
-      String username = 'John',
-      String aboutMe = 'I am John',
-    }) {
-      return UserProfile(id: id, username: username, aboutMe: aboutMe);
+    UserProfile createSubject(
+        {String id = '123',
+        String username = 'John',
+        String aboutMe = 'I am John',
+        bool signUpCompleted = false}) {
+      return UserProfile(
+          id: id, username: username, aboutMe: aboutMe, signUpCompleted: false);
     }
 
     group('constructor', () {

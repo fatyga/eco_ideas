@@ -43,6 +43,7 @@
     "signUpConfirmEmailDescription": "Wysłaliśmy maila z linkiem aktywacyjnym na twoją skrzynkę pocztową. Otwórz go, aby aktywować konto, i ukończyć zakładanie konta.",
     
     "signUpCompletionFormTitle": "Wyraź siebie!",
+     "signUpCompletionFormDescription": "Zanim zaczniesz korzystać z aplikacji, możesz dać się lepiej poznać innym użytkownikom!",
     "signUpCompletionFormSubmitButton": "Gotowe!",
 
     "signUpFinishedTitle": "Gratulacje!",

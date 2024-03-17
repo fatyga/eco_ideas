@@ -38,6 +38,4 @@ abstract class AuthRepository {
   Future<void> resetPasswordForEmail({required String email});
 
   Future<void> setNewPassword({required String newPassword});
-
-  Future<void> removeSignUpCompletedFlag();
 }

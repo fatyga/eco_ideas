@@ -12,7 +12,7 @@ class SignUpCompletionForm extends StatelessWidget {
     final l10n = context.l10n;
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -22,6 +22,11 @@ class SignUpCompletionForm extends StatelessWidget {
                 .copyWith(color: theme.colorScheme.primary),
           ),
           const SizedBox(height: 16),
+          Text(
+            l10n.signUpCompletionFormDescription,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 32),
           const SignUpCompletionUserAvatar(),
           const SizedBox(height: 16),
           const SignUpCompletionAboutMeField(),

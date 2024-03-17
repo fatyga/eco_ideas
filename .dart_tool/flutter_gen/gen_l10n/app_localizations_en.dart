@@ -125,6 +125,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpCompletionFormTitle => 'Express yourself!';
 
   @override
+  String get signUpCompletionFormDescription => 'Before you start using EcoIdeas, you can let other users get to know you better!';
+
+  @override
   String get signUpCompletionFormSubmitButton => 'Done!';
 
   @override

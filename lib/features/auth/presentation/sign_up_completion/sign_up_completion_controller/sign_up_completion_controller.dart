@@ -2,6 +2,8 @@ import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_controller/sign_up_completion_state.dart';
+import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
+import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'sign_up_completion_controller.g.dart';
@@ -50,13 +52,12 @@ class SignUpCompletionController extends _$SignUpCompletionController {
       state = const AsyncLoading<SignUpCompletionState>();
 
       try {
-        if (stateValue.avatarInput.value != null) {
-          await ref
-              .read(userRepositoryProvider)
-              .uploadAvatar(imagePath: stateValue.avatarInput.value!);
-        }
-
-        await ref.read(authRepositoryProvider).removeSignUpCompletedFlag();
+        await ref.read(userRepositoryProvider).completeSignUp(
+              avatarPath: stateValue.avatarInput.value,
+              aboutMe: stateValue.aboutMeInput.value,
+            );
+        //TODO(fatyga): find a way to automatically go to HomeRoute
+        ref.read(goRouterProvider).go(const HomeRoute().location);
       } on EIAuthException catch (e) {
         state = AsyncError<SignUpCompletionState>(e, StackTrace.current);
       }

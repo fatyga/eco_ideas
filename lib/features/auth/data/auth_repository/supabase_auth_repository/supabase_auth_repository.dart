@@ -204,31 +204,4 @@ class SupabaseAuthRepository implements AuthRepository {
       throw SetUpNewPasswordFail();
     }
   }
-
-  @override
-  Future<void> removeSignUpCompletedFlag() async {
-    final currentUser = ref.read(supabaseClientProvider).auth.currentUser;
-
-    if (currentUser != null) {
-      if (currentUser.userMetadata != null) {
-        if (currentUser.userMetadata!
-            .containsKey(dotenv.env['SIGN_UP_COMPLETION_FLAG_NAME'])) {
-          try {
-            final userMetadataCopy =
-                Map<String, dynamic>.from(currentUser.userMetadata!)
-                  ..remove(dotenv.env['SIGN_UP_COMPLETION_FLAG_NAME']);
-
-            final response =
-                await ref.read(supabaseClientProvider).auth.updateUser(
-                      supabase.UserAttributes(data: userMetadataCopy),
-                    );
-            print(response.user!.userMetadata);
-          } on supabase.AuthException catch (e) {
-            print(e.message);
-            throw UpdateUserFail();
-          }
-        }
-      }
-    }
-  }
 }

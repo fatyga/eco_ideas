@@ -12,8 +12,6 @@ class SupabaseUserRepository implements UserRepository {
 
   final Ref ref;
 
-  UserProfile? _currentUserProfile;
-
   @override
   Future<UserProfile?> getUserProfile() async {
     final supabaseUser = ref.read(supabaseClientProvider).auth.currentUser;
@@ -27,10 +25,9 @@ class SupabaseUserRepository implements UserRepository {
             .limit(1)
             .single();
         final userProfile = UserProfile.fromJson(json);
-        _currentUserProfile = userProfile;
+
         return userProfile;
       } catch (_) {
-        _currentUserProfile = null;
         return null;
       }
     }
@@ -39,29 +36,53 @@ class SupabaseUserRepository implements UserRepository {
 
   @override
   Future<void> uploadAvatar({
-    required String imagePath,
+    required String? imagePath,
   }) async {
-    if (_currentUserProfile != null) {
-      final imageFile = File(imagePath);
-      // upload avatar to 'avatars' bucket
+    final currentUser = await getUserProfile();
 
+    if (currentUser != null) {
+      if (imagePath == null) {
+        await ref
+            .read(supabaseClientProvider)
+            .storage
+            .from('avatars')
+            .remove(['${currentUser.id}/avatar']);
+        return;
+      }
+
+      final imageFile = File(imagePath);
+
+      // upload avatar to 'avatars' bucket
       await ref
           .read(supabaseClientProvider)
           .storage
           .from('avatars')
-          .upload('${_currentUserProfile!.id}/avatar', imageFile);
+          .upload('${currentUser.id}/avatar', imageFile);
     }
   }
 
   @override
   Future<void> updateUserProfile(UserProfile modifiedUserProfile) async {
-    if (_currentUserProfile != null &&
-        _currentUserProfile != modifiedUserProfile) {
+    final currentUser = await getUserProfile();
+    if (currentUser != null) {
       await ref
           .read(supabaseClientProvider)
           .from('profiles')
           .update(modifiedUserProfile.toJson())
-          .eq('id', _currentUserProfile!.id);
+          .eq('id', currentUser.id);
+    }
+  }
+
+  @override
+  Future<void> completeSignUp({String? avatarPath, String? aboutMe}) async {
+    final currentUser = await getUserProfile();
+
+    if (currentUser != null) {
+      await uploadAvatar(imagePath: avatarPath);
+
+      await updateUserProfile(
+        currentUser.copyWith(aboutMe: aboutMe, signUpCompleted: true),
+      );
     }
   }
 }

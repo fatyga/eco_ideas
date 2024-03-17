@@ -13,7 +13,9 @@ abstract class UserRepository {
 
   Future<UserProfile?> getUserProfile();
   Future<void> updateUserProfile(UserProfile modifiedUserProfile);
-  Future<void> uploadAvatar({required String imagePath});
+  Future<void> uploadAvatar({required String? imagePath});
+
+  Future<void> completeSignUp({String? avatarPath, String? aboutMe});
 }
 
 class UserFailure implements Exception {}

@@ -1,4 +1,3 @@
-import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:eco_ideas/router/routes/routes.dart';
@@ -30,7 +29,7 @@ GoRouter goRouter(GoRouterRef ref) {
     routes: $appRoutes,
     debugLogDiagnostics: true,
     refreshListenable: isAuth,
-    redirect: (context, state) {
+    redirect: (context, state) async {
       if (isAuth.value.unwrapPrevious().hasError) {
         return const SignInRoute().location;
       }
@@ -59,14 +58,10 @@ GoRouter goRouter(GoRouterRef ref) {
           final path = state.uri.path;
 
           final currentUser =
-              ref.read(supabaseClientProvider).auth.currentUser!;
+              await ref.read(userRepositoryProvider).getUserProfile();
 
-          if (currentUser.userMetadata != null) {
-            if (currentUser.userMetadata!.containsKey('signUpCompleted')) {
-              if (currentUser.userMetadata!['signUpCompleted'] == false) {
-                return const SignUpCompletionRoute().location;
-              }
-            }
+          if (currentUser != null && !currentUser.signUpCompleted) {
+            return const SignUpCompletionRoute().location;
           }
           // Redirect user from authentication-related routes
           if (!path.contains(const HomeRoute().location)) {
