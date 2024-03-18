@@ -69,5 +69,9 @@
     "signInFailSnackBarText" : "Unsuccessful sign-in attempt.",
     "passwordResetLinkSentFailSnackBarText": "Unsuccessful attempt to send a link.",
     "setUpNewPasswordFailSnackBarText" : "Unsuccessful attempt to set up new password.",
-    "signOutFailSnackBarText" : "Unsuccessful attempt to sign out."
+    "signOutFailSnackBarText" : "Unsuccessful attempt to sign out.",
+
+    "getUserProfileFailSnackBarText": "Unsuccessful attempt to get user profile",
+    "uploadAvatarFailSnackBarText": "Unsuccessful attempt to upload avatar",
+    "updateUserProfileFailSnackBarText": "Unsuccessful attempt to update profile"
 }

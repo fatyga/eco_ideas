@@ -69,5 +69,9 @@
     "signInFailSnackBarText" : "Nieudana próba logowania.",
     "passwordResetLinkSentFailSnackBarText": "Nieudana próba wysłania linka.",
     "setUpNewPasswordFailSnackBarText" : "Nieudana próba zmiany hasła.",
-    "signOutFailSnackBarText" : "Nieudana próba wylogowania."
+    "signOutFailSnackBarText" : "Nieudana próba wylogowania.",
+
+    "getUserProfileFailSnackBarText": "Nieudana próba wczytania profilu użytkownika.",
+    "uploadAvatarFailSnackBarText": "Nieudana próba zapisania avataru.",
+    "updateUserProfileFailSnackBarText": "Nieudana próba zaktualizowania profilu użytkownika."
 }

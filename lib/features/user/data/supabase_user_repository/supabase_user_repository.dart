@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
+import 'package:eco_ideas/features/user/data/user_exception.dart';
 import 'package:eco_ideas/features/user/domain/user_profile/user_profile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -28,7 +29,7 @@ class SupabaseUserRepository implements UserRepository {
 
         return userProfile;
       } catch (_) {
-        return null;
+        throw GetUserProfileFail();
       }
     }
     return null;
@@ -41,23 +42,27 @@ class SupabaseUserRepository implements UserRepository {
     final currentUser = await getUserProfile();
 
     if (currentUser != null) {
-      if (imagePath == null) {
+      try {
+        if (imagePath == null) {
+          await ref
+              .read(supabaseClientProvider)
+              .storage
+              .from('avatars')
+              .remove(['${currentUser.id}/avatar']);
+          return;
+        }
+
+        final imageFile = File(imagePath);
+
+        // upload avatar to 'avatars' bucket
         await ref
             .read(supabaseClientProvider)
             .storage
             .from('avatars')
-            .remove(['${currentUser.id}/avatar']);
-        return;
+            .upload('${currentUser.id}/avatar', imageFile);
+      } catch (e) {
+        throw UploadAvatarFail();
       }
-
-      final imageFile = File(imagePath);
-
-      // upload avatar to 'avatars' bucket
-      await ref
-          .read(supabaseClientProvider)
-          .storage
-          .from('avatars')
-          .upload('${currentUser.id}/avatar', imageFile);
     }
   }
 
@@ -65,11 +70,15 @@ class SupabaseUserRepository implements UserRepository {
   Future<void> updateUserProfile(UserProfile modifiedUserProfile) async {
     final currentUser = await getUserProfile();
     if (currentUser != null) {
-      await ref
-          .read(supabaseClientProvider)
-          .from('profiles')
-          .update(modifiedUserProfile.toJson())
-          .eq('id', currentUser.id);
+      try {
+        await ref
+            .read(supabaseClientProvider)
+            .from('profiles')
+            .update(modifiedUserProfile.toJson())
+            .eq('id', currentUser.id);
+      } catch (e) {
+        throw UserProfileUpdateFail();
+      }
     }
   }
 

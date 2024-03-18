@@ -3,11 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('UserProfile', () {
-    UserProfile createSubject(
-        {String id = '123',
-        String username = 'John',
-        String aboutMe = 'I am John',
-        bool signUpCompleted = false}) {
+    UserProfile createSubject({
+      String id = '123',
+      String username = 'John',
+      String aboutMe = 'I am John',
+      bool signUpCompleted = false,
+    }) {
       return UserProfile(
           id: id, username: username, aboutMe: aboutMe, signUpCompleted: false);
     }
@@ -44,10 +45,12 @@ void main() {
 
     group('formJson', () {
       test('works correctly', () {
+        final profile = createSubject();
         final json = <String, dynamic>{
-          'id': '123',
-          'username': 'John',
-          'is_avatar_present': false,
+          'id': profile.id,
+          'username': profile.username,
+          'about_me': profile.aboutMe,
+          'sign_up_completed': profile.signUpCompleted,
         };
 
         expect(UserProfile.fromJson(json), equals(createSubject()));
@@ -56,10 +59,11 @@ void main() {
 
     group('toJson', () {
       test('works correctly', () {
+        final profile = createSubject();
         final json = <String, dynamic>{
-          'id': '123',
-          'username': 'John',
-          'is_avatar_present': false,
+          'username': profile.username,
+          'about_me': profile.aboutMe,
+          'sign_up_completed': profile.signUpCompleted,
         };
 
         expect(createSubject().toJson(), equals(json));
