@@ -119,14 +119,13 @@ class PasswordResetSecondStepController
     final stateValue = state.valueOrNull;
 
     final isPasswordResetStillActive =
-        ref.read(authChangesProvider).valueOrNull?.isPasswordReset;
+        ref.watch(authChangesProvider).valueOrNull?.isPasswordReset;
 
     if (stateValue != null && isPasswordResetStillActive != null) {
       if (isPasswordResetStillActive) {
         state = const AsyncLoading<PasswordResetSecondStepState>();
         try {
           await ref.read(authRepositoryProvider).signOut();
-          state = AsyncData<PasswordResetSecondStepState>(state.requireValue);
         } on EIAuthException catch (e) {
           state =
               AsyncError<PasswordResetSecondStepState>(e, StackTrace.current);

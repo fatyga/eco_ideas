@@ -458,6 +458,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unsuccessful attempt to sign out.'**
   String get signOutFailSnackBarText;
+
+  /// No description provided for @getUserProfileFailSnackBarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful attempt to get user profile'**
+  String get getUserProfileFailSnackBarText;
+
+  /// No description provided for @uploadAvatarFailSnackBarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful attempt to upload avatar'**
+  String get uploadAvatarFailSnackBarText;
+
+  /// No description provided for @updateUserProfileFailSnackBarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful attempt to update profile'**
+  String get updateUserProfileFailSnackBarText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

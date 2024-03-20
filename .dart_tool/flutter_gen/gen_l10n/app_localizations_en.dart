@@ -186,4 +186,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signOutFailSnackBarText => 'Unsuccessful attempt to sign out.';
+
+  @override
+  String get getUserProfileFailSnackBarText => 'Unsuccessful attempt to get user profile';
+
+  @override
+  String get uploadAvatarFailSnackBarText => 'Unsuccessful attempt to upload avatar';
+
+  @override
+  String get updateUserProfileFailSnackBarText => 'Unsuccessful attempt to update profile';
 }
