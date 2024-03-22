@@ -6,6 +6,7 @@ import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/user/data/user_exception.dart';
 import 'package:eco_ideas/features/user/domain/user_profile/user_profile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseUserRepository implements UserRepository {
@@ -54,13 +55,24 @@ class SupabaseUserRepository implements UserRepository {
 
         final imageFile = File(imagePath);
 
-        // upload avatar to 'avatars' bucket
-        await ref
-            .read(supabaseClientProvider)
-            .storage
-            .from('avatars')
-            .upload('${currentUser.id}/avatar', imageFile);
+        final isAvatarPresent = await checkIfAvatarIsPresent();
+        if (isAvatarPresent) {
+          // replace existing avatar with given one
+          await ref
+              .read(supabaseClientProvider)
+              .storage
+              .from('avatars')
+              .update('${currentUser.id}/avatar', imageFile);
+        } else {
+          // upload avatar to 'avatars' bucket
+          await ref
+              .read(supabaseClientProvider)
+              .storage
+              .from('avatars')
+              .upload('${currentUser.id}/avatar', imageFile);
+        }
       } catch (e) {
+        print(e);
         throw UploadAvatarFail();
       }
     }
@@ -93,5 +105,19 @@ class SupabaseUserRepository implements UserRepository {
         currentUser.copyWith(aboutMe: aboutMe, signUpCompleted: true),
       );
     }
+  }
+
+  @override
+  Future<bool> checkIfAvatarIsPresent() async {
+    final currentUser = await getUserProfile();
+
+    if (currentUser != null) {
+      final url = Uri.parse(currentUser.avatarUrl);
+      final response = await http.head(url);
+
+      if (response.statusCode == 200) return true;
+      return false;
+    }
+    return false;
   }
 }

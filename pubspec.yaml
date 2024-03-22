@@ -26,6 +26,7 @@ dependencies:
   
  
   
+  http: ^1.2.1
   image_picker: ^1.0.5
   intl: ^0.18.0
   json_annotation: ^4.8.1

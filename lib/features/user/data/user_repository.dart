@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:eco_ideas/features/user/user.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -13,8 +15,9 @@ abstract class UserRepository {
 
   Future<UserProfile?> getUserProfile();
   Future<void> updateUserProfile(UserProfile modifiedUserProfile);
-  Future<void> uploadAvatar({required String? imagePath});
 
+  Future<void> uploadAvatar({required String? imagePath});
+  Future<bool> checkIfAvatarIsPresent();
   Future<void> completeSignUp({String? avatarPath, String? aboutMe});
 }
 

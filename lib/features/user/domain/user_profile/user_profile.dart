@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,5 +21,5 @@ class UserProfile with _$UserProfile {
 
   const UserProfile._();
 
-  String get avatarUrl => '${dotenv.env['AVATAR_BASE_URL']}/$id/avatar';
+  String get avatarUrl => '${dotenv.env['AVATAR_URL_BASE']}/$id/avatar';
 }

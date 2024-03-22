@@ -1,5 +1,5 @@
 class EIException implements Exception {
-  const EIException({required this.message});
+  const EIException({required this.message}) : super();
   final String message;
 
   @override
