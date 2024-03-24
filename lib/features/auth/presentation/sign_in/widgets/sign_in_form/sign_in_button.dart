@@ -1,5 +1,6 @@
+import 'package:eco_ideas/common/extensions/snackbar_on_error.dart';
 import 'package:eco_ideas/common/widgets/primary_button.dart';
-import 'package:eco_ideas/features/auth/extensions/auth_state_error_extension.dart';
+
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_controller.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_state.dart';
 import 'package:eco_ideas/l10n/l10n.dart';

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:eco_ideas/features/user/user.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -20,7 +18,3 @@ abstract class UserRepository {
   Future<bool> checkIfAvatarIsPresent();
   Future<void> completeSignUp({String? avatarPath, String? aboutMe});
 }
-
-class UserFailure implements Exception {}
-
-class UserNotFound extends UserFailure {}

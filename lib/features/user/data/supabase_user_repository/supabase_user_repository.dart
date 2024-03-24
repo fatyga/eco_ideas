@@ -57,22 +57,20 @@ class SupabaseUserRepository implements UserRepository {
 
         final isAvatarPresent = await checkIfAvatarIsPresent();
         if (isAvatarPresent) {
-          // replace existing avatar with given one
+          // remove avatar if there is one
           await ref
               .read(supabaseClientProvider)
               .storage
               .from('avatars')
-              .update('${currentUser.id}/avatar', imageFile);
-        } else {
-          // upload avatar to 'avatars' bucket
-          await ref
-              .read(supabaseClientProvider)
-              .storage
-              .from('avatars')
-              .upload('${currentUser.id}/avatar', imageFile);
+              .remove(['${currentUser.id}/avatar']);
         }
+        // upload avatar to 'avatars' bucket
+        await ref
+            .read(supabaseClientProvider)
+            .storage
+            .from('avatars')
+            .upload('${currentUser.id}/avatar', imageFile);
       } catch (e) {
-        print(e);
         throw UploadAvatarFail();
       }
     }

@@ -1,5 +1,6 @@
+import 'package:eco_ideas/common/extensions/snackbar_on_error.dart';
 import 'package:eco_ideas/common/widgets/primary_button.dart';
-import 'package:eco_ideas/features/auth/extensions/auth_state_error_extension.dart';
+
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/controller.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/state.dart';
 

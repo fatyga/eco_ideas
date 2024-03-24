@@ -170,7 +170,7 @@ class SupabaseAuthRepository implements AuthRepository {
         data: {
           'username': username,
 
-          /// TODO(fatyga): find a way to remove null assertion operator
+          // TODO(fatyga): find a way to remove null assertion operator
           dotenv.env['SIGN_UP_COMPLETION_FLAG_NAME']!: false,
         },
       );

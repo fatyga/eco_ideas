@@ -10,7 +10,11 @@ void main() {
       bool signUpCompleted = false,
     }) {
       return UserProfile(
-          id: id, username: username, aboutMe: aboutMe, signUpCompleted: false);
+        id: id,
+        username: username,
+        aboutMe: aboutMe,
+        signUpCompleted: false,
+      );
     }
 
     group('constructor', () {

@@ -31,7 +31,7 @@ class SignUpCompletionForm extends StatelessWidget {
           const SizedBox(height: 16),
           const SignUpCompletionAboutMeField(),
           const SizedBox(height: 16),
-          const SignUpCompletionSubmitButton()
+          const SignUpCompletionSubmitButton(),
         ],
       ),
     );
