@@ -682,7 +682,7 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
 
       group('updateAvatar', () {
         const path = '/home/johnDoe/photos/avatar.png';
-        test('no state is emitted, if given [avatarUrl] is empty', () {
+        test('no state is emitted, if given [avatarUrl] is null', () {
           final container = makeProviderContainer();
           final listener = Listener<AsyncValue<SignUpState>>();
           container.listen(
@@ -691,12 +691,18 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
             fireImmediately: true,
           );
 
-          container.read(signUpControllerProvider.notifier).updateAvatar('');
+          container.read(signUpControllerProvider.notifier).updateAvatar(null);
 
           verifyInOrder([
             () => listener.call(
                   null,
                   const AsyncData<SignUpState>(SignUpState()),
+                ),
+            () => listener.call(
+                  const AsyncData<SignUpState>(SignUpState()),
+                  const AsyncData<SignUpState>(
+                    SignUpState(avatarInput: AvatarInput.dirty()),
+                  ),
                 ),
           ]);
 
@@ -872,13 +878,13 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
                 any(that: isA<AsyncLoading<SignUpState>>()),
                 const AsyncData<SignUpState>(
                   SignUpState(
-                    usernameInput: UsernameInput.dirty(value: username),
-                    emailInput: EmailInput.dirty(value: email),
-                    passwordInput:
-                        RestrictedPasswordInput.dirty(value: password),
-                    passwordRetypeInput:
-                        PasswordRetypeInput.dirty(value: password),
-                  ),
+                      usernameInput: UsernameInput.dirty(value: username),
+                      emailInput: EmailInput.dirty(value: email),
+                      passwordInput:
+                          RestrictedPasswordInput.dirty(value: password),
+                      passwordRetypeInput:
+                          PasswordRetypeInput.dirty(value: password),
+                      status: SignUpStateStatus.linkSent),
                 ),
               ),
         ]);

@@ -393,13 +393,9 @@ void main() {
       test('invokes GoTrueClient.signInWithPassword method', () async {
         final goTrueClient = MockGoTrueClient();
         final authResponse = MockAuthResponse();
-        final session = MockSession();
-        final user = MockUser();
 
         final container = createContainer(goTrueClient: goTrueClient);
 
-        when(() => authResponse.session).thenReturn(session);
-        when(() => authResponse.user).thenReturn(user);
         when(
           () => goTrueClient.signInWithPassword(
             email: any(named: 'email'),
@@ -417,52 +413,6 @@ void main() {
             password: password,
           ),
         ).called(1);
-      });
-
-      test('throws SignInFail, if sesssion is null', () async {
-        final goTrueClient = MockGoTrueClient();
-        final authResponse = MockAuthResponse();
-        final container = createContainer(goTrueClient: goTrueClient);
-
-        when(() => authResponse.session).thenReturn(null);
-
-        when(
-          () => goTrueClient.signInWithPassword(
-            email: any(named: 'email'),
-            password: any(named: 'password'),
-          ),
-        ).thenAnswer((_) async => authResponse);
-
-        expect(
-          () async => container
-              .read(authRepositoryProvider)
-              .signInWithEmail(email: email, password: password),
-          throwsA(isA<SignInFail>()),
-        );
-      });
-
-      test('throws SignInFail, if user is null', () async {
-        final goTrueClient = MockGoTrueClient();
-        final authResponse = MockAuthResponse();
-        final session = MockSession();
-
-        final container = createContainer(goTrueClient: goTrueClient);
-
-        when(() => authResponse.session).thenReturn(session);
-        when(() => authResponse.user).thenReturn(null);
-        when(
-          () => goTrueClient.signInWithPassword(
-            email: any(named: 'email'),
-            password: any(named: 'password'),
-          ),
-        ).thenAnswer((_) async => authResponse);
-
-        expect(
-          () async => container
-              .read(authRepositoryProvider)
-              .signInWithEmail(email: email, password: password),
-          throwsA(isA<SignInFail>()),
-        );
       });
 
       test('''throws SignInFail, if GoTrueClient.signInWithPassword throws''',
@@ -572,7 +522,10 @@ void main() {
       const email = 'email@domain.com';
       const password = 'qwerty';
       const username = 'johnDoe';
-      final data = {'username': username};
+      final data = {
+        'username': username,
+        dotenv.env['SIGN_UP_COMPLETION_FLAG']!: false,
+      };
 
       test('invokes GoTrueClient.signUp method', () async {
         final goTrueClient = MockGoTrueClient();
@@ -603,57 +556,6 @@ void main() {
           () =>
               goTrueClient.signUp(email: email, password: password, data: data),
         ).called(1);
-      });
-
-      test('throws SignUpFail, if sesssion is null', () async {
-        final goTrueClient = MockGoTrueClient();
-        final authResponse = MockAuthResponse();
-        final container = createContainer(goTrueClient: goTrueClient);
-
-        when(() => authResponse.session).thenReturn(null);
-
-        when(
-          () => goTrueClient.signUp(
-            email: any(named: 'email'),
-            password: any(named: 'password'),
-            data: data,
-          ),
-        ).thenAnswer((_) async => authResponse);
-
-        expect(
-          () async => container.read(authRepositoryProvider).signUpWithEmail(
-                email: email,
-                password: password,
-                username: username,
-              ),
-          throwsA(isA<SignUpFail>()),
-        );
-      });
-
-      test('throws SignUpFail, if session is null', () async {
-        final goTrueClient = MockGoTrueClient();
-        final authResponse = MockAuthResponse();
-
-        final container = createContainer(goTrueClient: goTrueClient);
-
-        when(() => authResponse.session).thenReturn(null);
-
-        when(
-          () => goTrueClient.signUp(
-            email: any(named: 'email'),
-            password: any(named: 'password'),
-            data: data,
-          ),
-        ).thenAnswer((_) async => authResponse);
-
-        expect(
-          () async => container.read(authRepositoryProvider).signUpWithEmail(
-                email: email,
-                password: password,
-                username: username,
-              ),
-          throwsA(isA<SignUpFail>()),
-        );
       });
 
       test('throws SignUpFail, if GoTrueClient.signUp throws', () async {

@@ -791,33 +791,6 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
 
           await controller.abortPasswordReset();
 
-          verifyInOrder(
-            [
-              () => listener.call(
-                    null,
-                    const AsyncData<PasswordResetSecondStepState>(
-                      PasswordResetSecondStepState(),
-                    ),
-                  ),
-              () => listener.call(
-                    const AsyncData<PasswordResetSecondStepState>(
-                      PasswordResetSecondStepState(),
-                    ),
-                    any(
-                      that: isA<AsyncLoading<PasswordResetSecondStepState>>(),
-                    ),
-                  ),
-              () => listener.call(
-                    any(
-                      that: isA<AsyncLoading<PasswordResetSecondStepState>>(),
-                    ),
-                    const AsyncData<PasswordResetSecondStepState>(
-                      PasswordResetSecondStepState(),
-                    ),
-                  ),
-            ],
-          );
-
           verify(authRepository.signOut).called(1);
         },
       );

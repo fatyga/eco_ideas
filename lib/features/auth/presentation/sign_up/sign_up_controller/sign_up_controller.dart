@@ -1,5 +1,5 @@
-import 'package:eco_ideas/common/exceptions/ei_exception.dart';
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_controller/sign_up_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -166,7 +166,7 @@ class SignUpController extends _$SignUpController {
         state = AsyncData<SignUpState>(
           stateValue.copyWith(status: SignUpStateStatus.linkSent),
         );
-      } on EIException catch (e) {
+      } on EIAuthException catch (e) {
         state = AsyncError<SignUpState>(e, StackTrace.current);
       }
     }
