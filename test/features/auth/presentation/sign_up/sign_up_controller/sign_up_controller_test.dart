@@ -878,13 +878,14 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
                 any(that: isA<AsyncLoading<SignUpState>>()),
                 const AsyncData<SignUpState>(
                   SignUpState(
-                      usernameInput: UsernameInput.dirty(value: username),
-                      emailInput: EmailInput.dirty(value: email),
-                      passwordInput:
-                          RestrictedPasswordInput.dirty(value: password),
-                      passwordRetypeInput:
-                          PasswordRetypeInput.dirty(value: password),
-                      status: SignUpStateStatus.linkSent),
+                    usernameInput: UsernameInput.dirty(value: username),
+                    emailInput: EmailInput.dirty(value: email),
+                    passwordInput:
+                        RestrictedPasswordInput.dirty(value: password),
+                    passwordRetypeInput:
+                        PasswordRetypeInput.dirty(value: password),
+                    status: SignUpStateStatus.linkSent,
+                  ),
                 ),
               ),
         ]);

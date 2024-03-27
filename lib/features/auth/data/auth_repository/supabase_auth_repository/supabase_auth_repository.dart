@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:eco_ideas/common/exceptions/ei_exception.dart';
 import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
@@ -203,5 +204,13 @@ class SupabaseAuthRepository implements AuthRepository {
     } on supabase.AuthException catch (_) {
       throw SetUpNewPasswordFail();
     }
+  }
+
+  @override
+  bool determineInvalidDeepLink(Uri deepLink) {
+    if (deepLink.fragment.contains('error_code=401')) {
+      throw InvalidDeepLink();
+    }
+    return true;
   }
 }

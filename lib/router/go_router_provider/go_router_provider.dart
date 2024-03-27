@@ -1,7 +1,9 @@
+import 'package:eco_ideas/common/exceptions/ei_exception.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
+import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/router/routes/routes.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -24,6 +26,17 @@ GoRouter goRouter(GoRouterRef ref) {
       );
     });
 
+  // Checks wheter deep link is invalid or expired and give user a feedback
+  void checkDeepLink(BuildContext context, Uri deepLink) {
+    try {
+      ref.read(authRepositoryProvider).determineInvalidDeepLink(deepLink);
+    } on EIException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.resolveMessageForUser(context.l10n))),
+      );
+    }
+  }
+
   final router = GoRouter(
     initialLocation: const SplashRoute().location,
     routes: $appRoutes,
@@ -36,6 +49,8 @@ GoRouter goRouter(GoRouterRef ref) {
       if (isAuth.value.isLoading || !isAuth.value.hasValue) {
         return const SplashRoute().location;
       }
+
+      checkDeepLink(context, state.uri);
 
       final authStatus = isAuth.value.requireValue;
 
