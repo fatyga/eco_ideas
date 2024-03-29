@@ -1,19 +1,20 @@
 import 'package:eco_ideas/common/widgets/auth_provider_button.dart';
+import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GoogleAuthButton extends StatelessWidget {
-  const GoogleAuthButton({required this.onPressed, super.key});
+class GoogleAuthButton extends ConsumerWidget {
+  const GoogleAuthButton({super.key});
 
-  final VoidCallback onPressed;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
 
     return AuthProviderButton(
       label: l10n.googleAuthButtonLabelText,
       logoAssetPath: 'assets/images/google-logo-9808.png',
-      onPressed: onPressed,
+      onPressed: ref.read(signInControllerProvider.notifier).signInWithGoogle,
     );
   }
 }

@@ -26,7 +26,7 @@ GoRouter goRouter(GoRouterRef ref) {
       );
     });
 
-  // Checks wheter deep link is invalid or expired and give user a feedback
+  // Checks whether deep link is invalid or expired and give user a feedback
   void checkDeepLink(BuildContext context, Uri deepLink) {
     try {
       ref.read(authRepositoryProvider).determineInvalidDeepLink(deepLink);

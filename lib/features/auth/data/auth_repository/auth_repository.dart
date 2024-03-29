@@ -1,4 +1,3 @@
-import 'package:eco_ideas/common/exceptions/ei_exception.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/supabase_auth_repository/supabase_auth_repository.dart';
 import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 
@@ -40,5 +39,6 @@ abstract class AuthRepository {
 
   Future<void> setNewPassword({required String newPassword});
 
-  bool determineInvalidDeepLink(Uri deepLink);
+  // Method which throw an error if given [deepLink] is invalid
+  void determineInvalidDeepLink(Uri deepLink);
 }

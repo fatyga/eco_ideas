@@ -58,9 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 labelText: l10n.signInLabeledDividerText,
                 verticalSpace: 20,
               ),
-              GoogleAuthButton(
-                onPressed: () {},
-              ),
+              const GoogleAuthButton(),
               const Spacer(),
               const Center(
                 child: RegisterActionButton(),

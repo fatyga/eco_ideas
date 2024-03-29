@@ -1,4 +1,5 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_state.dart';
 
@@ -70,10 +71,20 @@ class SignInController extends _$SignInController {
           email: stateValue.emailInput.value,
           password: stateValue.passwordInput.value,
         );
-      } catch (e) {
+      } on EIAuthException catch (e) {
         state = AsyncError<SignInState>(e, StackTrace.current);
         return;
       }
+      state = AsyncData<SignInState>(state.requireValue);
+    }
+  }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      await ref.read(authRepositoryProvider).signInWithGoogle();
+    } on EIAuthException catch (e) {
+      state = AsyncError<SignInState>(e, StackTrace.current);
+    } finally {
       state = AsyncData<SignInState>(state.requireValue);
     }
   }

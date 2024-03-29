@@ -3,7 +3,7 @@ import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-extension AuthStateSnackBarOnError<T> on AsyncValue<T> {
+extension SnackbarOnError<T> on AsyncValue<T> {
   void showSnackBarOnError(BuildContext context) => whenOrNull<void>(
         error: (error, __) {
           if (error is EIException) {
