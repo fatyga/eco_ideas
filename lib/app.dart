@@ -4,8 +4,8 @@ import 'package:eco_ideas/theme/eco_ideas_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class App extends ConsumerWidget {
-  const App({super.key});
+class EcoIdeasApp extends ConsumerWidget {
+  const EcoIdeasApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

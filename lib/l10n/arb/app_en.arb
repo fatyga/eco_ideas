@@ -73,5 +73,9 @@
 
     "getUserProfileFailSnackBarText": "Unsuccessful attempt to get user profile",
     "uploadAvatarFailSnackBarText": "Unsuccessful attempt to upload avatar",
-    "updateUserProfileFailSnackBarText": "Unsuccessful attempt to update profile"
+    "updateUserProfileFailSnackBarText": "Unsuccessful attempt to update profile",
+    
+    "homeExploreLabel": "Explore",
+    "homeMyIdeasLabel" : "My ideas",
+    "homeProfileLabel": "My Profile"
 }

@@ -1,4 +1,4 @@
-import 'package:eco_ideas/features/auth/domain/input_models/password_retype_input.dart';
+import 'package:eco_ideas/features/auth/presentation/input_models/password_retype_input.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,7 +1,3 @@
-import 'dart:convert';
-import 'dart:math';
-
-import 'package:crypto/crypto.dart';
 import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
@@ -9,6 +5,7 @@ import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // TODO(fatyga): Fix imports
@@ -79,81 +76,33 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   Future<void> signInWithGoogle() async {
-    // Code from https://supabase.com/docs/guides/auth/social-login/auth-google?platform=flutter
-    String generateRandomString() {
-      final random = Random.secure();
-      return base64Url
-          .encode(List<int>.generate(16, (_) => random.nextInt(256)));
-    }
+    /// Web Client ID that you registered with Google Cloud.
+    final webClientId = dotenv.env['GOOGLE_WEB_CLIENT_ID'];
 
-    // Just a random string
-    final rawNonce = generateRandomString();
-    final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
+    // /// iOS Client ID that you registered with Google Cloud.
+    // const iosClientId = 'my-ios.apps.googleusercontent.com';
 
-    /// Client ID that you registered with Google Cloud.
-    /// You will have two different values for iOS and Android.
-    // TODO(fatyg): find a way to remove null assertion operator
-    final clientId = dotenv.env['GOOGLE_OAUTH_CLIENT_ID']!;
-
-    /// reverse DNS form of the client ID + `:/` is set as the redirect URL
-    final redirectUrl = '${clientId.split('.').reversed.join('.')}:/';
-
-    /// Fixed value for google login
-    const discoveryUrl =
-        'https://accounts.google.com/.well-known/openid-configuration';
-
-    final appAuth = ref.read(flutterAppAuthProvider);
-
-    // authorize the user by opening the consent page
-    final result = await appAuth.authorize(
-      AuthorizationRequest(
-        clientId,
-        redirectUrl,
-        discoveryUrl: discoveryUrl,
-        nonce: hashedNonce,
-        scopes: [
-          'openid',
-          'email',
-        ],
-      ),
+    final googleSignIn = GoogleSignIn(
+      // clientId: iosClientId,
+      serverClientId: webClientId,
     );
+    final googleUser = await googleSignIn.signIn();
+    final googleAuth = await googleUser!.authentication;
+    final accessToken = googleAuth.accessToken;
+    final idToken = googleAuth.idToken;
 
-    if (result == null) {
+    if (accessToken == null) {
       throw SignInFail();
     }
-
-    // Request the access and id token to google
-    final tokenResult = await appAuth.token(
-      TokenRequest(
-        clientId,
-        redirectUrl,
-        authorizationCode: result.authorizationCode,
-        discoveryUrl: discoveryUrl,
-        codeVerifier: result.codeVerifier,
-        nonce: result.nonce,
-        scopes: [
-          'openid',
-          'email',
-        ],
-      ),
-    );
-
-    final idToken = tokenResult?.idToken;
-
     if (idToken == null) {
       throw SignInFail();
     }
 
-    try {
-      await ref.read(supabaseClientProvider).auth.signInWithIdToken(
-            provider: supabase.Provider.google,
-            idToken: idToken,
-            accessToken: tokenResult?.accessToken,
-            nonce: rawNonce,
-          );
-    } on supabase.AuthException catch (_) {
-      throw SignInFail();
-    }
+    await ref.read(supabaseClientProvider).auth.signInWithIdToken(
+          provider: supabase.Provider.google,
+          idToken: idToken,
+          accessToken: accessToken,
+        );
   }
 
   @override

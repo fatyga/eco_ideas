@@ -195,4 +195,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get updateUserProfileFailSnackBarText => 'Unsuccessful attempt to update profile';
+
+  @override
+  String get homeExploreLabel => 'Explore';
+
+  @override
+  String get homeMyIdeasLabel => 'My ideas';
+
+  @override
+  String get homeProfileLabel => 'My Profile';
 }

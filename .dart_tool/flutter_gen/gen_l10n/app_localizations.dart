@@ -476,6 +476,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unsuccessful attempt to update profile'**
   String get updateUserProfileFailSnackBarText;
+
+  /// No description provided for @homeExploreLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get homeExploreLabel;
+
+  /// No description provided for @homeMyIdeasLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'My ideas'**
+  String get homeMyIdeasLabel;
+
+  /// No description provided for @homeProfileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'My Profile'**
+  String get homeProfileLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

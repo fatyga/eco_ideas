@@ -61,6 +61,7 @@ android {
         manifestPlaceholders += [
                 'appAuthRedirectScheme': ''
         ]
+        multiDexEnabled true
     }
 
     signingConfigs {

@@ -73,5 +73,9 @@
 
     "getUserProfileFailSnackBarText": "Nieudana próba wczytania profilu użytkownika.",
     "uploadAvatarFailSnackBarText": "Nieudana próba zapisania avataru.",
-    "updateUserProfileFailSnackBarText": "Nieudana próba zaktualizowania profilu użytkownika."
+    "updateUserProfileFailSnackBarText": "Nieudana próba zaktualizowania profilu użytkownika.",
+
+    "homeExploreLabel": "Odkrywaj",
+    "homeMyIdeasLabel" : "Moje pomysły",
+    "homeProfileLabel:": "Mój profil"
 }
