@@ -5,8 +5,11 @@ import 'package:eco_ideas/features/auth/presentation/auth/auth_screen.dart';
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up/sign_up_screen.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_screen.dart';
+import 'package:eco_ideas/features/explore/presentation/explore/explore_screen.dart';
 
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
+import 'package:eco_ideas/features/ideas/presentation/my_ideas/my_ideas_screen.dart';
+import 'package:eco_ideas/features/user/presentation/my_profile/my_profile_screen.dart';
 import 'package:eco_ideas/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -29,6 +32,9 @@ class SplashRoute extends GoRouteData {
   path: HomeScreen.path,
   routes: [
     TypedGoRoute<SignUpCompletionRoute>(path: SignUpCompletionScreen.path),
+    TypedGoRoute<ExploreRoute>(path: ExploreScreen.path),
+    TypedGoRoute<MyIdeasRoute>(path: MyIdeasScreen.path),
+    TypedGoRoute<MyProfileRoute>(path: MyProfileScreen.path)
   ],
 )
 class HomeRoute extends GoRouteData {
@@ -37,6 +43,33 @@ class HomeRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const HomeScreen();
+  }
+}
+
+class ExploreRoute extends GoRouteData {
+  const ExploreRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const ExploreScreen();
+  }
+}
+
+class MyIdeasRoute extends GoRouteData {
+  const MyIdeasRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const MyIdeasScreen();
+  }
+}
+
+class MyProfileRoute extends GoRouteData {
+  const MyProfileRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const MyProfileScreen();
   }
 }
 

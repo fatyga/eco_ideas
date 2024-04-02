@@ -42,6 +42,18 @@ RouteBase get $homeRoute => GoRouteData.$route(
           path: 'signUpCompletion',
           factory: $SignUpCompletionRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'explore',
+          factory: $ExploreRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'myIdeas',
+          factory: $MyIdeasRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'myProfile',
+          factory: $MyProfileRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -68,6 +80,58 @@ extension $SignUpCompletionRouteExtension on SignUpCompletionRoute {
 
   String get location => GoRouteData.$location(
         '/home/signUpCompletion',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ExploreRouteExtension on ExploreRoute {
+  static ExploreRoute _fromState(GoRouterState state) => const ExploreRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/explore',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $MyIdeasRouteExtension on MyIdeasRoute {
+  static MyIdeasRoute _fromState(GoRouterState state) => const MyIdeasRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/myIdeas',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $MyProfileRouteExtension on MyProfileRoute {
+  static MyProfileRoute _fromState(GoRouterState state) =>
+      const MyProfileRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/myProfile',
       );
 
   void go(BuildContext context) => context.go(location);

@@ -5,6 +5,7 @@ part 'home_controller.g.dart';
 
 @riverpod
 class HomeController extends _$HomeController {
+  @override
   HomeState build() {
     return HomeState.explore;
   }
