@@ -1,3 +1,5 @@
+import 'package:eco_ideas/features/user/presentation/my_profile/my_profile.dart';
+import 'package:eco_ideas/features/user/presentation/my_profile/widgets/sign_out_button.dart';
 import 'package:flutter/material.dart';
 
 class MyProfileScreen extends StatelessWidget {
@@ -6,6 +8,10 @@ class MyProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('My profile')));
+    return Scaffold(
+        body: ListView(children: [
+      const MyProfileUserAvatar(),
+      const MyProfileSignOutButton()
+    ]));
   }
 }
