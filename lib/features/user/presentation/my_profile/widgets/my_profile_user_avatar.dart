@@ -1,4 +1,4 @@
-import 'package:eco_ideas/common/widgets/user_avatar.dart';
+import 'package:eco_ideas/common/widgets/user_avatar/user_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

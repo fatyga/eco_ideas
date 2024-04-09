@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:eco_ideas/common/widgets/avatar_dialog/avatar_dialog.dart';
+import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/avatar_dialog.dart';
 import 'package:flutter/material.dart';
 
 class UserAvatar extends StatelessWidget {

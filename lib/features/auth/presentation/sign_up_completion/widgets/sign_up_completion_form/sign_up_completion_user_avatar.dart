@@ -1,4 +1,4 @@
-import 'package:eco_ideas/common/widgets/user_avatar.dart';
+import 'package:eco_ideas/common/widgets/user_avatar/user_avatar.dart';
 
 import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_controller/sign_up_completion_controller.dart';
 
