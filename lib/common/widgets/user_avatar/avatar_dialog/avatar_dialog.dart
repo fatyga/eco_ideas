@@ -2,15 +2,16 @@ import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/delete_button
 import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/exit_button.dart';
 import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/save_button.dart';
 import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/upload_expansion_tile.dart';
+import 'package:eco_ideas/common/widgets/user_avatar/ei_circle_avatar.dart';
 import 'package:eco_ideas/common/widgets/user_avatar/user_avatar.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AvatarDialog extends StatefulWidget {
-  const AvatarDialog({this.imagePath, super.key});
+  const AvatarDialog({this.userAvatar, super.key});
 
-  final String? imagePath;
+  final UserAvatar? userAvatar;
 
   @override
   State<AvatarDialog> createState() => _AvatarDialogState();
@@ -18,20 +19,20 @@ class AvatarDialog extends StatefulWidget {
 
 class _AvatarDialogState extends State<AvatarDialog> {
   late final ImagePicker _imagePicker;
-  bool get isAvatarPresent => imagePath != null;
-  bool get imageChanged => widget.imagePath != imagePath;
-  late String? imagePath;
+  bool get isAvatarPresent => userAvatar != null;
+  bool get imageChanged => widget.userAvatar != userAvatar;
+  late UserAvatar? userAvatar;
 
   @override
   void initState() {
     _imagePicker = ImagePicker();
-    imagePath = widget.imagePath;
+    userAvatar = widget.userAvatar;
     super.initState();
   }
 
   void _deleteAvatar() {
     setState(() {
-      imagePath = null;
+      userAvatar = null;
     });
   }
 
@@ -40,12 +41,12 @@ class _AvatarDialogState extends State<AvatarDialog> {
 
     if (image == null) return;
     setState(() {
-      imagePath = image.path;
+      userAvatar = UserAvatar.local(image.path);
     });
   }
 
-  void _exit() => Navigator.pop(context, widget.imagePath);
-  void _exitWithChange() => Navigator.pop(context, imagePath);
+  void _exit() => Navigator.pop(context, widget.userAvatar);
+  void _exitWithChange() => Navigator.pop(context, userAvatar);
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +66,9 @@ class _AvatarDialogState extends State<AvatarDialog> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                UserAvatar(
+                EICircleAvatar(
                   radius: 60,
-                  imagePath: imagePath,
+                  userAvatar: userAvatar,
                 ),
                 const SizedBox(height: 16),
                 if (!isAvatarPresent)

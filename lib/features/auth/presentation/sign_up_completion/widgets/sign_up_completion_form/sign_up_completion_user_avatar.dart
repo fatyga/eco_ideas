@@ -1,3 +1,4 @@
+import 'package:eco_ideas/common/widgets/user_avatar/ei_circle_avatar.dart';
 import 'package:eco_ideas/common/widgets/user_avatar/user_avatar.dart';
 
 import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_controller/sign_up_completion_controller.dart';
@@ -21,14 +22,16 @@ class SignUpCompletionUserAvatar extends ConsumerWidget {
       signUpCompletionControllerProvider.select((state) => state.isLoading),
     );
 
-    return UserAvatar(
-      imagePath: avatarInput?.value,
+    return EICircleAvatar(
+      userAvatar: avatarInput != null && avatarInput.value != null
+          ? UserAvatar.local(avatarInput.value!)
+          : null,
       editable: !isLoading,
       radius: radius,
-      onPickingImageFinish: (path) {
+      onPickingImageFinish: (userAvatar) {
         ref
             .read(signUpCompletionControllerProvider.notifier)
-            .updateAvatarInput(path);
+            .updateAvatarInput(userAvatar?.path);
       },
     );
   }
