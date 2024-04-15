@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/avatar_dialog.dart';
-import 'package:eco_ideas/common/widgets/user_avatar/user_avatar.dart';
+import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 import 'package:flutter/material.dart';
 
 class EICircleAvatar extends StatelessWidget {
@@ -59,6 +59,7 @@ class EICircleAvatar extends StatelessWidget {
           }
         },
         child: Stack(
+          alignment: Alignment.center,
           children: [
             avatar,
             Positioned(

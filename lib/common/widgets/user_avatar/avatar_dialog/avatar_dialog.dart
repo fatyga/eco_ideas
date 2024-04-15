@@ -3,7 +3,7 @@ import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/exit_button.d
 import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/save_button.dart';
 import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/upload_expansion_tile.dart';
 import 'package:eco_ideas/common/widgets/user_avatar/ei_circle_avatar.dart';
-import 'package:eco_ideas/common/widgets/user_avatar/user_avatar.dart';
+import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
