@@ -372,7 +372,7 @@ abstract class AppLocalizations {
   /// No description provided for @avatarDialogSaveButtonText.
   ///
   /// In en, this message translates to:
-  /// **'Save changes'**
+  /// **'Confirm'**
   String get avatarDialogSaveButtonText;
 
   /// No description provided for @avatarDialogChangeAvatarButtonLabelText.

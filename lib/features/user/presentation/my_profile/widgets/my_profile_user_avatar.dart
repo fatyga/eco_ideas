@@ -13,6 +13,8 @@ class MyProfileUserAvatar extends ConsumerWidget {
       userAvatar: userAvatar,
       radius: 64,
       editable: true,
+      onPickingImageFinish:
+          ref.read(userAvatarControllerProvider.notifier).uploadAvatar,
     );
   }
 }

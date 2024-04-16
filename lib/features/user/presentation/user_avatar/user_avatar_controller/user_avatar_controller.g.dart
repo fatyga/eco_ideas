@@ -7,7 +7,7 @@ part of 'user_avatar_controller.dart';
 // **************************************************************************
 
 String _$userAvatarControllerHash() =>
-    r'3bdb9999a3965731ebe031d32c8730402ea28d14';
+    r'5c742302c9bd7c73b5eb8e89d1824885c328627b';
 
 /// See also [UserAvatarController].
 @ProviderFor(UserAvatarController)

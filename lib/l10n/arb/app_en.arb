@@ -54,7 +54,7 @@
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
     },
-    "avatarDialogSaveButtonText": "Save changes",
+    "avatarDialogSaveButtonText": "Confirm",
     "avatarDialogChangeAvatarButtonLabelText": "Change avatar",
     "avatarDialogAddAvatarButtonLabelText": "Add avatar",
     "avatarDialogDeleteAvatarButtonLabelText": "Delete avatar",

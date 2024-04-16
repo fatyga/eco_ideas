@@ -16,4 +16,12 @@ class UserAvatarController extends _$UserAvatarController {
     }
     return null;
   }
+
+  Future<void> uploadAvatar(UserAvatar? avatar) async {
+    if (avatar != state.value) {
+      await ref
+          .read(userRepositoryProvider)
+          .uploadAvatar(imagePath: avatar?.path);
+    }
+  }
 }

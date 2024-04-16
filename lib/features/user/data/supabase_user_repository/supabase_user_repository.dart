@@ -29,7 +29,8 @@ class SupabaseUserRepository implements UserRepository {
         final userProfile = UserProfile.fromJson(json);
 
         return userProfile;
-      } catch (_) {
+      } catch (e) {
+        print(e);
         throw GetUserProfileFail();
       }
     }

@@ -54,7 +54,7 @@
         "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"
     },
 
-    "avatarDialogSaveButtonText": "Zapisz zmiany",
+    "avatarDialogSaveButtonText": "Zatwierdź",
     "avatarDialogChangeAvatarButtonLabelText": "Zmień avatar",
     "avatarDialogAddAvatarButtonLabelText": "Dodaj avatar",
     "avatarDialogDeleteAvatarButtonLabelText": "Usuń avatar",

@@ -143,7 +143,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get counterAppBarTitle => 'Counter';
 
   @override
-  String get avatarDialogSaveButtonText => 'Save changes';
+  String get avatarDialogSaveButtonText => 'Confirm';
 
   @override
   String get avatarDialogChangeAvatarButtonLabelText => 'Change avatar';
