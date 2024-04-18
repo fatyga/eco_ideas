@@ -59,7 +59,6 @@ class EICircleAvatar extends StatelessWidget {
           }
         },
         child: Stack(
-          alignment: Alignment.center,
           children: [
             avatar,
             Positioned(

@@ -11,7 +11,10 @@ class MyProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: ListView(
-        children: const [MyProfileUserAvatar(), MyProfileSignOutButton()],
+        children: const [
+          Center(child: MyProfileUserAvatar()),
+          MyProfileSignOutButton(),
+        ],
       ),
     );
   }
