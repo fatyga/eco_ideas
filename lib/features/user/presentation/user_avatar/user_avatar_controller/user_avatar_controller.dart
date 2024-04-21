@@ -8,20 +8,19 @@ part 'user_avatar_controller.g.dart';
 class UserAvatarController extends _$UserAvatarController {
   @override
   Future<UserAvatar?> build() async {
-    final currentUser = await ref.read(userRepositoryProvider).getUserProfile();
-    if (currentUser != null) {
-      final isAvatarExists =
-          await ref.read(userRepositoryProvider).checkIfAvatarIsPresent();
-      if (isAvatarExists) return UserAvatar.network(currentUser.avatarUrl);
-    }
+    final currentUser = ref.watch(userProfileChangesProvider).requireValue;
+    final isAvatarExists = await ref
+        .read(userRepositoryProvider)
+        .checkIfAvatarIsPresent(currentUser);
+    if (isAvatarExists) return UserAvatar.network(currentUser.avatarUrl);
     return null;
   }
 
   Future<void> uploadAvatar(UserAvatar? avatar) async {
-    if (avatar != state.value) {
-      await ref
-          .read(userRepositoryProvider)
-          .uploadAvatar(imagePath: avatar?.path);
-    }
+    // if (avatar != state.value) {
+    //   await ref
+    //       .read(userRepositoryProvider)
+    //       .uploadAvatar(imagePath: avatar?.path);
+    // }
   }
 }

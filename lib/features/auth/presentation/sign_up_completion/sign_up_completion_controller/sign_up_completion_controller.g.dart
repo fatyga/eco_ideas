@@ -7,7 +7,7 @@ part of 'sign_up_completion_controller.dart';
 // **************************************************************************
 
 String _$signUpCompletionControllerHash() =>
-    r'cdd138667e1389c37d50ae4cc343786260b74a1f';
+    r'970644f4904e0e7355dc80ac559eba3688036457';
 
 /// See also [SignUpCompletionController].
 @ProviderFor(SignUpCompletionController)

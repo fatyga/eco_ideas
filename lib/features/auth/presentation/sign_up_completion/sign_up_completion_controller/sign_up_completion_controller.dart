@@ -52,7 +52,9 @@ class SignUpCompletionController extends _$SignUpCompletionController {
       state = const AsyncLoading<SignUpCompletionState>();
 
       try {
+        final userProfile = ref.read(userProfileChangesProvider);
         await ref.read(userRepositoryProvider).completeSignUp(
+              userProfile.requireValue,
               avatarPath: stateValue.avatarInput.value,
               aboutMe: stateValue.aboutMeInput.value,
             );

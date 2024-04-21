@@ -7,7 +7,6 @@ import 'package:eco_ideas/features/user/data/user_exception.dart';
 import 'package:eco_ideas/features/user/domain/user_profile/user_profile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseUserRepository implements UserRepository {
   SupabaseUserRepository(this.ref);
@@ -15,108 +14,92 @@ class SupabaseUserRepository implements UserRepository {
   final Ref ref;
 
   @override
-  Future<UserProfile?> getUserProfile() async {
-    final supabaseUser = ref.read(supabaseClientProvider).auth.currentUser;
-    if (supabaseUser != null) {
-      try {
-        final json = await ref
-            .read(supabaseClientProvider)
-            .from('profiles')
-            .select<PostgrestMap>()
-            .eq('id', supabaseUser.id)
-            .limit(1)
-            .single();
-        final userProfile = UserProfile.fromJson(json);
+  Stream<UserProfile> get userProfileChanges {
+    final userId = ref.read(supabaseClientProvider).auth.currentUser?.id;
 
-        return userProfile;
-      } catch (e) {
-        print(e);
-        throw GetUserProfileFail();
-      }
+    if (userId == null) {
+      return Stream.error(UnimplementedError());
     }
-    return null;
+    return ref
+        .read(supabaseClientProvider)
+        .from('profiles')
+        .stream(primaryKey: ['id'])
+        .eq('id', userId)
+        .limit(1)
+        .map(
+          (profilesList) => UserProfile.fromJson(profilesList.first),
+        );
   }
 
   @override
-  Future<void> uploadAvatar({
+  Future<void> uploadAvatar(
+    UserProfile userProfile, {
     required String? imagePath,
   }) async {
-    final currentUser = await getUserProfile();
-
-    if (currentUser != null) {
-      try {
-        if (imagePath == null) {
-          await ref
-              .read(supabaseClientProvider)
-              .storage
-              .from('avatars')
-              .remove(['${currentUser.id}/avatar']);
-          return;
-        }
-
-        final imageFile = File(imagePath);
-
-        final isAvatarPresent = await checkIfAvatarIsPresent();
-        if (isAvatarPresent) {
-          // remove avatar if there is one
-          await ref
-              .read(supabaseClientProvider)
-              .storage
-              .from('avatars')
-              .remove(['${currentUser.id}/avatar']);
-        }
-        // upload avatar to 'avatars' bucket
+    try {
+      if (imagePath == null) {
         await ref
             .read(supabaseClientProvider)
             .storage
             .from('avatars')
-            .upload('${currentUser.id}/avatar', imageFile);
-      } catch (e) {
-        throw UploadAvatarFail();
+            .remove(['${userProfile.id}/avatar']);
+        return;
       }
+
+      final imageFile = File(imagePath);
+
+      final isAvatarPresent = await checkIfAvatarIsPresent(userProfile);
+      if (isAvatarPresent) {
+        // remove avatar if there is one
+        await ref
+            .read(supabaseClientProvider)
+            .storage
+            .from('avatars')
+            .remove(['${userProfile.id}/avatar']);
+      }
+      // upload avatar to 'avatars' bucket
+      await ref
+          .read(supabaseClientProvider)
+          .storage
+          .from('avatars')
+          .upload('${userProfile.id}/avatar', imageFile);
+    } catch (e) {
+      throw UploadAvatarFail();
     }
   }
 
   @override
   Future<void> updateUserProfile(UserProfile modifiedUserProfile) async {
-    final currentUser = await getUserProfile();
-    if (currentUser != null) {
-      try {
-        await ref
-            .read(supabaseClientProvider)
-            .from('profiles')
-            .update(modifiedUserProfile.toJson())
-            .eq('id', currentUser.id);
-      } catch (e) {
-        throw UserProfileUpdateFail();
-      }
+    try {
+      await ref
+          .read(supabaseClientProvider)
+          .from('profiles')
+          .update(modifiedUserProfile.toJson())
+          .eq('id', modifiedUserProfile.id);
+    } catch (e) {
+      throw UserProfileUpdateFail();
     }
   }
 
   @override
-  Future<void> completeSignUp({String? avatarPath, String? aboutMe}) async {
-    final currentUser = await getUserProfile();
+  Future<void> completeSignUp(
+    UserProfile userProfile, {
+    String? avatarPath,
+    String? aboutMe,
+  }) async {
+    await uploadAvatar(userProfile, imagePath: avatarPath);
 
-    if (currentUser != null) {
-      await uploadAvatar(imagePath: avatarPath);
-
-      await updateUserProfile(
-        currentUser.copyWith(aboutMe: aboutMe, signUpCompleted: true),
-      );
-    }
+    await updateUserProfile(
+      userProfile.copyWith(aboutMe: aboutMe, signUpCompleted: true),
+    );
   }
 
   @override
-  Future<bool> checkIfAvatarIsPresent() async {
-    final currentUser = await getUserProfile();
+  Future<bool> checkIfAvatarIsPresent(UserProfile userProfile) async {
+    final url = Uri.parse(userProfile.avatarUrl);
+    final response = await http.head(url);
 
-    if (currentUser != null) {
-      final url = Uri.parse(currentUser.avatarUrl);
-      final response = await http.head(url);
-
-      if (response.statusCode == 200) return true;
-      return false;
-    }
+    if (response.statusCode == 200) return true;
     return false;
   }
 }

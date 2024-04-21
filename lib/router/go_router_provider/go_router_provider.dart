@@ -72,12 +72,12 @@ GoRouter goRouter(GoRouterRef ref) {
         case AuthStatus.authenticated:
           final path = state.uri.path;
 
-          final currentUser =
-              await ref.read(userRepositoryProvider).getUserProfile();
+          ref.read(userProfileChangesProvider).whenData((userProfile) {
+            if (!userProfile.signUpCompleted) {
+              return const SignUpCompletionRoute().location;
+            }
+          });
 
-          if (currentUser != null && !currentUser.signUpCompleted) {
-            return const SignUpCompletionRoute().location;
-          }
           // Redirect user from authentication-related routes
           if (!path.contains(const HomeRoute().location)) {
             return const HomeRoute().location;
