@@ -18,16 +18,22 @@ class SupabaseUserRepository implements UserRepository {
     final userId = ref.read(supabaseClientProvider).auth.currentUser?.id;
 
     if (userId == null) {
-      return Stream.error(UnimplementedError());
+      return Stream.error(GetUserProfileFail());
     }
     return ref
         .read(supabaseClientProvider)
         .from('profiles')
         .stream(primaryKey: ['id'])
-        .eq('id', userId)
+        .eq('id', 'fdsafs')
         .limit(1)
         .map(
-          (profilesList) => UserProfile.fromJson(profilesList.first),
+          (profilesList) {
+            try {
+              return UserProfile.fromJson(profilesList.first);
+            } catch (_) {
+              throw GetUserProfileFail();
+            }
+          },
         );
   }
 

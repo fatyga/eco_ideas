@@ -9,9 +9,9 @@ part 'my_profile_controller.g.dart';
 @riverpod
 class MyProfileController extends _$MyProfileController {
   @override
-  Future<UserProfile> build() async {
+  FutureOr<UserProfile> build() async {
     final keepAlive = ref.keepAlive();
-    final userProfile = ref.watch(userProfileChangesProvider);
+    final userProfileChanges = ref.watch(userProfileChangesProvider);
 
     // Dispose this controller when user signs out
     ref.listen(authChangesProvider, (_, next) {
@@ -23,7 +23,12 @@ class MyProfileController extends _$MyProfileController {
         }
       }
     });
-    return userProfile.requireValue;
+
+    return userProfileChanges.when(
+      data: (userProfile) => userProfile,
+      error: (error, _) => throw error,
+      loading: () => future,
+    );
   }
 
   Future<void> signOut() async {

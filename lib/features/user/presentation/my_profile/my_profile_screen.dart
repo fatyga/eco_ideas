@@ -9,13 +9,20 @@ class MyProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      body: ListView(
-        children: const [
-          Center(child: MyProfileUserAvatar()),
-          MyProfileSignOutButton(),
-        ],
+    final myProfile = ref.watch(myProfileControllerProvider);
+
+    return myProfile.when(
+      data: (profile) => Scaffold(
+        body: ListView(
+          children: const [
+            Center(child: MyProfileUserAvatar()),
+            MyProfileSignOutButton(),
+          ],
+        ),
       ),
+      error: (error, stackTrace) =>
+          const Center(child: Text('Fail to load your profile')),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
