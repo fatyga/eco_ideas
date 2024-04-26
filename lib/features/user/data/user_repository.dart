@@ -14,22 +14,8 @@ UserRepository userRepository(UserRepositoryRef ref) =>
 @riverpod
 Stream<UserProfile> userProfileChanges(
   UserProfileChangesRef ref,
-) {
-  final keepAlive = ref.keepAlive();
-
-  // Dispose this provider when user signs out
-  ref.listen(authChangesProvider, (_, next) {
-    final authStatus = next.valueOrNull;
-
-    if (authStatus != null) {
-      if (authStatus.isUnauthenticated || authStatus.isUnknown) {
-        keepAlive.close();
-      }
-    }
-  });
-
-  return ref.read(userRepositoryProvider).userProfileChanges;
-}
+) =>
+    ref.read(userRepositoryProvider).userProfileChanges;
 
 abstract class UserRepository {
   UserRepository();

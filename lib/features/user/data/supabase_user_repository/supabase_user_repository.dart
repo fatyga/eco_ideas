@@ -24,7 +24,7 @@ class SupabaseUserRepository implements UserRepository {
         .read(supabaseClientProvider)
         .from('profiles')
         .stream(primaryKey: ['id'])
-        .eq('id', 'fdsafs')
+        .eq('id', userId)
         .limit(1)
         .map(
           (profilesList) {

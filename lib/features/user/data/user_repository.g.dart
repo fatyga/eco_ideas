@@ -22,7 +22,7 @@ final userRepositoryProvider = AutoDisposeProvider<UserRepository>.internal(
 
 typedef UserRepositoryRef = AutoDisposeProviderRef<UserRepository>;
 String _$userProfileChangesHash() =>
-    r'0302d782f50c95de2e2c739040aa277ddec1dfdd';
+    r'b95f8eccb3465dce266952ed76b1e29cfa8b746b';
 
 /// See also [userProfileChanges].
 @ProviderFor(userProfileChanges)

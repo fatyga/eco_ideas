@@ -20,8 +20,15 @@ class MyProfileScreen extends ConsumerWidget {
           ],
         ),
       ),
-      error: (error, stackTrace) =>
+      error: (error, stackTrace) => Column(
+        children: [
           const Center(child: Text('Fail to load your profile')),
+          ElevatedButton(
+            onPressed: ref.read(myProfileControllerProvider.notifier).retry,
+            child: const Text('Retry'),
+          ),
+        ],
+      ),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
