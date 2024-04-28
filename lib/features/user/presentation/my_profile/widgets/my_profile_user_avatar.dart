@@ -1,5 +1,5 @@
 import 'package:eco_ideas/common/widgets/user_avatar/ei_circle_avatar.dart';
-import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar_controller.dart';
+import 'package:eco_ideas/features/user/presentation/my_profile/my_profile_controller/my_profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,7 +8,8 @@ class MyProfileUserAvatar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userAvatar = ref.watch(userAvatarControllerProvider).valueOrNull;
+    final userAvatar = ref.watch(myProfileControllerProvider
+        .select((myProfileState) => myProfileState.valueOrNull?.userAvatar));
     return EICircleAvatar(
       userAvatar: userAvatar,
       radius: 64,

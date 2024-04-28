@@ -5,6 +5,7 @@ import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.d
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/user/data/user_exception.dart';
 import 'package:eco_ideas/features/user/domain/user_profile/user_profile.dart';
+import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
@@ -54,8 +55,8 @@ class SupabaseUserRepository implements UserRepository {
 
       final imageFile = File(imagePath);
 
-      final isAvatarPresent = await checkIfAvatarIsPresent(userProfile);
-      if (isAvatarPresent) {
+      final isAvatarPresent = await obtainUserAvatar(userProfile);
+      if (isAvatarPresent != null) {
         // remove avatar if there is one
         await ref
             .read(supabaseClientProvider)
@@ -101,11 +102,13 @@ class SupabaseUserRepository implements UserRepository {
   }
 
   @override
-  Future<bool> checkIfAvatarIsPresent(UserProfile userProfile) async {
+  Future<UserAvatar?> obtainUserAvatar(UserProfile userProfile) async {
     final url = Uri.parse(userProfile.avatarUrl);
     final response = await http.head(url);
 
-    if (response.statusCode == 200) return true;
-    return false;
+    if (response.statusCode == 200) {
+      return UserAvatar.network(userProfile.avatarUrl);
+    }
+    return null;
   }
 }

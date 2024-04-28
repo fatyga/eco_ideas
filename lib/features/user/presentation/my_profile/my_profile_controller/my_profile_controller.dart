@@ -1,6 +1,6 @@
 import 'package:eco_ideas/features/auth/data/data.dart';
+import 'package:eco_ideas/features/user/presentation/my_profile/my_profile_controller/my_profile_state.dart';
 
-import 'package:eco_ideas/features/user/user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'my_profile_controller.g.dart';
@@ -8,11 +8,17 @@ part 'my_profile_controller.g.dart';
 @riverpod
 class MyProfileController extends _$MyProfileController {
   @override
-  FutureOr<UserProfile> build() async {
+  FutureOr<MyProfileState> build() async {
     final userProfileChanges = ref.watch(userProfileChangesProvider);
 
     return userProfileChanges.when(
-      data: (userProfile) => userProfile,
+      data: (userProfile) async {
+        final userAvatar = await ref
+            .read(userRepositoryProvider)
+            .obtainUserAvatar(userProfile);
+
+        return MyProfileState(userProfile: userProfile, userAvatar: userAvatar);
+      },
       error: (error, _) => throw error,
       loading: () => future,
     );

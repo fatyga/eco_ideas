@@ -1,5 +1,4 @@
-import 'package:eco_ideas/features/auth/data/data.dart';
-import 'package:eco_ideas/features/auth/domain/auth_status.dart';
+import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 
 import 'package:eco_ideas/features/user/user.dart';
 
@@ -27,7 +26,7 @@ abstract class UserRepository {
     UserProfile userProfile, {
     required String? imagePath,
   });
-  Future<bool> checkIfAvatarIsPresent(UserProfile userProfile);
+  Future<UserAvatar?> obtainUserAvatar(UserProfile userProfile);
   Future<void> completeSignUp(
     UserProfile userProfile, {
     String? avatarPath,

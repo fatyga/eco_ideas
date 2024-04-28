@@ -2,8 +2,11 @@ import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 class HomeBottomNavigationBar extends StatelessWidget {
-  const HomeBottomNavigationBar(
-      {required this.currentIndex, required this.onTap, super.key});
+  const HomeBottomNavigationBar({
+    required this.currentIndex,
+    required this.onTap,
+    super.key,
+  });
 
   final int currentIndex;
   final void Function(int) onTap;

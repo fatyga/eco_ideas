@@ -34,7 +34,7 @@ class SplashRoute extends GoRouteData {
     TypedGoRoute<SignUpCompletionRoute>(path: SignUpCompletionScreen.path),
     TypedGoRoute<ExploreRoute>(path: ExploreScreen.path),
     TypedGoRoute<MyIdeasRoute>(path: MyIdeasScreen.path),
-    TypedGoRoute<MyProfileRoute>(path: MyProfileScreen.path)
+    TypedGoRoute<MyProfileRoute>(path: MyProfileScreen.path),
   ],
 )
 class HomeRoute extends GoRouteData {
