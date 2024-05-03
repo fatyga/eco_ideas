@@ -7,11 +7,11 @@ part of 'modify_my_profile_controller.dart';
 // **************************************************************************
 
 String _$modifyMyProfileControllerHash() =>
-    r'020a45194e82a9f5c34f93f47540dd9c5caf57ee';
+    r'f948577e6d559a66f3e0a985afdd0aabb5b56095';
 
 /// See also [ModifyMyProfileController].
 @ProviderFor(ModifyMyProfileController)
-final modifyMyProfileControllerProvider = AutoDisposeNotifierProvider<
+final modifyMyProfileControllerProvider = AutoDisposeAsyncNotifierProvider<
     ModifyMyProfileController, ModifyMyProfileState>.internal(
   ModifyMyProfileController.new,
   name: r'modifyMyProfileControllerProvider',
@@ -22,6 +22,7 @@ final modifyMyProfileControllerProvider = AutoDisposeNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$ModifyMyProfileController = AutoDisposeNotifier<ModifyMyProfileState>;
+typedef _$ModifyMyProfileController
+    = AutoDisposeAsyncNotifier<ModifyMyProfileState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

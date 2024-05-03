@@ -1,8 +1,10 @@
 import 'package:eco_ideas/features/user/presentation/my_profile/my_profile.dart';
 import 'package:eco_ideas/features/user/presentation/my_profile/widgets/my_profile_details/my_profile_details.dart';
 import 'package:eco_ideas/features/user/presentation/my_profile/widgets/sign_out_button.dart';
+import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class MyProfileScreen extends ConsumerWidget {
   const MyProfileScreen({super.key});
@@ -27,11 +29,12 @@ class MyProfileScreen extends ConsumerWidget {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => context.go(const ModifyMyProfileRoute().location),
           child: const Icon(Icons.edit),
         ),
       ),
       error: (error, stackTrace) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Center(child: Text('Fail to load your profile')),
           ElevatedButton(

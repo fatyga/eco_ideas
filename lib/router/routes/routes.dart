@@ -9,6 +9,7 @@ import 'package:eco_ideas/features/explore/presentation/explore/explore_screen.d
 
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
 import 'package:eco_ideas/features/ideas/presentation/my_ideas/my_ideas_screen.dart';
+import 'package:eco_ideas/features/user/presentation/modify_my_profile/modify_my_profile_screen.dart';
 import 'package:eco_ideas/features/user/presentation/my_profile/my_profile_screen.dart';
 import 'package:eco_ideas/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ class SplashRoute extends GoRouteData {
     TypedGoRoute<ExploreRoute>(path: ExploreScreen.path),
     TypedGoRoute<MyIdeasRoute>(path: MyIdeasScreen.path),
     TypedGoRoute<MyProfileRoute>(path: MyProfileScreen.path),
+    TypedGoRoute<ModifyMyProfileRoute>(path: ModifyMyProfileScreen.path),
   ],
 )
 class HomeRoute extends GoRouteData {
@@ -70,6 +72,15 @@ class MyProfileRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const MyProfileScreen();
+  }
+}
+
+class ModifyMyProfileRoute extends GoRouteData {
+  const ModifyMyProfileRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const ModifyMyProfileScreen();
   }
 }
 

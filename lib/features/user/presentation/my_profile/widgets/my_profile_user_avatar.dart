@@ -8,8 +8,10 @@ class MyProfileUserAvatar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userAvatar = ref.watch(myProfileControllerProvider
-        .select((myProfileState) => myProfileState.valueOrNull?.userAvatar));
+    final userAvatar = ref.watch(
+      myProfileControllerProvider
+          .select((myProfileState) => myProfileState.valueOrNull?.userAvatar),
+    );
     return EICircleAvatar(
       userAvatar: userAvatar,
       radius: 64,

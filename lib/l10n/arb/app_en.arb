@@ -77,5 +77,7 @@
     
     "homeExploreLabel": "Explore",
     "homeMyIdeasLabel" : "My ideas",
-    "homeProfileLabel": "My Profile"
+    "homeProfileLabel": "My Profile",
+
+    "modifyMyProfileAppBarTitle": "Edit your profile"
 }

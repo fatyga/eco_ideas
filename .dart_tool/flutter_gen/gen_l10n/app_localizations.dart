@@ -494,6 +494,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'My Profile'**
   String get homeProfileLabel;
+
+  /// No description provided for @modifyMyProfileAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit your profile'**
+  String get modifyMyProfileAppBarTitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

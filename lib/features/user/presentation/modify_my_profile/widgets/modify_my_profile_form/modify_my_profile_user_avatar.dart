@@ -1,12 +1,13 @@
 import 'package:eco_ideas/common/widgets/user_avatar/ei_circle_avatar.dart';
+import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_controller/sign_up_completion_controller.dart';
 import 'package:eco_ideas/features/user/presentation/modify_my_profile/modify_my_profile_controller/modify_my_profile_controller.dart';
 import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpCompletionUserAvatar extends ConsumerWidget {
-  const SignUpCompletionUserAvatar({super.key});
+class ModifyMyProfileUserAvatar extends ConsumerWidget {
+  const ModifyMyProfileUserAvatar({super.key});
 
   double get radius => 60;
   @override
@@ -23,7 +24,7 @@ class SignUpCompletionUserAvatar extends ConsumerWidget {
 
     return EICircleAvatar(
       userAvatar: avatarInput != null && avatarInput.value != null
-          ? UserAvatar.local(avatarInput.value!)
+          ? UserAvatar.network(avatarInput.value!)
           : null,
       editable: !isLoading,
       radius: radius,

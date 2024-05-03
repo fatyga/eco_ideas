@@ -204,4 +204,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeProfileLabel => 'My Profile';
+
+  @override
+  String get modifyMyProfileAppBarTitle => 'Edit your profile';
 }

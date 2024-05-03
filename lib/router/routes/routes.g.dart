@@ -54,6 +54,10 @@ RouteBase get $homeRoute => GoRouteData.$route(
           path: 'myProfile',
           factory: $MyProfileRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'modifyMyProfile',
+          factory: $ModifyMyProfileRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -132,6 +136,24 @@ extension $MyProfileRouteExtension on MyProfileRoute {
 
   String get location => GoRouteData.$location(
         '/home/myProfile',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ModifyMyProfileRouteExtension on ModifyMyProfileRoute {
+  static ModifyMyProfileRoute _fromState(GoRouterState state) =>
+      const ModifyMyProfileRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/modifyMyProfile',
       );
 
   void go(BuildContext context) => context.go(location);
