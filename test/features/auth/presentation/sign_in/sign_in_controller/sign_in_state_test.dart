@@ -1,5 +1,5 @@
-import 'package:eco_ideas/features/auth/presentation/input_models/email_input.dart';
-import 'package:eco_ideas/features/auth/presentation/input_models/password_input.dart';
+import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/email_input.dart';
+import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/password_input.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

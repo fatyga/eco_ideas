@@ -1,6 +1,6 @@
 import 'package:eco_ideas/features/auth/data/data.dart';
-import 'package:eco_ideas/features/auth/presentation/input_models/about_me_input.dart';
-import 'package:eco_ideas/features/auth/presentation/input_models/avatar_input.dart';
+import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/about_me_input.dart';
+import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/avatar_input.dart';
 import 'package:eco_ideas/features/user/presentation/modify_my_profile/modify_my_profile_controller/modify_my_profile_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'modify_my_profile_controller.g.dart';

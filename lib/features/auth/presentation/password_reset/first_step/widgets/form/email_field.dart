@@ -1,4 +1,4 @@
-import 'package:eco_ideas/common/widgets/auth_forms_fields/email_field.dart';
+import 'package:eco_ideas/common/widgets/ei_form/ei_form_fields/email_field.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/controller.dart';
 
 import 'package:eco_ideas/l10n/l10n.dart';
