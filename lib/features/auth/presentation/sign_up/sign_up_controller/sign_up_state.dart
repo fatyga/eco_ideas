@@ -1,9 +1,4 @@
-import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/avatar_input.dart';
-import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/email_input.dart';
-
-import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/password_retype_input.dart';
-import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/restricted_password_input.dart';
-import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/username_input.dart';
+import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

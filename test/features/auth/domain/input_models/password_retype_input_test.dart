@@ -1,4 +1,4 @@
-import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models/password_retype_input.dart';
+import 'package:eco_ideas/common/widgets/ei_form/input_models/password_retype_input.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
