@@ -1,7 +1,6 @@
-import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models.dart';
-import 'package:formz/formz.dart';
+part of 'ei_form_model.dart';
 
-class SignUpForm with FormzMixin {
+class SignUpForm extends EIFormModel {
   SignUpForm({
     this.usernameInput = const UsernameInput.pure(),
     this.emailInput = const EmailInput.pure(),

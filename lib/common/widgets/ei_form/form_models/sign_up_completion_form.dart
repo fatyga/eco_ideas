@@ -1,7 +1,6 @@
-import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models.dart';
-import 'package:formz/formz.dart';
+part of 'ei_form_model.dart';
 
-class SignUpCompletionForm with FormzMixin {
+class SignUpCompletionForm extends EIFormModel {
   SignUpCompletionForm(
       {this.avatarInput = const AvatarInput.pure(),
       this.aboutMeInput = const AboutMeInput.pure()});

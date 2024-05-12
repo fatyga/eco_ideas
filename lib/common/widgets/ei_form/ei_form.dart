@@ -1,20 +1,16 @@
+import 'package:eco_ideas/common/widgets/ei_form/form_models/ei_form_model.dart';
 import 'package:flutter/material.dart';
-import 'package:formz/formz.dart';
 
 class EIForm extends StatefulWidget {
   const EIForm({required this.formModel, super.key});
 
-  final FormzMixin formModel;
+  final EIFormModel formModel;
   @override
   State<EIForm> createState() => _EIFormState();
 }
 
 class _EIFormState extends State<EIForm> {
   final _formKey = GlobalKey<FormState>();
-
-  List<Widget> _generateFields() {
-    return [];
-  }
 
   @override
   Widget build(BuildContext context) {
