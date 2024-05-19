@@ -1,21 +1,24 @@
 import 'dart:io';
 
+import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 import 'package:formz/formz.dart';
 
 enum AvatarInputError { nonExistingFile, emptyPath }
 
-class AvatarInput extends FormzInput<String?, AvatarInputError> {
+class AvatarInput extends FormzInput<UserAvatar?, AvatarInputError> {
   const AvatarInput.pure() : super.pure(null);
 
-  const AvatarInput.dirty({String? value}) : super.dirty(value);
+  const AvatarInput.dirty({UserAvatar? value}) : super.dirty(value);
 
   @override
-  AvatarInputError? validator(String? value) {
+  AvatarInputError? validator(UserAvatar? value) {
     if (value == null) return null;
-    if (value.isEmpty) {
+    if (value.path.isEmpty) {
       return AvatarInputError.emptyPath;
     }
-    if (!File(value).existsSync()) return AvatarInputError.nonExistingFile;
+
+    if (value.source == UserAvatarSource.local &&
+        !File(value.path).existsSync()) return AvatarInputError.nonExistingFile;
     return null;
   }
 }

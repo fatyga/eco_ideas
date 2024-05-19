@@ -679,64 +679,6 @@ set passwordRetypeInput to PasswordRetypeInput.dirty(value: newValue) when [newV
           verifyNoMoreInteractions(listener);
         });
       });
-
-      group('updateAvatar', () {
-        const path = '/home/johnDoe/photos/avatar.png';
-        test('no state is emitted, if given [avatarUrl] is null', () {
-          final container = makeProviderContainer();
-          final listener = Listener<AsyncValue<SignUpState>>();
-          container.listen(
-            signUpControllerProvider,
-            listener.call,
-            fireImmediately: true,
-          );
-
-          container.read(signUpControllerProvider.notifier).updateAvatar(null);
-
-          verifyInOrder([
-            () => listener.call(
-                  null,
-                  const AsyncData<SignUpState>(SignUpState()),
-                ),
-            () => listener.call(
-                  const AsyncData<SignUpState>(SignUpState()),
-                  const AsyncData<SignUpState>(
-                    SignUpState(avatarInput: AvatarInput.dirty()),
-                  ),
-                ),
-          ]);
-
-          verifyNoMoreInteractions(listener);
-        });
-        test(
-            'updates state.avatarUrl to AvatarInput.dirty(), when state is AsyncData && [avatarUrl] is not empty',
-            () {
-          final container = makeProviderContainer();
-          final listener = Listener<AsyncValue<SignUpState>>();
-          container.listen(
-            signUpControllerProvider,
-            listener.call,
-            fireImmediately: true,
-          );
-
-          container.read(signUpControllerProvider.notifier).updateAvatar(path);
-
-          verifyInOrder([
-            () => listener.call(
-                  null,
-                  const AsyncData<SignUpState>(SignUpState()),
-                ),
-            () => listener.call(
-                  const AsyncData<SignUpState>(SignUpState()),
-                  const AsyncData<SignUpState>(
-                    SignUpState(avatarInput: AvatarInput.dirty(value: path)),
-                  ),
-                ),
-          ]);
-
-          verifyNoMoreInteractions(listener);
-        });
-      });
     });
 
     group('signUpWithEmail', () {

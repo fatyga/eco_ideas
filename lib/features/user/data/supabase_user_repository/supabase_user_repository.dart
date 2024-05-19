@@ -103,11 +103,11 @@ class SupabaseUserRepository implements UserRepository {
 
   @override
   Future<UserAvatar?> obtainUserAvatar(UserProfile userProfile) async {
-    final url = Uri.parse(userProfile.avatarUrl);
+    final url = Uri.parse(userProfile.avatar.path);
     final response = await http.head(url);
 
     if (response.statusCode == 200) {
-      return UserAvatar.network(userProfile.avatarUrl);
+      return userProfile.avatar;
     }
     return null;
   }

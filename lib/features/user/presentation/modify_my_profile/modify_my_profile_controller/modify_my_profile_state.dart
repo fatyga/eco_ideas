@@ -13,7 +13,7 @@ class ModifyMyProfileState with _$ModifyMyProfileState {
 
   factory ModifyMyProfileState.fromUserProfile(UserProfile userProfile) {
     return ModifyMyProfileState(
-      avatarInput: AvatarInput.dirty(value: userProfile.avatarUrl),
+      avatarInput: AvatarInput.dirty(value: userProfile.avatar),
       aboutMeInput: AboutMeInput.dirty(value: userProfile.aboutMe ?? ''),
     );
   }

@@ -2,6 +2,7 @@ import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_completion_controller/sign_up_completion_state.dart';
 import 'package:eco_ideas/features/user/data/user_exception.dart';
+import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 import 'package:eco_ideas/router/go_router_provider/go_router_provider.dart';
 import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,12 +16,12 @@ class SignUpCompletionController extends _$SignUpCompletionController {
     return const SignUpCompletionState();
   }
 
-  void updateAvatarInput(String? avatarUrl) {
+  void updateAvatarInput(UserAvatar? userAvatar) {
     final stateValue = state.valueOrNull;
     if (stateValue != null) {
       state = AsyncValue.data(
         stateValue.copyWith(
-          avatarInput: AvatarInput.dirty(value: avatarUrl),
+          avatarInput: AvatarInput.dirty(value: userAvatar),
         ),
       );
     }
@@ -55,7 +56,7 @@ class SignUpCompletionController extends _$SignUpCompletionController {
         final userProfile = ref.read(userProfileChangesProvider);
         await ref.read(userRepositoryProvider).completeSignUp(
               userProfile.requireValue,
-              avatarPath: stateValue.avatarInput.value,
+              avatarPath: stateValue.avatarInput.value?.path,
               aboutMe: stateValue.aboutMeInput.value,
             );
         // TODO(fatyga): find a way to automatically go to HomeRoute

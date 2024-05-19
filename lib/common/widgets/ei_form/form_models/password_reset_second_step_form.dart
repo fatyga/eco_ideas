@@ -1,6 +1,7 @@
-part of 'ei_form_model.dart';
+import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models.dart';
+import 'package:formz/formz.dart';
 
-class PasswordResetSecondStepForm extends EIFormModel {
+class PasswordResetSecondStepForm with FormzMixin {
   PasswordResetSecondStepForm({
     this.restrictedPasswordInput = const RestrictedPasswordInput.pure(),
     this.passwordRetypeInput = const PasswordRetypeInput.pure(),

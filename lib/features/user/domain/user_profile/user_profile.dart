@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -21,5 +22,6 @@ class UserProfile with _$UserProfile {
 
   const UserProfile._();
 
-  String get avatarUrl => '${dotenv.env['AVATAR_URL_BASE']}/$id/avatar';
+  UserAvatar get avatar =>
+      UserAvatar.network('${dotenv.env['AVATAR_URL_BASE']}/$id/avatar');
 }

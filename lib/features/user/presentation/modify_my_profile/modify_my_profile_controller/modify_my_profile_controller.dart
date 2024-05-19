@@ -2,6 +2,7 @@ import 'package:eco_ideas/common/widgets/ei_form/input_models/input_models.dart'
 import 'package:eco_ideas/features/auth/data/data.dart';
 
 import 'package:eco_ideas/features/user/presentation/modify_my_profile/modify_my_profile_controller/modify_my_profile_state.dart';
+import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'modify_my_profile_controller.g.dart';
 
@@ -16,7 +17,7 @@ class ModifyMyProfileController extends _$ModifyMyProfileController {
     return const ModifyMyProfileState();
   }
 
-  void updateAvatarInput(String? avatarUrl) {
+  void updateAvatarInput(UserAvatar? avatarUrl) {
     final stateValue = state.valueOrNull;
     if (stateValue != null) {
       state = AsyncValue.data(
