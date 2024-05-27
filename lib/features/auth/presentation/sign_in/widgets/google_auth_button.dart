@@ -12,9 +12,10 @@ class GoogleAuthButton extends ConsumerWidget {
     final l10n = context.l10n;
 
     return AuthProviderButton(
-      label: l10n.googleAuthButtonLabelText,
-      logoAssetPath: 'assets/images/google-logo-9808.png',
-      onPressed: ref.read(signInControllerProvider.notifier).signInWithGoogle,
-    );
+        label: l10n.googleAuthButtonLabelText,
+        logoAssetPath: 'assets/images/google-logo-9808.png',
+        onPressed: () {}
+        // onPressed: ref.read(signInControllerProvider.notifier).signInWithGoogle,
+        );
   }
 }
