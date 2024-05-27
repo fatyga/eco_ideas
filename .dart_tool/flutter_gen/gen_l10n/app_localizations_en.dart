@@ -11,6 +11,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get greetingText => 'Welcome in ';
 
   @override
+  String get requiredValidatorErrorText => 'This field is obligatory';
+
+  @override
   String get emailTextFieldLabelText => 'Email';
 
   @override

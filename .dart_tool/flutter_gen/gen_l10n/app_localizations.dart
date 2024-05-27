@@ -105,6 +105,12 @@ abstract class AppLocalizations {
   /// **'Welcome in '**
   String get greetingText;
 
+  /// No description provided for @requiredValidatorErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is obligatory'**
+  String get requiredValidatorErrorText;
+
   /// No description provided for @emailTextFieldLabelText.
   ///
   /// In en, this message translates to:
