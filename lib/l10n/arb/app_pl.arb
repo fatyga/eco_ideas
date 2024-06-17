@@ -2,6 +2,8 @@
     "@@locale": "pl",
     "appName": "EcoIdeas",
     "greetingText": "Witaj w ",
+
+    "requiredValidatorErrorText": "To pole jest obowiązkowe",
     "emailTextFieldLabelText": "Adres e-mail",
     "passwordTextFieldLabelText": "Hasło",
     "usernameTextFieldLabelText": "Nazwa użytkownika",
