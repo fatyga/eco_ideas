@@ -15,7 +15,7 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return FilledButton(
-      onPressed: onPressed,
+      onPressed: isLoading ? null : onPressed,
       child: isLoading
           ? SizedBox(
               width: 24,
