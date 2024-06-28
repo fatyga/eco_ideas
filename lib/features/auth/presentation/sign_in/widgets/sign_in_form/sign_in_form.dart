@@ -3,6 +3,7 @@ import 'package:eco_ideas/common/widgets/primary_button.dart';
 import 'package:eco_ideas/features/auth/presentation/form_fields/email_field.dart';
 import 'package:eco_ideas/features/auth/presentation/form_fields/password_field.dart';
 import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_controller.dart';
+import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/sign_in_form/forgot_password_action_button.dart';
 
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,11 @@ class _SignInFormState extends ConsumerState<SignInForm> {
           const EmailField(),
           const SizedBox(height: 16),
           const PasswordField(),
+          const SizedBox(height: 4),
+          const Align(
+            alignment: Alignment.centerRight,
+            child: ForgotPasswordActionButton(),
+          ),
           const SizedBox(height: 16),
           PrimaryButton(
             isLoading: isLoading,

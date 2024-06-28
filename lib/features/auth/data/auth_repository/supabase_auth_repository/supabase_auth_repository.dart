@@ -137,7 +137,8 @@ class SupabaseAuthRepository implements AuthRepository {
             email,
             redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL'],
           );
-    } on supabase.AuthException catch (_) {
+    } on supabase.AuthException catch (e) {
+      print(e);
       throw PasswordResetLinkSendFail();
     }
   }

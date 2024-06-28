@@ -7,13 +7,13 @@ part of 'controller.dart';
 // **************************************************************************
 
 String _$passwordResetFirstStepControllerHash() =>
-    r'a3b1c2f0112abcf1545bd59fdb0866a339412e3f';
+    r'3f9e48eb47d69663cacd6fc916d1f4a6191ccbfe';
 
 /// See also [PasswordResetFirstStepController].
 @ProviderFor(PasswordResetFirstStepController)
 final passwordResetFirstStepControllerProvider =
     AutoDisposeAsyncNotifierProvider<PasswordResetFirstStepController,
-        PasswordResetFirstStepState>.internal(
+        void>.internal(
   PasswordResetFirstStepController.new,
   name: r'passwordResetFirstStepControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -23,7 +23,6 @@ final passwordResetFirstStepControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$PasswordResetFirstStepController
-    = AutoDisposeAsyncNotifier<PasswordResetFirstStepState>;
+typedef _$PasswordResetFirstStepController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

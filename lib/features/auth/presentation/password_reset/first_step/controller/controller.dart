@@ -1,7 +1,6 @@
-import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/state.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'controller.g.dart';
@@ -10,49 +9,18 @@ part 'controller.g.dart';
 class PasswordResetFirstStepController
     extends _$PasswordResetFirstStepController {
   @override
-  FutureOr<PasswordResetFirstStepState> build() {
-    return const PasswordResetFirstStepState();
-  }
+  FutureOr<void> build() {}
 
-  void updateEmailField(String newValue) {
-    final stateValue = state.valueOrNull;
-    if (stateValue != null) {
-      if (newValue.isEmpty) {
-        const emailInput = EmailInput.pure();
+  Future<bool> submit(String email) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(
+      () =>
+          ref.read(authRepositoryProvider).resetPasswordForEmail(email: email),
+      (err) => err is EIAuthException,
+    );
 
-        state = AsyncValue.data(
-          stateValue.copyWith(
-            emailInput: emailInput,
-          ),
-        );
-      } else {
-        final email = EmailInput.dirty(value: newValue);
+    void setToLoading() => state = const AsyncLoading();
 
-        state = AsyncValue.data(
-          stateValue.copyWith(
-            emailInput: email,
-          ),
-        );
-      }
-    }
-  }
-
-  Future<void> sentResetPasswordLink() async {
-    final stateValue = state.valueOrNull;
-    if (stateValue != null && stateValue.isValid) {
-      state = const AsyncLoading<PasswordResetFirstStepState>();
-      try {
-        await ref
-            .read(authRepositoryProvider)
-            .resetPasswordForEmail(email: stateValue.emailInput.value);
-
-        state = AsyncData(
-          state.requireValue
-              .copyWith(status: PasswordResetFirstStepStatus.linkSent),
-        );
-      } on EIAuthException catch (e) {
-        state = AsyncError(e, StackTrace.current);
-      }
-    }
+    return state.hasError == false;
   }
 }

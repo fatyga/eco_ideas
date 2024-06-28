@@ -19,7 +19,7 @@ class AuthProviderButton extends StatelessWidget {
       label: Text(
         label,
         style: theme.textTheme.titleSmall!
-            .copyWith(color: theme.colorScheme.onBackground),
+            .copyWith(color: theme.colorScheme.onSurface),
       ),
       onPressed: onPressed,
     );

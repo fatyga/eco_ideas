@@ -21,7 +21,8 @@ class SignInController extends _$SignInController {
           password: password,
         ),
       );
-      return state.hasError;
+
+      return state.hasError == false;
     } on EIAuthException catch (_) {
       throw SignInFail();
     }

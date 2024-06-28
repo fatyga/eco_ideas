@@ -1,5 +1,5 @@
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/controller.dart';
-import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/widgets/form/form.dart';
+import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/widgets/form.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/widgets/link_sent.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 
@@ -8,19 +8,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class PasswordResetFirstStepScreen extends ConsumerWidget {
+class PasswordResetFirstStepScreen extends ConsumerStatefulWidget {
   const PasswordResetFirstStepScreen({super.key});
 
   static const String path = 'firstStep';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _PasswordResetFirstStepScreenState();
+}
 
-    final isLinkSent = ref.watch(
-      passwordResetFirstStepControllerProvider
-          .select((state) => state.valueOrNull?.isLinkSent),
-    );
+class _PasswordResetFirstStepScreenState
+    extends ConsumerState<PasswordResetFirstStepScreen> {
+  bool isLinkSent = false;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
 
     return PopScope(
       canPop: false,
@@ -31,9 +34,13 @@ class PasswordResetFirstStepScreen extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(16),
-              child: isLinkSent != null && isLinkSent
+              child: isLinkSent
                   ? const LinkSentWidget()
-                  : const PasswordResetEmailForm(),
+                  : PasswordResetEmailForm(
+                      onSubmit: () => setState(() {
+                        isLinkSent = true;
+                      }),
+                    ),
             ),
           ],
         ),
