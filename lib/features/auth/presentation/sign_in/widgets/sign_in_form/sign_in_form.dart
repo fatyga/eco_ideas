@@ -1,8 +1,11 @@
 import 'package:eco_ideas/common/extensions/snackbar_on_error.dart';
 import 'package:eco_ideas/common/widgets/primary_button.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
+
 import 'package:eco_ideas/features/auth/presentation/form_fields/email_field.dart';
 import 'package:eco_ideas/features/auth/presentation/form_fields/password_field.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_in/sign_in_controller/sign_in_controller.dart';
+
 import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/sign_in_form/forgot_password_action_button.dart';
 
 import 'package:eco_ideas/l10n/l10n.dart';
@@ -27,22 +30,56 @@ class SignInForm extends ConsumerStatefulWidget {
 class _SignInFormState extends ConsumerState<SignInForm> {
   final _formKey = GlobalKey<FormBuilderState>();
 
+  bool isProcessing = false;
+
+  void _showSnackbarOnError(EIAuthException error) {
+    if (!mounted) return;
+    final l10n = context.l10n;
+    final errorText = error.resolveMessageForUser(l10n);
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(errorText)));
+  }
+
+  Future<void> submit() async {
+    final isValid = _formKey.currentState?.validate();
+
+    if (isValid != null && isValid) {
+      setState(() {
+        isProcessing = true;
+      });
+
+      try {
+        await ref.read(authRepositoryProvider).signInWithEmail(
+              email: _formKey.currentState!.fields['email']!.value as String,
+              password:
+                  _formKey.currentState!.fields['password']!.value as String,
+            );
+      } on SignInFail catch (error) {
+        _showSnackbarOnError(error);
+      } finally {
+        setState(() {
+          isProcessing = false;
+        });
+      }
+
+      print(isProcessing);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final isLoading =
-        ref.watch(signInControllerProvider.select((state) => state.isLoading));
-
-    ref.listen(
-      signInControllerProvider,
-      (_, next) => next.showSnackBarOnError(context),
-    );
     return FormBuilder(
       key: _formKey,
-      enabled: !isLoading,
+      enabled: !isProcessing,
       child: Column(
         children: [
+          Switch(
+              value: isProcessing,
+              onChanged: (value) => setState(() {
+                    isProcessing = value;
+                  })),
           const EmailField(),
           const SizedBox(height: 16),
           const PasswordField(),
@@ -53,18 +90,8 @@ class _SignInFormState extends ConsumerState<SignInForm> {
           ),
           const SizedBox(height: 16),
           PrimaryButton(
-            isLoading: isLoading,
-            onPressed: () async {
-              final isValid = _formKey.currentState?.saveAndValidate();
-
-              if (isValid != null && isValid) {
-                await ref.read(signInControllerProvider.notifier).submit(
-                      _formKey.currentState!.fields['email']!.value as String,
-                      _formKey.currentState!.fields['password']!.value
-                          as String,
-                    );
-              }
-            },
+            isLoading: isProcessing,
+            onPressed: submit,
             child: Text(l10n.signInButtonText),
           ),
         ],

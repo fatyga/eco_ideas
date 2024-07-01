@@ -1,5 +1,6 @@
 import 'package:eco_ideas/common/extensions/snackbar_on_error.dart';
 import 'package:eco_ideas/common/widgets/primary_button.dart';
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/presentation/form_fields/email_field.dart';
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
 
@@ -21,18 +22,43 @@ class _PasswordResetEmailFormState
     extends ConsumerState<PasswordResetEmailForm> {
   final _formKey = GlobalKey<FormBuilderState>();
 
+  bool isLoading = false;
+
+  void _showSnackbarWithError(EIAuthException error) {
+    if (!mounted) return;
+    final l10n = context.l10n;
+    final errorText = error.resolveMessageForUser(l10n);
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(errorText)));
+  }
+
+  Future<void> submit() async {
+    final isValid = _formKey.currentState?.validate();
+
+    if (isValid != null && isValid) {
+      setState(() {
+        isLoading = true;
+      });
+
+      try {
+        final success = await ref
+            .read(passwordResetFirstStepControllerProvider.notifier)
+            .submit(
+              _formKey.currentState!.fields['email']!.value as String,
+            );
+        if (success) widget.onSubmit();
+      } on PasswordResetLinkSendFail catch (error) {
+        _showSnackbarWithError(error);
+      } finally {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.read(
-      passwordResetFirstStepControllerProvider
-          .select((state) => state.isLoading),
-    );
-
-    ref.listen(
-      passwordResetFirstStepControllerProvider,
-      (_, next) => next.showSnackBarOnError(context),
-    );
-
     final l10n = context.l10n;
     return FormBuilder(
       key: _formKey,
@@ -45,18 +71,7 @@ class _PasswordResetEmailFormState
           const SizedBox(height: 12),
           PrimaryButton(
             isLoading: isLoading,
-            onPressed: () async {
-              final isValid = _formKey.currentState?.saveAndValidate();
-
-              if (isValid != null && isValid) {
-                final success = await ref
-                    .read(passwordResetFirstStepControllerProvider.notifier)
-                    .submit(
-                      _formKey.currentState!.fields['email']!.value as String,
-                    );
-                if (success) widget.onSubmit();
-              }
-            },
+            onPressed: submit,
             child: Text(l10n.signInButtonText),
           ),
         ],
