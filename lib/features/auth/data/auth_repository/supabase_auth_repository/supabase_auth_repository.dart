@@ -125,19 +125,21 @@ class SupabaseAuthRepository implements AuthRepository {
       );
 
       return response.user?.id;
-    } on supabase.AuthException catch (_) {
+    } on supabase.AuthException catch (e) {
+      print(e);
       throw SignUpFail();
     }
   }
 
   @override
-  Future<void> resetPasswordForEmail({required String email}) async {
+  Future<bool> resetPasswordForEmail({required String email}) async {
     try {
       await ref.read(supabaseClientProvider).auth.resetPasswordForEmail(
             email,
             redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL'],
           );
-    } on supabase.AuthException catch (e) {
+      return true;
+    } on supabase.AuthException catch (_) {
       throw PasswordResetLinkSendFail();
     }
   }

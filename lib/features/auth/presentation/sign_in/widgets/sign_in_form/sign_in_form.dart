@@ -1,10 +1,9 @@
-import 'package:eco_ideas/common/extensions/snackbar_on_error.dart';
 import 'package:eco_ideas/common/widgets/primary_button.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
 
-import 'package:eco_ideas/features/auth/presentation/form_fields/email_field.dart';
-import 'package:eco_ideas/features/auth/presentation/form_fields/password_field.dart';
+import 'package:eco_ideas/features/auth/presentation/utils/form_fields/email_field.dart';
+import 'package:eco_ideas/features/auth/presentation/utils/form_fields/password_field.dart';
 
 import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/sign_in_form/forgot_password_action_button.dart';
 
@@ -61,8 +60,6 @@ class _SignInFormState extends ConsumerState<SignInForm> {
           isProcessing = false;
         });
       }
-
-      print(isProcessing);
     }
   }
 
@@ -75,11 +72,6 @@ class _SignInFormState extends ConsumerState<SignInForm> {
       enabled: !isProcessing,
       child: Column(
         children: [
-          Switch(
-              value: isProcessing,
-              onChanged: (value) => setState(() {
-                    isProcessing = value;
-                  })),
           const EmailField(),
           const SizedBox(height: 16),
           const PasswordField(),

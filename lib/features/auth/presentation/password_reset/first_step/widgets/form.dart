@@ -1,8 +1,7 @@
-import 'package:eco_ideas/common/extensions/snackbar_on_error.dart';
 import 'package:eco_ideas/common/widgets/primary_button.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
-import 'package:eco_ideas/features/auth/presentation/form_fields/email_field.dart';
-import 'package:eco_ideas/features/auth/presentation/presentation.dart';
+import 'package:eco_ideas/features/auth/data/data.dart';
+import 'package:eco_ideas/features/auth/presentation/utils/form_fields/email_field.dart';
 
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +41,9 @@ class _PasswordResetEmailFormState
 
       try {
         final success = await ref
-            .read(passwordResetFirstStepControllerProvider.notifier)
-            .submit(
-              _formKey.currentState!.fields['email']!.value as String,
+            .read(authRepositoryProvider)
+            .resetPasswordForEmail(
+              email: _formKey.currentState!.fields['email']!.value as String,
             );
         if (success) widget.onSubmit();
       } on PasswordResetLinkSendFail catch (error) {
@@ -70,10 +69,7 @@ class _PasswordResetEmailFormState
           const EmailField(),
           const SizedBox(height: 12),
           PrimaryButton(
-            isLoading: isLoading,
-            onPressed: submit,
-            child: Text(l10n.signInButtonText),
-          ),
+              isLoading: isLoading, onPressed: submit, child: Text('submit')),
         ],
       ),
     );

@@ -252,6 +252,8 @@
 //             ..updateEmailField(emailValue);
 //           await controller.submit();
 
+// ignore_for_file: lines_longer_than_80_chars
+
 //           verifyInOrder([
 //             () => listener.call(
 //                   const AsyncData<PasswordResetFirstStepState>(

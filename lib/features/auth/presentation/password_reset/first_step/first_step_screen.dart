@@ -1,4 +1,3 @@
-import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/controller/controller.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/widgets/form.dart';
 import 'package:eco_ideas/features/auth/presentation/password_reset/first_step/widgets/link_sent.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
