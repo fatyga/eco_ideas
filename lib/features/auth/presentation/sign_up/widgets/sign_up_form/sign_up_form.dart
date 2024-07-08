@@ -54,6 +54,10 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
           isProcessing = false;
         });
       }
+
+      setState(() {
+        isProcessing = false;
+      });
     }
   }
 
@@ -69,7 +73,9 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
           const SizedBox(height: 12),
           const EmailField(),
           const SizedBox(height: 12),
-          const PasswordField(),
+          const PasswordField(
+            restricted: true,
+          ),
           const SizedBox(height: 12),
           const RetypePasswordField(),
           const SizedBox(height: 12),

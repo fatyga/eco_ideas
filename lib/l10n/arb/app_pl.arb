@@ -29,9 +29,9 @@
 
     "passwordInputEmptyErrorText": "To pole nie może być puste",
     "passwordInputTooShortErrorText": "Hasło jest za krótkie(co najmniej 6 znaków)",
-    "signUpPasswordInputErrorSpecialCharacterNotPresentText": "Co najmniej jeden znak specjalny(!@#$%^&*) jest wymagany",
-    "signUpPasswordInputErrorDigitNotPresent": "Co najmniej jedna cyfra(0-9) jest wymagana",
-    "signUpPasswordInputErrorUppercaseNotPresent": "Co najmniej jedna duża litera(A-Z) jest wymagana",
+    "restrictedPasswordInputErrorSpecialCharacterNotPresentText": "Co najmniej jeden znak specjalny(!@#$%^&*) jest wymagany",
+    "restrictedPasswordInputErrorDigitNotPresent": "Co najmniej jedna cyfra(0-9) jest wymagana",
+    "restrictedUpPasswordInputErrorUppercaseNotPresent": "Co najmniej jedna duża litera(A-Z) jest wymagana",
     "emailInputEmptyErrorText": "To pole nie może być puste",
     "emailInputInvalidErrorText": "Adres e-mail jest nieprawidłowy.",
     "signUpScreenAppBarTitle": "Utwórz konto",

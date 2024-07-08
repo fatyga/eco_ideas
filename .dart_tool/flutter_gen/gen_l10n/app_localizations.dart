@@ -251,23 +251,23 @@ abstract class AppLocalizations {
   /// **'Password is too short(at least 6 characters)'**
   String get passwordInputTooShortErrorText;
 
-  /// No description provided for @signUpPasswordInputErrorSpecialCharacterNotPresentText.
+  /// No description provided for @restrictedPasswordInputErrorSpecialCharacterNotPresentText.
   ///
   /// In en, this message translates to:
   /// **'At least one special character(!@#\$%^&*) is required'**
-  String get signUpPasswordInputErrorSpecialCharacterNotPresentText;
+  String get restrictedPasswordInputErrorSpecialCharacterNotPresentText;
 
-  /// No description provided for @signUpPasswordInputErrorDigitNotPresent.
+  /// No description provided for @restrictedPasswordInputErrorDigitNotPresent.
   ///
   /// In en, this message translates to:
   /// **'At least one digit(0-9) is required'**
-  String get signUpPasswordInputErrorDigitNotPresent;
+  String get restrictedPasswordInputErrorDigitNotPresent;
 
-  /// No description provided for @signUpPasswordInputErrorUppercaseNotPresent.
+  /// No description provided for @restrictedPasswordInputErrorUppercaseNotPresent.
   ///
   /// In en, this message translates to:
   /// **'At least one uppercase letter(A-Z) is required'**
-  String get signUpPasswordInputErrorUppercaseNotPresent;
+  String get restrictedPasswordInputErrorUppercaseNotPresent;
 
   /// No description provided for @emailInputEmptyErrorText.
   ///

@@ -2,6 +2,8 @@
     "@@locale": "en",
     "appName": "EcoIdeas",
     "greetingText": "Welcome in ",
+    
+
 
     "requiredValidatorErrorText": "This field is obligatory",
     "emailTextFieldLabelText": "Email",
@@ -29,9 +31,9 @@
     
     "passwordInputEmptyErrorText": "Password can't be empty",
     "passwordInputTooShortErrorText": "Password is too short(at least 6 characters)",
-    "signUpPasswordInputErrorSpecialCharacterNotPresentText": "At least one special character(!@#$%^&*) is required",
-    "signUpPasswordInputErrorDigitNotPresent": "At least one digit(0-9) is required",
-    "signUpPasswordInputErrorUppercaseNotPresent": "At least one uppercase letter(A-Z) is required",
+    "restrictedPasswordInputErrorSpecialCharacterNotPresentText": "At least one special character(!@#$%^&*) is required",
+    "restrictedPasswordInputErrorDigitNotPresent": "At least one digit(0-9) is required",
+    "restrictedPasswordInputErrorUppercaseNotPresent": "At least one uppercase letter(A-Z) is required",
     "emailInputEmptyErrorText": "Email can't be empty",
     "emailInputInvalidErrorText": "Email is invalid",
     "signUpScreenAppBarTitle": "Create an account",

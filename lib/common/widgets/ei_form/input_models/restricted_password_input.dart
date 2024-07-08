@@ -14,11 +14,11 @@ enum RestrictedPasswordInputError {
       RestrictedPasswordInputError.tooShort =>
         l10n.passwordInputTooShortErrorText,
       RestrictedPasswordInputError.specialCharacterNotPresent =>
-        l10n.signUpPasswordInputErrorSpecialCharacterNotPresentText,
+        l10n.restrictedPasswordInputErrorSpecialCharacterNotPresentText,
       RestrictedPasswordInputError.uppercaseNotPresent =>
-        l10n.signUpPasswordInputErrorUppercaseNotPresent,
+        l10n.restrictedPasswordInputErrorUppercaseNotPresent,
       RestrictedPasswordInputError.digitNotPresent =>
-        l10n.signUpPasswordInputErrorDigitNotPresent
+        l10n.restrictedPasswordInputErrorDigitNotPresent
     };
   }
 }

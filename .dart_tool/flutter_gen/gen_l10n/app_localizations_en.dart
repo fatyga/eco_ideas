@@ -85,13 +85,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordInputTooShortErrorText => 'Password is too short(at least 6 characters)';
 
   @override
-  String get signUpPasswordInputErrorSpecialCharacterNotPresentText => 'At least one special character(!@#\$%^&*) is required';
+  String get restrictedPasswordInputErrorSpecialCharacterNotPresentText => 'At least one special character(!@#\$%^&*) is required';
 
   @override
-  String get signUpPasswordInputErrorDigitNotPresent => 'At least one digit(0-9) is required';
+  String get restrictedPasswordInputErrorDigitNotPresent => 'At least one digit(0-9) is required';
 
   @override
-  String get signUpPasswordInputErrorUppercaseNotPresent => 'At least one uppercase letter(A-Z) is required';
+  String get restrictedPasswordInputErrorUppercaseNotPresent => 'At least one uppercase letter(A-Z) is required';
 
   @override
   String get emailInputEmptyErrorText => 'Email can\'t be empty';
