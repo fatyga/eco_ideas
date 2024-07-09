@@ -1,3 +1,4 @@
+import 'package:eco_ideas/features/auth/presentation/utils/form_fields/password_field.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -12,6 +13,8 @@ class RetypePasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    final passwordField = FormBuilder.of(context)!.fields[PasswordField.name];
+
     return FormBuilderTextField(
       name: 'password',
       decoration: InputDecoration(labelText: l10n.passwordRetypeFieldLabelText),
@@ -20,6 +23,11 @@ class RetypePasswordField extends StatelessWidget {
         FormBuilderValidators.required(
           errorText: l10n.requiredValidatorErrorText,
         ),
+        (value) {
+          return passwordField?.value != value
+              ? l10n.signUpPasswordRetypeInputMismatchErrorText
+              : null;
+        },
       ]),
     );
   }

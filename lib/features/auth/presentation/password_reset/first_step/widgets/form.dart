@@ -66,10 +66,15 @@ class _PasswordResetEmailFormState
         children: [
           Text(l10n.passwordResetFirstStepDescription),
           const SizedBox(height: 8),
-          const EmailField(),
+          const EmailField(
+            key: ValueKey('passwordResetFirstStepFormEmailField'),
+          ),
           const SizedBox(height: 12),
           PrimaryButton(
-              isLoading: isLoading, onPressed: submit, child: Text('submit')),
+            isLoading: isLoading,
+            onPressed: submit,
+            child: Text('submit'),
+          ),
         ],
       ),
     );

@@ -64,9 +64,13 @@ class _PasswordResetSecondStepFormState
         children: [
           Text(l10n.passwordResetSecondStepDescription),
           const SizedBox(height: 12),
-          const PasswordField(),
+          const PasswordField(
+            key: ValueKey('passwordResetSecondStepFormPasswordField'),
+          ),
           const SizedBox(height: 12),
-          const RetypePasswordField(),
+          const RetypePasswordField(
+            key: ValueKey('passwordResetSecondStepFormRetypePasswordField'),
+          ),
           const SizedBox(height: 16),
           PrimaryButton(
             isLoading: isProcessing,

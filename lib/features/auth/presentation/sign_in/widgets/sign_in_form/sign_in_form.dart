@@ -1,12 +1,9 @@
 import 'package:eco_ideas/common/widgets/primary_button.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_exception/auth_exception.dart';
 import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
-
+import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/sign_in_form/forgot_password_action_button.dart';
 import 'package:eco_ideas/features/auth/presentation/utils/form_fields/email_field.dart';
 import 'package:eco_ideas/features/auth/presentation/utils/form_fields/password_field.dart';
-
-import 'package:eco_ideas/features/auth/presentation/sign_in/widgets/sign_in_form/forgot_password_action_button.dart';
-
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -72,9 +69,9 @@ class _SignInFormState extends ConsumerState<SignInForm> {
       enabled: !isProcessing,
       child: Column(
         children: [
-          const EmailField(),
+          const EmailField(key: ValueKey('signInFormEmailField')),
           const SizedBox(height: 16),
-          const PasswordField(),
+          const PasswordField(key: ValueKey('signInFormPasswordField')),
           const SizedBox(height: 4),
           const Align(
             alignment: Alignment.centerRight,

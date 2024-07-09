@@ -21,6 +21,7 @@ class SignUpForm extends ConsumerStatefulWidget {
 
 class _SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormBuilderState>();
+  final _passwordFieldController = TextEditingController();
   bool isProcessing = false;
 
   void _showSnackbarWithError(EIAuthException error) {
@@ -43,9 +44,9 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
         await ref.read(authRepositoryProvider).signUpWithEmail(
               email: _formKey.currentState!.fields[EmailField.name]!.value
                   as String,
-              password: _formKey.currentState!.fields[EmailField.name]!.value
+              password: _formKey.currentState!.fields[PasswordField.name]!.value
                   as String,
-              username: _formKey.currentState!.fields[EmailField.name]!.value
+              username: _formKey.currentState!.fields[UsernameField.name]!.value
                   as String,
             );
       } on SignUpFail catch (error) {
@@ -69,15 +70,18 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
       enabled: !isProcessing,
       child: Column(
         children: <Widget>[
-          const UsernameField(),
+          const UsernameField(key: ValueKey('signUpFormUsernameField')),
           const SizedBox(height: 12),
-          const EmailField(),
+          const EmailField(key: ValueKey('signUpFormEmailField')),
           const SizedBox(height: 12),
           const PasswordField(
+            key: ValueKey('signUpFormPasswordField'),
             restricted: true,
           ),
           const SizedBox(height: 12),
-          const RetypePasswordField(),
+          const RetypePasswordField(
+            key: ValueKey('signUpFormRetypePasswordField'),
+          ),
           const SizedBox(height: 12),
           PrimaryButton(
             isLoading: isProcessing,

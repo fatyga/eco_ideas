@@ -20,7 +20,8 @@ class PasswordField extends StatelessWidget {
         FormBuilderValidators.required(
           errorText: l10n.requiredValidatorErrorText,
         ),
-        FormBuilderValidators.minLength(8),
+        FormBuilderValidators.minLength(6,
+            errorText: l10n.passwordInputTooShortErrorText),
         if (restricted) ...[
           FormBuilderValidators.match(
             '[A-Z]+',
