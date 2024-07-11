@@ -18,6 +18,7 @@ class RetypePasswordField extends StatelessWidget {
     return FormBuilderTextField(
       name: 'password',
       decoration: InputDecoration(labelText: l10n.passwordRetypeFieldLabelText),
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       obscureText: true,
       validator: FormBuilderValidators.compose([
         FormBuilderValidators.required(

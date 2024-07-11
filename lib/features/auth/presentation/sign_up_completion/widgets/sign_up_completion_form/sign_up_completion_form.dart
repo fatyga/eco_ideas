@@ -1,12 +1,22 @@
-import 'package:eco_ideas/features/auth/auth.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_up_completion/widgets/sign_up_completion_form/sign_up_completion_about_me_field.dart';
-import 'package:eco_ideas/features/auth/presentation/sign_up_completion/widgets/sign_up_completion_form/sign_up_completion_submit_button.dart';
+import 'package:eco_ideas/common/widgets/primary_button.dart';
+import 'package:eco_ideas/features/auth/presentation/utils/form_fields/about_me_field.dart';
+import 'package:eco_ideas/features/auth/presentation/utils/form_fields/user_avatar_field.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpCompletionForm extends StatelessWidget {
+class SignUpCompletionForm extends ConsumerStatefulWidget {
   const SignUpCompletionForm({super.key});
 
+  @override
+  ConsumerState<SignUpCompletionForm> createState() =>
+      _SignUpCompletionFormState();
+}
+
+class _SignUpCompletionFormState extends ConsumerState<SignUpCompletionForm> {
+  bool isProcessing = false;
+
+  Future<void> submit() async {}
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -27,11 +37,15 @@ class SignUpCompletionForm extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32),
-          const SignUpCompletionUserAvatar(),
+          const UserAvatarField(),
           const SizedBox(height: 16),
-          const SignUpCompletionAboutMeField(),
+          const AboutMeField(),
           const SizedBox(height: 16),
-          const SignUpCompletionSubmitButton(),
+          PrimaryButton(
+            isLoading: isProcessing,
+            onPressed: submit,
+            child: Text(l10n.signUpCompletionDoneButtonText),
+          ),
         ],
       ),
     );

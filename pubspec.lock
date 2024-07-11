@@ -394,6 +394,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  form_builder_image_picker:
+    dependency: "direct main"
+    description:
+      name: form_builder_image_picker
+      sha256: d3920ba0472db8d66a96ab49d9103eb7c60699451e9d3674f24657cf87e2019d
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   form_builder_validators:
     dependency: "direct main"
     description:
@@ -579,13 +587,13 @@ packages:
     source: hosted
     version: "4.0.2"
   image_picker:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: image_picker
-      sha256: "021834d9c0c3de46bf0fe40341fa07168407f694d9b2bb18d532dc1261867f7a"
+      sha256: b6951e25b795d053a6ba03af5f710069c99349de9341af95155d52665cb4607c
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
+    version: "0.8.9"
   image_picker_android:
     dependency: transitive
     description:
@@ -598,10 +606,10 @@ packages:
     dependency: transitive
     description:
       name: image_picker_for_web
-      sha256: "5d6eb13048cd47b60dbf1a5495424dea226c5faf3950e20bf8120a58efb5b5f3"
+      sha256: "869fe8a64771b7afbc99fc433a5f7be2fea4d1cb3d7c11a48b6b579eb9c797f0"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.4"
+    version: "2.2.0"
   image_picker_ios:
     dependency: transitive
     description:

@@ -6,7 +6,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 class EmailField extends StatelessWidget {
   const EmailField({super.key});
 
-  static String name = 'username';
+  static String name = 'email';
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

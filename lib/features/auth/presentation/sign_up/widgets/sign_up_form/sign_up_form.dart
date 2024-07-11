@@ -21,7 +21,7 @@ class SignUpForm extends ConsumerStatefulWidget {
 
 class _SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormBuilderState>();
-  final _passwordFieldController = TextEditingController();
+
   bool isProcessing = false;
 
   void _showSnackbarWithError(EIAuthException error) {
