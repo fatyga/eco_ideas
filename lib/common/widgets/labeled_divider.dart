@@ -20,7 +20,7 @@ class LabeledDivider extends StatelessWidget {
         children: <Widget>[
           const Divider(),
           Container(
-            decoration: BoxDecoration(color: theme.colorScheme.background),
+            decoration: BoxDecoration(color: theme.scaffoldBackgroundColor),
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(labelText, style: TextStyle(color: theme.dividerColor)),
           ),

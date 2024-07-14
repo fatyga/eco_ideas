@@ -35,8 +35,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           child: isLinkSent
               ? const ConfirmEmail()
               : ListView(
-                  children: const [
-                    SignUpForm(),
+                  children: [
+                    SignUpForm(
+                      onSuccessSubmit: () => setState(() {
+                        isLinkSent = true;
+                      }),
+                    ),
                   ],
                 ),
         ),

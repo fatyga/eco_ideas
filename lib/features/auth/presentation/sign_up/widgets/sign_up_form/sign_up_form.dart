@@ -13,8 +13,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignUpForm extends ConsumerStatefulWidget {
-  const SignUpForm({super.key});
+  const SignUpForm({required this.onSuccessSubmit, super.key});
 
+  final VoidCallback onSuccessSubmit;
   @override
   ConsumerState<SignUpForm> createState() => _SignUpFormState();
 }
@@ -49,6 +50,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
               username: _formKey.currentState!.fields[UsernameField.name]!.value
                   as String,
             );
+        widget.onSuccessSubmit();
       } on SignUpFail catch (error) {
         _showSnackbarWithError(error);
         setState(() {
