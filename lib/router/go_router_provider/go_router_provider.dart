@@ -24,6 +24,14 @@ GoRouter goRouter(GoRouterRef ref) {
             isAuth.value = AsyncError<AuthStatus>(error, stackTrace),
         loading: () => isAuth.value = const AsyncLoading<AuthStatus>(),
       );
+    })
+    ..listen(userProfileChangesProvider, (_, next) {
+      next.whenData((profile) {
+        //@TODO(fatyga): check for a better way to redirect newly registrated user
+        if (!profile.signUpCompleted) {
+          ref.state.go(const SignUpCompletionRoute().location);
+        }
+      });
     });
 
   // Checks whether deep link is invalid or expired and give user a feedback

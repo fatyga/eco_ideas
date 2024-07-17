@@ -1,3 +1,5 @@
+import 'package:eco_ideas/features/auth/data/auth_repository/auth_repository.dart';
+import 'package:eco_ideas/features/auth/domain/auth_status.dart';
 import 'package:eco_ideas/features/user/presentation/user_avatar/user_avatar_controller/user_avatar.dart';
 
 import 'package:eco_ideas/features/user/user.dart';
@@ -13,8 +15,17 @@ UserRepository userRepository(UserRepositoryRef ref) =>
 @riverpod
 Stream<UserProfile> userProfileChanges(
   UserProfileChangesRef ref,
-) =>
-    ref.read(userRepositoryProvider).userProfileChanges;
+) {
+  final keepAlive = ref.keepAlive();
+
+  // Keep this provider active, when user is authenticated
+  ref.watch(authChangesProvider).whenData((status) {
+    if (status.isUnauthenticated) {
+      keepAlive.close();
+    }
+  });
+  return ref.read(userRepositoryProvider).userProfileChanges;
+}
 
 abstract class UserRepository {
   UserRepository();
