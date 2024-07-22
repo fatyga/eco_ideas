@@ -9,6 +9,7 @@ part of 'routes.dart';
 List<RouteBase> get $appRoutes => [
       $splashRoute,
       $homeRoute,
+      $myIdeasRoute,
       $authRoute,
     ];
 
@@ -49,6 +50,12 @@ RouteBase get $homeRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'myIdeas',
           factory: $MyIdeasRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'ideaCreator',
+              factory: $IdeaCreatorRouteExtension._fromState,
+            ),
+          ],
         ),
         GoRouteData.$route(
           path: 'myProfile',
@@ -130,6 +137,24 @@ extension $MyIdeasRouteExtension on MyIdeasRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+extension $IdeaCreatorRouteExtension on IdeaCreatorRoute {
+  static IdeaCreatorRoute _fromState(GoRouterState state) =>
+      const IdeaCreatorRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/myIdeas/ideaCreator',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 extension $MyProfileRouteExtension on MyProfileRoute {
   static MyProfileRoute _fromState(GoRouterState state) =>
       const MyProfileRoute();
@@ -154,6 +179,28 @@ extension $ModifyMyProfileRouteExtension on ModifyMyProfileRoute {
 
   String get location => GoRouteData.$location(
         '/home/modifyMyProfile',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $myIdeasRoute => GoRouteData.$route(
+      path: 'myIdeas',
+      factory: $MyIdeasRouteExtension._fromState,
+    );
+
+extension $MyIdeasRouteExtension on MyIdeasRoute {
+  static MyIdeasRoute _fromState(GoRouterState state) => const MyIdeasRoute();
+
+  String get location => GoRouteData.$location(
+        'myIdeas',
       );
 
   void go(BuildContext context) => context.go(location);
