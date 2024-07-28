@@ -79,6 +79,8 @@
 
     "homeExploreLabel": "Odkrywaj",
     "homeMyIdeasLabel" : "Moje pomysły",
+    "ideaStepTitleFieldLabelText": "Tytuł",
+    "ideaStepDescriptionFieldLabelText": "Opis",
     "homeProfileLabel:": "Mój profil",
 
     "modifyMyProfileAppBarTitle": "Edytuj swój profil"

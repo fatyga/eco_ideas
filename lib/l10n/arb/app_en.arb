@@ -81,6 +81,9 @@
     
     "homeExploreLabel": "Explore",
     "homeMyIdeasLabel" : "My ideas",
+
+    "ideaStepTitleFieldLabelText": "Title",
+    "ideaStepDescriptionFieldLabelText": "Description",
     "homeProfileLabel": "My Profile",
 
     "modifyMyProfileAppBarTitle": "Edit your profile"

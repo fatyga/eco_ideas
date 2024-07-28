@@ -9,7 +9,6 @@ part of 'routes.dart';
 List<RouteBase> get $appRoutes => [
       $splashRoute,
       $homeRoute,
-      $myIdeasRoute,
       $authRoute,
     ];
 
@@ -179,28 +178,6 @@ extension $ModifyMyProfileRouteExtension on ModifyMyProfileRoute {
 
   String get location => GoRouteData.$location(
         '/home/modifyMyProfile',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $myIdeasRoute => GoRouteData.$route(
-      path: 'myIdeas',
-      factory: $MyIdeasRouteExtension._fromState,
-    );
-
-extension $MyIdeasRouteExtension on MyIdeasRoute {
-  static MyIdeasRoute _fromState(GoRouterState state) => const MyIdeasRoute();
-
-  String get location => GoRouteData.$location(
-        'myIdeas',
       );
 
   void go(BuildContext context) => context.go(location);

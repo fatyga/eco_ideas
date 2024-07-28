@@ -20,8 +20,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
-  runApp(ProviderScope(
-    observers: [MyObserver()],
-    child: await builder(),
-  ));
+  runApp(
+    ProviderScope(
+      observers: [MyObserver()],
+      child: await builder(),
+    ),
+  );
 }

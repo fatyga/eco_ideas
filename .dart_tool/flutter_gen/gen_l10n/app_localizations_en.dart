@@ -208,6 +208,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeMyIdeasLabel => 'My ideas';
 
   @override
+  String get ideaStepTitleFieldLabelText => 'Title';
+
+  @override
+  String get ideaStepDescriptionFieldLabelText => 'Description';
+
+  @override
   String get homeProfileLabel => 'My Profile';
 
   @override

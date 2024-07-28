@@ -51,6 +51,7 @@ GoRouter goRouter(GoRouterRef ref) {
     debugLogDiagnostics: true,
     refreshListenable: isAuth,
     redirect: (context, state) async {
+      print(state.uri);
       if (isAuth.value.unwrapPrevious().hasError) {
         return const SignInRoute().location;
       }

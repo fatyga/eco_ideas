@@ -497,6 +497,18 @@ abstract class AppLocalizations {
   /// **'My ideas'**
   String get homeMyIdeasLabel;
 
+  /// No description provided for @ideaStepTitleFieldLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get ideaStepTitleFieldLabelText;
+
+  /// No description provided for @ideaStepDescriptionFieldLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get ideaStepDescriptionFieldLabelText;
+
   /// No description provided for @homeProfileLabel.
   ///
   /// In en, this message translates to:

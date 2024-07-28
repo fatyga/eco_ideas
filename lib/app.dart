@@ -13,6 +13,7 @@ class EcoIdeasApp extends ConsumerWidget {
     return MaterialApp.router(
       theme: EcoIdeasTheme.lightTheme,
       darkTheme: EcoIdeasTheme.darkTheme,
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       routerConfig: goRouter,
