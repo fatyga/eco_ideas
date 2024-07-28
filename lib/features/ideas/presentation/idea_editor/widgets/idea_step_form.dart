@@ -1,17 +1,17 @@
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/form/description_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/description_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/title_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/form/image_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/form/title_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class IdeaCreatorForm extends StatefulWidget {
-  const IdeaCreatorForm({super.key});
+class IdeaStepForm extends StatefulWidget {
+  const IdeaStepForm({super.key});
 
   @override
-  State<IdeaCreatorForm> createState() => _IdeaCreatorFormState();
+  State<IdeaStepForm> createState() => _IdeaStepFormState();
 }
 
-class _IdeaCreatorFormState extends State<IdeaCreatorForm> {
+class _IdeaStepFormState extends State<IdeaStepForm> {
   @override
   Widget build(BuildContext context) {
     return FormBuilder(
@@ -23,9 +23,9 @@ class _IdeaCreatorFormState extends State<IdeaCreatorForm> {
             child: Column(
               children: [
                 SizedBox(height: 12),
-                IdeaStepTitleField(),
+                IdeaTitleField(),
                 SizedBox(height: 12),
-                IdeaStepDescriptionField(),
+                IdeaDescriptionField(),
               ],
             ),
           ),

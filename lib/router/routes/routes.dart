@@ -8,6 +8,7 @@ import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_
 import 'package:eco_ideas/features/explore/presentation/explore/explore_screen.dart';
 
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_creator/idea_creator_screen.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/idea_editor_screen.dart';
 import 'package:eco_ideas/features/ideas/presentation/my_ideas/my_ideas_screen.dart';
 import 'package:eco_ideas/features/user/presentation/modify_my_profile/modify_my_profile_screen.dart';
@@ -38,7 +39,8 @@ class SplashRoute extends GoRouteData {
     TypedGoRoute<MyIdeasRoute>(
       path: MyIdeasScreen.path,
       routes: [
-        TypedGoRoute<IdeaCreatorRoute>(path: IdeaEditorScreen.routePath),
+        TypedGoRoute<IdeaCreatorRoute>(path: IdeaCreatorScreen.routePath),
+        TypedGoRoute<IdeaEditorRoute>(path: IdeaEditorScreen.routePath),
       ],
     ),
     TypedGoRoute<MyProfileRoute>(path: MyProfileScreen.path),
@@ -75,6 +77,15 @@ class MyIdeasRoute extends GoRouteData {
 
 class IdeaCreatorRoute extends GoRouteData {
   const IdeaCreatorRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const IdeaCreatorScreen();
+  }
+}
+
+class IdeaEditorRoute extends GoRouteData {
+  const IdeaEditorRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {

@@ -4,9 +4,12 @@ part 'eco_idea.freezed.dart';
 
 @freezed
 class EcoIdea with _$EcoIdea {
-  const factory EcoIdea(
-      {required String image,
-      required String creatorId,
-      required String title,
-      @Default(<EcoIdeaStep>[]) List<EcoIdeaStep> steps}) = _EcoIdea;
+  const factory EcoIdea({
+    required String id,
+    required String image,
+    required String creatorId,
+    required String title,
+    required String description,
+    @Default(<EcoIdeaStep>[]) List<EcoIdeaStep> steps,
+  }) = _EcoIdea;
 }

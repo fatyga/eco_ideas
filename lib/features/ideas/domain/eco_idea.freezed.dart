@@ -16,9 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EcoIdea {
+  String get id => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get creatorId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   List<EcoIdeaStep> get steps => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +33,12 @@ abstract class $EcoIdeaCopyWith<$Res> {
       _$EcoIdeaCopyWithImpl<$Res, EcoIdea>;
   @useResult
   $Res call(
-      {String image, String creatorId, String title, List<EcoIdeaStep> steps});
+      {String id,
+      String image,
+      String creatorId,
+      String title,
+      String description,
+      List<EcoIdeaStep> steps});
 }
 
 /// @nodoc
@@ -47,12 +54,18 @@ class _$EcoIdeaCopyWithImpl<$Res, $Val extends EcoIdea>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? image = null,
     Object? creatorId = null,
     Object? title = null,
+    Object? description = null,
     Object? steps = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -64,6 +77,10 @@ class _$EcoIdeaCopyWithImpl<$Res, $Val extends EcoIdea>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       steps: null == steps
           ? _value.steps
@@ -81,7 +98,12 @@ abstract class _$$EcoIdeaImplCopyWith<$Res> implements $EcoIdeaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String image, String creatorId, String title, List<EcoIdeaStep> steps});
+      {String id,
+      String image,
+      String creatorId,
+      String title,
+      String description,
+      List<EcoIdeaStep> steps});
 }
 
 /// @nodoc
@@ -95,12 +117,18 @@ class __$$EcoIdeaImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? image = null,
     Object? creatorId = null,
     Object? title = null,
+    Object? description = null,
     Object? steps = null,
   }) {
     return _then(_$EcoIdeaImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -112,6 +140,10 @@ class __$$EcoIdeaImplCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       steps: null == steps
           ? _value._steps
@@ -125,18 +157,24 @@ class __$$EcoIdeaImplCopyWithImpl<$Res>
 
 class _$EcoIdeaImpl implements _EcoIdea {
   const _$EcoIdeaImpl(
-      {required this.image,
+      {required this.id,
+      required this.image,
       required this.creatorId,
       required this.title,
+      required this.description,
       final List<EcoIdeaStep> steps = const <EcoIdeaStep>[]})
       : _steps = steps;
 
+  @override
+  final String id;
   @override
   final String image;
   @override
   final String creatorId;
   @override
   final String title;
+  @override
+  final String description;
   final List<EcoIdeaStep> _steps;
   @override
   @JsonKey()
@@ -148,7 +186,7 @@ class _$EcoIdeaImpl implements _EcoIdea {
 
   @override
   String toString() {
-    return 'EcoIdea(image: $image, creatorId: $creatorId, title: $title, steps: $steps)';
+    return 'EcoIdea(id: $id, image: $image, creatorId: $creatorId, title: $title, description: $description, steps: $steps)';
   }
 
   @override
@@ -156,16 +194,19 @@ class _$EcoIdeaImpl implements _EcoIdea {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EcoIdeaImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.creatorId, creatorId) ||
                 other.creatorId == creatorId) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             const DeepCollectionEquality().equals(other._steps, _steps));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, image, creatorId, title,
-      const DeepCollectionEquality().hash(_steps));
+  int get hashCode => Object.hash(runtimeType, id, image, creatorId, title,
+      description, const DeepCollectionEquality().hash(_steps));
 
   @JsonKey(ignore: true)
   @override
@@ -176,17 +217,23 @@ class _$EcoIdeaImpl implements _EcoIdea {
 
 abstract class _EcoIdea implements EcoIdea {
   const factory _EcoIdea(
-      {required final String image,
+      {required final String id,
+      required final String image,
       required final String creatorId,
       required final String title,
+      required final String description,
       final List<EcoIdeaStep> steps}) = _$EcoIdeaImpl;
 
+  @override
+  String get id;
   @override
   String get image;
   @override
   String get creatorId;
   @override
   String get title;
+  @override
+  String get description;
   @override
   List<EcoIdeaStep> get steps;
   @override
