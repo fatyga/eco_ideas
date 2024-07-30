@@ -10,8 +10,11 @@ class IdeaCreatorScreen extends StatelessWidget {
     final theme = Theme.of(context);
     return Scaffold(
       body: ListView(
+        padding: const EdgeInsets.only(top: 48, left: 8, right: 8),
         children: [
-          Center(
+          Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.only(bottom: 16),
             child: Text(
               "Let's create something great!",
               style: theme.textTheme.headlineSmall!

@@ -1,6 +1,6 @@
-import 'package:eco_ideas/features/ideas/presentation/common/description_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/common/title_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/form/image_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/form_fields/description_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/form_fields/image_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/form_fields/title_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -17,7 +17,7 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
     return FormBuilder(
       child: ListView(
         children: const [
-          IdeaStepImageField(),
+          IdeaImageField(),
           Padding(
             padding: EdgeInsets.all(8),
             child: Column(

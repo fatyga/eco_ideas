@@ -1,7 +1,8 @@
 import 'package:eco_ideas/common/widgets/primary_button.dart';
-import 'package:eco_ideas/features/ideas/presentation/common/description_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/common/image_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/common/title_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/form_fields/description_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/form_fields/image_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/form_fields/title_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/idea_note/idea_note.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -32,6 +33,7 @@ class _IdeaCreatorFromState extends State<IdeaCreatorFrom> {
               key: ValueKey('ideaCreatorDescriptionField'),
             ),
             const SizedBox(height: 12),
+            IdeaNote(),
             PrimaryButton(
               isLoading: _isProcessing,
               onPressed: () {},
