@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+enum IdeaNotePointMode { view, edit }
+
 class IdeaNotePoint extends StatelessWidget {
-  const IdeaNotePoint({required this.point, super.key});
+  const IdeaNotePoint({required this.point, required this.mode, super.key});
 
   final String point;
+  final IdeaNotePointMode mode;
   @override
   Widget build(BuildContext context) {
     return Row(

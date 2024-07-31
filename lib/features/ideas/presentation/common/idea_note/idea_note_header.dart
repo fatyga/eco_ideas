@@ -4,13 +4,13 @@ class IdeaNoteHeader extends StatelessWidget {
   const IdeaNoteHeader({
     required this.icon,
     required this.text,
-    required this.onAddIconTap,
+    required this.onEditIconTap,
     super.key,
   });
 
   final Widget icon;
   final String text;
-  final VoidCallback onAddIconTap;
+  final VoidCallback onEditIconTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,8 +20,8 @@ class IdeaNoteHeader extends StatelessWidget {
         Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
         const Spacer(),
         IconButton(
-          onPressed: onAddIconTap,
-          icon: const Icon(Icons.add, size: 20),
+          onPressed: onEditIconTap,
+          icon: const Icon(Icons.edit, size: 16),
         ),
       ],
     );

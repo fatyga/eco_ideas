@@ -1,4 +1,5 @@
 import 'package:eco_ideas/features/ideas/presentation/common/idea_note/idea_note_header.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/idea_note/idea_note_manager.dart';
 import 'package:eco_ideas/features/ideas/presentation/common/idea_note/idea_note_points.dart';
 import 'package:flutter/material.dart';
 
@@ -10,13 +11,14 @@ class IdeaNote extends StatefulWidget {
 }
 
 class _IdeaNoteState extends State<IdeaNote> {
-  final points = <String>[];
+  List<String> subpoints = <String>[];
 
-  void addPoint() {
-    setState(() {
-      points.add('');
-    });
-  }
+  Future<List<String>?> showIdeaNoteManager() async => showDialog<List<String>>(
+        context: context,
+        builder: (context) => IdeaNoteManager(
+          subpoints: subpoints,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,18 @@ class _IdeaNoteState extends State<IdeaNote> {
         IdeaNoteHeader(
           icon: const Icon(Icons.circle_outlined),
           text: 'What you will need:',
-          onAddIconTap: addPoint,
+          onEditIconTap: () async {
+            final modifiedSubpoints = await showIdeaNoteManager();
+            if (modifiedSubpoints != null) {
+              setState(() {
+                subpoints = modifiedSubpoints;
+              });
+            }
+          },
         ),
         Padding(
           padding: const EdgeInsets.only(top: 2, left: 28),
-          child: IdeaNotePoints(points: points),
+          child: IdeaNotePoints(points: subpoints),
         ),
       ],
     );
