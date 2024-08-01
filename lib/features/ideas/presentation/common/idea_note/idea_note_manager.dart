@@ -27,26 +27,20 @@ class _IdeaNoteManagerState extends State<IdeaNoteManager> {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('What you will need'),
-                IconButton(onPressed: addSubpoint, icon: const Icon(Icons.add)),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Column(
-              children: _subpoints
-                  .map((content) => IdeaNotePoint(point: content))
-                  .toList(),
-            ),
-          ],
+    return Dialog.fullscreen(
+      child: Scaffold(
+        appBar: AppBar(title: Text('Edit section'), actions: [
+          IconButton(onPressed: addSubpoint, icon: const Icon(Icons.add)),
+        ]),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: ReorderableListView(
+            onReorder: (int oldIndex, int newIndex) {},
+            children: _subpoints
+                .map((content) =>
+                    IdeaNotePointField(key: UniqueKey(), content: content))
+                .toList(),
+          ),
         ),
       ),
     );
