@@ -46,7 +46,7 @@ class _PasswordResetEmailFormState
               email: _formKey.currentState!.fields['email']!.value as String,
             );
         if (success) widget.onSubmit();
-      } on PasswordResetLinkSendFail catch (error) {
+      } on PasswordResetLinkSendFailException catch (error) {
         _showSnackbarWithError(error);
       } finally {
         setState(() {

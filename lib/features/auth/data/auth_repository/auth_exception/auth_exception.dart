@@ -2,12 +2,13 @@ import 'package:eco_ideas/common/exceptions/ei_exception.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 sealed class EIAuthException implements EIException {
-  const EIAuthException();
+  const EIAuthException(this.message);
+  @override
+  final String message;
 }
 
-class SignUpFail implements EIAuthException {
-  @override
-  String get message => 'Fail to create new user account.';
+class SignUpException extends EIAuthException {
+  SignUpException(super.message);
 
   @override
   String resolveMessageForUser(AppLocalizations l10n) {
@@ -15,9 +16,8 @@ class SignUpFail implements EIAuthException {
   }
 }
 
-class InvalidDeepLink implements EIAuthException {
-  @override
-  String get message => 'Link is invalid, or was opened more than once';
+class InvalidAuthDeepLinkException extends EIAuthException {
+  InvalidAuthDeepLinkException(super.message);
 
   @override
   String resolveMessageForUser(AppLocalizations l10n) {
@@ -25,20 +25,16 @@ class InvalidDeepLink implements EIAuthException {
   }
 }
 
-class SignOutFail implements EIAuthException {
-  @override
-  String get message => 'Failed to sign out the current user.';
-
+class SignOutException extends EIAuthException {
+  SignOutException(super.message);
   @override
   String resolveMessageForUser(AppLocalizations l10n) {
     return l10n.signOutFailSnackBarText;
   }
 }
 
-class SignInFail implements EIAuthException {
-  @override
-  String get message =>
-      '''There is no account for provided credentials, or account does not exists.''';
+class SignInException extends EIAuthException {
+  SignInException(super.message);
 
   @override
   String resolveMessageForUser(AppLocalizations l10n) {
@@ -46,29 +42,24 @@ class SignInFail implements EIAuthException {
   }
 }
 
-class PasswordResetLinkSendFail implements EIAuthException {
-  @override
-  String get message => 'Fail to send password reset link.';
-
+class PasswordResetLinkSendFailException extends EIAuthException {
+  PasswordResetLinkSendFailException(super.message);
   @override
   String resolveMessageForUser(AppLocalizations l10n) {
     return l10n.passwordResetLinkSentFailSnackBarText;
   }
 }
 
-class SetUpNewPasswordFail implements EIAuthException {
-  @override
-  String get message => 'Fail to set up new password.';
-
+class SetUpNewPasswordException extends EIAuthException {
+  SetUpNewPasswordException(super.message);
   @override
   String resolveMessageForUser(AppLocalizations l10n) {
     return l10n.setNewPasswordFail;
   }
 }
 
-class UpdateUserFail implements EIAuthException {
-  @override
-  String get message => 'Fail to update user account';
+class UpdateUserException extends EIAuthException {
+  UpdateUserException(super.message);
 
   @override
   String resolveMessageForUser(AppLocalizations l10n) {

@@ -1,11 +1,14 @@
 import 'package:eco_ideas/common/exceptions/ei_exception.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-abstract class IdeaException implements EIException {}
+abstract class IdeaException implements EIException {
+  IdeaException(this.message);
+  @override
+  final String message;
+}
 
 class CreateIdeaException extends IdeaException {
-  @override
-  String get message => 'Fail to create new idea';
+  CreateIdeaException(super.message);
 
   @override
   String resolveMessageForUser(AppLocalizations l10n) {

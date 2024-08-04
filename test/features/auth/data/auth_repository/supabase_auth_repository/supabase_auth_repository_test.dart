@@ -382,7 +382,7 @@ void main() {
 
         expect(
           () async => container.read(authRepositoryProvider).signOut(),
-          throwsA(isA<SignOutFail>()),
+          throwsA(isA<SignOutException>()),
         );
       });
     });
@@ -433,7 +433,7 @@ void main() {
           () async => container
               .read(authRepositoryProvider)
               .signInWithEmail(email: email, password: password),
-          throwsA(isA<SignInFail>()),
+          throwsA(isA<SignInException>()),
         );
       });
     });
@@ -458,7 +458,7 @@ void main() {
           expect(
             () async =>
                 container.read(authRepositoryProvider).signInWithGoogle(),
-            throwsA(isA<SignInFail>()),
+            throwsA(isA<SignInException>()),
           );
         },
       );
@@ -481,7 +481,7 @@ void main() {
           expect(
             () async =>
                 container.read(authRepositoryProvider).signInWithGoogle(),
-            throwsA(isA<SignInFail>()),
+            throwsA(isA<SignInException>()),
           );
         },
       );
@@ -512,7 +512,7 @@ void main() {
           expect(
             () async =>
                 container.read(authRepositoryProvider).signInWithGoogle(),
-            throwsA(isA<SignInFail>()),
+            throwsA(isA<SignInException>()),
           );
         },
       );
@@ -578,7 +578,7 @@ void main() {
                 password: password,
                 username: username,
               ),
-          throwsA(isA<SignUpFail>()),
+          throwsA(isA<SignUpException>()),
         );
       });
     });

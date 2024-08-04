@@ -1,8 +1,7 @@
 import 'package:eco_ideas/l10n/l10n.dart';
 
-abstract interface class EIException implements Exception {
-  const EIException({required this.message}) : super();
-  final String message;
+abstract class EIException implements Exception {
+  String get message;
   String resolveMessageForUser(AppLocalizations l10n);
 
   @override

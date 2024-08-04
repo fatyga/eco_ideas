@@ -50,7 +50,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
               password:
                   _formKey.currentState!.fields['password']!.value as String,
             );
-      } on SignInFail catch (error) {
+      } on SignInException catch (error) {
         _showSnackbarOnError(error);
       } finally {
         setState(() {

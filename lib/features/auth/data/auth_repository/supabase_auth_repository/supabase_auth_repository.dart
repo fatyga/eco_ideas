@@ -54,8 +54,8 @@ class SupabaseAuthRepository implements AuthRepository {
   Future<void> signOut() async {
     try {
       await ref.read(supabaseClientProvider).auth.signOut();
-    } on supabase.AuthException catch (_) {
-      throw SignOutFail();
+    } on supabase.AuthException catch (e) {
+      throw SignOutException(e.message);
     }
   }
 
@@ -69,8 +69,8 @@ class SupabaseAuthRepository implements AuthRepository {
           .read(supabaseClientProvider)
           .auth
           .signInWithPassword(email: email, password: password);
-    } on supabase.AuthException catch (_) {
-      throw SignInFail();
+    } on supabase.AuthException catch (e) {
+      throw SignInException(e.message);
     }
   }
 
@@ -92,10 +92,10 @@ class SupabaseAuthRepository implements AuthRepository {
     final idToken = googleAuth.idToken;
 
     if (accessToken == null) {
-      throw SignInFail();
+      throw SignInException('Cannot obtain access token.');
     }
     if (idToken == null) {
-      throw SignInFail();
+      throw SignInException('Id of token is unknown');
     }
 
     await ref.read(supabaseClientProvider).auth.signInWithIdToken(
@@ -126,8 +126,7 @@ class SupabaseAuthRepository implements AuthRepository {
 
       return response.user?.id;
     } on supabase.AuthException catch (e) {
-      print(e);
-      throw SignUpFail();
+      throw SignUpException(e.message);
     }
   }
 
@@ -139,8 +138,8 @@ class SupabaseAuthRepository implements AuthRepository {
             redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL'],
           );
       return true;
-    } on supabase.AuthException catch (_) {
-      throw PasswordResetLinkSendFail();
+    } on supabase.AuthException catch (e) {
+      throw PasswordResetLinkSendFailException(e.message);
     }
   }
 
@@ -151,15 +150,15 @@ class SupabaseAuthRepository implements AuthRepository {
           .read(supabaseClientProvider)
           .auth
           .updateUser(supabase.UserAttributes(password: newPassword));
-    } on supabase.AuthException catch (_) {
-      throw SetUpNewPasswordFail();
+    } on supabase.AuthException catch (e) {
+      throw SetUpNewPasswordException(e.message);
     }
   }
 
   @override
   void determineInvalidDeepLink(Uri deepLink) {
     if (deepLink.fragment.contains('error_code=401')) {
-      throw InvalidDeepLink();
+      throw InvalidAuthDeepLinkException('');
     }
   }
 }

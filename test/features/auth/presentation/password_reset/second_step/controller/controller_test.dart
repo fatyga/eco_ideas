@@ -662,7 +662,7 @@ if stateValue.isValid, invokes AuthRepository.setNewPassword with correct value'
             () => authRepository.setNewPassword(
               newPassword: validPassword,
             ),
-          ).thenThrow(SetUpNewPasswordFail());
+          ).thenThrow(SetUpNewPasswordException());
 
           final container =
               makeProviderContainer(authRepository: authRepository);

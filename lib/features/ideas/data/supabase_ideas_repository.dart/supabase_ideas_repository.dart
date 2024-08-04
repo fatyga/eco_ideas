@@ -17,7 +17,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .from('ideas')
           .insert(idea.toJson());
     } on PostgrestException catch (e) {
-      throw CreateIdeaException();
+      throw CreateIdeaException(e.message);
     }
   }
 }

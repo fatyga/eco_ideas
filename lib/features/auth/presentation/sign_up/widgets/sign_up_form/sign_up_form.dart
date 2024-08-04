@@ -51,7 +51,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                   as String,
             );
         widget.onSuccessSubmit();
-      } on SignUpFail catch (error) {
+      } on SignUpException catch (error) {
         _showSnackbarWithError(error);
         setState(() {
           isProcessing = false;

@@ -43,7 +43,7 @@ class _PasswordResetSecondStepFormState
               newPassword:
                   _formKey.currentState!.fields[PasswordField.name]! as String,
             );
-      } on SetUpNewPasswordFail catch (error) {
+      } on SetUpNewPasswordException catch (error) {
         _showSnackbarWithError(error);
       } finally {
         setState(() {
