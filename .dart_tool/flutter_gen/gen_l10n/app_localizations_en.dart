@@ -211,6 +211,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ideaStepTitleFieldLabelText => 'Title';
 
   @override
+  String get ideaCreatorScreenTitle => 'Let\'s create something great!';
+
+  @override
+  String get ideaCreatorFormSubmitButton => 'Create';
+
+  @override
+  String get ideaNoteManagerAppBarTitle => 'Edit section';
+
+  @override
   String get ideaStepDescriptionFieldLabelText => 'Description';
 
   @override

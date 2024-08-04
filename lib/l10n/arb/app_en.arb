@@ -81,8 +81,11 @@
     
     "homeExploreLabel": "Explore",
     "homeMyIdeasLabel" : "My ideas",
-
     "ideaStepTitleFieldLabelText": "Title",
+
+    "ideaCreatorScreenTitle": "Let's create something great!",
+    "ideaCreatorFormSubmitButton": "Create",
+    "ideaNoteManagerAppBarTitle": "Edit section",
     "ideaStepDescriptionFieldLabelText": "Description",
     "homeProfileLabel": "My Profile",
 

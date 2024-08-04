@@ -1,5 +1,4 @@
-import 'package:eco_ideas/features/ideas/presentation/common/idea_note/idea_note_point.dart';
-import 'package:eco_ideas/features/ideas/presentation/common/idea_note/idea_note_point_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/idea_section/idea_section_subpoint_field.dart';
 import 'package:flutter/material.dart';
 
 class IdeaNoteManager extends StatefulWidget {
@@ -34,11 +33,10 @@ class _IdeaNoteManagerState extends State<IdeaNoteManager> {
         ]),
         body: Padding(
           padding: const EdgeInsets.all(16),
-          child: ReorderableListView(
-            onReorder: (int oldIndex, int newIndex) {},
+          child: ListView(
             children: _subpoints
-                .map((content) =>
-                    IdeaNotePointField(key: UniqueKey(), content: content))
+                .map((content) => IdeaSectionSubpointField(
+                    key: UniqueKey(), content: content))
                 .toList(),
           ),
         ),

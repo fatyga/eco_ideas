@@ -78,8 +78,17 @@
     "updateUserProfileFailSnackBarText": "Nieudana próba zaktualizowania profilu użytkownika.",
 
     "homeExploreLabel": "Odkrywaj",
+
     "homeMyIdeasLabel" : "Moje pomysły",
     "ideaStepTitleFieldLabelText": "Tytuł",
+
+    "ideaCreatorScreenTitle": "Stwórzmy coś wspaniałego!",
+    "ideaCreatorFormSubmitButton": "Utwórz",
+    "ideaNoteManagerAppBarTitle": "Edytuj sekcję",
+
+    
+
+
     "ideaStepDescriptionFieldLabelText": "Opis",
     "homeProfileLabel:": "Mój profil",
 

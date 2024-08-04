@@ -14,13 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+EcoIdeaStep _$EcoIdeaStepFromJson(Map<String, dynamic> json) {
+  return _EcoIdeaStep.fromJson(json);
+}
+
 /// @nodoc
 mixin _$EcoIdeaStep {
   String get image => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  List<String> get notes => throw _privateConstructorUsedError;
-  List<String> get tips => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EcoIdeaStepCopyWith<EcoIdeaStep> get copyWith =>
       throw _privateConstructorUsedError;
@@ -32,8 +35,7 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
           EcoIdeaStep value, $Res Function(EcoIdeaStep) then) =
       _$EcoIdeaStepCopyWithImpl<$Res, EcoIdeaStep>;
   @useResult
-  $Res call(
-      {String image, String title, List<String> notes, List<String> tips});
+  $Res call({String image, String title});
 }
 
 /// @nodoc
@@ -51,8 +53,6 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
   $Res call({
     Object? image = null,
     Object? title = null,
-    Object? notes = null,
-    Object? tips = null,
   }) {
     return _then(_value.copyWith(
       image: null == image
@@ -63,14 +63,6 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      notes: null == notes
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      tips: null == tips
-          ? _value.tips
-          : tips // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ) as $Val);
   }
 }
@@ -83,8 +75,7 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
       __$$EcoIdeaStepImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String image, String title, List<String> notes, List<String> tips});
+  $Res call({String image, String title});
 }
 
 /// @nodoc
@@ -100,8 +91,6 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
   $Res call({
     Object? image = null,
     Object? title = null,
-    Object? notes = null,
-    Object? tips = null,
   }) {
     return _then(_$EcoIdeaStepImpl(
       image: null == image
@@ -112,54 +101,26 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      notes: null == notes
-          ? _value._notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      tips: null == tips
-          ? _value._tips
-          : tips // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$EcoIdeaStepImpl implements _EcoIdeaStep {
-  const _$EcoIdeaStepImpl(
-      {required this.image,
-      required this.title,
-      final List<String> notes = const [],
-      final List<String> tips = const []})
-      : _notes = notes,
-        _tips = tips;
+  const _$EcoIdeaStepImpl({required this.image, required this.title});
+
+  factory _$EcoIdeaStepImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EcoIdeaStepImplFromJson(json);
 
   @override
   final String image;
   @override
   final String title;
-  final List<String> _notes;
-  @override
-  @JsonKey()
-  List<String> get notes {
-    if (_notes is EqualUnmodifiableListView) return _notes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_notes);
-  }
-
-  final List<String> _tips;
-  @override
-  @JsonKey()
-  List<String> get tips {
-    if (_tips is EqualUnmodifiableListView) return _tips;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tips);
-  }
 
   @override
   String toString() {
-    return 'EcoIdeaStep(image: $image, title: $title, notes: $notes, tips: $tips)';
+    return 'EcoIdeaStep(image: $image, title: $title)';
   }
 
   @override
@@ -168,41 +129,39 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
         (other.runtimeType == runtimeType &&
             other is _$EcoIdeaStepImpl &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.title, title) || other.title == title) &&
-            const DeepCollectionEquality().equals(other._notes, _notes) &&
-            const DeepCollectionEquality().equals(other._tips, _tips));
+            (identical(other.title, title) || other.title == title));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      image,
-      title,
-      const DeepCollectionEquality().hash(_notes),
-      const DeepCollectionEquality().hash(_tips));
+  int get hashCode => Object.hash(runtimeType, image, title);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$EcoIdeaStepImplCopyWith<_$EcoIdeaStepImpl> get copyWith =>
       __$$EcoIdeaStepImplCopyWithImpl<_$EcoIdeaStepImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EcoIdeaStepImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _EcoIdeaStep implements EcoIdeaStep {
   const factory _EcoIdeaStep(
       {required final String image,
-      required final String title,
-      final List<String> notes,
-      final List<String> tips}) = _$EcoIdeaStepImpl;
+      required final String title}) = _$EcoIdeaStepImpl;
+
+  factory _EcoIdeaStep.fromJson(Map<String, dynamic> json) =
+      _$EcoIdeaStepImpl.fromJson;
 
   @override
   String get image;
   @override
   String get title;
-  @override
-  List<String> get notes;
-  @override
-  List<String> get tips;
   @override
   @JsonKey(ignore: true)
   _$$EcoIdeaStepImplCopyWith<_$EcoIdeaStepImpl> get copyWith =>

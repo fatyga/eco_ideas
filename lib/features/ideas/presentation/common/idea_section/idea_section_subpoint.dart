@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-enum IdeaNotePointMode { view, edit }
-
-class IdeaNotePoint extends StatelessWidget {
-  const IdeaNotePoint({required this.point, super.key});
+class IdeaSectionSubpoint extends StatelessWidget {
+  const IdeaSectionSubpoint({required this.point, super.key});
 
   final String point;
 

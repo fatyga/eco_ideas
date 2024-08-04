@@ -503,6 +503,24 @@ abstract class AppLocalizations {
   /// **'Title'**
   String get ideaStepTitleFieldLabelText;
 
+  /// No description provided for @ideaCreatorScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s create something great!'**
+  String get ideaCreatorScreenTitle;
+
+  /// No description provided for @ideaCreatorFormSubmitButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get ideaCreatorFormSubmitButton;
+
+  /// No description provided for @ideaNoteManagerAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit section'**
+  String get ideaNoteManagerAppBarTitle;
+
   /// No description provided for @ideaStepDescriptionFieldLabelText.
   ///
   /// In en, this message translates to:

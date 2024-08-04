@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class IdeaNotePointField extends StatelessWidget {
-  const IdeaNotePointField({required this.content, super.key});
+class IdeaSectionSubpointField extends StatelessWidget {
+  const IdeaSectionSubpointField({required this.content, super.key});
 
   final String content;
   @override

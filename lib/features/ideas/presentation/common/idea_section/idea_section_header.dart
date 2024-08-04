@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class IdeaNoteSectionHeader extends StatelessWidget {
-  const IdeaNoteSectionHeader({
+class IdeaSectionHeader extends StatelessWidget {
+  const IdeaSectionHeader({
     required this.icon,
     required this.text,
     required this.onEditIconTap,

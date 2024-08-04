@@ -1,23 +1,57 @@
 import 'package:eco_ideas/common/widgets/primary_button.dart';
+import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
+import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/presentation/common/form_fields/description_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/common/form_fields/image_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/common/form_fields/title_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/common/idea_note/idea_note_section.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/idea_section/idea_section.dart';
+import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class IdeaCreatorFrom extends StatefulWidget {
+class IdeaCreatorFrom extends ConsumerStatefulWidget {
   const IdeaCreatorFrom({super.key});
 
   @override
-  State<IdeaCreatorFrom> createState() => _IdeaCreatorFromState();
+  ConsumerState<IdeaCreatorFrom> createState() => _IdeaCreatorFromState();
 }
 
-class _IdeaCreatorFromState extends State<IdeaCreatorFrom> {
-  bool _isProcessing = false;
+class _IdeaCreatorFromState extends ConsumerState<IdeaCreatorFrom> {
+  final _formKey = GlobalKey<FormBuilderState>();
+  bool isLoading = false;
+
+  void _showSnackbarOnError(IdeaException error) {
+    if (!mounted) return;
+    final l10n = context.l10n;
+    final errorText = error.resolveMessageForUser(l10n);
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(errorText)));
+  }
+
+  Future<void> submit() async {
+    final isValid = _formKey.currentState?.saveAndValidate();
+
+    if (isValid != null && isValid) {
+      setState(() {
+        isLoading = true;
+      });
+
+      try {
+        // await ref.read(ideasRepositoryProvider).createIdea();
+      } on CreateIdeaException catch (e) {
+        _showSnackbarOnError(e);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return FormBuilder(
+      key: _formKey,
+      enabled: !isLoading,
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
@@ -33,11 +67,14 @@ class _IdeaCreatorFromState extends State<IdeaCreatorFrom> {
               key: ValueKey('ideaCreatorDescriptionField'),
             ),
             const SizedBox(height: 12),
-            IdeaNoteSection(),
+            IdeaSection(),
             PrimaryButton(
-              isLoading: _isProcessing,
-              onPressed: () {},
-              child: const Text("Let's go"),
+              isLoading: isLoading,
+              onPressed: () {
+                _formKey.currentState?.saveAndValidate();
+                print(_formKey.currentState?.value);
+              },
+              child: Text(l10n.ideaCreatorFormSubmitButton),
             ),
           ],
         ),
