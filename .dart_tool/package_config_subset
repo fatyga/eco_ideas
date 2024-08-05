@@ -546,6 +546,10 @@ source_span
 2.18
 file:///home/mfatyga/.pub-cache/hosted/pub.dev/source_span-1.10.0/
 file:///home/mfatyga/.pub-cache/hosted/pub.dev/source_span-1.10.0/lib/
+sprintf
+2.12
+file:///home/mfatyga/.pub-cache/hosted/pub.dev/sprintf-7.0.0/
+file:///home/mfatyga/.pub-cache/hosted/pub.dev/sprintf-7.0.0/lib/
 stack_trace
 2.18
 file:///home/mfatyga/.pub-cache/hosted/pub.dev/stack_trace-1.11.1/
@@ -634,6 +638,10 @@ url_launcher_windows
 3.0
 file:///home/mfatyga/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.1/
 file:///home/mfatyga/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.1/lib/
+uuid
+3.0
+file:///home/mfatyga/.pub-cache/hosted/pub.dev/uuid-4.4.2/
+file:///home/mfatyga/.pub-cache/hosted/pub.dev/uuid-4.4.2/lib/
 vector_math
 2.14
 file:///home/mfatyga/.pub-cache/hosted/pub.dev/vector_math-2.1.4/

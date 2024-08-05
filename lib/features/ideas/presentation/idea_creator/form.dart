@@ -1,6 +1,8 @@
 import 'package:eco_ideas/common/widgets/primary_button.dart';
+import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/presentation/common/form_fields/description_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/common/form_fields/image_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/common/form_fields/title_field.dart';
@@ -9,6 +11,7 @@ import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uuid/uuid.dart';
 
 class IdeaCreatorFrom extends ConsumerStatefulWidget {
   const IdeaCreatorFrom({super.key});
@@ -38,9 +41,27 @@ class _IdeaCreatorFromState extends ConsumerState<IdeaCreatorFrom> {
       });
 
       try {
-        // await ref.read(ideasRepositoryProvider).createIdea();
+        ref.read(userProfileChangesProvider).whenData((profile) async {
+          final title =
+              _formKey.currentState?.value[IdeaTitleField.name] as String;
+          final description =
+              _formKey.currentState?.value[IdeaDescriptionField.name] as String;
+
+          await ref.read(ideasRepositoryProvider).createIdea(
+                EcoIdea(
+                  id: const Uuid().v4(),
+                  userId: profile.id,
+                  title: title,
+                  description: description,
+                ),
+              );
+        });
       } on CreateIdeaException catch (e) {
         _showSnackbarOnError(e);
+      } finally {
+        setState(() {
+          isLoading = false;
+        });
       }
     }
   }
@@ -67,13 +88,10 @@ class _IdeaCreatorFromState extends ConsumerState<IdeaCreatorFrom> {
               key: ValueKey('ideaCreatorDescriptionField'),
             ),
             const SizedBox(height: 12),
-            IdeaSection(),
+            const IdeaSection(),
             PrimaryButton(
               isLoading: isLoading,
-              onPressed: () {
-                _formKey.currentState?.saveAndValidate();
-                print(_formKey.currentState?.value);
-              },
+              onPressed: submit,
               child: Text(l10n.ideaCreatorFormSubmitButton),
             ),
           ],
