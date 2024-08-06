@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:cross_file/cross_file.dart';
 import 'package:eco_ideas/common/widgets/primary_button.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
@@ -11,7 +14,6 @@ import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uuid/uuid.dart';
 
 class IdeaCreatorFrom extends ConsumerStatefulWidget {
   const IdeaCreatorFrom({super.key});
@@ -47,13 +49,15 @@ class _IdeaCreatorFromState extends ConsumerState<IdeaCreatorFrom> {
           final description =
               _formKey.currentState?.value[IdeaDescriptionField.name] as String;
 
+          final image =
+              _formKey.currentState?.value[IdeaImageField.name][0] as XFile;
           await ref.read(ideasRepositoryProvider).createIdea(
-                EcoIdea(
-                  id: const Uuid().v4(),
+                idea: EcoIdea.create(
                   userId: profile.id,
                   title: title,
                   description: description,
                 ),
+                endResultImage: image,
               );
         });
       } on CreateIdeaException catch (e) {
