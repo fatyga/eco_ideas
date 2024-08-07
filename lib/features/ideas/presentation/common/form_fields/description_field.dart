@@ -11,6 +11,7 @@ class IdeaDescriptionField extends StatelessWidget {
     final l10n = context.l10n;
     return FormBuilderTextField(
       name: name,
+      maxLines: null,
       decoration:
           InputDecoration(labelText: l10n.ideaStepDescriptionFieldLabelText),
     );

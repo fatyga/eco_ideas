@@ -85,7 +85,10 @@
 
     "ideaCreatorScreenTitle": "Let's create something great!",
     "ideaCreatorFormSubmitButton": "Create",
-    "ideaNoteManagerAppBarTitle": "Edit section",
+
+    "ideaSectionEditorAppBarTitle": "Edit section",
+    "ideaRequirmentsSectionName": "What you will need",
+    "ideaBenefitsSectionName": "How it helps the planet",
     "ideaStepDescriptionFieldLabelText": "Description",
     "homeProfileLabel": "My Profile",
 

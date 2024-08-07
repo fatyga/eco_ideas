@@ -1,15 +1,17 @@
 import 'package:eco_ideas/features/ideas/presentation/common/idea_section/idea_section_subpoint_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_creator/form.dart';
+import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
-class IdeaNoteManager extends StatefulWidget {
-  const IdeaNoteManager({required this.subpoints, super.key});
+class IdeaSectionEditor extends StatefulWidget {
+  const IdeaSectionEditor({required this.subpoints, super.key});
 
   final List<String> subpoints;
   @override
-  State<IdeaNoteManager> createState() => _IdeaNoteManagerState();
+  State<IdeaSectionEditor> createState() => _IdeaSectionEditorState();
 }
 
-class _IdeaNoteManagerState extends State<IdeaNoteManager> {
+class _IdeaSectionEditorState extends State<IdeaSectionEditor> {
   late final List<String> _subpoints;
 
   @override
@@ -26,9 +28,11 @@ class _IdeaNoteManagerState extends State<IdeaNoteManager> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Dialog.fullscreen(
       child: Scaffold(
-        appBar: AppBar(title: Text('Edit section'), actions: [
+        appBar:
+            AppBar(title: Text(l10n.ideaSectionEditorAppBarTitle), actions: [
           IconButton(onPressed: addSubpoint, icon: const Icon(Icons.add)),
         ]),
         body: Padding(

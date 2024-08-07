@@ -217,7 +217,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ideaCreatorFormSubmitButton => 'Create';
 
   @override
-  String get ideaNoteManagerAppBarTitle => 'Edit section';
+  String get ideaSectionEditorAppBarTitle => 'Edit section';
+
+  @override
+  String get ideaRequirmentsSectionName => 'What you will need';
+
+  @override
+  String get ideaBenefitsSectionName => 'How it helps the planet';
 
   @override
   String get ideaStepDescriptionFieldLabelText => 'Description';

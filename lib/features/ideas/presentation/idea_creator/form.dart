@@ -92,7 +92,12 @@ class _IdeaCreatorFromState extends ConsumerState<IdeaCreatorFrom> {
               key: ValueKey('ideaCreatorDescriptionField'),
             ),
             const SizedBox(height: 12),
-            const IdeaSection(),
+            const IdeaSection(
+              sectionType: IdeaSectionType.requirments,
+            ),
+            const IdeaSection(
+              sectionType: IdeaSectionType.benefits,
+            ),
             PrimaryButton(
               isLoading: isLoading,
               onPressed: submit,

@@ -12,6 +12,12 @@ _$EcoIdeaImpl _$$EcoIdeaImplFromJson(Map<String, dynamic> json) =>
       userId: json['user_id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
+      requirments: (json['requirments'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      benefits: (json['benefits'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$EcoIdeaImplToJson(_$EcoIdeaImpl instance) =>
@@ -20,4 +26,6 @@ Map<String, dynamic> _$$EcoIdeaImplToJson(_$EcoIdeaImpl instance) =>
       'user_id': instance.userId,
       'title': instance.title,
       'description': instance.description,
+      'requirments': instance.requirments,
+      'benefits': instance.benefits,
     };
