@@ -52,10 +52,8 @@ class _IdeaCreatorFromState extends ConsumerState<IdeaCreatorFrom> {
           final image =
               _formKey.currentState?.value[IdeaImageField.name][0] as XFile;
           await ref.read(ideasRepositoryProvider).createIdea(
-                idea: EcoIdea.create(
+                idea: EcoIdea.draft(
                   userId: profile.id,
-                  title: title,
-                  description: description,
                 ),
                 endResultImage: image,
               );

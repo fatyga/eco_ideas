@@ -19,7 +19,9 @@ mixin _$ModifyMyProfileState {
   AvatarInput get avatarInput => throw _privateConstructorUsedError;
   AboutMeInput get aboutMeInput => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ModifyMyProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ModifyMyProfileStateCopyWith<ModifyMyProfileState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$ModifyMyProfileStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ModifyMyProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -82,6 +86,8 @@ class __$$ModifyMyProfileStateImplCopyWithImpl<$Res>
       $Res Function(_$ModifyMyProfileStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ModifyMyProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,7 +140,9 @@ class _$ModifyMyProfileStateImpl implements _ModifyMyProfileState {
   @override
   int get hashCode => Object.hash(runtimeType, avatarInput, aboutMeInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ModifyMyProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ModifyMyProfileStateImplCopyWith<_$ModifyMyProfileStateImpl>
@@ -152,8 +160,11 @@ abstract class _ModifyMyProfileState implements ModifyMyProfileState {
   AvatarInput get avatarInput;
   @override
   AboutMeInput get aboutMeInput;
+
+  /// Create a copy of ModifyMyProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ModifyMyProfileStateImplCopyWith<_$ModifyMyProfileStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -18,10 +18,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
     required XFile endResultImage,
   }) async {
     try {
-      await ref
-          .read(supabaseClientProvider)
-          .from('ideas')
-          .insert(idea.toJson());
+      await ref.read(supabaseClientProvider).from('idea').insert(idea.toJson());
 
       await ref.read(supabaseClientProvider).storage.from('ideas').upload(
             '${idea.userId}/${idea.id}/endResult.png',

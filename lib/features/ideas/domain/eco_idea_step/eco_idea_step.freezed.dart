@@ -21,10 +21,16 @@ EcoIdeaStep _$EcoIdeaStepFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$EcoIdeaStep {
   String get image => throw _privateConstructorUsedError;
+  EcoIdeaStepType get type => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
+  /// Serializes this EcoIdeaStep to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EcoIdeaStep
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EcoIdeaStepCopyWith<EcoIdeaStep> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -35,7 +41,8 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
           EcoIdeaStep value, $Res Function(EcoIdeaStep) then) =
       _$EcoIdeaStepCopyWithImpl<$Res, EcoIdeaStep>;
   @useResult
-  $Res call({String image, String title});
+  $Res call(
+      {String image, EcoIdeaStepType type, String title, String? description});
 }
 
 /// @nodoc
@@ -48,21 +55,33 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EcoIdeaStep
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? image = null,
+    Object? type = null,
     Object? title = null,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as EcoIdeaStepType,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -75,7 +94,8 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
       __$$EcoIdeaStepImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String image, String title});
+  $Res call(
+      {String image, EcoIdeaStepType type, String title, String? description});
 }
 
 /// @nodoc
@@ -86,21 +106,33 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
       _$EcoIdeaStepImpl _value, $Res Function(_$EcoIdeaStepImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EcoIdeaStep
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? image = null,
+    Object? type = null,
     Object? title = null,
+    Object? description = freezed,
   }) {
     return _then(_$EcoIdeaStepImpl(
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as EcoIdeaStepType,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -108,7 +140,11 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EcoIdeaStepImpl implements _EcoIdeaStep {
-  const _$EcoIdeaStepImpl({required this.image, required this.title});
+  const _$EcoIdeaStepImpl(
+      {required this.image,
+      required this.type,
+      required this.title,
+      this.description});
 
   factory _$EcoIdeaStepImpl.fromJson(Map<String, dynamic> json) =>
       _$$EcoIdeaStepImplFromJson(json);
@@ -116,11 +152,15 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   @override
   final String image;
   @override
+  final EcoIdeaStepType type;
+  @override
   final String title;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'EcoIdeaStep(image: $image, title: $title)';
+    return 'EcoIdeaStep(image: $image, type: $type, title: $title, description: $description)';
   }
 
   @override
@@ -129,14 +169,19 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
         (other.runtimeType == runtimeType &&
             other is _$EcoIdeaStepImpl &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, image, title);
+  int get hashCode => Object.hash(runtimeType, image, type, title, description);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EcoIdeaStep
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EcoIdeaStepImplCopyWith<_$EcoIdeaStepImpl> get copyWith =>
@@ -153,7 +198,9 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 abstract class _EcoIdeaStep implements EcoIdeaStep {
   const factory _EcoIdeaStep(
       {required final String image,
-      required final String title}) = _$EcoIdeaStepImpl;
+      required final EcoIdeaStepType type,
+      required final String title,
+      final String? description}) = _$EcoIdeaStepImpl;
 
   factory _EcoIdeaStep.fromJson(Map<String, dynamic> json) =
       _$EcoIdeaStepImpl.fromJson;
@@ -161,9 +208,16 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
   @override
   String get image;
   @override
+  EcoIdeaStepType get type;
+  @override
   String get title;
   @override
-  @JsonKey(ignore: true)
+  String? get description;
+
+  /// Create a copy of EcoIdeaStep
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EcoIdeaStepImplCopyWith<_$EcoIdeaStepImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

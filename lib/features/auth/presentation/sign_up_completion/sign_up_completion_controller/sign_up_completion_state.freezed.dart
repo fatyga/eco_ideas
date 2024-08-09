@@ -20,7 +20,9 @@ mixin _$SignUpCompletionState {
   AboutMeInput get aboutMeInput => throw _privateConstructorUsedError;
   AvatarInput get avatarInput => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignUpCompletionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SignUpCompletionStateCopyWith<SignUpCompletionState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +50,8 @@ class _$SignUpCompletionStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SignUpCompletionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -96,6 +100,8 @@ class __$$SignUpCompletionStateImplCopyWithImpl<$Res>
       $Res Function(_$SignUpCompletionStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SignUpCompletionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,7 +166,9 @@ class _$SignUpCompletionStateImpl extends _SignUpCompletionState {
   int get hashCode =>
       Object.hash(runtimeType, status, aboutMeInput, avatarInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignUpCompletionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SignUpCompletionStateImplCopyWith<_$SignUpCompletionStateImpl>
@@ -181,8 +189,11 @@ abstract class _SignUpCompletionState extends SignUpCompletionState {
   AboutMeInput get aboutMeInput;
   @override
   AvatarInput get avatarInput;
+
+  /// Create a copy of SignUpCompletionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SignUpCompletionStateImplCopyWith<_$SignUpCompletionStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

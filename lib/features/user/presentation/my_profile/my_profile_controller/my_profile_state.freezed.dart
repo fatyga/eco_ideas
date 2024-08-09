@@ -19,7 +19,9 @@ mixin _$MyProfileState {
   UserProfile get userProfile => throw _privateConstructorUsedError;
   UserAvatar? get userAvatar => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MyProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MyProfileStateCopyWith<MyProfileState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$MyProfileStateCopyWithImpl<$Res, $Val extends MyProfileState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MyProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -63,6 +67,8 @@ class _$MyProfileStateCopyWithImpl<$Res, $Val extends MyProfileState>
     ) as $Val);
   }
 
+  /// Create a copy of MyProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserProfileCopyWith<$Res> get userProfile {
@@ -94,6 +100,8 @@ class __$$MyProfileStateImplCopyWithImpl<$Res>
       _$MyProfileStateImpl _value, $Res Function(_$MyProfileStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MyProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,7 +150,9 @@ class _$MyProfileStateImpl implements _MyProfileState {
   @override
   int get hashCode => Object.hash(runtimeType, userProfile, userAvatar);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MyProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MyProfileStateImplCopyWith<_$MyProfileStateImpl> get copyWith =>
@@ -159,8 +169,11 @@ abstract class _MyProfileState implements MyProfileState {
   UserProfile get userProfile;
   @override
   UserAvatar? get userAvatar;
+
+  /// Create a copy of MyProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MyProfileStateImplCopyWith<_$MyProfileStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

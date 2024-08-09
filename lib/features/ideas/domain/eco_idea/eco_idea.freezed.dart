@@ -23,13 +23,16 @@ mixin _$EcoIdea {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id')
   String get userId => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  List<String>? get requirments => throw _privateConstructorUsedError;
-  List<String>? get benefits => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_draft')
+  bool get isDraft => throw _privateConstructorUsedError;
+  List<EcoIdeaStep> get steps => throw _privateConstructorUsedError;
 
+  /// Serializes this EcoIdea to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EcoIdea
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EcoIdeaCopyWith<EcoIdea> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -41,10 +44,8 @@ abstract class $EcoIdeaCopyWith<$Res> {
   $Res call(
       {String id,
       @JsonKey(name: 'user_id') String userId,
-      String title,
-      String description,
-      List<String>? requirments,
-      List<String>? benefits});
+      @JsonKey(name: 'is_draft') bool isDraft,
+      List<EcoIdeaStep> steps});
 }
 
 /// @nodoc
@@ -57,15 +58,15 @@ class _$EcoIdeaCopyWithImpl<$Res, $Val extends EcoIdea>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EcoIdea
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
     Object? userId = null,
-    Object? title = null,
-    Object? description = null,
-    Object? requirments = freezed,
-    Object? benefits = freezed,
+    Object? isDraft = null,
+    Object? steps = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -76,22 +77,14 @@ class _$EcoIdeaCopyWithImpl<$Res, $Val extends EcoIdea>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      requirments: freezed == requirments
-          ? _value.requirments
-          : requirments // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      benefits: freezed == benefits
-          ? _value.benefits
-          : benefits // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      isDraft: null == isDraft
+          ? _value.isDraft
+          : isDraft // ignore: cast_nullable_to_non_nullable
+              as bool,
+      steps: null == steps
+          ? _value.steps
+          : steps // ignore: cast_nullable_to_non_nullable
+              as List<EcoIdeaStep>,
     ) as $Val);
   }
 }
@@ -106,10 +99,8 @@ abstract class _$$EcoIdeaImplCopyWith<$Res> implements $EcoIdeaCopyWith<$Res> {
   $Res call(
       {String id,
       @JsonKey(name: 'user_id') String userId,
-      String title,
-      String description,
-      List<String>? requirments,
-      List<String>? benefits});
+      @JsonKey(name: 'is_draft') bool isDraft,
+      List<EcoIdeaStep> steps});
 }
 
 /// @nodoc
@@ -120,15 +111,15 @@ class __$$EcoIdeaImplCopyWithImpl<$Res>
       _$EcoIdeaImpl _value, $Res Function(_$EcoIdeaImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EcoIdea
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
     Object? userId = null,
-    Object? title = null,
-    Object? description = null,
-    Object? requirments = freezed,
-    Object? benefits = freezed,
+    Object? isDraft = null,
+    Object? steps = null,
   }) {
     return _then(_$EcoIdeaImpl(
       id: null == id
@@ -139,22 +130,14 @@ class __$$EcoIdeaImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      requirments: freezed == requirments
-          ? _value._requirments
-          : requirments // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      benefits: freezed == benefits
-          ? _value._benefits
-          : benefits // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      isDraft: null == isDraft
+          ? _value.isDraft
+          : isDraft // ignore: cast_nullable_to_non_nullable
+              as bool,
+      steps: null == steps
+          ? _value._steps
+          : steps // ignore: cast_nullable_to_non_nullable
+              as List<EcoIdeaStep>,
     ));
   }
 }
@@ -165,12 +148,9 @@ class _$EcoIdeaImpl implements _EcoIdea {
   const _$EcoIdeaImpl(
       {required this.id,
       @JsonKey(name: 'user_id') required this.userId,
-      required this.title,
-      required this.description,
-      final List<String>? requirments,
-      final List<String>? benefits})
-      : _requirments = requirments,
-        _benefits = benefits;
+      @JsonKey(name: 'is_draft') required this.isDraft,
+      required final List<EcoIdeaStep> steps})
+      : _steps = steps;
 
   factory _$EcoIdeaImpl.fromJson(Map<String, dynamic> json) =>
       _$$EcoIdeaImplFromJson(json);
@@ -181,32 +161,19 @@ class _$EcoIdeaImpl implements _EcoIdea {
   @JsonKey(name: 'user_id')
   final String userId;
   @override
-  final String title;
+  @JsonKey(name: 'is_draft')
+  final bool isDraft;
+  final List<EcoIdeaStep> _steps;
   @override
-  final String description;
-  final List<String>? _requirments;
-  @override
-  List<String>? get requirments {
-    final value = _requirments;
-    if (value == null) return null;
-    if (_requirments is EqualUnmodifiableListView) return _requirments;
+  List<EcoIdeaStep> get steps {
+    if (_steps is EqualUnmodifiableListView) return _steps;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<String>? _benefits;
-  @override
-  List<String>? get benefits {
-    final value = _benefits;
-    if (value == null) return null;
-    if (_benefits is EqualUnmodifiableListView) return _benefits;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_steps);
   }
 
   @override
   String toString() {
-    return 'EcoIdea(id: $id, userId: $userId, title: $title, description: $description, requirments: $requirments, benefits: $benefits)';
+    return 'EcoIdea(id: $id, userId: $userId, isDraft: $isDraft, steps: $steps)';
   }
 
   @override
@@ -216,26 +183,18 @@ class _$EcoIdeaImpl implements _EcoIdea {
             other is _$EcoIdeaImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            const DeepCollectionEquality()
-                .equals(other._requirments, _requirments) &&
-            const DeepCollectionEquality().equals(other._benefits, _benefits));
+            (identical(other.isDraft, isDraft) || other.isDraft == isDraft) &&
+            const DeepCollectionEquality().equals(other._steps, _steps));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      userId,
-      title,
-      description,
-      const DeepCollectionEquality().hash(_requirments),
-      const DeepCollectionEquality().hash(_benefits));
+  int get hashCode => Object.hash(runtimeType, id, userId, isDraft,
+      const DeepCollectionEquality().hash(_steps));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EcoIdea
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EcoIdeaImplCopyWith<_$EcoIdeaImpl> get copyWith =>
@@ -253,10 +212,8 @@ abstract class _EcoIdea implements EcoIdea {
   const factory _EcoIdea(
       {required final String id,
       @JsonKey(name: 'user_id') required final String userId,
-      required final String title,
-      required final String description,
-      final List<String>? requirments,
-      final List<String>? benefits}) = _$EcoIdeaImpl;
+      @JsonKey(name: 'is_draft') required final bool isDraft,
+      required final List<EcoIdeaStep> steps}) = _$EcoIdeaImpl;
 
   factory _EcoIdea.fromJson(Map<String, dynamic> json) = _$EcoIdeaImpl.fromJson;
 
@@ -266,15 +223,15 @@ abstract class _EcoIdea implements EcoIdea {
   @JsonKey(name: 'user_id')
   String get userId;
   @override
-  String get title;
+  @JsonKey(name: 'is_draft')
+  bool get isDraft;
   @override
-  String get description;
+  List<EcoIdeaStep> get steps;
+
+  /// Create a copy of EcoIdea
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  List<String>? get requirments;
-  @override
-  List<String>? get benefits;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EcoIdeaImplCopyWith<_$EcoIdeaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

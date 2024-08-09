@@ -14,15 +14,6 @@ class IdeaCreatorScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.only(top: 48, left: 8, right: 8),
         children: [
-          Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(bottom: 16),
-            child: Text(
-              l10n.ideaCreatorScreenTitle,
-              style: theme.textTheme.headlineSmall!
-                  .copyWith(color: theme.colorScheme.primary),
-            ),
-          ),
           IdeaCreatorFrom(),
         ],
       ),

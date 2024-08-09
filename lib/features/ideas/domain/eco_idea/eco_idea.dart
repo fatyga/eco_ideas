@@ -1,3 +1,4 @@
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 part 'eco_idea.freezed.dart';
@@ -8,26 +9,15 @@ class EcoIdea with _$EcoIdea {
   const factory EcoIdea({
     required String id,
     @JsonKey(name: 'user_id') required String userId,
-    required String title,
-    required String description,
-    List<String>? requirments,
-    List<String>? benefits,
+    @JsonKey(name: 'is_draft') required bool isDraft,
+    required List<EcoIdeaStep> steps,
   }) = _EcoIdea;
 
   factory EcoIdea.fromJson(Map<String, dynamic> json) =>
       _$EcoIdeaFromJson(json);
 
-  factory EcoIdea.create(
-          {required String userId,
-          required String title,
-          String description = '',
-          List<String>? requirments,
-          List<String>? benefits}) =>
-      EcoIdea(
-          id: const Uuid().v4(),
-          userId: userId,
-          title: title,
-          description: description,
-          requirments: requirments,
-          benefits: benefits);
+  factory EcoIdea.draft({
+    required String userId,
+  }) =>
+      EcoIdea(id: const Uuid().v4(), userId: userId, isDraft: true);
 }

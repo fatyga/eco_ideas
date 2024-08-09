@@ -8,6 +8,7 @@ import 'package:eco_ideas/features/auth/presentation/sign_up_completion/sign_up_
 import 'package:eco_ideas/features/explore/presentation/explore/explore_screen.dart';
 
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_creator/idea_creator_screen.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/idea_editor_screen.dart';
 import 'package:eco_ideas/features/ideas/presentation/my_ideas/my_ideas_screen.dart';
@@ -85,11 +86,12 @@ class IdeaCreatorRoute extends GoRouteData {
 }
 
 class IdeaEditorRoute extends GoRouteData {
-  const IdeaEditorRoute();
+  const IdeaEditorRoute([this.$extra]);
+  final EcoIdea? $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const IdeaEditorScreen();
+    return IdeaEditorScreen(idea: $extra);
   }
 }
 
