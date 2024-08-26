@@ -7,7 +7,7 @@ part of 'idea_editor_controller.dart';
 // **************************************************************************
 
 String _$ideaEditorControllerHash() =>
-    r'20a0cb1ab0aca6ebe5483c04a526d054a170c05f';
+    r'dd7ac06ebf2e5028002edcc61325ab1ae204ef93';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 }
 
 abstract class _$IdeaEditorController
-    extends BuildlessAutoDisposeNotifier<EcoIdea> {
+    extends BuildlessAutoDisposeNotifier<IdeaEditorState> {
   late final EcoIdea? idea;
 
-  EcoIdea build(
+  IdeaEditorState build(
     EcoIdea? idea,
   );
 }
@@ -44,7 +44,7 @@ abstract class _$IdeaEditorController
 const ideaEditorControllerProvider = IdeaEditorControllerFamily();
 
 /// See also [IdeaEditorController].
-class IdeaEditorControllerFamily extends Family<EcoIdea> {
+class IdeaEditorControllerFamily extends Family<IdeaEditorState> {
   /// See also [IdeaEditorController].
   const IdeaEditorControllerFamily();
 
@@ -82,8 +82,8 @@ class IdeaEditorControllerFamily extends Family<EcoIdea> {
 }
 
 /// See also [IdeaEditorController].
-class IdeaEditorControllerProvider
-    extends AutoDisposeNotifierProviderImpl<IdeaEditorController, EcoIdea> {
+class IdeaEditorControllerProvider extends AutoDisposeNotifierProviderImpl<
+    IdeaEditorController, IdeaEditorState> {
   /// See also [IdeaEditorController].
   IdeaEditorControllerProvider(
     EcoIdea? idea,
@@ -114,7 +114,7 @@ class IdeaEditorControllerProvider
   final EcoIdea? idea;
 
   @override
-  EcoIdea runNotifierBuild(
+  IdeaEditorState runNotifierBuild(
     covariant IdeaEditorController notifier,
   ) {
     return notifier.build(
@@ -139,7 +139,7 @@ class IdeaEditorControllerProvider
   }
 
   @override
-  AutoDisposeNotifierProviderElement<IdeaEditorController, EcoIdea>
+  AutoDisposeNotifierProviderElement<IdeaEditorController, IdeaEditorState>
       createElement() {
     return _IdeaEditorControllerProviderElement(this);
   }
@@ -158,14 +158,15 @@ class IdeaEditorControllerProvider
   }
 }
 
-mixin IdeaEditorControllerRef on AutoDisposeNotifierProviderRef<EcoIdea> {
+mixin IdeaEditorControllerRef
+    on AutoDisposeNotifierProviderRef<IdeaEditorState> {
   /// The parameter `idea` of this provider.
   EcoIdea? get idea;
 }
 
 class _IdeaEditorControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<IdeaEditorController, EcoIdea>
-    with IdeaEditorControllerRef {
+    extends AutoDisposeNotifierProviderElement<IdeaEditorController,
+        IdeaEditorState> with IdeaEditorControllerRef {
   _IdeaEditorControllerProviderElement(super.provider);
 
   @override

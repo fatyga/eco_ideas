@@ -8,10 +8,11 @@ part of 'eco_idea_step.dart';
 
 _$EcoIdeaStepImpl _$$EcoIdeaStepImplFromJson(Map<String, dynamic> json) =>
     _$EcoIdeaStepImpl(
-      image: json['image'] as String,
-      type: $enumDecode(_$EcoIdeaStepTypeEnumMap, json['type']),
-      title: json['title'] as String,
-      description: json['description'] as String?,
+      image: json['image'] as String? ?? '',
+      type: $enumDecodeNullable(_$EcoIdeaStepTypeEnumMap, json['type']) ??
+          EcoIdeaStepType.introduction,
+      title: json['title'] as String? ?? '',
+      description: json['description'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$EcoIdeaStepImplToJson(_$EcoIdeaStepImpl instance) =>

@@ -23,7 +23,7 @@ mixin _$EcoIdeaStep {
   String get image => throw _privateConstructorUsedError;
   EcoIdeaStepType get type => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
 
   /// Serializes this EcoIdeaStep to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
       _$EcoIdeaStepCopyWithImpl<$Res, EcoIdeaStep>;
   @useResult
   $Res call(
-      {String image, EcoIdeaStepType type, String title, String? description});
+      {String image, EcoIdeaStepType type, String title, String description});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
     Object? image = null,
     Object? type = null,
     Object? title = null,
-    Object? description = freezed,
+    Object? description = null,
   }) {
     return _then(_value.copyWith(
       image: null == image
@@ -78,10 +78,10 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -95,7 +95,7 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String image, EcoIdeaStepType type, String title, String? description});
+      {String image, EcoIdeaStepType type, String title, String description});
 }
 
 /// @nodoc
@@ -114,7 +114,7 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
     Object? image = null,
     Object? type = null,
     Object? title = null,
-    Object? description = freezed,
+    Object? description = null,
   }) {
     return _then(_$EcoIdeaStepImpl(
       image: null == image
@@ -129,10 +129,10 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -141,22 +141,26 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   const _$EcoIdeaStepImpl(
-      {required this.image,
-      required this.type,
-      required this.title,
-      this.description});
+      {this.image = '',
+      this.type = EcoIdeaStepType.introduction,
+      this.title = '',
+      this.description = ''});
 
   factory _$EcoIdeaStepImpl.fromJson(Map<String, dynamic> json) =>
       _$$EcoIdeaStepImplFromJson(json);
 
   @override
+  @JsonKey()
   final String image;
   @override
+  @JsonKey()
   final EcoIdeaStepType type;
   @override
+  @JsonKey()
   final String title;
   @override
-  final String? description;
+  @JsonKey()
+  final String description;
 
   @override
   String toString() {
@@ -197,10 +201,10 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
 abstract class _EcoIdeaStep implements EcoIdeaStep {
   const factory _EcoIdeaStep(
-      {required final String image,
-      required final EcoIdeaStepType type,
-      required final String title,
-      final String? description}) = _$EcoIdeaStepImpl;
+      {final String image,
+      final EcoIdeaStepType type,
+      final String title,
+      final String description}) = _$EcoIdeaStepImpl;
 
   factory _EcoIdeaStep.fromJson(Map<String, dynamic> json) =
       _$EcoIdeaStepImpl.fromJson;
@@ -212,7 +216,7 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
   @override
   String get title;
   @override
-  String? get description;
+  String get description;
 
   /// Create a copy of EcoIdeaStep
   /// with the given fields replaced by the non-null parameter values.

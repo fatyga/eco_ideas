@@ -1,0 +1,13 @@
+import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'idea_editor_state.freezed.dart';
+
+@freezed
+class IdeaEditorState with _$IdeaEditorState {
+  const factory IdeaEditorState({
+    required EcoIdea idea,
+    @Default(0) int currentStep,
+  }) = _IdeaEditorState;
+}

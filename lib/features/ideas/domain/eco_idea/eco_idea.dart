@@ -8,16 +8,23 @@ part 'eco_idea.g.dart';
 class EcoIdea with _$EcoIdea {
   const factory EcoIdea({
     required String id,
-    @JsonKey(name: 'user_id') required String userId,
-    @JsonKey(name: 'is_draft') required bool isDraft,
+    @JsonKey(name: 'profile_id') required String profileId,
     required List<EcoIdeaStep> steps,
+    required bool published,
   }) = _EcoIdea;
 
   factory EcoIdea.fromJson(Map<String, dynamic> json) =>
       _$EcoIdeaFromJson(json);
 
   factory EcoIdea.draft({
-    required String userId,
+    required String profileId,
   }) =>
-      EcoIdea(id: const Uuid().v4(), userId: userId, isDraft: true);
+      EcoIdea(
+        id: const Uuid().v4(),
+        profileId: profileId,
+        steps: [
+          const EcoIdeaStep(),
+        ],
+        published: false,
+      );
 }

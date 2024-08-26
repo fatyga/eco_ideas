@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:eco_ideas/riverpod_observer.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +21,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   runApp(
     ProviderScope(
-      observers: [MyObserver()],
       child: await builder(),
     ),
   );

@@ -15,15 +15,12 @@ class SupabaseIdeasRepository extends IdeasRepository {
   @override
   Future<void> createIdea({
     required EcoIdea idea,
-    required XFile endResultImage,
   }) async {
     try {
-      await ref.read(supabaseClientProvider).from('idea').insert(idea.toJson());
-
-      await ref.read(supabaseClientProvider).storage.from('ideas').upload(
-            '${idea.userId}/${idea.id}/endResult.png',
-            File(endResultImage.path),
-          );
+      await ref
+          .read(supabaseClientProvider)
+          .from('draft')
+          .insert(idea.toJson());
     } on PostgrestException catch (e) {
       throw CreateIdeaException(e.message);
     }

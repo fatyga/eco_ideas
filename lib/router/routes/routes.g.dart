@@ -51,10 +51,6 @@ RouteBase get $homeRoute => GoRouteData.$route(
           factory: $MyIdeasRouteExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: 'create',
-              factory: $IdeaCreatorRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
               path: 'ideaCreator',
               factory: $IdeaEditorRouteExtension._fromState,
             ),
@@ -128,24 +124,6 @@ extension $MyIdeasRouteExtension on MyIdeasRoute {
 
   String get location => GoRouteData.$location(
         '/home/myIdeas',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $IdeaCreatorRouteExtension on IdeaCreatorRoute {
-  static IdeaCreatorRoute _fromState(GoRouterState state) =>
-      const IdeaCreatorRoute();
-
-  String get location => GoRouteData.$location(
-        '/home/myIdeas/create',
       );
 
   void go(BuildContext context) => context.go(location);

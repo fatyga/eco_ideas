@@ -1,5 +1,4 @@
 import 'package:eco_ideas/features/ideas/presentation/common/idea_section/idea_section_subpoint_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_creator/form.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 

@@ -21,11 +21,10 @@ EcoIdea _$EcoIdeaFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$EcoIdea {
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_id')
-  String get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_draft')
-  bool get isDraft => throw _privateConstructorUsedError;
+  @JsonKey(name: 'profile_id')
+  String get profileId => throw _privateConstructorUsedError;
   List<EcoIdeaStep> get steps => throw _privateConstructorUsedError;
+  bool get published => throw _privateConstructorUsedError;
 
   /// Serializes this EcoIdea to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,9 +42,9 @@ abstract class $EcoIdeaCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'user_id') String userId,
-      @JsonKey(name: 'is_draft') bool isDraft,
-      List<EcoIdeaStep> steps});
+      @JsonKey(name: 'profile_id') String profileId,
+      List<EcoIdeaStep> steps,
+      bool published});
 }
 
 /// @nodoc
@@ -64,27 +63,27 @@ class _$EcoIdeaCopyWithImpl<$Res, $Val extends EcoIdea>
   @override
   $Res call({
     Object? id = null,
-    Object? userId = null,
-    Object? isDraft = null,
+    Object? profileId = null,
     Object? steps = null,
+    Object? published = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      profileId: null == profileId
+          ? _value.profileId
+          : profileId // ignore: cast_nullable_to_non_nullable
               as String,
-      isDraft: null == isDraft
-          ? _value.isDraft
-          : isDraft // ignore: cast_nullable_to_non_nullable
-              as bool,
       steps: null == steps
           ? _value.steps
           : steps // ignore: cast_nullable_to_non_nullable
               as List<EcoIdeaStep>,
+      published: null == published
+          ? _value.published
+          : published // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -98,9 +97,9 @@ abstract class _$$EcoIdeaImplCopyWith<$Res> implements $EcoIdeaCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      @JsonKey(name: 'user_id') String userId,
-      @JsonKey(name: 'is_draft') bool isDraft,
-      List<EcoIdeaStep> steps});
+      @JsonKey(name: 'profile_id') String profileId,
+      List<EcoIdeaStep> steps,
+      bool published});
 }
 
 /// @nodoc
@@ -117,27 +116,27 @@ class __$$EcoIdeaImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? userId = null,
-    Object? isDraft = null,
+    Object? profileId = null,
     Object? steps = null,
+    Object? published = null,
   }) {
     return _then(_$EcoIdeaImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      profileId: null == profileId
+          ? _value.profileId
+          : profileId // ignore: cast_nullable_to_non_nullable
               as String,
-      isDraft: null == isDraft
-          ? _value.isDraft
-          : isDraft // ignore: cast_nullable_to_non_nullable
-              as bool,
       steps: null == steps
           ? _value._steps
           : steps // ignore: cast_nullable_to_non_nullable
               as List<EcoIdeaStep>,
+      published: null == published
+          ? _value.published
+          : published // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -147,9 +146,9 @@ class __$$EcoIdeaImplCopyWithImpl<$Res>
 class _$EcoIdeaImpl implements _EcoIdea {
   const _$EcoIdeaImpl(
       {required this.id,
-      @JsonKey(name: 'user_id') required this.userId,
-      @JsonKey(name: 'is_draft') required this.isDraft,
-      required final List<EcoIdeaStep> steps})
+      @JsonKey(name: 'profile_id') required this.profileId,
+      required final List<EcoIdeaStep> steps,
+      required this.published})
       : _steps = steps;
 
   factory _$EcoIdeaImpl.fromJson(Map<String, dynamic> json) =>
@@ -158,11 +157,8 @@ class _$EcoIdeaImpl implements _EcoIdea {
   @override
   final String id;
   @override
-  @JsonKey(name: 'user_id')
-  final String userId;
-  @override
-  @JsonKey(name: 'is_draft')
-  final bool isDraft;
+  @JsonKey(name: 'profile_id')
+  final String profileId;
   final List<EcoIdeaStep> _steps;
   @override
   List<EcoIdeaStep> get steps {
@@ -172,8 +168,11 @@ class _$EcoIdeaImpl implements _EcoIdea {
   }
 
   @override
+  final bool published;
+
+  @override
   String toString() {
-    return 'EcoIdea(id: $id, userId: $userId, isDraft: $isDraft, steps: $steps)';
+    return 'EcoIdea(id: $id, profileId: $profileId, steps: $steps, published: $published)';
   }
 
   @override
@@ -182,15 +181,17 @@ class _$EcoIdeaImpl implements _EcoIdea {
         (other.runtimeType == runtimeType &&
             other is _$EcoIdeaImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.isDraft, isDraft) || other.isDraft == isDraft) &&
-            const DeepCollectionEquality().equals(other._steps, _steps));
+            (identical(other.profileId, profileId) ||
+                other.profileId == profileId) &&
+            const DeepCollectionEquality().equals(other._steps, _steps) &&
+            (identical(other.published, published) ||
+                other.published == published));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, isDraft,
-      const DeepCollectionEquality().hash(_steps));
+  int get hashCode => Object.hash(runtimeType, id, profileId,
+      const DeepCollectionEquality().hash(_steps), published);
 
   /// Create a copy of EcoIdea
   /// with the given fields replaced by the non-null parameter values.
@@ -211,22 +212,21 @@ class _$EcoIdeaImpl implements _EcoIdea {
 abstract class _EcoIdea implements EcoIdea {
   const factory _EcoIdea(
       {required final String id,
-      @JsonKey(name: 'user_id') required final String userId,
-      @JsonKey(name: 'is_draft') required final bool isDraft,
-      required final List<EcoIdeaStep> steps}) = _$EcoIdeaImpl;
+      @JsonKey(name: 'profile_id') required final String profileId,
+      required final List<EcoIdeaStep> steps,
+      required final bool published}) = _$EcoIdeaImpl;
 
   factory _EcoIdea.fromJson(Map<String, dynamic> json) = _$EcoIdeaImpl.fromJson;
 
   @override
   String get id;
   @override
-  @JsonKey(name: 'user_id')
-  String get userId;
-  @override
-  @JsonKey(name: 'is_draft')
-  bool get isDraft;
+  @JsonKey(name: 'profile_id')
+  String get profileId;
   @override
   List<EcoIdeaStep> get steps;
+  @override
+  bool get published;
 
   /// Create a copy of EcoIdea
   /// with the given fields replaced by the non-null parameter values.
