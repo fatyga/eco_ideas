@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$IdeaEditorState {
   EcoIdea get idea => throw _privateConstructorUsedError;
-  int get currentStep => throw _privateConstructorUsedError;
+  int get stepIndex => throw _privateConstructorUsedError;
 
   /// Create a copy of IdeaEditorState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +32,7 @@ abstract class $IdeaEditorStateCopyWith<$Res> {
           IdeaEditorState value, $Res Function(IdeaEditorState) then) =
       _$IdeaEditorStateCopyWithImpl<$Res, IdeaEditorState>;
   @useResult
-  $Res call({EcoIdea idea, int currentStep});
+  $Res call({EcoIdea idea, int stepIndex});
 
   $EcoIdeaCopyWith<$Res> get idea;
 }
@@ -53,16 +53,16 @@ class _$IdeaEditorStateCopyWithImpl<$Res, $Val extends IdeaEditorState>
   @override
   $Res call({
     Object? idea = null,
-    Object? currentStep = null,
+    Object? stepIndex = null,
   }) {
     return _then(_value.copyWith(
       idea: null == idea
           ? _value.idea
           : idea // ignore: cast_nullable_to_non_nullable
               as EcoIdea,
-      currentStep: null == currentStep
-          ? _value.currentStep
-          : currentStep // ignore: cast_nullable_to_non_nullable
+      stepIndex: null == stepIndex
+          ? _value.stepIndex
+          : stepIndex // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -86,7 +86,7 @@ abstract class _$$IdeaEditorStateImplCopyWith<$Res>
       __$$IdeaEditorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({EcoIdea idea, int currentStep});
+  $Res call({EcoIdea idea, int stepIndex});
 
   @override
   $EcoIdeaCopyWith<$Res> get idea;
@@ -106,16 +106,16 @@ class __$$IdeaEditorStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? idea = null,
-    Object? currentStep = null,
+    Object? stepIndex = null,
   }) {
     return _then(_$IdeaEditorStateImpl(
       idea: null == idea
           ? _value.idea
           : idea // ignore: cast_nullable_to_non_nullable
               as EcoIdea,
-      currentStep: null == currentStep
-          ? _value.currentStep
-          : currentStep // ignore: cast_nullable_to_non_nullable
+      stepIndex: null == stepIndex
+          ? _value.stepIndex
+          : stepIndex // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -123,18 +123,19 @@ class __$$IdeaEditorStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$IdeaEditorStateImpl implements _IdeaEditorState {
-  const _$IdeaEditorStateImpl({required this.idea, this.currentStep = 0});
+class _$IdeaEditorStateImpl extends _IdeaEditorState {
+  const _$IdeaEditorStateImpl({required this.idea, this.stepIndex = 0})
+      : super._();
 
   @override
   final EcoIdea idea;
   @override
   @JsonKey()
-  final int currentStep;
+  final int stepIndex;
 
   @override
   String toString() {
-    return 'IdeaEditorState(idea: $idea, currentStep: $currentStep)';
+    return 'IdeaEditorState(idea: $idea, stepIndex: $stepIndex)';
   }
 
   @override
@@ -143,12 +144,12 @@ class _$IdeaEditorStateImpl implements _IdeaEditorState {
         (other.runtimeType == runtimeType &&
             other is _$IdeaEditorStateImpl &&
             (identical(other.idea, idea) || other.idea == idea) &&
-            (identical(other.currentStep, currentStep) ||
-                other.currentStep == currentStep));
+            (identical(other.stepIndex, stepIndex) ||
+                other.stepIndex == stepIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, idea, currentStep);
+  int get hashCode => Object.hash(runtimeType, idea, stepIndex);
 
   /// Create a copy of IdeaEditorState
   /// with the given fields replaced by the non-null parameter values.
@@ -160,15 +161,16 @@ class _$IdeaEditorStateImpl implements _IdeaEditorState {
           this, _$identity);
 }
 
-abstract class _IdeaEditorState implements IdeaEditorState {
+abstract class _IdeaEditorState extends IdeaEditorState {
   const factory _IdeaEditorState(
       {required final EcoIdea idea,
-      final int currentStep}) = _$IdeaEditorStateImpl;
+      final int stepIndex}) = _$IdeaEditorStateImpl;
+  const _IdeaEditorState._() : super._();
 
   @override
   EcoIdea get idea;
   @override
-  int get currentStep;
+  int get stepIndex;
 
   /// Create a copy of IdeaEditorState
   /// with the given fields replaced by the non-null parameter values.

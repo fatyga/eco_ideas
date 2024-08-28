@@ -7,7 +7,7 @@ part of 'idea_editor_controller.dart';
 // **************************************************************************
 
 String _$ideaEditorControllerHash() =>
-    r'dd7ac06ebf2e5028002edcc61325ab1ae204ef93';
+    r'b3b308932e5f07b7a009229450a65b8f1601e3e9';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,11 +31,11 @@ class _SystemHash {
 }
 
 abstract class _$IdeaEditorController
-    extends BuildlessAutoDisposeNotifier<IdeaEditorState> {
-  late final EcoIdea? idea;
+    extends BuildlessAutoDisposeAsyncNotifier<IdeaEditorState> {
+  late final String? ideaId;
 
-  IdeaEditorState build(
-    EcoIdea? idea,
+  FutureOr<IdeaEditorState> build(
+    String? ideaId,
   );
 }
 
@@ -44,16 +44,16 @@ abstract class _$IdeaEditorController
 const ideaEditorControllerProvider = IdeaEditorControllerFamily();
 
 /// See also [IdeaEditorController].
-class IdeaEditorControllerFamily extends Family<IdeaEditorState> {
+class IdeaEditorControllerFamily extends Family<AsyncValue<IdeaEditorState>> {
   /// See also [IdeaEditorController].
   const IdeaEditorControllerFamily();
 
   /// See also [IdeaEditorController].
   IdeaEditorControllerProvider call(
-    EcoIdea? idea,
+    String? ideaId,
   ) {
     return IdeaEditorControllerProvider(
-      idea,
+      ideaId,
     );
   }
 
@@ -62,7 +62,7 @@ class IdeaEditorControllerFamily extends Family<IdeaEditorState> {
     covariant IdeaEditorControllerProvider provider,
   ) {
     return call(
-      provider.idea,
+      provider.ideaId,
     );
   }
 
@@ -82,13 +82,13 @@ class IdeaEditorControllerFamily extends Family<IdeaEditorState> {
 }
 
 /// See also [IdeaEditorController].
-class IdeaEditorControllerProvider extends AutoDisposeNotifierProviderImpl<
+class IdeaEditorControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
     IdeaEditorController, IdeaEditorState> {
   /// See also [IdeaEditorController].
   IdeaEditorControllerProvider(
-    EcoIdea? idea,
+    String? ideaId,
   ) : this._internal(
-          () => IdeaEditorController()..idea = idea,
+          () => IdeaEditorController()..ideaId = ideaId,
           from: ideaEditorControllerProvider,
           name: r'ideaEditorControllerProvider',
           debugGetCreateSourceHash:
@@ -98,7 +98,7 @@ class IdeaEditorControllerProvider extends AutoDisposeNotifierProviderImpl<
           dependencies: IdeaEditorControllerFamily._dependencies,
           allTransitiveDependencies:
               IdeaEditorControllerFamily._allTransitiveDependencies,
-          idea: idea,
+          ideaId: ideaId,
         );
 
   IdeaEditorControllerProvider._internal(
@@ -108,17 +108,17 @@ class IdeaEditorControllerProvider extends AutoDisposeNotifierProviderImpl<
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.idea,
+    required this.ideaId,
   }) : super.internal();
 
-  final EcoIdea? idea;
+  final String? ideaId;
 
   @override
-  IdeaEditorState runNotifierBuild(
+  FutureOr<IdeaEditorState> runNotifierBuild(
     covariant IdeaEditorController notifier,
   ) {
     return notifier.build(
-      idea,
+      ideaId,
     );
   }
 
@@ -127,50 +127,50 @@ class IdeaEditorControllerProvider extends AutoDisposeNotifierProviderImpl<
     return ProviderOverride(
       origin: this,
       override: IdeaEditorControllerProvider._internal(
-        () => create()..idea = idea,
+        () => create()..ideaId = ideaId,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        idea: idea,
+        ideaId: ideaId,
       ),
     );
   }
 
   @override
-  AutoDisposeNotifierProviderElement<IdeaEditorController, IdeaEditorState>
+  AutoDisposeAsyncNotifierProviderElement<IdeaEditorController, IdeaEditorState>
       createElement() {
     return _IdeaEditorControllerProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is IdeaEditorControllerProvider && other.idea == idea;
+    return other is IdeaEditorControllerProvider && other.ideaId == ideaId;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, idea.hashCode);
+    hash = _SystemHash.combine(hash, ideaId.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin IdeaEditorControllerRef
-    on AutoDisposeNotifierProviderRef<IdeaEditorState> {
-  /// The parameter `idea` of this provider.
-  EcoIdea? get idea;
+    on AutoDisposeAsyncNotifierProviderRef<IdeaEditorState> {
+  /// The parameter `ideaId` of this provider.
+  String? get ideaId;
 }
 
 class _IdeaEditorControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<IdeaEditorController,
+    extends AutoDisposeAsyncNotifierProviderElement<IdeaEditorController,
         IdeaEditorState> with IdeaEditorControllerRef {
   _IdeaEditorControllerProviderElement(super.provider);
 
   @override
-  EcoIdea? get idea => (origin as IdeaEditorControllerProvider).idea;
+  String? get ideaId => (origin as IdeaEditorControllerProvider).ideaId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

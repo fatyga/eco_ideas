@@ -138,7 +138,7 @@ extension $MyIdeasRouteExtension on MyIdeasRoute {
 
 extension $IdeaEditorRouteExtension on IdeaEditorRoute {
   static IdeaEditorRoute _fromState(GoRouterState state) => IdeaEditorRoute(
-        state.extra as EcoIdea?,
+        state.extra as String?,
       );
 
   String get location => GoRouteData.$location(

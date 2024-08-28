@@ -25,4 +25,18 @@ class SupabaseIdeasRepository extends IdeasRepository {
       throw CreateIdeaException(e.message);
     }
   }
+
+  @override
+  Future<EcoIdea?> getIdea({required String ideaId}) async {
+    final json = await ref
+        .read(supabaseClientProvider)
+        .from('idea')
+        .select<PostgrestMap>()
+        .eq('id', ideaId);
+
+    // Return null, when there is no an idea with matching id
+    if (json.isEmpty) return null;
+
+    return EcoIdea.fromJson(json);
+  }
 }

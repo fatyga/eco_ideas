@@ -8,8 +8,8 @@ enum EcoIdeaStepType { introduction, standard, summary }
 @freezed
 class EcoIdeaStep with _$EcoIdeaStep {
   const factory EcoIdeaStep({
+    required EcoIdeaStepType type,
     @Default('') String image,
-    @Default(EcoIdeaStepType.introduction) EcoIdeaStepType type,
     @Default('') String title,
     @Default('') String description,
   }) = _EcoIdeaStep;

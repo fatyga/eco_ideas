@@ -23,7 +23,7 @@ class EcoIdea with _$EcoIdea {
         id: const Uuid().v4(),
         profileId: profileId,
         steps: [
-          const EcoIdeaStep(),
+          const EcoIdeaStep(type: EcoIdeaStepType.introduction),
         ],
         published: false,
       );
