@@ -7,7 +7,7 @@ part of 'idea_editor_controller.dart';
 // **************************************************************************
 
 String _$ideaEditorControllerHash() =>
-    r'b3b308932e5f07b7a009229450a65b8f1601e3e9';
+    r'cc3874edb1876b315da64a66de05f06d0ab4ef20';
 
 /// Copied from Dart SDK
 class _SystemHash {

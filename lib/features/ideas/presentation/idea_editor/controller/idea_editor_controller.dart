@@ -19,6 +19,8 @@ class IdeaEditorController extends _$IdeaEditorController {
               EcoIdea.draft(profileId: profileId);
 
       return IdeaEditorState(idea: idea);
+    } else {
+      return IdeaEditorState(idea: EcoIdea.draft(profileId: profileId));
     }
   }
 }
