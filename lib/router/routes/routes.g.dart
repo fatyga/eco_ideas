@@ -51,7 +51,7 @@ RouteBase get $homeRoute => GoRouteData.$route(
           factory: $MyIdeasRouteExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: 'ideaCreator',
+              path: 'ideaEditor',
               factory: $IdeaEditorRouteExtension._fromState,
             ),
           ],
@@ -142,7 +142,7 @@ extension $IdeaEditorRouteExtension on IdeaEditorRoute {
       );
 
   String get location => GoRouteData.$location(
-        '/home/myIdeas/ideaCreator',
+        '/home/myIdeas/ideaEditor',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);

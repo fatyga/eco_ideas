@@ -13,14 +13,16 @@ class IdeaEditorController extends _$IdeaEditorController {
   Future<IdeaEditorState> build(String? ideaId) async {
     final profileId = ref.read(userProfileChangesProvider).requireValue.id;
 
+    EcoIdea idea;
+    // Fetch idea if it exists, or add new one instead
     if (ideaId != null) {
-      final idea =
-          await ref.read(ideasRepositoryProvider).getIdea(ideaId: ideaId) ??
-              EcoIdea.draft(profileId: profileId);
-
-      return IdeaEditorState(idea: idea);
+      idea = await ref.read(ideasRepositoryProvider).getIdea(ideaId: ideaId) ??
+          EcoIdea.draft(profileId: profileId);
     } else {
-      return IdeaEditorState(idea: EcoIdea.draft(profileId: profileId));
+      idea = await ref
+          .read(ideasRepositoryProvider)
+          .addIdea(idea: EcoIdea.draft(profileId: profileId));
     }
+    return IdeaEditorState(idea: idea);
   }
 }

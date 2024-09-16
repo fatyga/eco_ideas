@@ -9,7 +9,8 @@ SupabaseIdeasRepository ideasRepository(IdeasRepositoryRef ref) =>
     SupabaseIdeasRepository(ref);
 
 abstract class IdeasRepository {
-  Future<void> createIdea({required EcoIdea idea});
+  // Creates new idea and returns inserted data
+  Future<EcoIdea> addIdea({required EcoIdea idea});
 
   Future<EcoIdea?> getIdea({required String ideaId});
 }

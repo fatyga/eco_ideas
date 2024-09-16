@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:cross_file/cross_file.dart';
 import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
@@ -13,14 +10,17 @@ class SupabaseIdeasRepository extends IdeasRepository {
   final Ref ref;
 
   @override
-  Future<void> createIdea({
+  Future<EcoIdea> addIdea({
     required EcoIdea idea,
   }) async {
     try {
-      await ref
+      final result = await ref
           .read(supabaseClientProvider)
           .from('draft')
-          .insert(idea.toJson());
+          .insert(idea.toJson())
+          .select<PostgrestMap>();
+
+      return EcoIdea.fromJson(result);
     } on PostgrestException catch (e) {
       throw CreateIdeaException(e.message);
     }

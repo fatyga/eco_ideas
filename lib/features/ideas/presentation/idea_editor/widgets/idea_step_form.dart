@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class IdeaStepForm extends StatefulWidget {
-  const IdeaStepForm({super.key});
+  const IdeaStepForm({required this.step, super.key});
 
+  final EcoIdeaStep step;
   @override
   State<IdeaStepForm> createState() => _IdeaStepFormState();
 }
