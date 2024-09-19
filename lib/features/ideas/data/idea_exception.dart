@@ -15,3 +15,12 @@ class CreateIdeaException extends IdeaException {
     return 'temporary value';
   }
 }
+
+class IdeaWasNotFound extends IdeaException {
+  IdeaWasNotFound(super.message);
+
+  @override
+  String resolveMessageForUser(AppLocalizations l10n) {
+    return 'Idea was not found';
+  }
+}

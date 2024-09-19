@@ -10,7 +10,7 @@ SupabaseIdeasRepository ideasRepository(IdeasRepositoryRef ref) =>
 
 abstract class IdeasRepository {
   // Creates new idea and returns inserted data
-  Future<EcoIdea> addIdea({required EcoIdea idea});
+  Future<EcoIdea> createIdea({required EcoIdea idea});
 
   Future<EcoIdea?> getIdea({required String ideaId});
 }

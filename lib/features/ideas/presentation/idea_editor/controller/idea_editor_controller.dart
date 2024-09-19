@@ -14,14 +14,20 @@ class IdeaEditorController extends _$IdeaEditorController {
     final profileId = ref.read(userProfileChangesProvider).requireValue.id;
 
     EcoIdea idea;
-    // Fetch idea if it exists, or add new one instead
     if (ideaId != null) {
-      idea = await ref.read(ideasRepositoryProvider).getIdea(ideaId: ideaId) ??
-          EcoIdea.draft(profileId: profileId);
+      try {
+        idea = await ref.read(ideasRepositoryProvider).getIdea(ideaId: ideaId);
+      } catch (err, _) {
+        rethrow;
+      }
     } else {
-      idea = await ref
-          .read(ideasRepositoryProvider)
-          .addIdea(idea: EcoIdea.draft(profileId: profileId));
+      try {
+        idea = await ref
+            .read(ideasRepositoryProvider)
+            .createIdea(idea: EcoIdea.draft(profileId: profileId));
+      } catch (err, _) {
+        rethrow;
+      }
     }
     return IdeaEditorState(idea: idea);
   }

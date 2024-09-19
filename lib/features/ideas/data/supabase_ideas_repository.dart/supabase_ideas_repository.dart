@@ -10,7 +10,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
   final Ref ref;
 
   @override
-  Future<EcoIdea> addIdea({
+  Future<EcoIdea> createIdea({
     required EcoIdea idea,
   }) async {
     try {
@@ -27,16 +27,19 @@ class SupabaseIdeasRepository extends IdeasRepository {
   }
 
   @override
-  Future<EcoIdea?> getIdea({required String ideaId}) async {
-    final json = await ref
-        .read(supabaseClientProvider)
-        .from('idea')
-        .select<PostgrestMap>()
-        .eq('id', ideaId);
+  Future<EcoIdea> getIdea({required String ideaId}) async {
+    try {
+      final json = await ref
+          .read(supabaseClientProvider)
+          .from('idea')
+          .select<PostgrestMap>()
+          .eq('id', ideaId);
 
-    // Return null, when there is no an idea with matching id
-    if (json.isEmpty) return null;
-
-    return EcoIdea.fromJson(json);
+      // Throw an error, when there is no an idea with matching id
+      if (json.isEmpty) throw IdeaWasNotFound('Temporary value');
+      return EcoIdea.fromJson(json);
+    } catch (err, stack) {
+      throw IdeaWasNotFound(err.toString());
+    }
   }
 }
