@@ -16,7 +16,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
     try {
       final result = await ref
           .read(supabaseClientProvider)
-          .from('draft')
+          .from('idea')
           .insert(idea.toJson())
           .select<PostgrestMap>();
 

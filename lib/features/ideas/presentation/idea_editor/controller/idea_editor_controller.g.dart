@@ -7,7 +7,7 @@ part of 'idea_editor_controller.dart';
 // **************************************************************************
 
 String _$ideaEditorControllerHash() =>
-    r'35a05694ad491f79ae02c0be4b45f0f1c2341615';
+    r'807c0ee7e4f50ecd79f26c586d76abcb8356fc83';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,10 +32,10 @@ class _SystemHash {
 
 abstract class _$IdeaEditorController
     extends BuildlessAutoDisposeAsyncNotifier<IdeaEditorState> {
-  late final String? ideaId;
+  late final String ideaId;
 
   FutureOr<IdeaEditorState> build(
-    String? ideaId,
+    String ideaId,
   );
 }
 
@@ -50,7 +50,7 @@ class IdeaEditorControllerFamily extends Family<AsyncValue<IdeaEditorState>> {
 
   /// See also [IdeaEditorController].
   IdeaEditorControllerProvider call(
-    String? ideaId,
+    String ideaId,
   ) {
     return IdeaEditorControllerProvider(
       ideaId,
@@ -86,7 +86,7 @@ class IdeaEditorControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
     IdeaEditorController, IdeaEditorState> {
   /// See also [IdeaEditorController].
   IdeaEditorControllerProvider(
-    String? ideaId,
+    String ideaId,
   ) : this._internal(
           () => IdeaEditorController()..ideaId = ideaId,
           from: ideaEditorControllerProvider,
@@ -111,7 +111,7 @@ class IdeaEditorControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
     required this.ideaId,
   }) : super.internal();
 
-  final String? ideaId;
+  final String ideaId;
 
   @override
   FutureOr<IdeaEditorState> runNotifierBuild(
@@ -161,7 +161,7 @@ class IdeaEditorControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
 mixin IdeaEditorControllerRef
     on AutoDisposeAsyncNotifierProviderRef<IdeaEditorState> {
   /// The parameter `ideaId` of this provider.
-  String? get ideaId;
+  String get ideaId;
 }
 
 class _IdeaEditorControllerProviderElement
@@ -170,7 +170,7 @@ class _IdeaEditorControllerProviderElement
   _IdeaEditorControllerProviderElement(super.provider);
 
   @override
-  String? get ideaId => (origin as IdeaEditorControllerProvider).ideaId;
+  String get ideaId => (origin as IdeaEditorControllerProvider).ideaId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

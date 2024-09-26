@@ -8,6 +8,7 @@ part of 'routes.dart';
 
 List<RouteBase> get $appRoutes => [
       $splashRoute,
+      $loadingRoute,
       $homeRoute,
       $authRoute,
     ];
@@ -22,6 +23,28 @@ extension $SplashRouteExtension on SplashRoute {
 
   String get location => GoRouteData.$location(
         '/splash',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $loadingRoute => GoRouteData.$route(
+      path: '/loading',
+      factory: $LoadingRouteExtension._fromState,
+    );
+
+extension $LoadingRouteExtension on LoadingRoute {
+  static LoadingRoute _fromState(GoRouterState state) => const LoadingRoute();
+
+  String get location => GoRouteData.$location(
+        '/loading',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -138,7 +161,7 @@ extension $MyIdeasRouteExtension on MyIdeasRoute {
 
 extension $IdeaEditorRouteExtension on IdeaEditorRoute {
   static IdeaEditorRoute _fromState(GoRouterState state) => IdeaEditorRoute(
-        state.extra as String?,
+        state.extra as String,
       );
 
   String get location => GoRouteData.$location(

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:eco_ideas/common/widgets/loading_screen.dart';
 import 'package:eco_ideas/features/auth/presentation/auth/auth_screen.dart';
 
 import 'package:eco_ideas/features/auth/presentation/presentation.dart';
@@ -28,6 +29,17 @@ class SplashRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const SplashScreen();
+  }
+}
+
+// Loading
+@TypedGoRoute<LoadingRoute>(path: LoadingScreen.path)
+class LoadingRoute extends GoRouteData {
+  const LoadingRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const LoadingScreen();
   }
 }
 
@@ -77,8 +89,8 @@ class MyIdeasRoute extends GoRouteData {
 
 class IdeaEditorRoute extends GoRouteData {
   const IdeaEditorRoute(this.$extra);
-  const IdeaEditorRoute.draft() : this(null);
-  final String? $extra;
+
+  final String $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
