@@ -10,21 +10,23 @@ class EcoIdea with _$EcoIdea {
     required String id,
     @JsonKey(name: 'profile_id') required String profileId,
     required List<EcoIdeaStep> steps,
-    required bool published,
   }) = _EcoIdea;
 
-  factory EcoIdea.fromJson(Map<String, dynamic> json) =>
+  factory EcoIdea.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$EcoIdeaFromJson(json);
 
   factory EcoIdea.draft({
     required String profileId,
-  }) =>
-      EcoIdea(
-        id: const Uuid().v4(),
-        profileId: profileId,
-        steps: [
-          const EcoIdeaStep(type: EcoIdeaStepType.introduction),
-        ],
-        published: false,
-      );
+  }) {
+    final id = const Uuid().v4();
+    return EcoIdea(
+      id: id,
+      profileId: profileId,
+      steps: [
+        EcoIdeaStep(id: 0, ideaId: id, image: '', title: '', description: '')
+      ],
+    );
+  }
 }

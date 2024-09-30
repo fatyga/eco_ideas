@@ -90,11 +90,11 @@ class MyIdeasRoute extends GoRouteData {
 class IdeaEditorRoute extends GoRouteData {
   const IdeaEditorRoute(this.$extra);
 
-  final String $extra;
+  final EcoIdea? $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return IdeaEditorScreen(ideaId: $extra);
+    return IdeaEditorScreen(idea: $extra);
   }
 }
 

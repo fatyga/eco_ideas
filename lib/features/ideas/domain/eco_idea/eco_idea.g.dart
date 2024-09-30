@@ -13,7 +13,6 @@ _$EcoIdeaImpl _$$EcoIdeaImplFromJson(Map<String, dynamic> json) =>
       steps: (json['steps'] as List<dynamic>)
           .map((e) => EcoIdeaStep.fromJson(e as Map<String, dynamic>))
           .toList(),
-      published: json['published'] as bool,
     );
 
 Map<String, dynamic> _$$EcoIdeaImplToJson(_$EcoIdeaImpl instance) =>
@@ -21,5 +20,4 @@ Map<String, dynamic> _$$EcoIdeaImplToJson(_$EcoIdeaImpl instance) =>
       'id': instance.id,
       'profile_id': instance.profileId,
       'steps': instance.steps,
-      'published': instance.published,
     };

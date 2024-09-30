@@ -8,7 +8,8 @@ enum EcoIdeaStepType { introduction, standard, summary }
 @freezed
 class EcoIdeaStep with _$EcoIdeaStep {
   const factory EcoIdeaStep({
-    required EcoIdeaStepType type,
+    required int id,
+    required String ideaId,
     @Default('') String image,
     @Default('') String title,
     @Default('') String description,
@@ -16,4 +17,7 @@ class EcoIdeaStep with _$EcoIdeaStep {
 
   factory EcoIdeaStep.fromJson(Map<String, dynamic> json) =>
       _$EcoIdeaStepFromJson(json);
+
+  factory EcoIdeaStep.empty(int index, String ideaId) =>
+      EcoIdeaStep(id: index, ideaId: ideaId);
 }

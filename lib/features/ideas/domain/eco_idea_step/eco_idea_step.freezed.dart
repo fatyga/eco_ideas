@@ -20,7 +20,8 @@ EcoIdeaStep _$EcoIdeaStepFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EcoIdeaStep {
-  EcoIdeaStepType get type => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get ideaId => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -42,7 +43,7 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
       _$EcoIdeaStepCopyWithImpl<$Res, EcoIdeaStep>;
   @useResult
   $Res call(
-      {EcoIdeaStepType type, String image, String title, String description});
+      {int id, String ideaId, String image, String title, String description});
 }
 
 /// @nodoc
@@ -60,16 +61,21 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? id = null,
+    Object? ideaId = null,
     Object? image = null,
     Object? title = null,
     Object? description = null,
   }) {
     return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as EcoIdeaStepType,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      ideaId: null == ideaId
+          ? _value.ideaId
+          : ideaId // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -95,7 +101,7 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {EcoIdeaStepType type, String image, String title, String description});
+      {int id, String ideaId, String image, String title, String description});
 }
 
 /// @nodoc
@@ -111,16 +117,21 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? id = null,
+    Object? ideaId = null,
     Object? image = null,
     Object? title = null,
     Object? description = null,
   }) {
     return _then(_$EcoIdeaStepImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as EcoIdeaStepType,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      ideaId: null == ideaId
+          ? _value.ideaId
+          : ideaId // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -141,7 +152,8 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   const _$EcoIdeaStepImpl(
-      {required this.type,
+      {required this.id,
+      required this.ideaId,
       this.image = '',
       this.title = '',
       this.description = ''});
@@ -150,7 +162,9 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
       _$$EcoIdeaStepImplFromJson(json);
 
   @override
-  final EcoIdeaStepType type;
+  final int id;
+  @override
+  final String ideaId;
   @override
   @JsonKey()
   final String image;
@@ -163,7 +177,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
   @override
   String toString() {
-    return 'EcoIdeaStep(type: $type, image: $image, title: $title, description: $description)';
+    return 'EcoIdeaStep(id: $id, ideaId: $ideaId, image: $image, title: $title, description: $description)';
   }
 
   @override
@@ -171,7 +185,8 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EcoIdeaStepImpl &&
-            (identical(other.type, type) || other.type == type) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.ideaId, ideaId) || other.ideaId == ideaId) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -180,7 +195,8 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, type, image, title, description);
+  int get hashCode =>
+      Object.hash(runtimeType, id, ideaId, image, title, description);
 
   /// Create a copy of EcoIdeaStep
   /// with the given fields replaced by the non-null parameter values.
@@ -200,7 +216,8 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
 abstract class _EcoIdeaStep implements EcoIdeaStep {
   const factory _EcoIdeaStep(
-      {required final EcoIdeaStepType type,
+      {required final int id,
+      required final String ideaId,
       final String image,
       final String title,
       final String description}) = _$EcoIdeaStepImpl;
@@ -209,7 +226,9 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
       _$EcoIdeaStepImpl.fromJson;
 
   @override
-  EcoIdeaStepType get type;
+  int get id;
+  @override
+  String get ideaId;
   @override
   String get image;
   @override
