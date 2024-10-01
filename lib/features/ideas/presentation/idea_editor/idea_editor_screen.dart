@@ -38,18 +38,20 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ideaValue = idea.requireValue;
     return Scaffold(
       appBar: AppBar(),
       bottomSheet: StepIndicator(
         currentStepId: currentStep.id,
-        lastStepId: ideaValue.steps.last.id,
+        lastStepId: idea.requireValue.steps.last.id,
         onStepAdd: () => setState(() {
-          idea = AsyncData(ideaValue.addStep());
-          currentStep = ideaValue.steps.last;
+          idea = AsyncData(idea.requireValue.addStep());
+
+          currentStep = idea.requireValue.steps.last;
+          print(currentStep);
+          print(currentStep.id);
         }),
         onStepChange: (int stepId) => setState(() {
-          currentStep = ideaValue.steps[stepId];
+          currentStep = idea.requireValue.steps[stepId];
         }),
       ),
       body: IdeaStepForm(step: currentStep),

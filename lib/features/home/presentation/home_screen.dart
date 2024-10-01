@@ -1,21 +1,15 @@
-import 'package:eco_ideas/common/widgets/loading_screen.dart';
-import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/explore/presentation/explore/explore_screen.dart';
 import 'package:eco_ideas/features/home/presentation/controller/home_controller.dart';
 import 'package:eco_ideas/features/home/presentation/controller/home_state.dart';
 import 'package:eco_ideas/features/home/presentation/widgets/home_bottom_navigation_bar.dart';
-import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
-import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
-import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 
 import 'package:eco_ideas/features/ideas/presentation/my_ideas/my_ideas_screen.dart';
 import 'package:eco_ideas/features/user/presentation/my_profile/my_profile_screen.dart';
-import 'package:eco_ideas/l10n/l10n.dart';
+
 import 'package:eco_ideas/router/routes/routes.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});

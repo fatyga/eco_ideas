@@ -25,7 +25,10 @@ class EcoIdea with _$EcoIdea {
       id: id,
       profileId: profileId,
       steps: [
-        EcoIdeaStep(id: 0, ideaId: id, image: '', title: '', description: '')
+        EcoIdeaStep(
+          id: 0,
+          ideaId: id,
+        )
       ],
     );
   }
