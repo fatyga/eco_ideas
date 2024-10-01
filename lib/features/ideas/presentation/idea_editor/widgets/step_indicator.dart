@@ -3,31 +3,51 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class StepIndicator extends ConsumerWidget {
-  const StepIndicator(
-      {required this.index,
-      required this.onPreviousStepTap,
-      required this.onNextStepTap,
-      super.key});
+  const StepIndicator({
+    required this.currentStepId,
+    required this.lastStepId,
+    required this.onStepChange,
+    required this.onStepAdd,
+    super.key,
+  });
 
-  final int index;
-  final VoidCallback? onPreviousStepTap;
-  final VoidCallback? onNextStepTap;
+  final int currentStepId;
+  final int lastStepId;
+  final void Function(int stepId) onStepChange;
+  final VoidCallback onStepAdd;
+
+  void nextStep() => onStepChange(currentStepId + 1);
+  void previousStep() => onStepChange(currentStepId - 1);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return BottomSheet(
       builder: (context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (onPreviousStepTap != null)
+          Visibility(
+            visible: currentStepId != 0,
+            child: IconButton(
+              onPressed: previousStep,
+              icon: const Icon(Icons.arrow_back),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 36),
+            child: Text(
+              currentStepId == 0 ? 'Introduction' : 'Step $currentStepId',
+            ),
+          ),
+          if (currentStepId < lastStepId)
             IconButton(
-                onPressed: onPreviousStepTap,
-                icon: const Icon(Icons.arrow_back)),
-          Text(index == 0 ? 'Introduction' : 'Step $index'),
-          if (onNextStepTap != null)
+              onPressed: nextStep,
+              icon: const Icon(Icons.arrow_forward),
+            ),
+          if (currentStepId == lastStepId)
             IconButton(
-                onPressed: onNextStepTap,
-                icon: const Icon(Icons.arrow_forward)),
+              onPressed: onStepAdd,
+              icon: const Icon(Icons.add),
+            ),
         ],
       ),
       onClosing: () {},

@@ -1,6 +1,7 @@
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/mutable_eco_idea.dart';
 
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_form.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/step_indicator.dart';
@@ -21,13 +22,14 @@ class IdeaEditorScreen extends ConsumerStatefulWidget {
 
 class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
   late AsyncValue<EcoIdea> idea;
-  int stepIndex = 0;
+  late EcoIdeaStep currentStep;
 
   @override
   void initState() {
     if (widget.idea == null) {
       final profileId = ref.read(userProfileChangesProvider).requireValue.id;
       idea = AsyncValue.data(EcoIdea.draft(profileId: profileId));
+      currentStep = idea.requireValue.steps.first;
     } else {
       idea = AsyncValue.data(widget.idea!);
     }
@@ -36,34 +38,21 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     final ideaValue = idea.requireValue;
     return Scaffold(
       appBar: AppBar(),
       bottomSheet: StepIndicator(
-        onPreviousStepTap: stepIndex == 0
-            ? null
-            : () {
-                setState(() {
-                  stepIndex--;
-                });
-              },
-        onNextStepTap: stepIndex < ideaValue.steps.length
-            ? () {
-                setState(() {
-                  stepIndex++;
-                });
-              }
-            : () {
-                setState(() {
-                  ideaValue.steps
-                      .add(EcoIdeaStep.empty(stepIndex++, ideaValue.id));
-                });
-              },
-        index: stepIndex,
+        currentStepId: currentStep.id,
+        lastStepId: ideaValue.steps.last.id,
+        onStepAdd: () => setState(() {
+          idea = AsyncData(ideaValue.addStep());
+          currentStep = ideaValue.steps.last;
+        }),
+        onStepChange: (int stepId) => setState(() {
+          currentStep = ideaValue.steps[stepId];
+        }),
       ),
-      body: IdeaStepForm(step: ideaValue.steps[stepIndex]),
+      body: IdeaStepForm(step: currentStep),
     );
   }
 }

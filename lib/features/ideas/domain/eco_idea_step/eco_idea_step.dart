@@ -18,6 +18,6 @@ class EcoIdeaStep with _$EcoIdeaStep {
   factory EcoIdeaStep.fromJson(Map<String, dynamic> json) =>
       _$EcoIdeaStepFromJson(json);
 
-  factory EcoIdeaStep.empty(int index, String ideaId) =>
-      EcoIdeaStep(id: index, ideaId: ideaId);
+  factory EcoIdeaStep.empty({required int id, required String ideaId}) =>
+      EcoIdeaStep(id: id, ideaId: ideaId);
 }
