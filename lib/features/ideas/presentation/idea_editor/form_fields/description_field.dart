@@ -3,16 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
-class IdeaTitleField extends StatelessWidget {
-  const IdeaTitleField({super.key});
+class IdeaDescriptionField extends StatelessWidget {
+  const IdeaDescriptionField(
+      {required this.onEditingComplete, this.initialValue, super.key});
 
-  static const String name = 'title';
+  static const String name = 'description';
+  final String? initialValue;
+  final void Function() onEditingComplete;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return FormBuilderTextField(
       name: name,
-      decoration: InputDecoration(labelText: l10n.ideaStepTitleFieldLabelText),
+      initialValue: initialValue,
+      maxLines: null,
+      decoration:
+          InputDecoration(labelText: l10n.ideaStepDescriptionFieldLabelText),
       validator: FormBuilderValidators.compose([
         FormBuilderValidators.required(
           errorText: l10n.requiredValidatorErrorText,

@@ -15,4 +15,11 @@ extension MutableEcoIdea on EcoIdea {
 
     return copyWith(steps: steps);
   }
+
+  EcoIdea updateStep(EcoIdeaStep step) {
+    final steps = List<EcoIdeaStep>.from(this.steps);
+    steps[step.id] = step;
+
+    return copyWith(steps: steps);
+  }
 }

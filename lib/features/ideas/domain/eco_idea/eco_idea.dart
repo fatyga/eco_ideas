@@ -28,7 +28,7 @@ class EcoIdea with _$EcoIdea {
         EcoIdeaStep(
           id: 0,
           ideaId: id,
-        )
+        ),
       ],
     );
   }
