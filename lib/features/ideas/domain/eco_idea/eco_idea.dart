@@ -9,7 +9,7 @@ class EcoIdea with _$EcoIdea {
   const factory EcoIdea({
     required String id,
     @JsonKey(name: 'profile_id') required String profileId,
-    required List<EcoIdeaStep> steps,
+    @JsonKey(includeToJson: false) required List<EcoIdeaStep> steps,
   }) = _EcoIdea;
 
   factory EcoIdea.fromJson(

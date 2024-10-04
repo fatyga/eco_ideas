@@ -23,6 +23,7 @@ mixin _$EcoIdea {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_id')
   String get profileId => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false)
   List<EcoIdeaStep> get steps => throw _privateConstructorUsedError;
 
   /// Serializes this EcoIdea to a JSON map.
@@ -42,7 +43,7 @@ abstract class $EcoIdeaCopyWith<$Res> {
   $Res call(
       {String id,
       @JsonKey(name: 'profile_id') String profileId,
-      List<EcoIdeaStep> steps});
+      @JsonKey(includeToJson: false) List<EcoIdeaStep> steps});
 }
 
 /// @nodoc
@@ -91,7 +92,7 @@ abstract class _$$EcoIdeaImplCopyWith<$Res> implements $EcoIdeaCopyWith<$Res> {
   $Res call(
       {String id,
       @JsonKey(name: 'profile_id') String profileId,
-      List<EcoIdeaStep> steps});
+      @JsonKey(includeToJson: false) List<EcoIdeaStep> steps});
 }
 
 /// @nodoc
@@ -134,7 +135,7 @@ class _$EcoIdeaImpl implements _EcoIdea {
   const _$EcoIdeaImpl(
       {required this.id,
       @JsonKey(name: 'profile_id') required this.profileId,
-      required final List<EcoIdeaStep> steps})
+      @JsonKey(includeToJson: false) required final List<EcoIdeaStep> steps})
       : _steps = steps;
 
   factory _$EcoIdeaImpl.fromJson(Map<String, dynamic> json) =>
@@ -147,6 +148,7 @@ class _$EcoIdeaImpl implements _EcoIdea {
   final String profileId;
   final List<EcoIdeaStep> _steps;
   @override
+  @JsonKey(includeToJson: false)
   List<EcoIdeaStep> get steps {
     if (_steps is EqualUnmodifiableListView) return _steps;
     // ignore: implicit_dynamic_type
@@ -194,6 +196,7 @@ abstract class _EcoIdea implements EcoIdea {
   const factory _EcoIdea(
       {required final String id,
       @JsonKey(name: 'profile_id') required final String profileId,
+      @JsonKey(includeToJson: false)
       required final List<EcoIdeaStep> steps}) = _$EcoIdeaImpl;
 
   factory _EcoIdea.fromJson(Map<String, dynamic> json) = _$EcoIdeaImpl.fromJson;
@@ -204,6 +207,7 @@ abstract class _EcoIdea implements EcoIdea {
   @JsonKey(name: 'profile_id')
   String get profileId;
   @override
+  @JsonKey(includeToJson: false)
   List<EcoIdeaStep> get steps;
 
   /// Create a copy of EcoIdea

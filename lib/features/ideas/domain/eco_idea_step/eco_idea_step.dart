@@ -9,7 +9,7 @@ enum EcoIdeaStepType { introduction, standard, summary }
 class EcoIdeaStep with _$EcoIdeaStep {
   const factory EcoIdeaStep({
     required int id,
-    required String ideaId,
+    @JsonKey(name: 'idea_id') required String ideaId,
     @Default('') String image,
     @Default('') String title,
     @Default('') String description,

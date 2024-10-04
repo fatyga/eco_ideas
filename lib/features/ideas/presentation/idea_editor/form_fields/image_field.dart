@@ -4,11 +4,17 @@ import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class IdeaImageField extends StatelessWidget {
-  const IdeaImageField({this.withBorder = false, super.key});
+  const IdeaImageField(
+      {this.withBorder = false,
+      this.initialValue,
+      required this.onSubmit,
+      super.key});
 
   final bool withBorder;
 
   static const String name = 'image';
+  final String? initialValue;
+  final void Function() onSubmit;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

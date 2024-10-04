@@ -5,25 +5,30 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 class IdeaDescriptionField extends StatelessWidget {
   const IdeaDescriptionField(
-      {required this.onEditingComplete, this.initialValue, super.key});
+      {required this.onSubmit, this.initialValue, super.key});
 
   static const String name = 'description';
   final String? initialValue;
-  final void Function() onEditingComplete;
+  final void Function() onSubmit;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return FormBuilderTextField(
-      name: name,
-      initialValue: initialValue,
-      maxLines: null,
-      decoration:
-          InputDecoration(labelText: l10n.ideaStepDescriptionFieldLabelText),
-      validator: FormBuilderValidators.compose([
-        FormBuilderValidators.required(
-          errorText: l10n.requiredValidatorErrorText,
-        ),
-      ]),
+    return Focus(
+      onFocusChange: (value) {
+        if (!value) onSubmit();
+      },
+      child: FormBuilderTextField(
+        name: name,
+        initialValue: initialValue,
+        maxLines: null,
+        decoration:
+            InputDecoration(labelText: l10n.ideaStepDescriptionFieldLabelText),
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(
+            errorText: l10n.requiredValidatorErrorText,
+          ),
+        ]),
+      ),
     );
   }
 }

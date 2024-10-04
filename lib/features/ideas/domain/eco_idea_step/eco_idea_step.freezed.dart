@@ -21,6 +21,7 @@ EcoIdeaStep _$EcoIdeaStepFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$EcoIdeaStep {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'idea_id')
   String get ideaId => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
@@ -43,7 +44,11 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
       _$EcoIdeaStepCopyWithImpl<$Res, EcoIdeaStep>;
   @useResult
   $Res call(
-      {int id, String ideaId, String image, String title, String description});
+      {int id,
+      @JsonKey(name: 'idea_id') String ideaId,
+      String image,
+      String title,
+      String description});
 }
 
 /// @nodoc
@@ -101,7 +106,11 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, String ideaId, String image, String title, String description});
+      {int id,
+      @JsonKey(name: 'idea_id') String ideaId,
+      String image,
+      String title,
+      String description});
 }
 
 /// @nodoc
@@ -153,7 +162,7 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
 class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   const _$EcoIdeaStepImpl(
       {required this.id,
-      required this.ideaId,
+      @JsonKey(name: 'idea_id') required this.ideaId,
       this.image = '',
       this.title = '',
       this.description = ''});
@@ -164,6 +173,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   @override
   final int id;
   @override
+  @JsonKey(name: 'idea_id')
   final String ideaId;
   @override
   @JsonKey()
@@ -217,7 +227,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 abstract class _EcoIdeaStep implements EcoIdeaStep {
   const factory _EcoIdeaStep(
       {required final int id,
-      required final String ideaId,
+      @JsonKey(name: 'idea_id') required final String ideaId,
       final String image,
       final String title,
       final String description}) = _$EcoIdeaStepImpl;
@@ -228,6 +238,7 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
   @override
   int get id;
   @override
+  @JsonKey(name: 'idea_id')
   String get ideaId;
   @override
   String get image;

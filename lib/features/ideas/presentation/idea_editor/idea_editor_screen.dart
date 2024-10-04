@@ -1,4 +1,6 @@
 import 'package:eco_ideas/features/auth/data/data.dart';
+import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
+import 'package:eco_ideas/features/ideas/data/supabase_ideas_repository.dart/supabase_ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/mutable_eco_idea.dart';
@@ -24,16 +26,32 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
   late AsyncValue<EcoIdea> idea;
   late EcoIdeaStep currentStep;
 
+  late bool shouldCreateIdeaOnFirstModification;
   @override
   void initState() {
     if (widget.idea == null) {
       final profileId = ref.read(userProfileChangesProvider).requireValue.id;
       idea = AsyncValue.data(EcoIdea.draft(profileId: profileId));
       currentStep = idea.requireValue.steps.first;
+      shouldCreateIdeaOnFirstModification = true;
     } else {
       idea = AsyncValue.data(widget.idea!);
+      shouldCreateIdeaOnFirstModification = false;
     }
+
     super.initState();
+  }
+
+  Future<void> onStepModification(EcoIdeaStep alteredStep) async {
+    setState(() {
+      idea = AsyncData(idea.requireValue.updateStep(alteredStep));
+    });
+    if (shouldCreateIdeaOnFirstModification) {
+      await ref
+          .read(ideasRepositoryProvider)
+          .createIdea(idea: idea.requireValue);
+      shouldCreateIdeaOnFirstModification = false;
+    }
   }
 
   // Step indicator
@@ -42,29 +60,24 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
         currentStep = idea.requireValue.steps.last;
       });
 
-  void onStepChange(int stepId) => setState(() {
+  void onStepIdChange(int stepId) => setState(() {
         currentStep = idea.requireValue.steps[stepId];
       });
 
   @override
   Widget build(BuildContext context) {
-    print(idea.requireValue.steps);
     return Scaffold(
       appBar: AppBar(),
       bottomSheet: StepIndicator(
         currentStepId: currentStep.id,
         lastStepId: idea.requireValue.steps.last.id,
         onStepAdd: onStepAdd,
-        onStepChange: onStepChange,
+        onStepIdChange: onStepIdChange,
       ),
       body: IdeaStepForm(
         key: ValueKey('ideaStep${currentStep.id}Form'),
         step: currentStep,
-        onChange: (step) {
-          setState(() {
-            idea = AsyncData(idea.requireValue.updateStep(step));
-          });
-        },
+        onChange: onStepModification,
       ),
     );
   }

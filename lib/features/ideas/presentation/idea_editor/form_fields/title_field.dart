@@ -4,25 +4,30 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class IdeaTitleField extends StatelessWidget {
-  const IdeaTitleField(
-      {required this.onEditingComplete, this.initialValue, super.key});
+  const IdeaTitleField({required this.onSubmit, this.initialValue, super.key});
 
   static const String name = 'title';
   final String? initialValue;
-  final void Function() onEditingComplete;
+  final void Function() onSubmit;
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return FormBuilderTextField(
-      name: name,
-      initialValue: initialValue,
-      onEditingComplete: onEditingComplete,
-      decoration: InputDecoration(labelText: l10n.ideaStepTitleFieldLabelText),
-      validator: FormBuilderValidators.compose([
-        FormBuilderValidators.required(
-          errorText: l10n.requiredValidatorErrorText,
-        ),
-      ]),
+    return Focus(
+      onFocusChange: (value) {
+        if (!value) onSubmit();
+      },
+      child: FormBuilderTextField(
+        name: name,
+        initialValue: initialValue,
+        onEditingComplete: onSubmit,
+        decoration:
+            InputDecoration(labelText: l10n.ideaStepTitleFieldLabelText),
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(
+            errorText: l10n.requiredValidatorErrorText,
+          ),
+        ]),
+      ),
     );
   }
 }

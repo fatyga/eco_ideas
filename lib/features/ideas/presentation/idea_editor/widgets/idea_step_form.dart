@@ -23,7 +23,16 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
       key: _formKey,
       child: ListView(
         children: [
-          const IdeaImageField(),
+          IdeaImageField(
+            onSubmit: () {
+              final isValid = _formKey.currentState!.fields[IdeaImageField.name]
+                  ?.validate();
+
+              if (isValid != null && isValid) {
+                _formKey.currentState!.fields[IdeaImageField.name]!.save();
+              }
+            },
+          ),
           Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
@@ -32,7 +41,7 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                 IdeaTitleField(
                   key: ValueKey('ideaStep${widget.step.id}FormTitleField'),
                   initialValue: widget.step.title,
-                  onEditingComplete: () {
+                  onSubmit: () {
                     final isValid = _formKey
                         .currentState!.fields[IdeaTitleField.name]
                         ?.validate();
@@ -53,17 +62,20 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                   key:
                       ValueKey('ideaStep${widget.step.id}FormDescriptionField'),
                   initialValue: widget.step.description,
-                  onEditingComplete: () {
+                  onSubmit: () {
                     final isValid = _formKey
-                        .currentState!.fields[IdeaTitleField.name]
+                        .currentState!.fields[IdeaDescriptionField.name]
                         ?.validate();
                     if (isValid != null && isValid) {
-                      _formKey.currentState!.fields[IdeaTitleField.name]!
+                      _formKey.currentState!.fields[IdeaDescriptionField.name]!
                           .save();
+
                       widget.onChange(
                         widget.step.copyWith(
-                          title: _formKey.currentState!
-                              .fields[IdeaTitleField.name]!.value as String,
+                          description: _formKey
+                              .currentState!
+                              .fields[IdeaDescriptionField.name]!
+                              .value as String,
                         ),
                       );
                     }

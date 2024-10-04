@@ -23,7 +23,15 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .single()
           .limit(1);
 
-      return EcoIdea.fromJson(result);
+      final stepsInJson = idea.steps.map((step) => step.toJson()).toList();
+
+      final steps = await ref
+          .read(supabaseClientProvider)
+          .from('step')
+          .insert(stepsInJson)
+          .select<PostgrestMap>();
+
+      return EcoIdea.fromJson(result).copyWith(steps: idea.steps);
     } on PostgrestException catch (e) {
       throw CreateIdeaException(e.message);
     }
@@ -43,20 +51,6 @@ class SupabaseIdeasRepository extends IdeasRepository {
       return EcoIdea.fromJson(json);
     } catch (err, stack) {
       throw IdeaWasNotFound(err.toString());
-    }
-  }
-
-  Future<List<EcoIdeaStep>> getIdeaSteps({required String ideaId}) async {
-    try {
-      final stepsJson = await ref
-          .read(supabaseClientProvider)
-          .from('step')
-          .select<PostgrestList>()
-          .eq('ideaId', ideaId);
-
-      return stepsJson.map<EcoIdeaStep>(EcoIdeaStep.fromJson).toList();
-    } catch (err, stack) {
-      throw Exception('Temporary');
     }
   }
 }

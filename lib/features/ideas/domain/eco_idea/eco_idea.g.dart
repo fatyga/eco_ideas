@@ -19,5 +19,4 @@ Map<String, dynamic> _$$EcoIdeaImplToJson(_$EcoIdeaImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'profile_id': instance.profileId,
-      'steps': instance.steps,
     };
