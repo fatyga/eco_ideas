@@ -1,5 +1,6 @@
 import 'package:eco_ideas/features/ideas/data/supabase_ideas_repository.dart/supabase_ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'ideas_repository.g.dart';
@@ -13,4 +14,6 @@ abstract class IdeasRepository {
   Future<EcoIdea> createIdea({required EcoIdea idea});
 
   Future<EcoIdea?> getIdea({required String ideaId});
+
+  Future<EcoIdeaStep> updateIdeaStep({required EcoIdeaStep ideaStep});
 }

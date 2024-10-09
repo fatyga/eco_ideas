@@ -24,3 +24,12 @@ class IdeaWasNotFound extends IdeaException {
     return 'Idea was not found';
   }
 }
+
+class UpdateIdeaStepException extends IdeaException {
+  UpdateIdeaStepException(super.message);
+
+  @override
+  String resolveMessageForUser(AppLocalizations l10n) {
+    return 'Fail to update step.';
+  }
+}

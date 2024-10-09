@@ -29,9 +29,10 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .read(supabaseClientProvider)
           .from('step')
           .insert(stepsInJson)
-          .select<PostgrestMap>();
+          .select<PostgrestList>();
 
-      return EcoIdea.fromJson(result).copyWith(steps: idea.steps);
+      result['steps'] = steps;
+      return EcoIdea.fromJson(result);
     } on PostgrestException catch (e) {
       throw CreateIdeaException(e.message);
     }
@@ -46,11 +47,29 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .select<PostgrestMap>()
           .eq('id', ideaId);
 
-      // Throw an error, when there is no an idea with matching id
+      // Throw an error, when there is no idea with matching id
       if (json.isEmpty) throw IdeaWasNotFound('Temporary value');
       return EcoIdea.fromJson(json);
     } catch (err, stack) {
       throw IdeaWasNotFound(err.toString());
+    }
+  }
+
+  @override
+  Future<EcoIdeaStep> updateIdeaStep({required EcoIdeaStep ideaStep}) async {
+    try {
+      final primaryKey = {'id': ideaStep.id, 'idea_id': ideaStep.ideaId};
+      final json = await ref
+          .read(supabaseClientProvider)
+          .from('step')
+          .upsert(ideaStep.toJson(), onConflict: primaryKey.keys.join(','))
+          .match(primaryKey)
+          .select<PostgrestMap>()
+          .single();
+
+      return EcoIdeaStep.fromJson(json);
+    } on PostgrestException catch (err, stack) {
+      throw UpdateIdeaStepException(err.toString());
     }
   }
 }
