@@ -23,7 +23,6 @@ mixin _$EcoIdeaStep {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'idea_id')
   String get ideaId => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
 
@@ -46,7 +45,6 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
   $Res call(
       {int id,
       @JsonKey(name: 'idea_id') String ideaId,
-      String image,
       String title,
       String description});
 }
@@ -68,7 +66,6 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
   $Res call({
     Object? id = null,
     Object? ideaId = null,
-    Object? image = null,
     Object? title = null,
     Object? description = null,
   }) {
@@ -80,10 +77,6 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
       ideaId: null == ideaId
           ? _value.ideaId
           : ideaId // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -108,7 +101,6 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
   $Res call(
       {int id,
       @JsonKey(name: 'idea_id') String ideaId,
-      String image,
       String title,
       String description});
 }
@@ -128,7 +120,6 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? ideaId = null,
-    Object? image = null,
     Object? title = null,
     Object? description = null,
   }) {
@@ -140,10 +131,6 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
       ideaId: null == ideaId
           ? _value.ideaId
           : ideaId // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -163,7 +150,6 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   const _$EcoIdeaStepImpl(
       {required this.id,
       @JsonKey(name: 'idea_id') required this.ideaId,
-      this.image = '',
       this.title = '',
       this.description = ''});
 
@@ -177,9 +163,6 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   final String ideaId;
   @override
   @JsonKey()
-  final String image;
-  @override
-  @JsonKey()
   final String title;
   @override
   @JsonKey()
@@ -187,7 +170,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
   @override
   String toString() {
-    return 'EcoIdeaStep(id: $id, ideaId: $ideaId, image: $image, title: $title, description: $description)';
+    return 'EcoIdeaStep(id: $id, ideaId: $ideaId, title: $title, description: $description)';
   }
 
   @override
@@ -197,7 +180,6 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
             other is _$EcoIdeaStepImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.ideaId, ideaId) || other.ideaId == ideaId) &&
-            (identical(other.image, image) || other.image == image) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description));
@@ -205,8 +187,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, ideaId, image, title, description);
+  int get hashCode => Object.hash(runtimeType, id, ideaId, title, description);
 
   /// Create a copy of EcoIdeaStep
   /// with the given fields replaced by the non-null parameter values.
@@ -228,7 +209,6 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
   const factory _EcoIdeaStep(
       {required final int id,
       @JsonKey(name: 'idea_id') required final String ideaId,
-      final String image,
       final String title,
       final String description}) = _$EcoIdeaStepImpl;
 
@@ -240,8 +220,6 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
   @override
   @JsonKey(name: 'idea_id')
   String get ideaId;
-  @override
-  String get image;
   @override
   String get title;
   @override

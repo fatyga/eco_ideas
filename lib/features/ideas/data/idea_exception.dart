@@ -33,3 +33,12 @@ class UpdateIdeaStepException extends IdeaException {
     return 'Fail to update step.';
   }
 }
+
+class UploadStepImageException extends IdeaException {
+  UploadStepImageException(super.message);
+
+  @override
+  String resolveMessageForUser(AppLocalizations l10n) {
+    return 'Fail to upload an image';
+  }
+}

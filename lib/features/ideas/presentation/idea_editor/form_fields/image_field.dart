@@ -5,9 +5,9 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 class IdeaImageField extends StatelessWidget {
   const IdeaImageField(
-      {this.withBorder = false,
+      {required this.onSubmit,
+      this.withBorder = false,
       this.initialValue,
-      required this.onSubmit,
       super.key});
 
   final bool withBorder;

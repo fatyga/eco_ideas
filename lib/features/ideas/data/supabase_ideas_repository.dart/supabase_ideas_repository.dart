@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
@@ -69,7 +71,22 @@ class SupabaseIdeasRepository extends IdeasRepository {
 
       return EcoIdeaStep.fromJson(json);
     } on PostgrestException catch (err, stack) {
-      throw UpdateIdeaStepException(err.toString());
+      throw UploadStepImageException(err.toString());
+    }
+  }
+
+  @override
+  Future<void> uploadImage(
+      {required EcoIdeaStep ideaStep, required File image}) async {
+    try {
+      final path = '${ideaStep.ideaId}/${ideaStep.id}.png';
+      await ref
+          .read(supabaseClientProvider)
+          .storage
+          .from('ideas')
+          .upload(path, image);
+    } on StorageException catch (err, stack) {
+      throw UploadStepImageException(err.toString());
     }
   }
 }

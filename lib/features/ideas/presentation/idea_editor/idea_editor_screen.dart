@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:eco_ideas/common/extensions/snackbar_on_error.dart';
+import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/save_button.dart';
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/mutable_eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_editor_save_button.dart';
 
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_form.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/step_indicator.dart';
@@ -30,6 +34,7 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
   EcoIdeaStep get currentStep => idea.requireValue.steps[currentStepId];
 
   late bool shouldCreateIdeaOnFirstModification;
+
   @override
   void initState() {
     if (widget.idea == null) {
@@ -47,13 +52,16 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
   }
 
   Future<void> onStepModification(EcoIdeaStep alteredStep) async {
+    setState(() {
+      idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
+    });
+
     if (shouldCreateIdeaOnFirstModification) {
       idea = await AsyncValue.guard(
         () async => ref
             .read(ideasRepositoryProvider)
             .createIdea(idea: idea.requireValue),
-      )
-        ..showSnackBarOnError(context);
+      );
 
       shouldCreateIdeaOnFirstModification = false;
     }
@@ -63,10 +71,19 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
           .read(ideasRepositoryProvider)
           .updateIdeaStep(ideaStep: alteredStep);
       return idea.requireValue.updateStep(updatedStep);
-    })
-      ..showSnackBarOnError(context);
+    });
+
+    if (mounted) {
+      idea.showSnackBarOnError(context);
+    }
 
     setState(() {});
+  }
+
+  Future<void> uploadImage(File image) async {
+    setState(() {
+      idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
+    });
   }
 
   // Step indicator
@@ -82,7 +99,11 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IdeaEditorSaveButton(isSaving: idea.isLoading, onPressed: () {}),
+        ],
+      ),
       bottomSheet: StepIndicator(
         currentStepId: currentStepId,
         lastStepId: idea.requireValue.steps.last.id,
@@ -93,6 +114,7 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
         key: ValueKey('ideaStep${currentStepId}Form'),
         step: currentStep,
         onChange: onStepModification,
+        onImageChanged: uploadImage,
       ),
     );
   }

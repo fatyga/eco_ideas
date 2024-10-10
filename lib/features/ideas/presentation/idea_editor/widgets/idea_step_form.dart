@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/description_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/image_field.dart';
@@ -6,10 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class IdeaStepForm extends StatefulWidget {
-  const IdeaStepForm({required this.step, required this.onChange, super.key});
+  const IdeaStepForm({
+    required this.step,
+    required this.onChange,
+    required this.onImageChanged,
+    super.key,
+  });
 
   final EcoIdeaStep step;
   final void Function(EcoIdeaStep step) onChange;
+  final void Function(File image) onImageChanged;
   @override
   State<IdeaStepForm> createState() => _IdeaStepFormState();
 }
@@ -25,11 +33,12 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
         children: [
           IdeaImageField(
             onSubmit: () {
-              final isValid = _formKey.currentState!.fields[IdeaImageField.name]
-                  ?.validate();
+              final field = _formKey.currentState!.fields[IdeaImageField.name]
+                ?..validate();
 
-              if (isValid != null && isValid) {
-                _formKey.currentState!.fields[IdeaImageField.name]!.save();
+              if (field != null && field.isValid) {
+                field.save();
+                widget.onImageChanged(File(field.value as String));
               }
             },
           ),
@@ -42,16 +51,17 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                   key: ValueKey('ideaStep${widget.step.id}FormTitleField'),
                   initialValue: widget.step.title,
                   onSubmit: () {
-                    final isValid = _formKey
+                    final field = _formKey
                         .currentState!.fields[IdeaTitleField.name]
-                        ?.validate();
-                    if (isValid != null && isValid) {
-                      _formKey.currentState!.fields[IdeaTitleField.name]!
-                          .save();
+                      ?..validate();
+
+                    if (field != null &&
+                        field.isValid &&
+                        field.value != widget.step.title) {
+                      field.save();
                       widget.onChange(
                         widget.step.copyWith(
-                          title: _formKey.currentState!
-                              .fields[IdeaTitleField.name]!.value as String,
+                          title: field.value as String,
                         ),
                       );
                     }
@@ -63,19 +73,17 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                       ValueKey('ideaStep${widget.step.id}FormDescriptionField'),
                   initialValue: widget.step.description,
                   onSubmit: () {
-                    final isValid = _formKey
+                    final field = _formKey
                         .currentState!.fields[IdeaDescriptionField.name]
-                        ?.validate();
-                    if (isValid != null && isValid) {
-                      _formKey.currentState!.fields[IdeaDescriptionField.name]!
-                          .save();
+                      ?..validate();
 
+                    if (field != null &&
+                        field.isValid &&
+                        field.value != widget.step.description) {
+                      field.save();
                       widget.onChange(
                         widget.step.copyWith(
-                          description: _formKey
-                              .currentState!
-                              .fields[IdeaDescriptionField.name]!
-                              .value as String,
+                          description: field.value as String,
                         ),
                       );
                     }
