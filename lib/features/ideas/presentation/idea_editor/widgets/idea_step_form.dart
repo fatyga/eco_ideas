@@ -4,6 +4,7 @@ import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/description_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/image_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/title_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_addon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -89,6 +90,10 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                     }
                   },
                 ),
+                const SizedBox(height: 24),
+                const IdeaStepAddon(addonType: IdeaStepAddonType.tip),
+                const SizedBox(height: 16),
+                const IdeaStepAddon(addonType: IdeaStepAddonType.warning)
               ],
             ),
           ),

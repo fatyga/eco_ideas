@@ -82,16 +82,14 @@
     "homeMyIdeasLabel" : "Moje pomysły",
     "ideaStepTitleFieldLabelText": "Tytuł",
 
-    "ideaCreatorScreenTitle": "Stwórzmy coś wspaniałego!",
-    "ideaCreatorFormSubmitButton": "Utwórz",
-    "ideaNoteManagerAppBarTitle": "Edytuj sekcję",
-    "ideaRequirmentsSectionName": "Czego będziesz potrzebował",
-    "ideaBenefitsSectionName": "Jak ten pomysł pomaga planecie",
-    
-
+   
+    "ideaStepTipAddonTitle": "Wskazówki", 
+    "ideaStepBenefitAddonTitle": "Jak pomaga to planecie?",
+    "ideaStepWarningAddonTitle": "Ostrzeżenia",
+    "ideaStepRequirmentAddonTitle": "Co jest potrzebne?",
 
     "ideaStepDescriptionFieldLabelText": "Opis",
-    "homeProfileLabel:": "Mój profil",
+    "homeProfileLabel": "Mój profil",
 
     "modifyMyProfileAppBarTitle": "Edytuj swój profil"
 }

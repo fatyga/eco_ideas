@@ -140,7 +140,7 @@ abstract class AppLocalizations {
   /// No description provided for @registerTextButtonLabelText.
   ///
   /// In en, this message translates to:
-  /// **'Don\'t have an account? '**
+  /// **'Don\'\'t have an account? '**
   String get registerTextButtonLabelText;
 
   /// No description provided for @registerTextButtonActionText.
@@ -218,7 +218,7 @@ abstract class AppLocalizations {
   /// No description provided for @passwordResetLinkSentDescription.
   ///
   /// In en, this message translates to:
-  /// **'We\'ve sent a link to given email address. Please open it to finish the proccess of resetting password.'**
+  /// **'We\'\'ve sent a link to given email address. Please open it to finish the proccess of resetting password.'**
   String get passwordResetLinkSentDescription;
 
   /// No description provided for @passwordResetConfirmButtonText.
@@ -242,7 +242,7 @@ abstract class AppLocalizations {
   /// No description provided for @passwordInputEmptyErrorText.
   ///
   /// In en, this message translates to:
-  /// **'Password can\'t be empty'**
+  /// **'Password can\'\'t be empty'**
   String get passwordInputEmptyErrorText;
 
   /// No description provided for @passwordInputTooShortErrorText.
@@ -272,7 +272,7 @@ abstract class AppLocalizations {
   /// No description provided for @emailInputEmptyErrorText.
   ///
   /// In en, this message translates to:
-  /// **'Email can\'t be empty'**
+  /// **'Email can\'\'t be empty'**
   String get emailInputEmptyErrorText;
 
   /// No description provided for @emailInputInvalidErrorText.
@@ -302,13 +302,13 @@ abstract class AppLocalizations {
   /// No description provided for @signUpPasswordretypeInputemptyErrorText.
   ///
   /// In en, this message translates to:
-  /// **'This field can\'t be empty'**
+  /// **'This field can\'\'t be empty'**
   String get signUpPasswordretypeInputemptyErrorText;
 
   /// No description provided for @signUpUsernameInputErrorEmptyText.
   ///
   /// In en, this message translates to:
-  /// **'Username can\'t be empty'**
+  /// **'Username can\'\'t be empty'**
   String get signUpUsernameInputErrorEmptyText;
 
   /// No description provided for @signUpUsernameInputErrorTooShortText.
@@ -332,7 +332,7 @@ abstract class AppLocalizations {
   /// No description provided for @signUpConfirmEmailDescription.
   ///
   /// In en, this message translates to:
-  /// **'We\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up'**
+  /// **'We\'\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up'**
   String get signUpConfirmEmailDescription;
 
   /// No description provided for @signUpCompletionFormTitle.
@@ -368,7 +368,7 @@ abstract class AppLocalizations {
   /// No description provided for @signUpCompletionDoneButtonText.
   ///
   /// In en, this message translates to:
-  /// **'Let\'s start!'**
+  /// **'Let\'\'s start!'**
   String get signUpCompletionDoneButtonText;
 
   /// Text shown in the AppBar of the Counter Page
@@ -503,35 +503,29 @@ abstract class AppLocalizations {
   /// **'Title'**
   String get ideaStepTitleFieldLabelText;
 
-  /// No description provided for @ideaCreatorScreenTitle.
+  /// No description provided for @ideaStepTipAddonTitle.
   ///
   /// In en, this message translates to:
-  /// **'Let\'s create something great!'**
-  String get ideaCreatorScreenTitle;
+  /// **'Tips'**
+  String get ideaStepTipAddonTitle;
 
-  /// No description provided for @ideaCreatorFormSubmitButton.
+  /// No description provided for @ideaStepBenefitAddonTitle.
   ///
   /// In en, this message translates to:
-  /// **'Create'**
-  String get ideaCreatorFormSubmitButton;
+  /// **'How it helps the planet?'**
+  String get ideaStepBenefitAddonTitle;
 
-  /// No description provided for @ideaSectionEditorAppBarTitle.
+  /// No description provided for @ideaStepWarningAddonTitle.
   ///
   /// In en, this message translates to:
-  /// **'Edit section'**
-  String get ideaSectionEditorAppBarTitle;
+  /// **'Warnings'**
+  String get ideaStepWarningAddonTitle;
 
-  /// No description provided for @ideaRequirmentsSectionName.
+  /// No description provided for @ideaStepRequirmentAddonTitle.
   ///
   /// In en, this message translates to:
-  /// **'What you will need'**
-  String get ideaRequirmentsSectionName;
-
-  /// No description provided for @ideaBenefitsSectionName.
-  ///
-  /// In en, this message translates to:
-  /// **'How it helps the planet'**
-  String get ideaBenefitsSectionName;
+  /// **'What is needed?'**
+  String get ideaStepRequirmentAddonTitle;
 
   /// No description provided for @ideaStepDescriptionFieldLabelText.
   ///

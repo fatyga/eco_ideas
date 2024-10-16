@@ -28,7 +28,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get usernameTextFieldLabelText => 'Username';
 
   @override
-  String get registerTextButtonLabelText => 'Don\'t have an account? ';
+  String get registerTextButtonLabelText => 'Don\'\'t have an account? ';
 
   @override
   String get registerTextButtonActionText => 'Register!';
@@ -67,7 +67,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordResetLinkSentTitle => 'Link was sent!';
 
   @override
-  String get passwordResetLinkSentDescription => 'We\'ve sent a link to given email address. Please open it to finish the proccess of resetting password.';
+  String get passwordResetLinkSentDescription => 'We\'\'ve sent a link to given email address. Please open it to finish the proccess of resetting password.';
 
   @override
   String get passwordResetConfirmButtonText => 'Confirm';
@@ -79,7 +79,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordResetExitDescriptionText => 'Password reset procedure will fail.';
 
   @override
-  String get passwordInputEmptyErrorText => 'Password can\'t be empty';
+  String get passwordInputEmptyErrorText => 'Password can\'\'t be empty';
 
   @override
   String get passwordInputTooShortErrorText => 'Password is too short(at least 6 characters)';
@@ -94,7 +94,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get restrictedPasswordInputErrorUppercaseNotPresent => 'At least one uppercase letter(A-Z) is required';
 
   @override
-  String get emailInputEmptyErrorText => 'Email can\'t be empty';
+  String get emailInputEmptyErrorText => 'Email can\'\'t be empty';
 
   @override
   String get emailInputInvalidErrorText => 'Email is invalid';
@@ -109,10 +109,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpPasswordRetypeInputMismatchErrorText => 'Passwords are mismatched';
 
   @override
-  String get signUpPasswordretypeInputemptyErrorText => 'This field can\'t be empty';
+  String get signUpPasswordretypeInputemptyErrorText => 'This field can\'\'t be empty';
 
   @override
-  String get signUpUsernameInputErrorEmptyText => 'Username can\'t be empty';
+  String get signUpUsernameInputErrorEmptyText => 'Username can\'\'t be empty';
 
   @override
   String get signUpUsernameInputErrorTooShortText => 'Username is too short(at least 6 characters)';
@@ -124,7 +124,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpConfirmEmailTitle => 'Activation link was sent';
 
   @override
-  String get signUpConfirmEmailDescription => 'We\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up';
+  String get signUpConfirmEmailDescription => 'We\'\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up';
 
   @override
   String get signUpCompletionFormTitle => 'Express yourself!';
@@ -142,7 +142,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpCompletionDoneDescription => 'Your account was created successfully. You can start use the app';
 
   @override
-  String get signUpCompletionDoneButtonText => 'Let\'s start!';
+  String get signUpCompletionDoneButtonText => 'Let\'\'s start!';
 
   @override
   String get counterAppBarTitle => 'Counter';
@@ -211,19 +211,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ideaStepTitleFieldLabelText => 'Title';
 
   @override
-  String get ideaCreatorScreenTitle => 'Let\'s create something great!';
+  String get ideaStepTipAddonTitle => 'Tips';
 
   @override
-  String get ideaCreatorFormSubmitButton => 'Create';
+  String get ideaStepBenefitAddonTitle => 'How it helps the planet?';
 
   @override
-  String get ideaSectionEditorAppBarTitle => 'Edit section';
+  String get ideaStepWarningAddonTitle => 'Warnings';
 
   @override
-  String get ideaRequirmentsSectionName => 'What you will need';
-
-  @override
-  String get ideaBenefitsSectionName => 'How it helps the planet';
+  String get ideaStepRequirmentAddonTitle => 'What is needed?';
 
   @override
   String get ideaStepDescriptionFieldLabelText => 'Description';

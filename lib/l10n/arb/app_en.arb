@@ -10,7 +10,7 @@
     "passwordTextFieldLabelText": "Password",
     "passwordRetypeFieldLabelText": "Retype password",
     "usernameTextFieldLabelText": "Username",
-    "registerTextButtonLabelText": "Don't have an account? ",
+    "registerTextButtonLabelText": "Don''t have an account? ",
     "registerTextButtonActionText": "Register!",
     "forgotPasswordButtonLabelText": "Forget password? ",
     "forgotPasswordButtonActionText": "Change it!",
@@ -24,27 +24,27 @@
     "passwordResetFirstStepDescription": "Please enter an email address with which your account was created.",
     "passwordResetSecondStepDescription": "In order to finish password reset procedure, please provide new password",
     "passwordResetLinkSentTitle": "Link was sent!",
-    "passwordResetLinkSentDescription": "We've sent a link to given email address. Please open it to finish the proccess of resetting password.",
+    "passwordResetLinkSentDescription": "We''ve sent a link to given email address. Please open it to finish the proccess of resetting password.",
     "passwordResetConfirmButtonText": "Confirm",
     "passwordResetExitDialogTitleText": "Are you want to cancel?",
     "passwordResetExitDescriptionText": "Password reset procedure will fail.",
     
-    "passwordInputEmptyErrorText": "Password can't be empty",
+    "passwordInputEmptyErrorText": "Password can''t be empty",
     "passwordInputTooShortErrorText": "Password is too short(at least 6 characters)",
     "restrictedPasswordInputErrorSpecialCharacterNotPresentText": "At least one special character(!@#$%^&*) is required",
     "restrictedPasswordInputErrorDigitNotPresent": "At least one digit(0-9) is required",
     "restrictedPasswordInputErrorUppercaseNotPresent": "At least one uppercase letter(A-Z) is required",
-    "emailInputEmptyErrorText": "Email can't be empty",
+    "emailInputEmptyErrorText": "Email can''t be empty",
     "emailInputInvalidErrorText": "Email is invalid",
     "signUpScreenAppBarTitle": "Create an account",
     "signUpButtonText": "Register",
     "signUpPasswordRetypeInputMismatchErrorText": "Passwords are mismatched",
-    "signUpPasswordretypeInputemptyErrorText": "This field can't be empty",
-    "signUpUsernameInputErrorEmptyText" : "Username can't be empty",
+    "signUpPasswordretypeInputemptyErrorText": "This field can''t be empty",
+    "signUpUsernameInputErrorEmptyText" : "Username can''t be empty",
     "signUpUsernameInputErrorTooShortText": "Username is too short(at least 6 characters)",
     "signUpConfirmEmailAppBarTitleText": "Confirm your email",
     "signUpConfirmEmailTitle": "Activation link was sent",
-    "signUpConfirmEmailDescription": "We've sent you an activation link to your mailbox. Please open it to finish the process of signing up",
+    "signUpConfirmEmailDescription": "We''ve sent you an activation link to your mailbox. Please open it to finish the process of signing up",
     
     "signUpCompletionFormTitle": "Express yourself!",
     "signUpCompletionFormDescription": "Before you start using EcoIdeas, you can let other users get to know you better!",
@@ -52,7 +52,7 @@
      
     "signUpCompletionDoneTitle": "Congratulations!",
     "signUpCompletionDoneDescription": "Your account was created successfully. You can start use the app",
-    "signUpCompletionDoneButtonText": "Let's start!", 
+    "signUpCompletionDoneButtonText": "Let''s start!", 
 
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
@@ -83,12 +83,14 @@
     "homeMyIdeasLabel" : "My ideas",
     "ideaStepTitleFieldLabelText": "Title",
 
-    "ideaCreatorScreenTitle": "Let's create something great!",
-    "ideaCreatorFormSubmitButton": "Create",
+  
 
-    "ideaSectionEditorAppBarTitle": "Edit section",
-    "ideaRequirmentsSectionName": "What you will need",
-    "ideaBenefitsSectionName": "How it helps the planet",
+  
+    "ideaStepTipAddonTitle": "Tips", 
+    "ideaStepBenefitAddonTitle": "How it helps the planet?",
+    "ideaStepWarningAddonTitle": "Warnings",
+    "ideaStepRequirmentAddonTitle": "What is needed?",
+
     "ideaStepDescriptionFieldLabelText": "Description",
     "homeProfileLabel": "My Profile",
 
