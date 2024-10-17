@@ -91,9 +91,11 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                   },
                 ),
                 const SizedBox(height: 24),
-                const IdeaStepAddon(addonType: IdeaStepAddonType.tip),
+                const IdeaStepAddon(
+                    addonType: IdeaStepAddonType.tip,
+                    initialValues: ['Hello World']),
                 const SizedBox(height: 16),
-                const IdeaStepAddon(addonType: IdeaStepAddonType.warning)
+                const IdeaStepAddon(addonType: IdeaStepAddonType.warning),
               ],
             ),
           ),

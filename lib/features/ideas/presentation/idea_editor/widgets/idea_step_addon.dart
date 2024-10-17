@@ -1,3 +1,4 @@
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/addon_field.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -25,30 +26,55 @@ enum IdeaStepAddonType {
     };
   }
 
-  Color getColor() {
+  MaterialColor getColor() {
     return switch (this) {
-      IdeaStepAddonType.tip => Colors.green[200]!,
-      IdeaStepAddonType.warning => Colors.red[200]!,
-      IdeaStepAddonType.requirment => Colors.yellow[200]!,
-      IdeaStepAddonType.benefit => Colors.blue[200]!,
+      IdeaStepAddonType.tip => Colors.green,
+      IdeaStepAddonType.warning => Colors.red,
+      IdeaStepAddonType.requirment => Colors.yellow,
+      IdeaStepAddonType.benefit => Colors.blue,
     };
   }
 }
 
 class IdeaStepAddon extends StatefulWidget {
-  const IdeaStepAddon({required this.addonType, super.key});
+  const IdeaStepAddon({
+    required this.addonType,
+    this.initialValues = const [],
+    super.key,
+  });
 
   final IdeaStepAddonType addonType;
+  final List<String> initialValues;
 
   @override
   State<IdeaStepAddon> createState() => _IdeaStepAddonState();
 }
 
 class _IdeaStepAddonState extends State<IdeaStepAddon> {
+  late List<String> values;
+
+  @override
+  void initState() {
+    values = widget.initialValues;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [_IdeaStepAddonHeader(addonType: widget.addonType)],
+    return Container(
+      decoration: values.isEmpty
+          ? null
+          : BoxDecoration(
+              color: widget.addonType.getColor().shade50,
+              borderRadius: BorderRadius.circular(6),
+            ),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+      child: Column(
+        children: [
+          _IdeaStepAddonHeader(addonType: widget.addonType),
+          if (values.isNotEmpty) _IdeaStepAddonForm(values: values),
+        ],
+      ),
     );
   }
 }
@@ -69,13 +95,33 @@ class _IdeaStepAddonHeader extends StatelessWidget {
           Text(
             addonType.getTitle(l10n),
             style: theme.textTheme.titleMedium!.copyWith(
-              color: addonType.getColor(),
               fontWeight: FontWeight.bold,
             ),
           ),
           const Spacer(),
           IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
         ],
+      ),
+    );
+  }
+}
+
+class _IdeaStepAddonForm extends StatelessWidget {
+  const _IdeaStepAddonForm({required this.values, super.key});
+
+  final List<String> values;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
+      child: Column(
+        children: values
+            .map(
+              (value) => IdeaAddonField(
+                onSubmit: () {},
+              ),
+            )
+            .toList(),
       ),
     );
   }
