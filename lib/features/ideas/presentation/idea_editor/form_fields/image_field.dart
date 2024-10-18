@@ -17,10 +17,13 @@ class IdeaImageField extends StatelessWidget {
   final void Function() onSubmit;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final l10n = context.l10n;
     return FormBuilderImagePicker(
       name: name,
       maxImages: 1,
+      iconColor: theme.colorScheme.primary,
+      backgroundColor: theme.colorScheme.surfaceBright,
       decoration: InputDecoration(
         border: withBorder ? null : InputBorder.none,
         contentPadding: withBorder ? null : EdgeInsets.zero,

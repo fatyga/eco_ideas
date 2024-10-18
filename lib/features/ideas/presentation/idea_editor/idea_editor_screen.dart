@@ -100,6 +100,7 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         actions: [
           IdeaEditorSaveButton(isSaving: idea.isLoading, onPressed: () {}),
         ],

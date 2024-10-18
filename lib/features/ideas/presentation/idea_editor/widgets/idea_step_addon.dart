@@ -1,6 +1,7 @@
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/addon_field.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 enum IdeaStepAddonType {
   tip,
@@ -30,7 +31,7 @@ enum IdeaStepAddonType {
     return switch (this) {
       IdeaStepAddonType.tip => Colors.green,
       IdeaStepAddonType.warning => Colors.red,
-      IdeaStepAddonType.requirment => Colors.yellow,
+      IdeaStepAddonType.requirment => Colors.grey,
       IdeaStepAddonType.benefit => Colors.blue,
     };
   }
@@ -90,12 +91,18 @@ class _IdeaStepAddonHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
-          Icon(addonType.getIcon(), color: addonType.getColor()),
-          const SizedBox(width: 12),
+          Icon(
+            addonType.getIcon(),
+            color: addonType.getColor().shade400,
+            size: 20,
+          ),
+          const SizedBox(width: 8),
           Text(
             addonType.getTitle(l10n),
-            style: theme.textTheme.titleMedium!.copyWith(
-              fontWeight: FontWeight.bold,
+            style: GoogleFonts.spaceMono(
+              textStyle: theme.textTheme.titleSmall!.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const Spacer(),

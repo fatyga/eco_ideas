@@ -21,9 +21,10 @@ class IdeaAddonField extends StatelessWidget {
         initialValue: initialValue,
         onEditingComplete: onSubmit,
         maxLines: null,
+        style: const TextStyle(fontSize: 14),
         decoration: const InputDecoration(
           isCollapsed: true,
-          contentPadding: const EdgeInsets.only(bottom: 4),
+          contentPadding: EdgeInsets.only(bottom: 4),
           icon: Icon(Icons.circle, size: 8),
           border: UnderlineInputBorder(),
         ),

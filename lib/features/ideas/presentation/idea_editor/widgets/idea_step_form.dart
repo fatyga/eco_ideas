@@ -91,9 +91,17 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                   },
                 ),
                 const SizedBox(height: 24),
+                if (widget.step.id == 0) ...[
+                  const IdeaStepAddon(addonType: IdeaStepAddonType.benefit),
+                  const SizedBox(height: 16),
+                  const IdeaStepAddon(
+                    addonType: IdeaStepAddonType.requirment,
+                  ),
+                  const SizedBox(height: 16),
+                ],
                 const IdeaStepAddon(
-                    addonType: IdeaStepAddonType.tip,
-                    initialValues: ['Hello World']),
+                  addonType: IdeaStepAddonType.tip,
+                ),
                 const SizedBox(height: 16),
                 const IdeaStepAddon(addonType: IdeaStepAddonType.warning),
               ],
