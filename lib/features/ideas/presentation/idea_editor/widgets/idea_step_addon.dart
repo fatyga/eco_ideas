@@ -1,58 +1,31 @@
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/addon_field.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-enum IdeaStepAddonType {
-  tip,
-  warning,
-  requirment,
-  benefit;
-
-  String getTitle(AppLocalizations l10n) {
-    return switch (this) {
-      IdeaStepAddonType.tip => l10n.ideaStepTipAddonTitle,
-      IdeaStepAddonType.warning => l10n.ideaStepWarningAddonTitle,
-      IdeaStepAddonType.benefit => l10n.ideaStepBenefitAddonTitle,
-      IdeaStepAddonType.requirment => l10n.ideaStepRequirmentAddonTitle,
-    };
-  }
-
-  IconData getIcon() {
-    return switch (this) {
-      IdeaStepAddonType.tip => Icons.tips_and_updates,
-      IdeaStepAddonType.warning => Icons.warning_amber,
-      IdeaStepAddonType.requirment => Icons.task_alt,
-      IdeaStepAddonType.benefit => Icons.health_and_safety_sharp
-    };
-  }
-
-  MaterialColor getColor() {
-    return switch (this) {
-      IdeaStepAddonType.tip => Colors.green,
-      IdeaStepAddonType.warning => Colors.red,
-      IdeaStepAddonType.requirment => Colors.grey,
-      IdeaStepAddonType.benefit => Colors.blue,
-    };
-  }
-}
-
-class IdeaStepAddon extends StatefulWidget {
-  const IdeaStepAddon({
+class IdeaStepAddonSection extends StatefulWidget {
+  const IdeaStepAddonSection({
+    required this.step,
     required this.addonType,
+    required this.onSubmit,
     this.initialValues = const [],
     super.key,
   });
 
+  final EcoIdeaStep step;
   final IdeaStepAddonType addonType;
-  final List<String> initialValues;
+  final List<EcoIdeaStepAddon> initialValues;
+  final void Function(EcoIdeaStepAddon addon) onSubmit;
 
   @override
-  State<IdeaStepAddon> createState() => _IdeaStepAddonState();
+  State<IdeaStepAddonSection> createState() => _IdeaStepAddonSectionState();
 }
 
-class _IdeaStepAddonState extends State<IdeaStepAddon> {
-  late List<String> values;
+class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
+  late List<EcoIdeaStepAddon> values;
 
   @override
   void initState() {
@@ -72,8 +45,24 @@ class _IdeaStepAddonState extends State<IdeaStepAddon> {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       child: Column(
         children: [
-          _IdeaStepAddonHeader(addonType: widget.addonType),
-          if (values.isNotEmpty) _IdeaStepAddonForm(values: values),
+          _IdeaStepAddonHeader(
+            addonType: widget.addonType,
+            onAddTap: () {
+              setState(() {
+                values.add(
+                  EcoIdeaStepAddon(
+                    id: values.length + 1,
+                    type: widget.addonType,
+                    stepId: widget.step.id,
+                    ideaId: widget.step.ideaId,
+                    value: '',
+                  ),
+                );
+              });
+            },
+          ),
+          if (values.isNotEmpty)
+            _IdeaStepAddonSubpoints(values: values, onSubmit: widget.onSubmit),
         ],
       ),
     );
@@ -81,8 +70,14 @@ class _IdeaStepAddonState extends State<IdeaStepAddon> {
 }
 
 class _IdeaStepAddonHeader extends StatelessWidget {
-  const _IdeaStepAddonHeader({required this.addonType, super.key});
+  const _IdeaStepAddonHeader({
+    required this.addonType,
+    required this.onAddTap,
+    super.key,
+  });
   final IdeaStepAddonType addonType;
+  final void Function() onAddTap;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -106,17 +101,23 @@ class _IdeaStepAddonHeader extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
+          IconButton(onPressed: onAddTap, icon: const Icon(Icons.add)),
         ],
       ),
     );
   }
 }
 
-class _IdeaStepAddonForm extends StatelessWidget {
-  const _IdeaStepAddonForm({required this.values, super.key});
+class _IdeaStepAddonSubpoints extends StatelessWidget {
+  const _IdeaStepAddonSubpoints({
+    required this.values,
+    required this.onSubmit,
+    super.key,
+  });
 
-  final List<String> values;
+  final List<EcoIdeaStepAddon> values;
+  final void Function(EcoIdeaStepAddon updatedAddon) onSubmit;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -125,6 +126,7 @@ class _IdeaStepAddonForm extends StatelessWidget {
         children: values
             .map(
               (value) => IdeaAddonField(
+                key: ValueKey('ideaStep${value.type.name}${value.id}'),
                 onSubmit: () {},
               ),
             )

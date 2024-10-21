@@ -25,10 +25,7 @@ class EcoIdea with _$EcoIdea {
       id: id,
       profileId: profileId,
       steps: [
-        EcoIdeaStep(
-          id: 0,
-          ideaId: id,
-        ),
+        EcoIdeaStep(id: 0, ideaId: id, addons: []),
       ],
     );
   }

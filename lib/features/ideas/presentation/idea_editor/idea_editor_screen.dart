@@ -64,14 +64,14 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
       );
 
       shouldCreateIdeaOnFirstModification = false;
+    } else {
+      idea = await AsyncValue.guard(() async {
+        final updatedStep = await ref
+            .read(ideasRepositoryProvider)
+            .updateIdeaStep(ideaStep: alteredStep);
+        return idea.requireValue.withUpdatedStep(updatedStep);
+      });
     }
-
-    idea = await AsyncValue.guard(() async {
-      final updatedStep = await ref
-          .read(ideasRepositoryProvider)
-          .updateIdeaStep(ideaStep: alteredStep);
-      return idea.requireValue.updateStep(updatedStep);
-    });
 
     if (mounted) {
       idea.showSnackBarOnError(context);
@@ -88,7 +88,7 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
 
   // Step indicator
   void onStepAdd() => setState(() {
-        idea = AsyncData(idea.requireValue.addStep());
+        idea = AsyncData(idea.requireValue.withNewStep());
         currentStepId = idea.requireValue.steps.last.id;
       });
 

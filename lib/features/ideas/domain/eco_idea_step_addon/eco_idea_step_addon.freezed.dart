@@ -21,10 +21,10 @@ EcoIdeaStepAddon _$EcoIdeaStepAddonFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$EcoIdeaStepAddon {
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'addon_type')
-  String get addonType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type')
+  IdeaStepAddonType get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'step_id')
-  String get stepId => throw _privateConstructorUsedError;
+  int get stepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'idea_id')
   String get ideaId => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
@@ -47,8 +47,8 @@ abstract class $EcoIdeaStepAddonCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'addon_type') String addonType,
-      @JsonKey(name: 'step_id') String stepId,
+      @JsonKey(name: 'type') IdeaStepAddonType type,
+      @JsonKey(name: 'step_id') int stepId,
       @JsonKey(name: 'idea_id') String ideaId,
       String value});
 }
@@ -69,7 +69,7 @@ class _$EcoIdeaStepAddonCopyWithImpl<$Res, $Val extends EcoIdeaStepAddon>
   @override
   $Res call({
     Object? id = null,
-    Object? addonType = null,
+    Object? type = null,
     Object? stepId = null,
     Object? ideaId = null,
     Object? value = null,
@@ -79,14 +79,14 @@ class _$EcoIdeaStepAddonCopyWithImpl<$Res, $Val extends EcoIdeaStepAddon>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      addonType: null == addonType
-          ? _value.addonType
-          : addonType // ignore: cast_nullable_to_non_nullable
-              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as IdeaStepAddonType,
       stepId: null == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       ideaId: null == ideaId
           ? _value.ideaId
           : ideaId // ignore: cast_nullable_to_non_nullable
@@ -109,8 +109,8 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'addon_type') String addonType,
-      @JsonKey(name: 'step_id') String stepId,
+      @JsonKey(name: 'type') IdeaStepAddonType type,
+      @JsonKey(name: 'step_id') int stepId,
       @JsonKey(name: 'idea_id') String ideaId,
       String value});
 }
@@ -129,7 +129,7 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? addonType = null,
+    Object? type = null,
     Object? stepId = null,
     Object? ideaId = null,
     Object? value = null,
@@ -139,14 +139,14 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      addonType: null == addonType
-          ? _value.addonType
-          : addonType // ignore: cast_nullable_to_non_nullable
-              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as IdeaStepAddonType,
       stepId: null == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       ideaId: null == ideaId
           ? _value.ideaId
           : ideaId // ignore: cast_nullable_to_non_nullable
@@ -164,7 +164,7 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
 class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   const _$EcoIdeaStepImpl(
       {required this.id,
-      @JsonKey(name: 'addon_type') required this.addonType,
+      @JsonKey(name: 'type') required this.type,
       @JsonKey(name: 'step_id') required this.stepId,
       @JsonKey(name: 'idea_id') required this.ideaId,
       required this.value});
@@ -175,11 +175,11 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   @override
   final int id;
   @override
-  @JsonKey(name: 'addon_type')
-  final String addonType;
+  @JsonKey(name: 'type')
+  final IdeaStepAddonType type;
   @override
   @JsonKey(name: 'step_id')
-  final String stepId;
+  final int stepId;
   @override
   @JsonKey(name: 'idea_id')
   final String ideaId;
@@ -188,7 +188,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
   @override
   String toString() {
-    return 'EcoIdeaStepAddon(id: $id, addonType: $addonType, stepId: $stepId, ideaId: $ideaId, value: $value)';
+    return 'EcoIdeaStepAddon(id: $id, type: $type, stepId: $stepId, ideaId: $ideaId, value: $value)';
   }
 
   @override
@@ -197,8 +197,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
         (other.runtimeType == runtimeType &&
             other is _$EcoIdeaStepImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.addonType, addonType) ||
-                other.addonType == addonType) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.stepId, stepId) || other.stepId == stepId) &&
             (identical(other.ideaId, ideaId) || other.ideaId == ideaId) &&
             (identical(other.value, value) || other.value == value));
@@ -206,8 +205,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, addonType, stepId, ideaId, value);
+  int get hashCode => Object.hash(runtimeType, id, type, stepId, ideaId, value);
 
   /// Create a copy of EcoIdeaStepAddon
   /// with the given fields replaced by the non-null parameter values.
@@ -228,8 +226,8 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 abstract class _EcoIdeaStep implements EcoIdeaStepAddon {
   const factory _EcoIdeaStep(
       {required final int id,
-      @JsonKey(name: 'addon_type') required final String addonType,
-      @JsonKey(name: 'step_id') required final String stepId,
+      @JsonKey(name: 'type') required final IdeaStepAddonType type,
+      @JsonKey(name: 'step_id') required final int stepId,
       @JsonKey(name: 'idea_id') required final String ideaId,
       required final String value}) = _$EcoIdeaStepImpl;
 
@@ -239,11 +237,11 @@ abstract class _EcoIdeaStep implements EcoIdeaStepAddon {
   @override
   int get id;
   @override
-  @JsonKey(name: 'addon_type')
-  String get addonType;
+  @JsonKey(name: 'type')
+  IdeaStepAddonType get type;
   @override
   @JsonKey(name: 'step_id')
-  String get stepId;
+  int get stepId;
   @override
   @JsonKey(name: 'idea_id')
   String get ideaId;

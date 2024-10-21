@@ -9,8 +9,8 @@ part of 'eco_idea_step_addon.dart';
 _$EcoIdeaStepImpl _$$EcoIdeaStepImplFromJson(Map<String, dynamic> json) =>
     _$EcoIdeaStepImpl(
       id: (json['id'] as num).toInt(),
-      addonType: json['addon_type'] as String,
-      stepId: json['step_id'] as String,
+      type: $enumDecode(_$IdeaStepAddonTypeEnumMap, json['type']),
+      stepId: (json['step_id'] as num).toInt(),
       ideaId: json['idea_id'] as String,
       value: json['value'] as String,
     );
@@ -18,8 +18,15 @@ _$EcoIdeaStepImpl _$$EcoIdeaStepImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$EcoIdeaStepImplToJson(_$EcoIdeaStepImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'addon_type': instance.addonType,
+      'type': _$IdeaStepAddonTypeEnumMap[instance.type]!,
       'step_id': instance.stepId,
       'idea_id': instance.ideaId,
       'value': instance.value,
     };
+
+const _$IdeaStepAddonTypeEnumMap = {
+  IdeaStepAddonType.tip: 'tip',
+  IdeaStepAddonType.warning: 'warning',
+  IdeaStepAddonType.requirment: 'requirment',
+  IdeaStepAddonType.benefit: 'benefit',
+};

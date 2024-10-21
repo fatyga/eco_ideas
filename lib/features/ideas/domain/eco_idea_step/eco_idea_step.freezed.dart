@@ -25,6 +25,7 @@ mixin _$EcoIdeaStep {
   String get ideaId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  List<EcoIdeaStepAddon> get addons => throw _privateConstructorUsedError;
 
   /// Serializes this EcoIdeaStep to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +47,8 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'idea_id') String ideaId,
       String title,
-      String description});
+      String description,
+      List<EcoIdeaStepAddon> addons});
 }
 
 /// @nodoc
@@ -68,6 +70,7 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
     Object? ideaId = null,
     Object? title = null,
     Object? description = null,
+    Object? addons = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -86,6 +89,10 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      addons: null == addons
+          ? _value.addons
+          : addons // ignore: cast_nullable_to_non_nullable
+              as List<EcoIdeaStepAddon>,
     ) as $Val);
   }
 }
@@ -102,7 +109,8 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
       {int id,
       @JsonKey(name: 'idea_id') String ideaId,
       String title,
-      String description});
+      String description,
+      List<EcoIdeaStepAddon> addons});
 }
 
 /// @nodoc
@@ -122,6 +130,7 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
     Object? ideaId = null,
     Object? title = null,
     Object? description = null,
+    Object? addons = null,
   }) {
     return _then(_$EcoIdeaStepImpl(
       id: null == id
@@ -140,6 +149,10 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      addons: null == addons
+          ? _value._addons
+          : addons // ignore: cast_nullable_to_non_nullable
+              as List<EcoIdeaStepAddon>,
     ));
   }
 }
@@ -151,7 +164,9 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
       {required this.id,
       @JsonKey(name: 'idea_id') required this.ideaId,
       this.title = '',
-      this.description = ''});
+      this.description = '',
+      final List<EcoIdeaStepAddon> addons = const []})
+      : _addons = addons;
 
   factory _$EcoIdeaStepImpl.fromJson(Map<String, dynamic> json) =>
       _$$EcoIdeaStepImplFromJson(json);
@@ -167,10 +182,18 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   @override
   @JsonKey()
   final String description;
+  final List<EcoIdeaStepAddon> _addons;
+  @override
+  @JsonKey()
+  List<EcoIdeaStepAddon> get addons {
+    if (_addons is EqualUnmodifiableListView) return _addons;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_addons);
+  }
 
   @override
   String toString() {
-    return 'EcoIdeaStep(id: $id, ideaId: $ideaId, title: $title, description: $description)';
+    return 'EcoIdeaStep(id: $id, ideaId: $ideaId, title: $title, description: $description, addons: $addons)';
   }
 
   @override
@@ -182,12 +205,14 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
             (identical(other.ideaId, ideaId) || other.ideaId == ideaId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            const DeepCollectionEquality().equals(other._addons, _addons));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, ideaId, title, description);
+  int get hashCode => Object.hash(runtimeType, id, ideaId, title, description,
+      const DeepCollectionEquality().hash(_addons));
 
   /// Create a copy of EcoIdeaStep
   /// with the given fields replaced by the non-null parameter values.
@@ -210,7 +235,8 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
       {required final int id,
       @JsonKey(name: 'idea_id') required final String ideaId,
       final String title,
-      final String description}) = _$EcoIdeaStepImpl;
+      final String description,
+      final List<EcoIdeaStepAddon> addons}) = _$EcoIdeaStepImpl;
 
   factory _EcoIdeaStep.fromJson(Map<String, dynamic> json) =
       _$EcoIdeaStepImpl.fromJson;
@@ -224,6 +250,8 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
   String get title;
   @override
   String get description;
+  @override
+  List<EcoIdeaStepAddon> get addons;
 
   /// Create a copy of EcoIdeaStep
   /// with the given fields replaced by the non-null parameter values.

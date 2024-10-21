@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/addon_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/description_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/image_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/title_field.dart';
@@ -28,6 +30,7 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
 
   @override
   Widget build(BuildContext context) {
+    print(_formKey.currentState?.fields);
     return FormBuilder(
       key: _formKey,
       child: ListView(
@@ -82,6 +85,7 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                         field.isValid &&
                         field.value != widget.step.description) {
                       field.save();
+
                       widget.onChange(
                         widget.step.copyWith(
                           description: field.value as String,
@@ -92,18 +96,46 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                 ),
                 const SizedBox(height: 24),
                 if (widget.step.id == 0) ...[
-                  const IdeaStepAddon(addonType: IdeaStepAddonType.benefit),
+                  IdeaStepAddonSection(
+                    step: widget.step,
+                    addonType: IdeaStepAddonType.benefit,
+                    onSubmit: (updatedAddon) {},
+                    initialValues: widget.step.addons
+                        .where(
+                          (addon) => addon.type.isBenefit,
+                        )
+                        .toList(),
+                  ),
                   const SizedBox(height: 16),
-                  const IdeaStepAddon(
+                  IdeaStepAddonSection(
+                    step: widget.step,
                     addonType: IdeaStepAddonType.requirment,
+                    onSubmit: (updatedAddon) {},
+                    initialValues: widget.step.addons
+                        .where(
+                          (addon) => addon.type.isRequirment,
+                        )
+                        .toList(),
                   ),
                   const SizedBox(height: 16),
                 ],
-                const IdeaStepAddon(
+                IdeaStepAddonSection(
+                  step: widget.step,
                   addonType: IdeaStepAddonType.tip,
+                  onSubmit: (values) {},
+                  initialValues: widget.step.addons
+                      .where((addon) => addon.type.isTip)
+                      .toList(),
                 ),
                 const SizedBox(height: 16),
-                const IdeaStepAddon(addonType: IdeaStepAddonType.warning),
+                IdeaStepAddonSection(
+                  step: widget.step,
+                  addonType: IdeaStepAddonType.warning,
+                  onSubmit: (values) {},
+                  initialValues: widget.step.addons
+                      .where((addon) => addon.type.isWarning)
+                      .toList(),
+                ),
               ],
             ),
           ),

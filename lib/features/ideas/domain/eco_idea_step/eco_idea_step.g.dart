@@ -12,6 +12,10 @@ _$EcoIdeaStepImpl _$$EcoIdeaStepImplFromJson(Map<String, dynamic> json) =>
       ideaId: json['idea_id'] as String,
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
+      addons: (json['addons'] as List<dynamic>?)
+              ?.map((e) => EcoIdeaStepAddon.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$EcoIdeaStepImplToJson(_$EcoIdeaStepImpl instance) =>
@@ -20,4 +24,5 @@ Map<String, dynamic> _$$EcoIdeaStepImplToJson(_$EcoIdeaStepImpl instance) =>
       'idea_id': instance.ideaId,
       'title': instance.title,
       'description': instance.description,
+      'addons': instance.addons,
     };
