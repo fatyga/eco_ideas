@@ -11,7 +11,11 @@ class EcoIdeaStep with _$EcoIdeaStep {
     @JsonKey(name: 'idea_id') required String ideaId,
     @Default('') String title,
     @Default('') String description,
-    @Default([]) List<EcoIdeaStepAddon> addons,
+    @JsonKey(includeToJson: false)
+    @Default(
+      [],
+    )
+    List<EcoIdeaStepAddon> addons,
   }) = _EcoIdeaStep;
 
   factory EcoIdeaStep.fromJson(Map<String, dynamic> json) =>

@@ -18,7 +18,7 @@ class IdeaStepAddonSection extends StatefulWidget {
   final EcoIdeaStep step;
   final IdeaStepAddonType addonType;
   final List<EcoIdeaStepAddon> initialValues;
-  final void Function(EcoIdeaStepAddon addon) onSubmit;
+  final void Function(String addonFieldName) onSubmit;
 
   @override
   State<IdeaStepAddonSection> createState() => _IdeaStepAddonSectionState();
@@ -116,7 +116,7 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
   });
 
   final List<EcoIdeaStepAddon> values;
-  final void Function(EcoIdeaStepAddon updatedAddon) onSubmit;
+  final void Function(String addonFieldName) onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +125,10 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
       child: Column(
         children: values
             .map(
-              (value) => IdeaAddonField(
-                key: ValueKey('ideaStep${value.type.name}${value.id}'),
-                onSubmit: () {},
+              (addon) => IdeaAddonField(
+                key: ValueKey('ideaStep${addon.type.name}${addon.id}'),
+                name: addon.fieldName,
+                onSubmit: () => onSubmit(addon.fieldName),
               ),
             )
             .toList(),

@@ -6,7 +6,7 @@ import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/ad
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/description_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/image_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/title_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_addon.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_addon_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -15,12 +15,14 @@ class IdeaStepForm extends StatefulWidget {
     required this.step,
     required this.onChange,
     required this.onImageChanged,
+    required this.onAddonChanged,
     super.key,
   });
 
   final EcoIdeaStep step;
   final void Function(EcoIdeaStep step) onChange;
   final void Function(File image) onImageChanged;
+  final void Function(EcoIdeaStepAddon updatedAddon) onAddonChanged;
   @override
   State<IdeaStepForm> createState() => _IdeaStepFormState();
 }
@@ -99,7 +101,23 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                   IdeaStepAddonSection(
                     step: widget.step,
                     addonType: IdeaStepAddonType.benefit,
-                    onSubmit: (updatedAddon) {},
+                    onSubmit: (addonFieldName) {
+                      final field = _formKey
+                          .currentState!.fields[addonFieldName]
+                        ?..validate();
+
+                      if (field != null && field.isValid) {
+                        field.save();
+
+                        widget.onAddonChanged(
+                          widget.step.addons
+                              .firstWhere(
+                                (addon) => addon.fieldName == addonFieldName,
+                              )
+                              .copyWith(value: field.value as String),
+                        );
+                      }
+                    },
                     initialValues: widget.step.addons
                         .where(
                           (addon) => addon.type.isBenefit,
@@ -136,6 +154,7 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                       .where((addon) => addon.type.isWarning)
                       .toList(),
                 ),
+                const SizedBox(height: 72)
               ],
             ),
           ),

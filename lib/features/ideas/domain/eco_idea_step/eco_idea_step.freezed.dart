@@ -25,6 +25,7 @@ mixin _$EcoIdeaStep {
   String get ideaId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false)
   List<EcoIdeaStepAddon> get addons => throw _privateConstructorUsedError;
 
   /// Serializes this EcoIdeaStep to a JSON map.
@@ -48,7 +49,7 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
       @JsonKey(name: 'idea_id') String ideaId,
       String title,
       String description,
-      List<EcoIdeaStepAddon> addons});
+      @JsonKey(includeToJson: false) List<EcoIdeaStepAddon> addons});
 }
 
 /// @nodoc
@@ -110,7 +111,7 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
       @JsonKey(name: 'idea_id') String ideaId,
       String title,
       String description,
-      List<EcoIdeaStepAddon> addons});
+      @JsonKey(includeToJson: false) List<EcoIdeaStepAddon> addons});
 }
 
 /// @nodoc
@@ -165,6 +166,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
       @JsonKey(name: 'idea_id') required this.ideaId,
       this.title = '',
       this.description = '',
+      @JsonKey(includeToJson: false)
       final List<EcoIdeaStepAddon> addons = const []})
       : _addons = addons;
 
@@ -184,7 +186,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   final String description;
   final List<EcoIdeaStepAddon> _addons;
   @override
-  @JsonKey()
+  @JsonKey(includeToJson: false)
   List<EcoIdeaStepAddon> get addons {
     if (_addons is EqualUnmodifiableListView) return _addons;
     // ignore: implicit_dynamic_type
@@ -232,11 +234,12 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
 abstract class _EcoIdeaStep implements EcoIdeaStep {
   const factory _EcoIdeaStep(
-      {required final int id,
-      @JsonKey(name: 'idea_id') required final String ideaId,
-      final String title,
-      final String description,
-      final List<EcoIdeaStepAddon> addons}) = _$EcoIdeaStepImpl;
+          {required final int id,
+          @JsonKey(name: 'idea_id') required final String ideaId,
+          final String title,
+          final String description,
+          @JsonKey(includeToJson: false) final List<EcoIdeaStepAddon> addons}) =
+      _$EcoIdeaStepImpl;
 
   factory _EcoIdeaStep.fromJson(Map<String, dynamic> json) =
       _$EcoIdeaStepImpl.fromJson;
@@ -251,6 +254,7 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
   @override
   String get description;
   @override
+  @JsonKey(includeToJson: false)
   List<EcoIdeaStepAddon> get addons;
 
   /// Create a copy of EcoIdeaStep

@@ -4,9 +4,13 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class IdeaAddonField extends StatelessWidget {
-  const IdeaAddonField({required this.onSubmit, this.initialValue, super.key});
+  const IdeaAddonField(
+      {required this.name,
+      required this.onSubmit,
+      this.initialValue,
+      super.key});
 
-  static const String name = 'title';
+  final String name;
   final String? initialValue;
   final void Function() onSubmit;
   @override

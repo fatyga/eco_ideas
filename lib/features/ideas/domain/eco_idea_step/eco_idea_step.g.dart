@@ -24,5 +24,4 @@ Map<String, dynamic> _$$EcoIdeaStepImplToJson(_$EcoIdeaStepImpl instance) =>
       'idea_id': instance.ideaId,
       'title': instance.title,
       'description': instance.description,
-      'addons': instance.addons,
     };

@@ -42,7 +42,7 @@ enum IdeaStepAddonType {
     return switch (this) {
       IdeaStepAddonType.tip => Colors.green,
       IdeaStepAddonType.warning => Colors.red,
-      IdeaStepAddonType.requirment => Colors.grey,
+      IdeaStepAddonType.requirment => Colors.teal,
       IdeaStepAddonType.benefit => Colors.blue,
     };
   }
@@ -57,6 +57,10 @@ class EcoIdeaStepAddon with _$EcoIdeaStepAddon {
     @JsonKey(name: 'idea_id') required String ideaId,
     required String value,
   }) = _EcoIdeaStep;
+
+  const EcoIdeaStepAddon._();
+  String get fieldName =>
+      '$this.id.$this.stepId.$this.ideaId$this.type.nameAddonField';
 
   factory EcoIdeaStepAddon.fromJson(Map<String, dynamic> json) =>
       _$EcoIdeaStepAddonFromJson(json);

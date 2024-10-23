@@ -5,6 +5,7 @@ import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -72,6 +73,31 @@ class SupabaseIdeasRepository extends IdeasRepository {
       return EcoIdeaStep.fromJson(json);
     } on PostgrestException catch (err, stack) {
       throw UploadStepImageException(err.toString());
+    }
+  }
+
+  @override
+  Future<EcoIdeaStepAddon> updateIdeaStepAddon(
+      {required EcoIdeaStepAddon ideaStepAddon}) async {
+    try {
+      final primaryKey = {
+        'id': ideaStepAddon.id,
+        'step_id': ideaStepAddon.stepId,
+        'idea_id': ideaStepAddon.ideaId,
+        'type': ideaStepAddon.type.name,
+      };
+
+      final json = await ref
+          .read(supabaseClientProvider)
+          .from('step_addon')
+          .upsert(ideaStepAddon.toJson(), onConflict: primaryKey.keys.join(','))
+          .match(primaryKey)
+          .select<PostgrestMap>()
+          .single();
+
+      return EcoIdeaStepAddon.fromJson(json);
+    } on PostgrestException catch (err, stack) {
+      throw Exception('error');
     }
   }
 

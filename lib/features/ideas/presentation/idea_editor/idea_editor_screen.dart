@@ -8,6 +8,8 @@ import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/mutable_eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step/mutable_eco_idea_step.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_editor_save_button.dart';
 
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_form.dart';
@@ -80,6 +82,27 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
     setState(() {});
   }
 
+  Future<void> updateAddon(EcoIdeaStepAddon ideaStepAddon) async {
+    setState(() {
+      idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
+    });
+
+    idea = await AsyncValue.guard(() async {
+      final updatedAddon = await ref
+          .read(ideasRepositoryProvider)
+          .updateIdeaStepAddon(ideaStepAddon: ideaStepAddon);
+
+      return idea.requireValue
+          .withUpdatedStep(currentStep.withUpdatedAddon(updatedAddon));
+    });
+
+    if (mounted) {
+      idea.showSnackBarOnError(context);
+    }
+
+    setState(() {});
+  }
+
   Future<void> uploadImage(File image) async {
     setState(() {
       idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
@@ -112,11 +135,11 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
         onStepIdChange: onStepIdChange,
       ),
       body: IdeaStepForm(
-        key: ValueKey('ideaStep${currentStepId}Form'),
-        step: currentStep,
-        onChange: onStepModification,
-        onImageChanged: uploadImage,
-      ),
+          key: ValueKey('ideaStep${currentStepId}Form'),
+          step: currentStep,
+          onChange: onStepModification,
+          onImageChanged: uploadImage,
+          onAddonChanged: updateAddon),
     );
   }
 }

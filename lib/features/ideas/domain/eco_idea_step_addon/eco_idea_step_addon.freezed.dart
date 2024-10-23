@@ -161,13 +161,14 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$EcoIdeaStepImpl implements _EcoIdeaStep {
+class _$EcoIdeaStepImpl extends _EcoIdeaStep {
   const _$EcoIdeaStepImpl(
       {required this.id,
       @JsonKey(name: 'type') required this.type,
       @JsonKey(name: 'step_id') required this.stepId,
       @JsonKey(name: 'idea_id') required this.ideaId,
-      required this.value});
+      required this.value})
+      : super._();
 
   factory _$EcoIdeaStepImpl.fromJson(Map<String, dynamic> json) =>
       _$$EcoIdeaStepImplFromJson(json);
@@ -223,13 +224,14 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   }
 }
 
-abstract class _EcoIdeaStep implements EcoIdeaStepAddon {
+abstract class _EcoIdeaStep extends EcoIdeaStepAddon {
   const factory _EcoIdeaStep(
       {required final int id,
       @JsonKey(name: 'type') required final IdeaStepAddonType type,
       @JsonKey(name: 'step_id') required final int stepId,
       @JsonKey(name: 'idea_id') required final String ideaId,
       required final String value}) = _$EcoIdeaStepImpl;
+  const _EcoIdeaStep._() : super._();
 
   factory _EcoIdeaStep.fromJson(Map<String, dynamic> json) =
       _$EcoIdeaStepImpl.fromJson;
