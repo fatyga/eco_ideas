@@ -1,1 +1,1 @@
-export 'home_bottom_navigation_bar.dart';
+export 'home_navigation_bar.dart';

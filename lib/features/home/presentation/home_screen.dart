@@ -1,7 +1,6 @@
 import 'package:eco_ideas/features/explore/presentation/explore/explore_screen.dart';
-import 'package:eco_ideas/features/home/presentation/controller/home_controller.dart';
-import 'package:eco_ideas/features/home/presentation/controller/home_state.dart';
-import 'package:eco_ideas/features/home/presentation/widgets/home_bottom_navigation_bar.dart';
+
+import 'package:eco_ideas/features/home/presentation/widgets/home_navigation_bar.dart';
 
 import 'package:eco_ideas/features/ideas/presentation/my_ideas/my_ideas_screen.dart';
 import 'package:eco_ideas/features/user/presentation/my_profile/my_profile_screen.dart';
@@ -9,33 +8,46 @@ import 'package:eco_ideas/features/user/presentation/my_profile/my_profile_scree
 import 'package:eco_ideas/router/routes/routes.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends ConsumerWidget {
+enum HomeDestination { explore, myIdeas, profile }
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   static const path = '/home';
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentScreen = ref.watch(homeControllerProvider);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  HomeDestination currentDestination = HomeDestination.explore;
+
+  void selectDestination(int index) {
+    setState(() {
+      currentDestination = HomeDestination.values[index];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: switch (currentScreen) {
-        HomeState.explore => const ExploreScreen(),
-        HomeState.myIdeas => const MyIdeasScreen(),
-        HomeState.profile => const MyProfileScreen(),
+      body: switch (currentDestination) {
+        HomeDestination.explore => const ExploreScreen(),
+        HomeDestination.myIdeas => const MyIdeasScreen(),
+        HomeDestination.profile => const MyProfileScreen(),
       },
-      floatingActionButton: switch (currentScreen) {
-        HomeState.explore => null,
-        HomeState.myIdeas => FloatingActionButton(
+      floatingActionButton: switch (currentDestination) {
+        HomeDestination.explore => null,
+        HomeDestination.myIdeas => FloatingActionButton(
             onPressed: () async => const IdeaEditorRoute(null).go(context),
             child: const Icon(Icons.add),
           ),
-        HomeState.profile => null,
+        HomeDestination.profile => null,
       },
-      bottomNavigationBar: HomeBottomNavigationBar(
-        currentIndex: currentScreen.index,
-        onTap: ref.read(homeControllerProvider.notifier).change,
+      bottomNavigationBar: HomeNavigationBar(
+        selectedIndex: currentDestination.index,
+        onDestinationSelected: selectDestination,
       ),
     );
   }
