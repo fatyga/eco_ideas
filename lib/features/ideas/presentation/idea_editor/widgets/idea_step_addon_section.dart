@@ -18,7 +18,7 @@ class IdeaStepAddonSection extends StatefulWidget {
   final EcoIdeaStep step;
   final IdeaStepAddonType addonType;
   final List<EcoIdeaStepAddon> initialValues;
-  final void Function(String addonFieldName) onSubmit;
+  final void Function(EcoIdeaStepAddon addon) onSubmit;
 
   @override
   State<IdeaStepAddonSection> createState() => _IdeaStepAddonSectionState();
@@ -51,13 +51,14 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
               setState(() {
                 values.add(
                   EcoIdeaStepAddon(
-                    id: values.length + 1,
+                    id: values.length,
                     type: widget.addonType,
                     stepId: widget.step.id,
                     ideaId: widget.step.ideaId,
                     value: '',
                   ),
                 );
+                print(values);
               });
             },
           ),
@@ -95,13 +96,18 @@ class _IdeaStepAddonHeader extends StatelessWidget {
           Text(
             addonType.getTitle(l10n),
             style: GoogleFonts.spaceMono(
+              fontSize: 13,
               textStyle: theme.textTheme.titleSmall!.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
           const Spacer(),
-          IconButton(onPressed: onAddTap, icon: const Icon(Icons.add)),
+          IconButton(
+            onPressed: onAddTap,
+            iconSize: 20,
+            icon: const Icon(Icons.add),
+          ),
         ],
       ),
     );
@@ -116,7 +122,7 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
   });
 
   final List<EcoIdeaStepAddon> values;
-  final void Function(String addonFieldName) onSubmit;
+  final void Function(EcoIdeaStepAddon addon) onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +134,7 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
               (addon) => IdeaAddonField(
                 key: ValueKey('ideaStep${addon.type.name}${addon.id}'),
                 name: addon.fieldName,
-                onSubmit: () => onSubmit(addon.fieldName),
+                onSubmit: () => onSubmit(addon),
               ),
             )
             .toList(),

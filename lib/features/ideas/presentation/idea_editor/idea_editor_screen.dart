@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:eco_ideas/common/extensions/snackbar_on_error.dart';
-import 'package:eco_ideas/common/widgets/user_avatar/avatar_dialog/save_button.dart';
+
 import 'package:eco_ideas/features/auth/data/data.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 
@@ -135,11 +135,12 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
         onStepIdChange: onStepIdChange,
       ),
       body: IdeaStepForm(
-          key: ValueKey('ideaStep${currentStepId}Form'),
-          step: currentStep,
-          onChange: onStepModification,
-          onImageChanged: uploadImage,
-          onAddonChanged: updateAddon),
+        key: ValueKey('ideaStep${currentStepId}Form'),
+        step: currentStep,
+        onChange: onStepModification,
+        onImageChanged: uploadImage,
+        onAddonChanged: updateAddon,
+      ),
     );
   }
 }

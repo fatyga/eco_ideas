@@ -4,11 +4,12 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class IdeaAddonField extends StatelessWidget {
-  const IdeaAddonField(
-      {required this.name,
-      required this.onSubmit,
-      this.initialValue,
-      super.key});
+  const IdeaAddonField({
+    required this.name,
+    required this.onSubmit,
+    this.initialValue,
+    super.key,
+  });
 
   final String name;
   final String? initialValue;
@@ -29,7 +30,7 @@ class IdeaAddonField extends StatelessWidget {
         decoration: const InputDecoration(
           isCollapsed: true,
           contentPadding: EdgeInsets.only(bottom: 4),
-          icon: Icon(Icons.circle, size: 8),
+          icon: Icon(Icons.circle, size: 6),
           border: UnderlineInputBorder(),
         ),
         validator: FormBuilderValidators.compose([

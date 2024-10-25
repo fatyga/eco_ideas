@@ -101,20 +101,16 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                   IdeaStepAddonSection(
                     step: widget.step,
                     addonType: IdeaStepAddonType.benefit,
-                    onSubmit: (addonFieldName) {
+                    onSubmit: (addon) {
                       final field = _formKey
-                          .currentState!.fields[addonFieldName]
+                          .currentState!.fields[addon.fieldName]
                         ?..validate();
 
                       if (field != null && field.isValid) {
                         field.save();
 
                         widget.onAddonChanged(
-                          widget.step.addons
-                              .firstWhere(
-                                (addon) => addon.fieldName == addonFieldName,
-                              )
-                              .copyWith(value: field.value as String),
+                          addon.copyWith(value: field.value as String),
                         );
                       }
                     },
@@ -128,7 +124,19 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                   IdeaStepAddonSection(
                     step: widget.step,
                     addonType: IdeaStepAddonType.requirment,
-                    onSubmit: (updatedAddon) {},
+                    onSubmit: (addon) {
+                      final field = _formKey
+                          .currentState!.fields[addon.fieldName]
+                        ?..validate();
+
+                      if (field != null && field.isValid) {
+                        field.save();
+
+                        widget.onAddonChanged(
+                          addon.copyWith(value: field.value as String),
+                        );
+                      }
+                    },
                     initialValues: widget.step.addons
                         .where(
                           (addon) => addon.type.isRequirment,
@@ -140,7 +148,18 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                 IdeaStepAddonSection(
                   step: widget.step,
                   addonType: IdeaStepAddonType.tip,
-                  onSubmit: (values) {},
+                  onSubmit: (addon) {
+                    final field = _formKey.currentState!.fields[addon.fieldName]
+                      ?..validate();
+
+                    if (field != null && field.isValid) {
+                      field.save();
+
+                      widget.onAddonChanged(
+                        addon.copyWith(value: field.value as String),
+                      );
+                    }
+                  },
                   initialValues: widget.step.addons
                       .where((addon) => addon.type.isTip)
                       .toList(),
@@ -149,12 +168,23 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                 IdeaStepAddonSection(
                   step: widget.step,
                   addonType: IdeaStepAddonType.warning,
-                  onSubmit: (values) {},
+                  onSubmit: (addon) {
+                    final field = _formKey.currentState!.fields[addon.fieldName]
+                      ?..validate();
+
+                    if (field != null && field.isValid) {
+                      field.save();
+
+                      widget.onAddonChanged(
+                        addon.copyWith(value: field.value as String),
+                      );
+                    }
+                  },
                   initialValues: widget.step.addons
                       .where((addon) => addon.type.isWarning)
                       .toList(),
                 ),
-                const SizedBox(height: 72)
+                const SizedBox(height: 72),
               ],
             ),
           ),

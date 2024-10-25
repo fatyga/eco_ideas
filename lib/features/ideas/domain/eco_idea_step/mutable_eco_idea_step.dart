@@ -5,8 +5,15 @@ extension MutableEcoIdeaStep on EcoIdeaStep {
   EcoIdeaStep withUpdatedAddon(EcoIdeaStepAddon updatedAddon) {
     final addons = List<EcoIdeaStepAddon>.from(this.addons);
 
-    addons[updatedAddon.id] = updatedAddon;
-
-    return copyWith(addons: addons);
+    if (addons.isEmpty) {
+      return copyWith(addons: [updatedAddon]);
+    } else {
+      if (addons.any((addon) => addon.fieldName == updatedAddon.fieldName)) {
+        addons[updatedAddon.id] = updatedAddon;
+      } else {
+        addons.add(updatedAddon);
+      }
+      return copyWith(addons: addons);
+    }
   }
 }

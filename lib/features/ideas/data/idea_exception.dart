@@ -42,3 +42,12 @@ class UploadStepImageException extends IdeaException {
     return 'Fail to upload an image';
   }
 }
+
+class UpdateIdeaStepAddonException extends IdeaException {
+  UpdateIdeaStepAddonException(super.message);
+
+  @override
+  String resolveMessageForUser(AppLocalizations l10n) {
+    return 'Fail to update addon';
+  }
+}

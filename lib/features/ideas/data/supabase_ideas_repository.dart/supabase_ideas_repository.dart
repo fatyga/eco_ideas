@@ -77,8 +77,9 @@ class SupabaseIdeasRepository extends IdeasRepository {
   }
 
   @override
-  Future<EcoIdeaStepAddon> updateIdeaStepAddon(
-      {required EcoIdeaStepAddon ideaStepAddon}) async {
+  Future<EcoIdeaStepAddon> updateIdeaStepAddon({
+    required EcoIdeaStepAddon ideaStepAddon,
+  }) async {
     try {
       final primaryKey = {
         'id': ideaStepAddon.id,
@@ -97,7 +98,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
 
       return EcoIdeaStepAddon.fromJson(json);
     } on PostgrestException catch (err, stack) {
-      throw Exception('error');
+      throw UpdateIdeaStepAddonException(err.message);
     }
   }
 
