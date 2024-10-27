@@ -35,36 +35,49 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: values.isEmpty
-          ? null
-          : BoxDecoration(
-              color: widget.addonType.getColor().shade50,
-              borderRadius: BorderRadius.circular(6),
-            ),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-      child: Column(
-        children: [
-          _IdeaStepAddonHeader(
-            addonType: widget.addonType,
-            onAddTap: () {
-              setState(() {
-                values.add(
-                  EcoIdeaStepAddon(
-                    id: values.length,
-                    type: widget.addonType,
-                    stepId: widget.step.id,
-                    ideaId: widget.step.ideaId,
-                    value: '',
+    return Theme(
+      data: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: widget.addonType.getColor(),
+          brightness: Theme.of(context).colorScheme.brightness,
+        ),
+      ),
+      child: Builder(
+        builder: (context) {
+          return Container(
+            decoration: values.isEmpty
+                ? null
+                : BoxDecoration(
+                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                    borderRadius: BorderRadius.circular(6),
                   ),
-                );
-                print(values);
-              });
-            },
-          ),
-          if (values.isNotEmpty)
-            _IdeaStepAddonSubpoints(values: values, onSubmit: widget.onSubmit),
-        ],
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+            child: Column(
+              children: [
+                _IdeaStepAddonHeader(
+                  addonType: widget.addonType,
+                  onAddTap: () {
+                    setState(() {
+                      values.add(
+                        EcoIdeaStepAddon(
+                          id: values.length,
+                          type: widget.addonType,
+                          stepId: widget.step.id,
+                          ideaId: widget.step.ideaId,
+                          value: '',
+                        ),
+                      );
+                      print(values);
+                    });
+                  },
+                ),
+                if (values.isNotEmpty)
+                  _IdeaStepAddonSubpoints(
+                      values: values, onSubmit: widget.onSubmit),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
