@@ -67,7 +67,6 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
                           value: '',
                         ),
                       );
-                      print(values);
                     });
                   },
                 ),
@@ -102,7 +101,7 @@ class _IdeaStepAddonHeader extends StatelessWidget {
         children: [
           Icon(
             addonType.getIcon(),
-            color: addonType.getColor().shade400,
+            color: theme.colorScheme.surfaceTint,
             size: 20,
           ),
           const SizedBox(width: 8),
@@ -145,7 +144,8 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
         children: values
             .map(
               (addon) => IdeaAddonField(
-                key: ValueKey('ideaStep${addon.type.name}${addon.id}'),
+                key: ValueKey(addon.fieldName),
+                initialValue: addon.value,
                 name: addon.fieldName,
                 onSubmit: () => onSubmit(addon),
               ),

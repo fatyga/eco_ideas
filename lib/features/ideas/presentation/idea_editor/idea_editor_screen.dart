@@ -87,6 +87,16 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
       idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
     });
 
+    //TODO(fatyga): Fix case where createIdea fails
+    if (shouldCreateIdeaOnFirstModification) {
+      idea = await AsyncValue.guard(
+        () async => ref
+            .read(ideasRepositoryProvider)
+            .createIdea(idea: idea.requireValue),
+      );
+
+      shouldCreateIdeaOnFirstModification = false;
+    }
     idea = await AsyncValue.guard(() async {
       final updatedAddon = await ref
           .read(ideasRepositoryProvider)

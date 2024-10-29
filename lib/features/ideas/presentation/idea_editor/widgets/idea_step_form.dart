@@ -8,6 +8,7 @@ import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/im
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/title_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_addon_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class IdeaStepForm extends StatefulWidget {
@@ -38,6 +39,8 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
       child: ListView(
         children: [
           IdeaImageField(
+            stepImageUrl:
+                '${dotenv.env['IDEA_STEP_IMAGE_URL_BASE']}/${widget.step.ideaId}/${widget.step.id}.png',
             onSubmit: () {
               final field = _formKey.currentState!.fields[IdeaImageField.name]
                 ?..validate();
