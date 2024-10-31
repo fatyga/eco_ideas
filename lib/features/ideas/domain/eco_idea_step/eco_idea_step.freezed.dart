@@ -25,6 +25,7 @@ mixin _$EcoIdeaStep {
   String get ideaId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String? get imageId => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false)
   List<EcoIdeaStepAddon> get addons => throw _privateConstructorUsedError;
 
@@ -49,6 +50,7 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
       @JsonKey(name: 'idea_id') String ideaId,
       String title,
       String description,
+      String? imageId,
       @JsonKey(includeToJson: false) List<EcoIdeaStepAddon> addons});
 }
 
@@ -71,6 +73,7 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
     Object? ideaId = null,
     Object? title = null,
     Object? description = null,
+    Object? imageId = freezed,
     Object? addons = null,
   }) {
     return _then(_value.copyWith(
@@ -90,6 +93,10 @@ class _$EcoIdeaStepCopyWithImpl<$Res, $Val extends EcoIdeaStep>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      imageId: freezed == imageId
+          ? _value.imageId
+          : imageId // ignore: cast_nullable_to_non_nullable
+              as String?,
       addons: null == addons
           ? _value.addons
           : addons // ignore: cast_nullable_to_non_nullable
@@ -111,6 +118,7 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
       @JsonKey(name: 'idea_id') String ideaId,
       String title,
       String description,
+      String? imageId,
       @JsonKey(includeToJson: false) List<EcoIdeaStepAddon> addons});
 }
 
@@ -131,6 +139,7 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
     Object? ideaId = null,
     Object? title = null,
     Object? description = null,
+    Object? imageId = freezed,
     Object? addons = null,
   }) {
     return _then(_$EcoIdeaStepImpl(
@@ -150,6 +159,10 @@ class __$$EcoIdeaStepImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      imageId: freezed == imageId
+          ? _value.imageId
+          : imageId // ignore: cast_nullable_to_non_nullable
+              as String?,
       addons: null == addons
           ? _value._addons
           : addons // ignore: cast_nullable_to_non_nullable
@@ -166,6 +179,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
       @JsonKey(name: 'idea_id') required this.ideaId,
       this.title = '',
       this.description = '',
+      this.imageId = null,
       @JsonKey(includeToJson: false)
       final List<EcoIdeaStepAddon> addons = const []})
       : _addons = addons;
@@ -184,6 +198,9 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   @override
   @JsonKey()
   final String description;
+  @override
+  @JsonKey()
+  final String? imageId;
   final List<EcoIdeaStepAddon> _addons;
   @override
   @JsonKey(includeToJson: false)
@@ -195,7 +212,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
 
   @override
   String toString() {
-    return 'EcoIdeaStep(id: $id, ideaId: $ideaId, title: $title, description: $description, addons: $addons)';
+    return 'EcoIdeaStep(id: $id, ideaId: $ideaId, title: $title, description: $description, imageId: $imageId, addons: $addons)';
   }
 
   @override
@@ -208,13 +225,14 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.imageId, imageId) || other.imageId == imageId) &&
             const DeepCollectionEquality().equals(other._addons, _addons));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, ideaId, title, description,
-      const DeepCollectionEquality().hash(_addons));
+      imageId, const DeepCollectionEquality().hash(_addons));
 
   /// Create a copy of EcoIdeaStep
   /// with the given fields replaced by the non-null parameter values.
@@ -238,6 +256,7 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
           @JsonKey(name: 'idea_id') required final String ideaId,
           final String title,
           final String description,
+          final String? imageId,
           @JsonKey(includeToJson: false) final List<EcoIdeaStepAddon> addons}) =
       _$EcoIdeaStepImpl;
 
@@ -253,6 +272,8 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
   String get title;
   @override
   String get description;
+  @override
+  String? get imageId;
   @override
   @JsonKey(includeToJson: false)
   List<EcoIdeaStepAddon> get addons;

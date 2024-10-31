@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:eco_ideas/common/extensions/snackbar_on_error.dart';
 
 import 'package:eco_ideas/features/auth/data/data.dart';
@@ -113,7 +114,7 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
     setState(() {});
   }
 
-  Future<void> uploadImage(File image) async {
+  Future<void> uploadImage(XFile image) async {
     setState(() {
       idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
     });

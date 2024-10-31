@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
@@ -8,6 +9,7 @@ import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:uuid/uuid.dart';
 
 class SupabaseIdeasRepository extends IdeasRepository {
   SupabaseIdeasRepository(this.ref);
@@ -104,14 +106,22 @@ class SupabaseIdeasRepository extends IdeasRepository {
 
   @override
   Future<void> uploadImage(
-      {required EcoIdeaStep ideaStep, required File image}) async {
+      {required EcoIdeaStep ideaStep, required XFile image}) async {
     try {
-      final path = '${ideaStep.ideaId}/${ideaStep.id}.png';
+      final primaryKey = {'id': ideaStep.id, 'idea_id': ideaStep.ideaId};
+      final uid = const Uuid().v4();
+      final path = '$uid.png';
+
       await ref
           .read(supabaseClientProvider)
           .storage
           .from('ideas')
-          .upload(path, image);
+          .upload(path, File(image.path));
+
+      await ref
+          .read(supabaseClientProvider)
+          .from('step')
+          .update({'image_id': uid}).match(primaryKey);
     } on StorageException catch (err, stack) {
       throw UploadStepImageException(err.toString());
     }

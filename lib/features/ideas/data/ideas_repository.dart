@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:eco_ideas/features/ideas/data/supabase_ideas_repository.dart/supabase_ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
@@ -26,6 +27,6 @@ abstract class IdeasRepository {
 
   Future<void> uploadImage({
     required EcoIdeaStep ideaStep,
-    required File image,
+    required XFile image,
   });
 }

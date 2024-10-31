@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/addon_field.dart';
@@ -22,7 +23,7 @@ class IdeaStepForm extends StatefulWidget {
 
   final EcoIdeaStep step;
   final void Function(EcoIdeaStep step) onChange;
-  final void Function(File image) onImageChanged;
+  final void Function(XFile image) onImageChanged;
   final void Function(EcoIdeaStepAddon updatedAddon) onAddonChanged;
   @override
   State<IdeaStepForm> createState() => _IdeaStepFormState();
@@ -33,21 +34,21 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
 
   @override
   Widget build(BuildContext context) {
-    print(_formKey.currentState?.fields);
     return FormBuilder(
       key: _formKey,
       child: ListView(
         children: [
           IdeaImageField(
-            stepImageUrl:
-                '${dotenv.env['IDEA_STEP_IMAGE_URL_BASE']}/${widget.step.ideaId}/${widget.step.id}.png',
+            stepImageId: widget.step.imageId,
             onSubmit: () {
               final field = _formKey.currentState!.fields[IdeaImageField.name]
                 ?..validate();
 
               if (field != null && field.isValid) {
                 field.save();
-                widget.onImageChanged(File(field.value as String));
+                widget.onImageChanged(
+                  (field.value as List<dynamic>).first as XFile,
+                );
               }
             },
           ),
