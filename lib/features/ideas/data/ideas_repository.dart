@@ -25,7 +25,7 @@ abstract class IdeasRepository {
     required EcoIdeaStepAddon ideaStepAddon,
   });
 
-  Future<void> uploadImage({
+  Future<String> uploadImage({
     required EcoIdeaStep ideaStep,
     required XFile image,
   });

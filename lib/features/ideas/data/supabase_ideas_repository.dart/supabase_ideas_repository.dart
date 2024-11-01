@@ -105,12 +105,12 @@ class SupabaseIdeasRepository extends IdeasRepository {
   }
 
   @override
-  Future<void> uploadImage(
+  Future<String> uploadImage(
       {required EcoIdeaStep ideaStep, required XFile image}) async {
     try {
       final primaryKey = {'id': ideaStep.id, 'idea_id': ideaStep.ideaId};
       final uid = const Uuid().v4();
-      final path = '$uid.png';
+      final path = '${ideaStep.ideaId}/$uid.png';
 
       await ref
           .read(supabaseClientProvider)
@@ -122,6 +122,8 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .read(supabaseClientProvider)
           .from('step')
           .update({'image_id': uid}).match(primaryKey);
+
+      return uid;
     } on StorageException catch (err, stack) {
       throw UploadStepImageException(err.toString());
     }

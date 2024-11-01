@@ -11,7 +11,7 @@ class EcoIdeaStep with _$EcoIdeaStep {
     @JsonKey(name: 'idea_id') required String ideaId,
     @Default('') String title,
     @Default('') String description,
-    @Default(null) String? imageId,
+    @JsonKey(name: 'image_id') @Default(null) String? imageId,
     @JsonKey(includeToJson: false)
     @Default(
       [],

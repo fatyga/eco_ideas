@@ -39,7 +39,9 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
       child: ListView(
         children: [
           IdeaImageField(
-            stepImageId: widget.step.imageId,
+            stepImageId: widget.step.imageId == null
+                ? null
+                : '${dotenv.env['IDEA_STEP_IMAGE_URL_BASE']}/${widget.step.ideaId}/${widget.step.imageId}.png',
             onSubmit: () {
               final field = _formKey.currentState!.fields[IdeaImageField.name]
                 ?..validate();

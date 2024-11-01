@@ -25,6 +25,7 @@ mixin _$EcoIdeaStep {
   String get ideaId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_id')
   String? get imageId => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false)
   List<EcoIdeaStepAddon> get addons => throw _privateConstructorUsedError;
@@ -50,7 +51,7 @@ abstract class $EcoIdeaStepCopyWith<$Res> {
       @JsonKey(name: 'idea_id') String ideaId,
       String title,
       String description,
-      String? imageId,
+      @JsonKey(name: 'image_id') String? imageId,
       @JsonKey(includeToJson: false) List<EcoIdeaStepAddon> addons});
 }
 
@@ -118,7 +119,7 @@ abstract class _$$EcoIdeaStepImplCopyWith<$Res>
       @JsonKey(name: 'idea_id') String ideaId,
       String title,
       String description,
-      String? imageId,
+      @JsonKey(name: 'image_id') String? imageId,
       @JsonKey(includeToJson: false) List<EcoIdeaStepAddon> addons});
 }
 
@@ -179,7 +180,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
       @JsonKey(name: 'idea_id') required this.ideaId,
       this.title = '',
       this.description = '',
-      this.imageId = null,
+      @JsonKey(name: 'image_id') this.imageId = null,
       @JsonKey(includeToJson: false)
       final List<EcoIdeaStepAddon> addons = const []})
       : _addons = addons;
@@ -199,7 +200,7 @@ class _$EcoIdeaStepImpl implements _EcoIdeaStep {
   @JsonKey()
   final String description;
   @override
-  @JsonKey()
+  @JsonKey(name: 'image_id')
   final String? imageId;
   final List<EcoIdeaStepAddon> _addons;
   @override
@@ -256,7 +257,7 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
           @JsonKey(name: 'idea_id') required final String ideaId,
           final String title,
           final String description,
-          final String? imageId,
+          @JsonKey(name: 'image_id') final String? imageId,
           @JsonKey(includeToJson: false) final List<EcoIdeaStepAddon> addons}) =
       _$EcoIdeaStepImpl;
 
@@ -273,6 +274,7 @@ abstract class _EcoIdeaStep implements EcoIdeaStep {
   @override
   String get description;
   @override
+  @JsonKey(name: 'image_id')
   String? get imageId;
   @override
   @JsonKey(includeToJson: false)

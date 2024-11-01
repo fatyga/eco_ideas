@@ -25,6 +25,8 @@ class IdeaImageField extends StatefulWidget {
 
 class _IdeaImageFieldState extends State<IdeaImageField> {
   bool shouldShowControls = false;
+  bool isUploading = false;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -81,18 +83,20 @@ class _IdeaImageFieldState extends State<IdeaImageField> {
           ),
           if (shouldShowControls)
             _IdeaImageFieldControls(
+              isUploading: isUploading,
               onSave: () {
+                setState(() {
+                  isUploading = true;
+                });
                 widget.onSubmit();
                 setState(() {
-                  shouldShowControls = false;
+                  isUploading = false;
                 });
               },
               onCancel: () {
                 setState(() {
                   shouldShowControls = false;
-                  FormBuilder.of(context)
-                      ?.fields[IdeaImageField.name]
-                      ?.didChange(const <dynamic>[]);
+                  FormBuilder.of(context)?.fields[IdeaImageField.name]?.reset();
                 });
               },
             ),
@@ -104,6 +108,7 @@ class _IdeaImageFieldState extends State<IdeaImageField> {
 
 class _IdeaImageFieldControls extends StatelessWidget {
   const _IdeaImageFieldControls({
+    required this.isUploading,
     required this.onSave,
     required this.onCancel,
     super.key,
@@ -111,6 +116,8 @@ class _IdeaImageFieldControls extends StatelessWidget {
 
   final VoidCallback onSave;
   final VoidCallback onCancel;
+  final bool isUploading;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -118,14 +125,32 @@ class _IdeaImageFieldControls extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: MaterialButton(onPressed: onSave, child: const Text('Save')),
-          ),
-          Expanded(
             child: MaterialButton(
-              onPressed: onCancel,
-              child: const Text('Cancel'),
+              onPressed: onSave,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (isUploading)
+                    Container(
+                      width: 12,
+                      height: 12,
+                      margin: const EdgeInsets.only(right: 8),
+                      child: const CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
+                    ),
+                  Text(isUploading ? 'Saving' : 'Save'),
+                ],
+              ),
             ),
           ),
+          if (!isUploading)
+            Expanded(
+              child: MaterialButton(
+                onPressed: onCancel,
+                child: const Text('Cancel'),
+              ),
+            ),
         ],
       ),
     );

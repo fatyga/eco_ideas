@@ -118,6 +118,21 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
     setState(() {
       idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
     });
+
+    idea = await AsyncValue.guard(() async {
+      final imageId = await ref
+          .read(ideasRepositoryProvider)
+          .uploadImage(ideaStep: currentStep, image: image);
+
+      return idea.requireValue
+          .withUpdatedStep(currentStep.copyWith(imageId: imageId));
+    });
+
+    if (mounted) {
+      idea.showSnackBarOnError(context);
+    }
+
+    setState(() {});
   }
 
   // Step indicator
