@@ -55,7 +55,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
       // Throw an error, when there is no idea with matching id
       if (json.isEmpty) throw IdeaWasNotFound('Temporary value');
       return EcoIdea.fromJson(json);
-    } catch (err, stack) {
+    } catch (err) {
       throw IdeaWasNotFound(err.toString());
     }
   }
@@ -73,7 +73,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .single();
 
       return EcoIdeaStep.fromJson(json);
-    } on PostgrestException catch (err, stack) {
+    } on PostgrestException catch (err) {
       throw UploadStepImageException(err.toString());
     }
   }
@@ -99,14 +99,16 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .single();
 
       return EcoIdeaStepAddon.fromJson(json);
-    } on PostgrestException catch (err, stack) {
+    } on PostgrestException catch (err) {
       throw UpdateIdeaStepAddonException(err.message);
     }
   }
 
   @override
-  Future<String> uploadImage(
-      {required EcoIdeaStep ideaStep, required XFile image}) async {
+  Future<String> uploadImage({
+    required EcoIdeaStep ideaStep,
+    required XFile image,
+  }) async {
     try {
       final primaryKey = {'id': ideaStep.id, 'idea_id': ideaStep.ideaId};
       final uid = const Uuid().v4();
@@ -124,7 +126,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .update({'image_id': uid}).match(primaryKey);
 
       return uid;
-    } on StorageException catch (err, stack) {
+    } on StorageException catch (err) {
       throw UploadStepImageException(err.toString());
     }
   }

@@ -3,7 +3,7 @@ import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_ste
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/addon_field.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class IdeaStepAddonSection extends StatefulWidget {

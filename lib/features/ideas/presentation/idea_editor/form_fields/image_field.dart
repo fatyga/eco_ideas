@@ -1,14 +1,17 @@
 import 'package:cross_file/cross_file.dart';
+import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
-class IdeaImageField extends StatefulWidget {
+class IdeaImageField extends ConsumerStatefulWidget {
   const IdeaImageField({
-    required this.onSubmit,
-    required this.stepImageId,
+    required this.onChange,
+    required this.step,
     this.withBorder = false,
     super.key,
   });
@@ -16,16 +19,55 @@ class IdeaImageField extends StatefulWidget {
   final bool withBorder;
 
   static const String name = 'image';
-  final String? stepImageId;
-  final void Function() onSubmit;
+  final EcoIdeaStep step;
+  final void Function(EcoIdeaStep updatedStep) onChange;
 
   @override
-  State<IdeaImageField> createState() => _IdeaImageFieldState();
+  ConsumerState<IdeaImageField> createState() => _IdeaImageFieldState();
 }
 
-class _IdeaImageFieldState extends State<IdeaImageField> {
+class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
   bool shouldShowControls = false;
   bool isUploading = false;
+
+  late AsyncValue<String?> imageId;
+
+  @override
+  void initState() {
+    imageId = AsyncData(widget.step.imageId);
+    super.initState();
+  }
+
+  Future<void> uploadImage() async {
+    setState(() {
+      imageId = const AsyncLoading<String?>().copyWithPrevious(imageId);
+    });
+
+    final image = (FormBuilder.of(context)?.fields[IdeaImageField.name]?.value
+            as List<dynamic>)
+        .first as XFile?;
+
+    if (image != null) {
+      imageId = await AsyncValue.guard(() async {
+        final imageId = await ref
+            .read(ideasRepositoryProvider)
+            .uploadImage(ideaStep: widget.step, image: image);
+
+        widget.onChange(widget.step.copyWith(imageId: imageId));
+        return imageId;
+      });
+
+      imageId.whenOrNull(
+        error: (error, _) {
+          FormBuilder.of(context)
+              ?.fields[IdeaImageField.name]
+              ?.invalidate('Failed to upload an image.');
+        },
+      );
+
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +85,14 @@ class _IdeaImageFieldState extends State<IdeaImageField> {
         children: [
           FormBuilderImagePicker(
             name: IdeaImageField.name,
+            enabled: !imageId.isLoading,
             maxImages: 1,
             iconColor: theme.colorScheme.primary,
             backgroundColor: Colors.transparent,
-            placeholderImage: widget.stepImageId == null
+            placeholderImage: widget.step.imageId == null
                 ? null
                 : Image.network(
-                    widget.stepImageId!,
+                    widget.step.imageUrl!,
                     loadingBuilder: (context, child, loadingProgress) =>
                         const Center(child: CircularProgressIndicator()),
                     errorBuilder: (context, error, _) {
@@ -83,16 +126,8 @@ class _IdeaImageFieldState extends State<IdeaImageField> {
           ),
           if (shouldShowControls)
             _IdeaImageFieldControls(
-              isUploading: isUploading,
-              onSave: () {
-                setState(() {
-                  isUploading = true;
-                });
-                widget.onSubmit();
-                setState(() {
-                  isUploading = false;
-                });
-              },
+              isUploading: imageId.isLoading,
+              onSave: uploadImage,
               onCancel: () {
                 setState(() {
                   shouldShowControls = false;
@@ -126,7 +161,7 @@ class _IdeaImageFieldControls extends StatelessWidget {
         children: [
           Expanded(
             child: MaterialButton(
-              onPressed: onSave,
+              onPressed: isUploading ? null : onSave,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

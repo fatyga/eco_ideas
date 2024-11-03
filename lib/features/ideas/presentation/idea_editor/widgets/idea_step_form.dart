@@ -1,15 +1,13 @@
-import 'dart:io';
-
 import 'package:cross_file/cross_file.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/addon_field.dart';
+
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/description_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/image_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/title_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_addon_section.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class IdeaStepForm extends StatefulWidget {
@@ -39,20 +37,8 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
       child: ListView(
         children: [
           IdeaImageField(
-            stepImageId: widget.step.imageId == null
-                ? null
-                : '${dotenv.env['IDEA_STEP_IMAGE_URL_BASE']}/${widget.step.ideaId}/${widget.step.imageId}.png',
-            onSubmit: () {
-              final field = _formKey.currentState!.fields[IdeaImageField.name]
-                ?..validate();
-
-              if (field != null && field.isValid) {
-                field.save();
-                widget.onImageChanged(
-                  (field.value as List<dynamic>).first as XFile,
-                );
-              }
-            },
+            step: widget.step,
+            onChange: widget.onChange,
           ),
           Padding(
             padding: const EdgeInsets.all(8),
