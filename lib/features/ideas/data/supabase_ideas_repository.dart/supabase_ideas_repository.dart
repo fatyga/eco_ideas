@@ -130,4 +130,28 @@ class SupabaseIdeasRepository extends IdeasRepository {
       throw UploadStepImageException(err.toString());
     }
   }
+
+  @override
+  Future<String> deleteImage({required EcoIdeaStep ideaStep}) async {
+    try {
+      final primaryKey = {'id': ideaStep.id, 'idea_id': ideaStep.ideaId};
+      final uid = const Uuid().v4();
+      final path = '${ideaStep.ideaId}/$uid.png';
+
+      await ref
+          .read(supabaseClientProvider)
+          .storage
+          .from('ideas')
+          .remove([path]);
+
+      await ref
+          .read(supabaseClientProvider)
+          .from('step')
+          .update({'image_id': null}).match(primaryKey);
+
+      return uid;
+    } on StorageException catch (err) {
+      throw UploadStepImageException(err.toString());
+    }
+  }
 }

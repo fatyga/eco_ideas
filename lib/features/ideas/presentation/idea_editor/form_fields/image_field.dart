@@ -8,6 +8,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+enum IdeaImageFieldStatus {
+  readyToPick,
+  readyToSave,
+  remoteExists,
+}
+
 class IdeaImageField extends ConsumerStatefulWidget {
   const IdeaImageField({
     required this.onChange,
@@ -27,7 +33,7 @@ class IdeaImageField extends ConsumerStatefulWidget {
 }
 
 class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
-  bool shouldShowControls = false;
+  late IdeaImageFieldStatus status;
   bool isUploading = false;
 
   late AsyncValue<String?> imageId;
@@ -35,6 +41,11 @@ class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
   @override
   void initState() {
     imageId = AsyncData(widget.step.imageId);
+    if (widget.step.imageId != null) {
+      status = IdeaImageFieldStatus.remoteExists;
+    } else {
+      status = IdeaImageFieldStatus.readyToPick;
+    }
     super.initState();
   }
 
@@ -65,7 +76,40 @@ class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
         },
       );
 
-      setState(() {});
+      setState(() {
+        status = IdeaImageFieldStatus.remoteExists;
+        FormBuilder.of(context)?.fields[IdeaImageField.name]?.reset();
+      });
+    }
+  }
+
+  Future<void> deleteImage() async {
+    setState(() {
+      imageId = const AsyncLoading<String?>().copyWithPrevious(imageId);
+    });
+
+    if (widget.step.imageId != null) {
+      imageId = await AsyncValue.guard(() async {
+        final imageId = await ref
+            .read(ideasRepositoryProvider)
+            .deleteImage(ideaStep: widget.step);
+
+        widget.onChange(widget.step.copyWith(imageId: imageId));
+        return imageId;
+      });
+
+      imageId.whenOrNull(
+        error: (error, _) {
+          FormBuilder.of(context)
+              ?.fields[IdeaImageField.name]
+              ?.invalidate('Failed to delete an image.');
+        },
+      );
+
+      setState(() {
+        status = IdeaImageFieldStatus.readyToPick;
+        FormBuilder.of(context)?.fields[IdeaImageField.name]?.reset();
+      });
     }
   }
 
@@ -112,11 +156,7 @@ class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
             onChanged: (value) {
               if (value != null && value.isNotEmpty) {
                 setState(() {
-                  shouldShowControls = true;
-                });
-              } else {
-                setState(() {
-                  shouldShowControls = false;
+                  status = IdeaImageFieldStatus.readyToSave;
                 });
               }
             },
@@ -124,17 +164,18 @@ class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
               errorText: l10n.requiredValidatorErrorText,
             ),
           ),
-          if (shouldShowControls)
-            _IdeaImageFieldControls(
-              isUploading: imageId.isLoading,
-              onSave: uploadImage,
-              onCancel: () {
-                setState(() {
-                  shouldShowControls = false;
-                  FormBuilder.of(context)?.fields[IdeaImageField.name]?.reset();
-                });
-              },
-            ),
+          _IdeaImageFieldControls(
+            isUploading: imageId.isLoading,
+            status: status,
+            onSave: uploadImage,
+            onDelete: deleteImage,
+            onCancel: () {
+              setState(() {
+                status = IdeaImageFieldStatus.readyToPick;
+                FormBuilder.of(context)?.fields[IdeaImageField.name]?.reset();
+              });
+            },
+          ),
         ],
       ),
     );
@@ -144,13 +185,17 @@ class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
 class _IdeaImageFieldControls extends StatelessWidget {
   const _IdeaImageFieldControls({
     required this.isUploading,
+    required this.status,
     required this.onSave,
+    required this.onDelete,
     required this.onCancel,
     super.key,
   });
 
   final VoidCallback onSave;
   final VoidCallback onCancel;
+  final VoidCallback onDelete;
+  final IdeaImageFieldStatus status;
   final bool isUploading;
 
   @override
@@ -159,12 +204,20 @@ class _IdeaImageFieldControls extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8),
       child: Row(
         children: [
-          Expanded(
-            child: MaterialButton(
-              onPressed: isUploading ? null : onSave,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+          if (status == IdeaImageFieldStatus.remoteExists ||
+              status == IdeaImageFieldStatus.readyToPick)
+            Expanded(
+              child: MaterialButton(
+                onPressed: () {},
+                child: const Text('Select'),
+              ),
+            ),
+          if (status == IdeaImageFieldStatus.remoteExists)
+            Expanded(
+              child: MaterialButton(
+                onPressed: isUploading ? null : onDelete,
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   if (isUploading)
                     Container(
                       width: 12,
@@ -174,12 +227,32 @@ class _IdeaImageFieldControls extends StatelessWidget {
                         strokeWidth: 2,
                       ),
                     ),
-                  Text(isUploading ? 'Saving' : 'Save'),
-                ],
+                  Text(isUploading ? 'Deleting' : 'Delete')
+                ]),
               ),
             ),
-          ),
-          if (!isUploading)
+          if (status == IdeaImageFieldStatus.readyToSave)
+            Expanded(
+              child: MaterialButton(
+                onPressed: isUploading ? null : onSave,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (isUploading)
+                      Container(
+                        width: 12,
+                        height: 12,
+                        margin: const EdgeInsets.only(right: 8),
+                        child: const CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    Text(isUploading ? 'Saving' : 'Save'),
+                  ],
+                ),
+              ),
+            ),
+          if (!isUploading && status == IdeaImageFieldStatus.readyToSave)
             Expanded(
               child: MaterialButton(
                 onPressed: onCancel,

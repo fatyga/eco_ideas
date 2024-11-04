@@ -43,6 +43,15 @@ class UploadStepImageException extends IdeaException {
   }
 }
 
+class DeleteIdeaStepImageException extends IdeaException {
+  DeleteIdeaStepImageException(super.message);
+
+  @override
+  String resolveMessageForUser(AppLocalizations l10n) {
+    return 'Fail to delte an image';
+  }
+}
+
 class UpdateIdeaStepAddonException extends IdeaException {
   UpdateIdeaStepAddonException(super.message);
 

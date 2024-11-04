@@ -162,7 +162,6 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
         key: ValueKey('ideaStep${currentStepId}Form'),
         step: currentStep,
         onChange: onStepModification,
-        onImageChanged: uploadImage,
         onAddonChanged: updateAddon,
       ),
     );

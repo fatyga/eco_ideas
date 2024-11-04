@@ -14,14 +14,13 @@ class IdeaStepForm extends StatefulWidget {
   const IdeaStepForm({
     required this.step,
     required this.onChange,
-    required this.onImageChanged,
     required this.onAddonChanged,
     super.key,
   });
 
   final EcoIdeaStep step;
   final void Function(EcoIdeaStep step) onChange;
-  final void Function(XFile image) onImageChanged;
+
   final void Function(EcoIdeaStepAddon updatedAddon) onAddonChanged;
   @override
   State<IdeaStepForm> createState() => _IdeaStepFormState();
