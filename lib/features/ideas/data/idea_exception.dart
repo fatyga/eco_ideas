@@ -25,6 +25,15 @@ class IdeaWasNotFound extends IdeaException {
   }
 }
 
+class GetUserIdeasException extends IdeaException {
+  GetUserIdeasException(super.message);
+
+  @override
+  String resolveMessageForUser(AppLocalizations l10n) {
+    return 'Could not fetch your ideas';
+  }
+}
+
 class UpdateIdeaStepException extends IdeaException {
   UpdateIdeaStepException(super.message);
 

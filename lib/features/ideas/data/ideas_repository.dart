@@ -17,6 +17,8 @@ abstract class IdeasRepository {
 
   Future<EcoIdea?> getIdea({required String ideaId});
 
+  Future<List<EcoIdeaStep>> getUserIdeas({required String profileId});
+
   Future<EcoIdeaStep> updateIdeaStep({required EcoIdeaStep ideaStep});
 
   Future<EcoIdeaStepAddon> updateIdeaStepAddon({
