@@ -94,8 +94,8 @@ class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
             .read(ideasRepositoryProvider)
             .deleteImage(ideaStep: widget.step);
 
-        widget.onChange(widget.step.copyWith(imageId: imageId));
-        return imageId;
+        widget.onChange(widget.step.copyWith(imageId: null));
+        return null;
       });
 
       imageId.whenOrNull(

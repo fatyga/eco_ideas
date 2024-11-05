@@ -58,6 +58,9 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
     });
 
     if (shouldCreateIdeaOnFirstModification) {
+      idea = idea.copyWithPrevious(
+        AsyncData(idea.requireValue.withUpdatedStep(alteredStep)),
+      );
       idea = await AsyncValue.guard(
         () async => ref
             .read(ideasRepositoryProvider)

@@ -28,5 +28,5 @@ abstract class IdeasRepository {
     required XFile image,
   });
 
-  Future<String> deleteImage({required EcoIdeaStep ideaStep});
+  Future<void> deleteImage({required EcoIdeaStep ideaStep});
 }
