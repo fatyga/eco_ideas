@@ -7,9 +7,44 @@ class MyIdeasList extends StatelessWidget {
   final List<EcoIdeaStep> ideas;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ListView(
+      padding: const EdgeInsets.all(16),
       children: ideas.map((idea) {
-        return ListTile(title: Text(idea.title));
+        return GestureDetector(
+          onTap: () {},
+          child: Container(
+            clipBehavior: Clip.antiAlias,
+            margin: const EdgeInsets.only(bottom: 12),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerHigh,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (idea.imageUrl != null)
+                  Image.network(
+                    idea.imageUrl!,
+                    height: 160,
+                  ),
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 8),
+                      Text(
+                        idea.title,
+                        style: theme.textTheme.titleSmall,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
       }).toList(),
     );
   }

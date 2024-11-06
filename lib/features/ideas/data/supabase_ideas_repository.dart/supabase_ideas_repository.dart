@@ -55,26 +55,21 @@ class SupabaseIdeasRepository extends IdeasRepository {
       // Throw an error, when there is no idea with matching id
       if (json.isEmpty) throw IdeaWasNotFound('Temporary value');
       return EcoIdea.fromJson(json);
-    } catch (err) {
+    } on PostgrestException catch (err) {
       throw IdeaWasNotFound(err.toString());
     }
   }
 
   @override
-  Future<List<EcoIdeaStep>> getUserIdeas({required String profileId}) async {
+  Future<List<EcoIdeaStep>> getUserIdeasIntroductions({
+    required String profileId,
+  }) async {
     try {
-      final ideasIds = await ref
-          .read(supabaseClientProvider)
-          .from('idea')
-          .select<PostgrestList>()
-          .eq('profile_id', profileId);
-
       final introductions = await ref
           .read(supabaseClientProvider)
           .from('step')
-          .select<PostgrestList>()
-          // .contains('idea_id', ideasIds)
-          .match({'id': '0'});
+          .select<PostgrestList>('*, idea(profile_id)')
+          .match({'id': '0', 'idea.profile_id': profileId});
       return introductions.map(EcoIdeaStep.fromJson).toList();
     } on PostgrestException catch (error, _) {
       throw GetUserIdeasException(error.toString());
