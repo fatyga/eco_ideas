@@ -72,12 +72,18 @@ RouteBase get $homeRoute => GoRouteData.$route(
         GoRouteData.$route(
           path: 'myIdeas',
           factory: $MyIdeasRouteExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: 'ideaEditor',
-              factory: $IdeaEditorRouteExtension._fromState,
-            ),
-          ],
+        ),
+        GoRouteData.$route(
+          path: 'ideaEditor',
+          factory: $IdeaEditorRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'ideaPresenter',
+          factory: $IdeaPresenterRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'ideaIntroductor',
+          factory: $IdeaIntroductorRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'myProfile',
@@ -165,7 +171,51 @@ extension $IdeaEditorRouteExtension on IdeaEditorRoute {
       );
 
   String get location => GoRouteData.$location(
-        '/home/myIdeas/ideaEditor',
+        '/home/ideaEditor',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+extension $IdeaPresenterRouteExtension on IdeaPresenterRoute {
+  static IdeaPresenterRoute _fromState(GoRouterState state) =>
+      IdeaPresenterRoute(
+        state.extra as EcoIdea,
+      );
+
+  String get location => GoRouteData.$location(
+        '/home/ideaPresenter',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+extension $IdeaIntroductorRouteExtension on IdeaIntroductorRoute {
+  static IdeaIntroductorRoute _fromState(GoRouterState state) =>
+      IdeaIntroductorRoute(
+        state.extra as EcoIdeaStep,
+      );
+
+  String get location => GoRouteData.$location(
+        '/home/ideaIntroductor',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);

@@ -1,7 +1,5 @@
-import 'package:eco_ideas/common/providers/supabase_provider/supabase_provider.dart';
 import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
-import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/presentation/my_ideas/widgets/my_ideas_list.dart';
 import 'package:eco_ideas/features/user/user.dart';
@@ -19,20 +17,22 @@ class MyIdeasScreen extends ConsumerStatefulWidget {
 }
 
 class _MyIdeasScreenState extends ConsumerState<MyIdeasScreen> {
-  late AsyncValue<List<EcoIdeaStep>> ideas =
+  late AsyncValue<List<EcoIdeaStep>> ideasIntroductions =
       const AsyncLoading<List<EcoIdeaStep>>();
 
   @override
   void initState() {
-    load();
+    ideasIntroductions = const AsyncLoading<List<EcoIdeaStep>>();
+    fetchIdeasIntroductions();
     super.initState();
   }
 
-  Future<void> load() async {
+  Future<void> fetchIdeasIntroductions() async {
     setState(() {
-      ideas = const AsyncLoading<List<EcoIdeaStep>>().copyWithPrevious(ideas);
+      ideasIntroductions = const AsyncLoading<List<EcoIdeaStep>>()
+          .copyWithPrevious(ideasIntroductions);
     });
-    ideas = await AsyncValue.guard<List<EcoIdeaStep>>(() async {
+    ideasIntroductions = await AsyncValue.guard<List<EcoIdeaStep>>(() async {
       final profileId = ref.read(userProfileChangesProvider).requireValue.id;
 
       return await ref
@@ -46,12 +46,16 @@ class _MyIdeasScreenState extends ConsumerState<MyIdeasScreen> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      body: ideas.when(
-        data: (ideas) => MyIdeasList(ideas: ideas),
-        error: (err, _) => Center(
-          child: Text((err as IdeaException).resolveMessageForUser(l10n)),
-        ),
-        loading: () => const Center(child: CircularProgressIndicator()),
+      body: Stack(
+        children: [
+          ideasIntroductions.when(
+            data: (ideas) => MyIdeasList(ideas: ideas),
+            error: (err, _) => Center(
+              child: Text((err as IdeaException).resolveMessageForUser(l10n)),
+            ),
+            loading: () => const Center(child: CircularProgressIndicator()),
+          ),
+        ],
       ),
     );
   }

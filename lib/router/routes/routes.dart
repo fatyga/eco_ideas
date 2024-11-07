@@ -10,8 +10,11 @@ import 'package:eco_ideas/features/explore/presentation/explore/explore_screen.d
 
 import 'package:eco_ideas/features/home/presentation/presentation.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/idea_editor_screen.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_presenter/idea_introductor.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_presenter/idea_presenter_screen.dart';
 import 'package:eco_ideas/features/ideas/presentation/my_ideas/my_ideas_screen.dart';
 import 'package:eco_ideas/features/user/presentation/modify_my_profile/modify_my_profile_screen.dart';
 import 'package:eco_ideas/features/user/presentation/my_profile/my_profile_screen.dart';
@@ -51,10 +54,10 @@ class LoadingRoute extends GoRouteData {
     TypedGoRoute<ExploreRoute>(path: ExploreScreen.path),
     TypedGoRoute<MyIdeasRoute>(
       path: MyIdeasScreen.path,
-      routes: [
-        TypedGoRoute<IdeaEditorRoute>(path: IdeaEditorScreen.routePath),
-      ],
     ),
+    TypedGoRoute<IdeaEditorRoute>(path: IdeaEditorScreen.routePath),
+    TypedGoRoute<IdeaPresenterRoute>(path: IdeaPresenterScreen.path),
+    TypedGoRoute<IdeaIntroductorRoute>(path: IdeaIntroductorScreen.path),
     TypedGoRoute<MyProfileRoute>(path: MyProfileScreen.path),
     TypedGoRoute<ModifyMyProfileRoute>(path: ModifyMyProfileScreen.path),
   ],
@@ -95,6 +98,26 @@ class IdeaEditorRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return IdeaEditorScreen(idea: $extra);
+  }
+}
+
+class IdeaPresenterRoute extends GoRouteData {
+  const IdeaPresenterRoute(this.$extra);
+  final EcoIdea $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return IdeaPresenterScreen(idea: $extra);
+  }
+}
+
+class IdeaIntroductorRoute extends GoRouteData {
+  const IdeaIntroductorRoute(this.$extra);
+  final EcoIdeaStep $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return IdeaIntroductorScreen(introduction: $extra);
   }
 }
 

@@ -46,15 +46,25 @@ class SupabaseIdeasRepository extends IdeasRepository {
   @override
   Future<EcoIdea> getIdea({required String ideaId}) async {
     try {
-      final json = await ref
+      final ideaJson = await ref
           .read(supabaseClientProvider)
           .from('idea')
-          .select<PostgrestMap>()
-          .eq('id', ideaId);
+          .select<PostgrestMap>('')
+          .eq('id', ideaId)
+          .limit(1)
+          .single();
+
+      final stepsJson = await ref
+          .read(supabaseClientProvider)
+          .from('step')
+          .select<PostgrestList>()
+          .eq('idea_id', ideaId);
 
       // Throw an error, when there is no idea with matching id
-      if (json.isEmpty) throw IdeaWasNotFound('Temporary value');
-      return EcoIdea.fromJson(json);
+      if (ideaJson.isEmpty || stepsJson.isEmpty) {
+        throw IdeaWasNotFound('Temporary value');
+      }
+      return EcoIdea.fromJson(ideaJson..addAll({'steps': stepsJson}));
     } on PostgrestException catch (err) {
       throw IdeaWasNotFound(err.toString());
     }
