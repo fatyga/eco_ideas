@@ -34,6 +34,15 @@ class GetUserIdeasException extends IdeaException {
   }
 }
 
+class GetIdeaStepAddonsException extends IdeaException {
+  GetIdeaStepAddonsException(super.message);
+
+  @override
+  String resolveMessageForUser(AppLocalizations l10n) {
+    return 'Fail to get a step.';
+  }
+}
+
 class UpdateIdeaStepException extends IdeaException {
   UpdateIdeaStepException(super.message);
 

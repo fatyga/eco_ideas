@@ -8,14 +8,14 @@ part 'eco_idea_step_addon.freezed.dart';
 part 'eco_idea_step_addon.g.dart';
 
 enum IdeaStepAddonType {
+  @JsonValue('benefit')
+  benefit,
+  @JsonValue('requirment')
+  requirment,
   @JsonValue('tip')
   tip,
   @JsonValue('warning')
-  warning,
-  @JsonValue('requirment')
-  requirment,
-  @JsonValue('benefit')
-  benefit;
+  warning;
 
   bool get isTip => this == IdeaStepAddonType.tip;
   bool get isWarning => this == IdeaStepAddonType.warning;
@@ -59,11 +59,9 @@ class EcoIdeaStepAddon with _$EcoIdeaStepAddon {
     @JsonKey(name: 'idea_id') required String ideaId,
     required String value,
   }) = _EcoIdeaStep;
-
-  const EcoIdeaStepAddon._();
-  String get fieldName =>
-      '$this.id.$this.stepId.$this.ideaId$this.type.nameAddonField';
-
   factory EcoIdeaStepAddon.fromJson(Map<String, dynamic> json) =>
       _$EcoIdeaStepAddonFromJson(json);
+
+  const EcoIdeaStepAddon._();
+  String get fieldName => '$this.id.${type.name}.$this.stepId.$this.ideaId';
 }

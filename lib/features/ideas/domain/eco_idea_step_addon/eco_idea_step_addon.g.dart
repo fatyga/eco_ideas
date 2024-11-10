@@ -25,8 +25,8 @@ Map<String, dynamic> _$$EcoIdeaStepImplToJson(_$EcoIdeaStepImpl instance) =>
     };
 
 const _$IdeaStepAddonTypeEnumMap = {
+  IdeaStepAddonType.benefit: 'benefit',
+  IdeaStepAddonType.requirment: 'requirment',
   IdeaStepAddonType.tip: 'tip',
   IdeaStepAddonType.warning: 'warning',
-  IdeaStepAddonType.requirment: 'requirment',
-  IdeaStepAddonType.benefit: 'benefit',
 };

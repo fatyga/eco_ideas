@@ -3,12 +3,13 @@ import 'package:eco_ideas/features/ideas/data/supabase_ideas_repository.dart/sup
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'ideas_repository.g.dart';
 
 @riverpod
-SupabaseIdeasRepository ideasRepository(IdeasRepositoryRef ref) =>
+SupabaseIdeasRepository ideasRepository(Ref ref) =>
     SupabaseIdeasRepository(ref);
 
 abstract class IdeasRepository {
@@ -20,6 +21,8 @@ abstract class IdeasRepository {
   Future<List<EcoIdeaStep>> getUserIdeasIntroductions(
       {required String profileId});
 
+  Future<List<Map<String, dynamic>>> getIdeaStepAddons(
+      {required int id, required String ideaId});
   Future<EcoIdeaStep> updateIdeaStep({required EcoIdeaStep ideaStep});
 
   Future<EcoIdeaStepAddon> updateIdeaStepAddon({

@@ -9,16 +9,6 @@ part 'eco_idea_step.g.dart';
 
 @freezed
 class EcoIdeaStep with _$EcoIdeaStep {
-  factory EcoIdeaStep.fromJson(Map<String, dynamic> json) =>
-      _$EcoIdeaStepFromJson(json);
-
-  factory EcoIdeaStep.empty({required int id, required String ideaId}) =>
-      EcoIdeaStep(
-        id: id,
-        ideaId: ideaId,
-      );
-  const EcoIdeaStep._();
-
   const factory EcoIdeaStep({
     required int id,
     @JsonKey(name: 'idea_id') required String ideaId,
@@ -31,8 +21,25 @@ class EcoIdeaStep with _$EcoIdeaStep {
     )
     List<EcoIdeaStepAddon> addons,
   }) = _EcoIdeaStep;
+  factory EcoIdeaStep.fromJson(Map<String, dynamic> json) =>
+      _$EcoIdeaStepFromJson(json);
+
+  factory EcoIdeaStep.empty({required int id, required String ideaId}) =>
+      EcoIdeaStep(
+        id: id,
+        ideaId: ideaId,
+      );
+  const EcoIdeaStep._();
 
   String? get imageUrl => imageId == null
       ? null
       : '${dotenv.env['IDEA_STEP_IMAGE_URL_BASE']}/$ideaId/$imageId.png';
+
+  List<IdeaStepAddonType> get availableAddonTypes {
+    if (id == 0) {
+      return IdeaStepAddonType.values;
+    } else {
+      return [IdeaStepAddonType.tip, IdeaStepAddonType.warning];
+    }
+  }
 }

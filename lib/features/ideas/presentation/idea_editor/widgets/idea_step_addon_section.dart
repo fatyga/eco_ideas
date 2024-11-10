@@ -72,7 +72,9 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
                 ),
                 if (values.isNotEmpty)
                   _IdeaStepAddonSubpoints(
-                      values: values, onSubmit: widget.onSubmit),
+                    values: values,
+                    onSubmit: widget.onSubmit,
+                  ),
               ],
             ),
           );
@@ -86,7 +88,6 @@ class _IdeaStepAddonHeader extends StatelessWidget {
   const _IdeaStepAddonHeader({
     required this.addonType,
     required this.onAddTap,
-    super.key,
   });
   final IdeaStepAddonType addonType;
   final void Function() onAddTap;
@@ -130,7 +131,6 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
   const _IdeaStepAddonSubpoints({
     required this.values,
     required this.onSubmit,
-    super.key,
   });
 
   final List<EcoIdeaStepAddon> values;

@@ -1,4 +1,3 @@
-import 'package:cross_file/cross_file.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
 
@@ -88,93 +87,33 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                   },
                 ),
                 const SizedBox(height: 24),
-                if (widget.step.id == 0) ...[
-                  IdeaStepAddonSection(
-                    step: widget.step,
-                    addonType: IdeaStepAddonType.benefit,
-                    onSubmit: (addon) {
-                      final field = _formKey
-                          .currentState!.fields[addon.fieldName]
-                        ?..validate();
+                ...widget.step.availableAddonTypes.map((addonType) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: IdeaStepAddonSection(
+                      step: widget.step,
+                      addonType: addonType,
+                      onSubmit: (addon) {
+                        final field = _formKey
+                            .currentState!.fields[addon.fieldName]
+                          ?..validate();
 
-                      if (field != null && field.isValid) {
-                        field.save();
+                        if (field != null && field.isValid) {
+                          field.save();
 
-                        widget.onAddonChanged(
-                          addon.copyWith(value: field.value as String),
-                        );
-                      }
-                    },
-                    initialValues: widget.step.addons
-                        .where(
-                          (addon) => addon.type.isBenefit,
-                        )
-                        .toList(),
-                  ),
-                  const SizedBox(height: 16),
-                  IdeaStepAddonSection(
-                    step: widget.step,
-                    addonType: IdeaStepAddonType.requirment,
-                    onSubmit: (addon) {
-                      final field = _formKey
-                          .currentState!.fields[addon.fieldName]
-                        ?..validate();
-
-                      if (field != null && field.isValid) {
-                        field.save();
-
-                        widget.onAddonChanged(
-                          addon.copyWith(value: field.value as String),
-                        );
-                      }
-                    },
-                    initialValues: widget.step.addons
-                        .where(
-                          (addon) => addon.type.isRequirment,
-                        )
-                        .toList(),
-                  ),
-                  const SizedBox(height: 16),
-                ],
-                IdeaStepAddonSection(
-                  step: widget.step,
-                  addonType: IdeaStepAddonType.tip,
-                  onSubmit: (addon) {
-                    final field = _formKey.currentState!.fields[addon.fieldName]
-                      ?..validate();
-
-                    if (field != null && field.isValid) {
-                      field.save();
-
-                      widget.onAddonChanged(
-                        addon.copyWith(value: field.value as String),
-                      );
-                    }
-                  },
-                  initialValues: widget.step.addons
-                      .where((addon) => addon.type.isTip)
-                      .toList(),
-                ),
-                const SizedBox(height: 16),
-                IdeaStepAddonSection(
-                  step: widget.step,
-                  addonType: IdeaStepAddonType.warning,
-                  onSubmit: (addon) {
-                    final field = _formKey.currentState!.fields[addon.fieldName]
-                      ?..validate();
-
-                    if (field != null && field.isValid) {
-                      field.save();
-
-                      widget.onAddonChanged(
-                        addon.copyWith(value: field.value as String),
-                      );
-                    }
-                  },
-                  initialValues: widget.step.addons
-                      .where((addon) => addon.type.isWarning)
-                      .toList(),
-                ),
+                          widget.onAddonChanged(
+                            addon.copyWith(value: field.value as String),
+                          );
+                        }
+                      },
+                      initialValues: widget.step.addons
+                          .where(
+                            (addon) => addon.type == addonType,
+                          )
+                          .toList(),
+                    ),
+                  );
+                }),
                 const SizedBox(height: 72),
               ],
             ),

@@ -90,21 +90,13 @@ class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
 
     if (widget.step.imageId != null) {
       imageId = await AsyncValue.guard(() async {
-        final imageId = await ref
+        await ref
             .read(ideasRepositoryProvider)
             .deleteImage(ideaStep: widget.step);
 
         widget.onChange(widget.step.copyWith(imageId: null));
         return null;
       });
-
-      imageId.whenOrNull(
-        error: (error, _) {
-          FormBuilder.of(context)
-              ?.fields[IdeaImageField.name]
-              ?.invalidate('Failed to delete an image.');
-        },
-      );
 
       setState(() {
         status = IdeaImageFieldStatus.readyToPick;
@@ -117,6 +109,14 @@ class _IdeaImageFieldState extends ConsumerState<IdeaImageField> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = context.l10n;
+
+    imageId.whenOrNull(
+      error: (error, _) {
+        FormBuilder.of(context)
+            ?.fields[IdeaImageField.name]
+            ?.invalidate('Failed to delete an image.');
+      },
+    );
 
     return Container(
       clipBehavior: Clip.antiAlias,
