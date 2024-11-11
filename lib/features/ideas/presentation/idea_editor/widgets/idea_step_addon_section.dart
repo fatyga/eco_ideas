@@ -52,30 +52,33 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
                     borderRadius: BorderRadius.circular(6),
                   ),
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-            child: Column(
-              children: [
-                _IdeaStepAddonHeader(
-                  addonType: widget.addonType,
-                  onAddTap: () {
-                    setState(() {
-                      values.add(
-                        EcoIdeaStepAddon(
-                          id: values.length,
-                          type: widget.addonType,
-                          stepId: widget.step.id,
-                          ideaId: widget.step.ideaId,
-                          value: '',
-                        ),
-                      );
-                    });
-                  },
-                ),
-                if (values.isNotEmpty)
-                  _IdeaStepAddonSubpoints(
-                    values: values,
-                    onSubmit: widget.onSubmit,
+            child: Opacity(
+              opacity: values.isEmpty ? 0.8 : 1,
+              child: Column(
+                children: [
+                  _IdeaStepAddonHeader(
+                    addonType: widget.addonType,
+                    onAddTap: () {
+                      setState(() {
+                        values.add(
+                          EcoIdeaStepAddon(
+                            id: values.length,
+                            type: widget.addonType,
+                            stepId: widget.step.id,
+                            ideaId: widget.step.ideaId,
+                            value: '',
+                          ),
+                        );
+                      });
+                    },
                   ),
-              ],
+                  if (values.isNotEmpty)
+                    _IdeaStepAddonSubpoints(
+                      values: values,
+                      onSubmit: widget.onSubmit,
+                    ),
+                ],
+              ),
             ),
           );
         },

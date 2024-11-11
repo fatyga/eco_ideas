@@ -20,7 +20,7 @@ class IdeaPresenterAddonSection extends StatefulWidget {
 }
 
 class _IdeaPresenterAddonSectionState extends State<IdeaPresenterAddonSection> {
-  bool isExpanded = false;
+  bool isExpanded = true;
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +36,13 @@ class _IdeaPresenterAddonSectionState extends State<IdeaPresenterAddonSection> {
         builder: (context) {
           final theme = Theme.of(context);
           return Container(
-            decoration: widget.values.isEmpty
+            decoration: widget.values.isEmpty || !isExpanded
                 ? null
                 : BoxDecoration(
                     color: Theme.of(context).colorScheme.surfaceContainerHigh,
                     borderRadius: BorderRadius.circular(6),
                   ),
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: Column(
               children: [
                 Padding(
@@ -81,13 +81,40 @@ class _IdeaPresenterAddonSectionState extends State<IdeaPresenterAddonSection> {
                     ],
                   ),
                 ),
-                if (widget.values.isNotEmpty && !isExpanded)
-                  ...widget.values.map((addon) => Text(addon.value))
+                if (widget.values.isNotEmpty && isExpanded)
+                  _IdeaPresenterAddonSubpoints(
+                    values: widget.values.map((addon) => addon.value).toList(),
+                  ),
               ],
             ),
           );
         },
       ),
+    );
+  }
+}
+
+class _IdeaPresenterAddonSubpoints extends StatelessWidget {
+  const _IdeaPresenterAddonSubpoints({required this.values});
+
+  final List<String> values;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: values
+          .map(
+            (value) => Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
+              child: Row(
+                children: [
+                  const Icon(Icons.circle, size: 6),
+                  const SizedBox(width: 8),
+                  Text(value),
+                ],
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }

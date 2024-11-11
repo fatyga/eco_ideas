@@ -6,14 +6,14 @@ class StepIndicator extends ConsumerWidget {
     required this.currentStepId,
     required this.lastStepId,
     required this.onStepIdChange,
-    required this.onStepAdd,
+    this.onStepAdd,
     super.key,
   });
 
   final int currentStepId;
   final int lastStepId;
   final void Function(int stepId) onStepIdChange;
-  final VoidCallback onStepAdd;
+  final VoidCallback? onStepAdd;
 
   void nextStep() => onStepIdChange(currentStepId + 1);
   void previousStep() => onStepIdChange(currentStepId - 1);
@@ -42,7 +42,7 @@ class StepIndicator extends ConsumerWidget {
               onPressed: nextStep,
               icon: const Icon(Icons.arrow_forward),
             ),
-          if (currentStepId == lastStepId)
+          if (currentStepId == lastStepId && onStepAdd != null)
             IconButton(
               onPressed: onStepAdd,
               icon: const Icon(Icons.add),

@@ -6,6 +6,7 @@ import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart
 
 import 'package:eco_ideas/features/ideas/presentation/idea_presenter/widgets/idea_image.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_presenter/widgets/idea_step_addon_section.dart';
+import 'package:eco_ideas/features/user/user.dart';
 import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,7 +24,7 @@ class IdeaIntroductorScreen extends ConsumerStatefulWidget {
 
 class _IdeaIntroductorScreenState extends ConsumerState<IdeaIntroductorScreen> {
   AsyncValue<EcoIdea?> idea = const AsyncData<EcoIdea?>(null);
-
+  bool forEdit = false;
   Future<void> loadIdea() async {
     setState(() {
       idea = const AsyncLoading<EcoIdea?>();
@@ -45,7 +46,11 @@ class _IdeaIntroductorScreenState extends ConsumerState<IdeaIntroductorScreen> {
     idea
       ..whenData((idea) {
         if (idea != null) {
-          IdeaEditorRoute(idea).go(context);
+          if (forEdit) {
+            IdeaEditorRoute(idea).go(context);
+          } else {
+            IdeaPresenterRoute(idea).go(context);
+          }
         }
       })
       ..showSnackBarOnError(context);
@@ -66,11 +71,14 @@ class _IdeaIntroductorScreenState extends ConsumerState<IdeaIntroductorScreen> {
           Text(widget.introduction.description),
           const SizedBox(height: 32),
           ...widget.introduction.availableAddonTypes.map((addonType) {
-            return IdeaPresenterAddonSection(
-              addon: addonType,
-              values: widget.introduction.addons
-                  .where((addon) => addon.type == addonType)
-                  .toList(),
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: IdeaPresenterAddonSection(
+                addon: addonType,
+                values: widget.introduction.addons
+                    .where((addon) => addon.type == addonType)
+                    .toList(),
+              ),
             );
           }),
         ],
@@ -80,9 +88,23 @@ class _IdeaIntroductorScreenState extends ConsumerState<IdeaIntroductorScreen> {
         padding: const EdgeInsets.all(16),
         child: PrimaryButton(
           isLoading: idea.isLoading,
-          onPressed: loadIdea,
+          onPressed: () {
+            setState(() {
+              forEdit = false;
+            });
+            loadIdea();
+          },
           child: const Text('Open'),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            forEdit = true;
+          });
+          loadIdea();
+        },
+        child: const Icon(Icons.edit),
       ),
     );
   }
