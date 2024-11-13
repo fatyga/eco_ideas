@@ -1,4 +1,3 @@
-import 'package:cross_file/cross_file.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/l10n/l10n.dart';

@@ -9,10 +9,10 @@ import 'package:eco_ideas/features/ideas/domain/eco_idea/mutable_eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/mutable_eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/editor_step_indicator.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_editor_save_button.dart';
 
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_form.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/step_indicator.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

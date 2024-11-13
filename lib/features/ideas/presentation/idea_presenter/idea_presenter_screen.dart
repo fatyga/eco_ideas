@@ -1,13 +1,14 @@
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/step_indicator.dart';
+import 'package:eco_ideas/features/ideas/presentation/common/editor_step_indicator.dart';
+
 import 'package:eco_ideas/features/ideas/presentation/idea_presenter/widgets/idea_step_content.dart';
 import 'package:flutter/material.dart';
 
 class IdeaPresenterScreen extends StatefulWidget {
   const IdeaPresenterScreen({
     required this.idea,
-    this.initialStepId = 1,
+    this.initialStepId = 0,
     super.key,
   });
 

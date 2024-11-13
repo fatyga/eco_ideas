@@ -109,7 +109,11 @@ class _IdeaPresenterAddonSubpoints extends StatelessWidget {
                 children: [
                   const Icon(Icons.circle, size: 6),
                   const SizedBox(width: 8),
-                  Text(value),
+                  Expanded(
+                    child: Text(
+                      value,
+                    ),
+                  ),
                 ],
               ),
             ),

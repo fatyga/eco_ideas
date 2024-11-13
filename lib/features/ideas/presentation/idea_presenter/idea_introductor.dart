@@ -6,7 +6,7 @@ import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart
 
 import 'package:eco_ideas/features/ideas/presentation/idea_presenter/widgets/idea_image.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_presenter/widgets/idea_step_addon_section.dart';
-import 'package:eco_ideas/features/user/user.dart';
+
 import 'package:eco_ideas/router/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -57,7 +57,19 @@ class _IdeaIntroductorScreenState extends ConsumerState<IdeaIntroductorScreen> {
 
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: () {
+              setState(() {
+                forEdit = true;
+              });
+              loadIdea();
+            },
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.only(left: 16, right: 16),
         children: [
@@ -96,15 +108,6 @@ class _IdeaIntroductorScreenState extends ConsumerState<IdeaIntroductorScreen> {
           },
           child: const Text('Open'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            forEdit = true;
-          });
-          loadIdea();
-        },
-        child: const Icon(Icons.edit),
       ),
     );
   }

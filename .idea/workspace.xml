@@ -10,17 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3416c2ad-4a83-42f4-b66f-fbbfb47e6f5e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.metadata" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/.last_build_id" beforeDir="false" afterPath="$PROJECT_DIR$/build/.last_build_id" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/ideas/data/ideas_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/ideas/data/ideas_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/ideas/data/supabase_ideas_repository.dart/supabase_ideas_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/ideas/data/supabase_ideas_repository.dart/supabase_ideas_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/ideas/domain/eco_idea_step/eco_idea_step.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/ideas/domain/eco_idea_step/eco_idea_step.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/ideas/domain/eco_idea_step/eco_idea_step.freezed.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/ideas/domain/eco_idea_step/eco_idea_step.freezed.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/ideas/domain/eco_idea_step/eco_idea_step.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/ideas/domain/eco_idea_step/eco_idea_step.g.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/ideas/presentation/idea_editor/form_fields/image_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/ideas/presentation/idea_editor/form_fields/image_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/ideas/presentation/idea_editor/idea_editor_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/ideas/presentation/idea_editor/idea_editor_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/ideas/presentation/idea_editor/form_fields/title_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/ideas/presentation/idea_editor/form_fields/title_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/ideas/presentation/idea_presenter/idea_presenter_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/ideas/presentation/idea_presenter/idea_presenter_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +56,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "BundleExportedModule": "eco_ideas",
+    "Flutter.main.dart.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -73,7 +69,7 @@
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/mfatyga/Documents/github_repos/eco_ideas",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>

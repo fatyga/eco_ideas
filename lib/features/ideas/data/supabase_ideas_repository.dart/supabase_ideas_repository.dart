@@ -59,7 +59,8 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .read(supabaseClientProvider)
           .from('step')
           .select<PostgrestList>()
-          .eq('idea_id', ideaId);
+          .eq('idea_id', ideaId)
+          .order('id', ascending: true);
 
       for (final step in stepsJson) {
         final addons = await getIdeaStepAddons(
@@ -118,7 +119,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .read(supabaseClientProvider)
           .from('step_addon')
           .select<PostgrestList>()
-          .match({'id': id, 'idea_id': ideaId});
+          .match({'id': id, 'idea_id': ideaId}).order('id', ascending: true);
 
       return addonsJson;
     } on PostgrestException catch (error, _) {
