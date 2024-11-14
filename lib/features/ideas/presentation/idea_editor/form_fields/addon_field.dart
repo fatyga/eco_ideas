@@ -29,9 +29,6 @@ class IdeaAddonField extends StatelessWidget {
         style: const TextStyle(fontSize: 14),
         decoration: const InputDecoration(
           isCollapsed: true,
-          contentPadding: EdgeInsets.only(bottom: 4),
-          icon: Icon(Icons.circle, size: 6),
-          border: UnderlineInputBorder(),
         ),
         validator: FormBuilderValidators.compose([
           FormBuilderValidators.required(

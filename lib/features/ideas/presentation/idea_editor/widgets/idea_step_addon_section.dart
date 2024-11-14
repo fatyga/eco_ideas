@@ -55,6 +55,7 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
             child: Opacity(
               opacity: values.isEmpty ? 0.8 : 1,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   _IdeaStepAddonHeader(
                     addonType: widget.addonType,
@@ -73,9 +74,11 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
                     },
                   ),
                   if (values.isNotEmpty)
-                    _IdeaStepAddonSubpoints(
-                      values: values,
-                      onSubmit: widget.onSubmit,
+                    Flexible(
+                      child: _IdeaStepAddonSubpoints(
+                        values: values,
+                        onSubmit: widget.onSubmit,
+                      ),
                     ),
                 ],
               ),
@@ -141,19 +144,45 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
-      child: Column(
-        children: values
-            .map(
-              (addon) => IdeaAddonField(
-                key: ValueKey(addon.fieldName),
-                initialValue: addon.value,
-                name: addon.fieldName,
-                onSubmit: () => onSubmit(addon),
+      padding: const EdgeInsets.only(left: 12, right: 12),
+      child: ReorderableList(
+        shrinkWrap: true,
+        itemCount: values.length,
+        onReorder: (oldIndex, newIndex) {},
+        itemBuilder: (context, index) => ReorderableDragStartListener(
+          key: ValueKey(values[index].fieldName),
+          index: index,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: Material(
+              borderRadius: BorderRadius.circular(10),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                child: Row(
+                  children: [
+                    const Icon(Icons.reorder, size: 16),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: IdeaAddonField(
+                        key: ValueKey(values[index].fieldName),
+                        initialValue: values[index].value,
+                        name: values[index].fieldName,
+                        onSubmit: () => onSubmit(values[index]),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    IconButton(
+                      icon: const Icon(Icons.delete, size: 16),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
               ),
-            )
-            .toList(),
+            ),
+          ),
+        ),
       ),
     );
   }
