@@ -171,6 +171,19 @@ class SupabaseIdeasRepository extends IdeasRepository {
     }
   }
 
+  @override
+  Future<void> deleteAddon({required EcoIdeaStepAddon addon}) async {
+    try {
+      await ref.read(supabaseClientProvider).from('step_addon').delete().match({
+        'id': addon.id,
+        'step_id': addon.stepId,
+        'type': addon.type.toString(),
+      });
+    } on PostgrestException catch (e, _) {
+      throw DeleteAddonException(e.message);
+    }
+  }
+
   // Idea step image
   @override
   Future<String> uploadImage({

@@ -44,23 +44,9 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
               children: [
                 const SizedBox(height: 12),
                 IdeaTitleField(
-                  key: ValueKey('ideaStep${widget.step.id}FormTitleField'),
-                  initialValue: widget.step.title,
-                  onSubmit: () {
-                    final field = _formKey
-                        .currentState!.fields[IdeaTitleField.name]
-                      ?..validate();
-
-                    if (field != null &&
-                        field.isValid &&
-                        field.value != widget.step.title) {
-                      field.save();
-                      widget.onChange(
-                        widget.step.copyWith(
-                          title: field.value as String,
-                        ),
-                      );
-                    }
+                  step: widget.step,
+                  onChange: (updatedIdea) {
+                    widget.onChange(updatedIdea);
                   },
                 ),
                 const SizedBox(height: 12),

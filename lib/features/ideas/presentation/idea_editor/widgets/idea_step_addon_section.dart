@@ -151,34 +151,35 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
         shrinkWrap: true,
         itemCount: values.length,
         onReorder: (oldIndex, newIndex) {},
-        itemBuilder: (context, index) => ReorderableDragStartListener(
+        itemBuilder: (context, index) => Padding(
           key: ValueKey(values[index].fieldName),
-          index: index,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Material(
-              borderRadius: BorderRadius.circular(10),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                child: Row(
-                  children: [
-                    const Icon(Icons.reorder, size: 16),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: IdeaAddonField(
-                        key: ValueKey(values[index].fieldName),
-                        initialValue: values[index].value,
-                        name: values[index].fieldName,
-                        onSubmit: () => onSubmit(values[index]),
-                      ),
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Material(
+            borderRadius: BorderRadius.circular(10),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+              child: Row(
+                children: [
+                  ReorderableDragStartListener(
+                    key: ValueKey(values[index].fieldName),
+                    index: index,
+                    child: const Icon(Icons.reorder, size: 16),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: IdeaAddonField(
+                      key: ValueKey(values[index].fieldName),
+                      initialValue: values[index].value,
+                      name: values[index].fieldName,
+                      onSubmit: () => onSubmit(values[index]),
                     ),
-                    const SizedBox(width: 16),
-                    IconButton(
-                      icon: const Icon(Icons.delete, size: 16),
-                      onPressed: () {},
-                    )
-                  ],
-                ),
+                  ),
+                  const SizedBox(width: 16),
+                  IconButton(
+                    icon: const Icon(Icons.delete, size: 16),
+                    onPressed: () {},
+                  ),
+                ],
               ),
             ),
           ),

@@ -18,16 +18,21 @@ abstract class IdeasRepository {
 
   Future<EcoIdea?> getIdea({required String ideaId});
 
-  Future<List<EcoIdeaStep>> getUserIdeasIntroductions(
-      {required String profileId});
+  Future<List<EcoIdeaStep>> getUserIdeasIntroductions({
+    required String profileId,
+  });
 
-  Future<List<Map<String, dynamic>>> getIdeaStepAddons(
-      {required int id, required String ideaId});
+  Future<List<Map<String, dynamic>>> getIdeaStepAddons({
+    required int id,
+    required String ideaId,
+  });
   Future<EcoIdeaStep> updateIdeaStep({required EcoIdeaStep ideaStep});
 
   Future<EcoIdeaStepAddon> updateIdeaStepAddon({
     required EcoIdeaStepAddon ideaStepAddon,
   });
+
+  Future<void> deleteAddon({required EcoIdeaStepAddon addon});
 
   Future<String> uploadImage({
     required EcoIdeaStep ideaStep,

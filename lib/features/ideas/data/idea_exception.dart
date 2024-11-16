@@ -39,7 +39,7 @@ class GetIdeaStepAddonsException extends IdeaException {
 
   @override
   String resolveMessageForUser(AppLocalizations l10n) {
-    return 'Fail to get a step.';
+    return 'Fail to get a the step.';
   }
 }
 
@@ -48,7 +48,16 @@ class UpdateIdeaStepException extends IdeaException {
 
   @override
   String resolveMessageForUser(AppLocalizations l10n) {
-    return 'Fail to update step.';
+    return 'Fail to update the step.';
+  }
+}
+
+class DeleteAddonException extends IdeaException {
+  DeleteAddonException(super.message);
+
+  @override
+  String resolveMessageForUser(AppLocalizations l10n) {
+    return 'Fail to delete the addon.';
   }
 }
 
