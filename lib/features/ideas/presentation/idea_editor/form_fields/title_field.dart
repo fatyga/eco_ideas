@@ -23,15 +23,15 @@ class IdeaTitleField extends ConsumerStatefulWidget {
 }
 
 class _IdeaTitleFieldState extends ConsumerState<IdeaTitleField> {
-  final _textFieldKey = GlobalKey<FormBuilderFieldState>();
-  late AsyncValue<String?> submission;
+  final _fieldKey = GlobalKey<FormBuilderFieldState>();
+  late AsyncValue<String> submission;
 
   Future<void> submit() async {
-    final field = _textFieldKey.currentState?..validate();
+    final field = _fieldKey.currentState?..validate();
 
     if (field != null && field.isValid && field.value != widget.step.title) {
       setState(() {
-        submission = const AsyncLoading<String?>().copyWithPrevious(submission);
+        submission = const AsyncLoading<String>().copyWithPrevious(submission);
       });
 
       submission = await AsyncValue.guard(() async {
@@ -40,8 +40,8 @@ class _IdeaTitleFieldState extends ConsumerState<IdeaTitleField> {
                   ideaStep: widget.step.copyWith(title: field.value as String),
                 );
 
+        field.save();
         widget.onChange(updatedStep);
-
         return updatedStep.title;
       });
 
@@ -51,7 +51,7 @@ class _IdeaTitleFieldState extends ConsumerState<IdeaTitleField> {
 
   @override
   void initState() {
-    submission = AsyncData<String?>(widget.step.title);
+    submission = AsyncData<String>(widget.step.title);
     super.initState();
   }
 
@@ -59,8 +59,7 @@ class _IdeaTitleFieldState extends ConsumerState<IdeaTitleField> {
   Widget build(BuildContext context) {
     submission.whenOrNull(
       error: (error, _) {
-        _textFieldKey.currentState
-            ?.invalidate((error as IdeaException).message);
+        _fieldKey.currentState?.invalidate((error as IdeaException).message);
       },
     );
     final l10n = context.l10n;
@@ -69,7 +68,7 @@ class _IdeaTitleFieldState extends ConsumerState<IdeaTitleField> {
         if (!value) submit();
       },
       child: FormBuilderTextField(
-        key: _textFieldKey,
+        key: _fieldKey,
         name: IdeaTitleField.name,
         initialValue: widget.step.title,
         onEditingComplete: submit,
