@@ -1,6 +1,6 @@
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/addon_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/editor_fields/addon_field.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -10,15 +10,13 @@ class IdeaStepAddonSection extends StatefulWidget {
   const IdeaStepAddonSection({
     required this.step,
     required this.addonType,
-    required this.onSubmit,
-    this.initialValues = const [],
+    required this.onChange,
     super.key,
   });
 
   final EcoIdeaStep step;
   final IdeaStepAddonType addonType;
-  final List<EcoIdeaStepAddon> initialValues;
-  final void Function(EcoIdeaStepAddon addon) onSubmit;
+  final void Function(EcoIdeaStepAddon addon) onChange;
 
   @override
   State<IdeaStepAddonSection> createState() => _IdeaStepAddonSectionState();
@@ -29,7 +27,11 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
 
   @override
   void initState() {
-    values = widget.initialValues;
+    values = widget.step.addons
+        .where(
+          (addon) => addon.type == widget.addonType,
+        )
+        .toList();
     super.initState();
   }
 
@@ -77,7 +79,7 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
                     Flexible(
                       child: _IdeaStepAddonSubpoints(
                         values: values,
-                        onSubmit: widget.onSubmit,
+                        onSubmit: widget.onChange,
                       ),
                     ),
                 ],
@@ -168,10 +170,8 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: IdeaAddonField(
-                      key: ValueKey(values[index].fieldName),
-                      initialValue: values[index].value,
-                      name: values[index].fieldName,
-                      onSubmit: () => onSubmit(values[index]),
+                      stepAddon: values[index],
+                      onChange: onSubmit,
                     ),
                   ),
                   const SizedBox(width: 16),

@@ -7,8 +7,6 @@ import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea/mutable_eco_idea.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
-import 'package:eco_ideas/features/ideas/domain/eco_idea_step/mutable_eco_idea_step.dart';
-import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
 import 'package:eco_ideas/features/ideas/presentation/common/editor_step_indicator.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_editor_save_button.dart';
 
@@ -53,11 +51,11 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
   }
 
   Future<void> onStepModification(EcoIdeaStep alteredStep) async {
-    setState(() {
-      idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
-    });
-
     if (shouldCreateIdeaOnFirstModification) {
+      setState(() {
+        idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
+      });
+
       idea = idea.copyWithPrevious(
         AsyncData(idea.requireValue.withUpdatedStep(alteredStep)),
       );
@@ -67,49 +65,13 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
             .createIdea(idea: idea.requireValue),
       );
 
+      if (mounted) {
+        idea.showSnackBarOnError(context);
+      }
+
       shouldCreateIdeaOnFirstModification = false;
     } else {
-      idea = await AsyncValue.guard(() async {
-        final updatedStep = await ref
-            .read(ideasRepositoryProvider)
-            .updateIdeaStep(ideaStep: alteredStep);
-        return idea.requireValue.withUpdatedStep(updatedStep);
-      });
-    }
-
-    if (mounted) {
-      idea.showSnackBarOnError(context);
-    }
-
-    setState(() {});
-  }
-
-  Future<void> updateAddon(EcoIdeaStepAddon ideaStepAddon) async {
-    setState(() {
-      idea = const AsyncLoading<EcoIdea>().copyWithPrevious(idea);
-    });
-
-    //TODO(fatyga): Fix case where createIdea fails
-    if (shouldCreateIdeaOnFirstModification) {
-      idea = await AsyncValue.guard(
-        () async => ref
-            .read(ideasRepositoryProvider)
-            .createIdea(idea: idea.requireValue),
-      );
-
-      shouldCreateIdeaOnFirstModification = false;
-    }
-    idea = await AsyncValue.guard(() async {
-      final updatedAddon = await ref
-          .read(ideasRepositoryProvider)
-          .updateIdeaStepAddon(ideaStepAddon: ideaStepAddon);
-
-      return idea.requireValue
-          .withUpdatedStep(currentStep.withUpdatedAddon(updatedAddon));
-    });
-
-    if (mounted) {
-      idea.showSnackBarOnError(context);
+      idea = AsyncData(widget.idea!.withUpdatedStep(alteredStep));
     }
 
     setState(() {});
@@ -165,7 +127,6 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
         key: ValueKey('ideaStep${currentStepId}Form'),
         step: currentStep,
         onChange: onStepModification,
-        onAddonChanged: updateAddon,
       ),
     );
   }

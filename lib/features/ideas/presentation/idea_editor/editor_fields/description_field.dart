@@ -7,29 +7,29 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
-class IdeaTitleField extends ConsumerStatefulWidget {
-  const IdeaTitleField({
-    required this.step,
-    required this.onChange,
-    super.key,
-  });
+class IdeaDescriptionField extends ConsumerStatefulWidget {
+  const IdeaDescriptionField(
+      {required this.onChange, required this.step, super.key});
 
+  static const String name = 'description';
   final EcoIdeaStep step;
-  static const String name = 'title';
-  final void Function(EcoIdeaStep) onChange;
+  final void Function(EcoIdeaStep updatedStep) onChange;
 
   @override
-  ConsumerState<IdeaTitleField> createState() => _IdeaTitleFieldState();
+  ConsumerState<IdeaDescriptionField> createState() =>
+      _IdeaDescriptionFieldState();
 }
 
-class _IdeaTitleFieldState extends ConsumerState<IdeaTitleField> {
+class _IdeaDescriptionFieldState extends ConsumerState<IdeaDescriptionField> {
   final _fieldKey = GlobalKey<FormBuilderFieldState>();
   late AsyncValue<String> submission;
 
   Future<void> submit() async {
     final field = _fieldKey.currentState?..validate();
 
-    if (field != null && field.isValid && field.value != widget.step.title) {
+    if (field != null &&
+        field.isValid &&
+        field.value != widget.step.description) {
       setState(() {
         submission = const AsyncLoading<String>().copyWithPrevious(submission);
       });
@@ -37,12 +37,12 @@ class _IdeaTitleFieldState extends ConsumerState<IdeaTitleField> {
       submission = await AsyncValue.guard(() async {
         final updatedStep =
             await ref.read(ideasRepositoryProvider).updateIdeaStep(
-                  ideaStep: widget.step.copyWith(title: field.value as String),
+                  ideaStep:
+                      widget.step.copyWith(description: field.value as String),
                 );
-
         field.save();
         widget.onChange(updatedStep);
-        return updatedStep.title;
+        return updatedStep.description;
       });
 
       setState(() {});
@@ -51,31 +51,31 @@ class _IdeaTitleFieldState extends ConsumerState<IdeaTitleField> {
 
   @override
   void initState() {
-    submission = AsyncData<String>(widget.step.title);
+    submission = AsyncData<String>(widget.step.description);
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     submission.whenOrNull(
       error: (error, _) {
         _fieldKey.currentState?.invalidate((error as IdeaException).message);
       },
     );
-    final l10n = context.l10n;
     return Focus(
       onFocusChange: (value) {
         if (!value) submit();
       },
       child: FormBuilderTextField(
         key: _fieldKey,
-        name: IdeaTitleField.name,
-        initialValue: widget.step.title,
-        onEditingComplete: submit,
+        initialValue: widget.step.description,
+        name: IdeaDescriptionField.name,
+        maxLines: null,
         decoration: InputDecoration(
-          labelText: l10n.ideaStepTitleFieldLabelText,
-          suffixIcon:
-              submission.isLoading ? const CircularProgressIndicator() : null,
+          labelText: l10n.ideaStepDescriptionFieldLabelText,
         ),
         validator: FormBuilderValidators.compose([
           FormBuilderValidators.required(

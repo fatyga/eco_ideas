@@ -1,9 +1,9 @@
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
-import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
+import 'package:eco_ideas/features/ideas/domain/eco_idea_step/mutable_eco_idea_step.dart';
 
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/description_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/image_field.dart';
-import 'package:eco_ideas/features/ideas/presentation/idea_editor/form_fields/title_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/editor_fields/description_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/editor_fields/image_field.dart';
+import 'package:eco_ideas/features/ideas/presentation/idea_editor/editor_fields/title_field.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/widgets/idea_step_addon_section.dart';
 import 'package:flutter/material.dart';
 
@@ -13,14 +13,12 @@ class IdeaStepForm extends StatefulWidget {
   const IdeaStepForm({
     required this.step,
     required this.onChange,
-    required this.onAddonChanged,
     super.key,
   });
 
   final EcoIdeaStep step;
   final void Function(EcoIdeaStep step) onChange;
 
-  final void Function(EcoIdeaStepAddon updatedAddon) onAddonChanged;
   @override
   State<IdeaStepForm> createState() => _IdeaStepFormState();
 }
@@ -59,24 +57,9 @@ class _IdeaStepFormState extends State<IdeaStepForm> {
                     child: IdeaStepAddonSection(
                       step: widget.step,
                       addonType: addonType,
-                      onSubmit: (addon) {
-                        final field = _formKey
-                            .currentState!.fields[addon.fieldName]
-                          ?..validate();
-
-                        if (field != null && field.isValid) {
-                          field.save();
-
-                          widget.onAddonChanged(
-                            addon.copyWith(value: field.value as String),
-                          );
-                        }
+                      onChange: (addon) {
+                        widget.onChange(widget.step.withUpdatedAddon(addon));
                       },
-                      initialValues: widget.step.addons
-                          .where(
-                            (addon) => addon.type == addonType,
-                          )
-                          .toList(),
                     ),
                   );
                 }),
