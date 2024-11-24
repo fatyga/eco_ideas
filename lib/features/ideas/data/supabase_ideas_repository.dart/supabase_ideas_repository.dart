@@ -50,31 +50,17 @@ class SupabaseIdeasRepository extends IdeasRepository {
       final ideaJson = await ref
           .read(supabaseClientProvider)
           .from('idea')
-          .select<PostgrestMap>()
+          .select<PostgrestMap>('*, steps:step(*,addons:step_addon(*))')
           .eq('id', ideaId)
           .limit(1)
-          .single();
-
-      final stepsJson = await ref
-          .read(supabaseClientProvider)
-          .from('step')
-          .select<PostgrestList>()
-          .eq('idea_id', ideaId)
-          .order('id', ascending: true);
-
-      for (final step in stepsJson) {
-        final addons = await getIdeaStepAddons(
-          id: step['id'] as int,
-          ideaId: step['idea_id'] as String,
-        );
-        step['addons'] = addons;
-      }
+          .single()
+          .order('id', ascending: true, foreignTable: 'step');
 
       // Throw an error, when there is no idea with matching id
-      if (ideaJson.isEmpty || stepsJson.isEmpty) {
+      if (ideaJson.isEmpty) {
         throw IdeaWasNotFound('Temporary value');
       }
-      ideaJson['steps'] = stepsJson;
+
       return EcoIdea.fromJson(
         ideaJson,
       );
@@ -91,16 +77,8 @@ class SupabaseIdeasRepository extends IdeasRepository {
       final introductions = await ref
           .read(supabaseClientProvider)
           .from('step')
-          .select<PostgrestList>('*, idea(profile_id)')
+          .select<PostgrestList>('*, addons:step_addon(*), idea()')
           .match({'id': '0', 'idea.profile_id': profileId});
-
-      for (final step in introductions) {
-        final addons = await getIdeaStepAddons(
-          id: step['id'] as int,
-          ideaId: step['idea_id'] as String,
-        );
-        step['addons'] = addons;
-      }
 
       return introductions.map(EcoIdeaStep.fromJson).toList();
     } on PostgrestException catch (error, _) {
@@ -109,23 +87,6 @@ class SupabaseIdeasRepository extends IdeasRepository {
   }
 
   // Idea step
-  @override
-  Future<List<Map<String, dynamic>>> getIdeaStepAddons({
-    required int id,
-    required String ideaId,
-  }) async {
-    try {
-      final addonsJson = await ref
-          .read(supabaseClientProvider)
-          .from('step_addon')
-          .select<PostgrestList>()
-          .match({'id': id, 'idea_id': ideaId}).order('id', ascending: true);
-
-      return addonsJson;
-    } on PostgrestException catch (error, _) {
-      throw GetIdeaStepAddonsException(error.message);
-    }
-  }
 
   @override
   Future<EcoIdeaStep> updateIdeaStep({required EcoIdeaStep ideaStep}) async {

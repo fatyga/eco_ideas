@@ -146,7 +146,6 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(left: 12, right: 12),
       child: ReorderableList(
@@ -165,16 +164,19 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
                   ReorderableDragStartListener(
                     key: ValueKey(values[index].fieldName),
                     index: index,
-                    child: const Icon(Icons.reorder, size: 16),
+                    child: const Icon(
+                      Icons.reorder,
+                      size: 16,
+                    ),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 4),
                   Expanded(
                     child: IdeaAddonField(
                       stepAddon: values[index],
                       onChange: onSubmit,
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 4),
                   IconButton(
                     icon: const Icon(Icons.delete, size: 16),
                     onPressed: () {},

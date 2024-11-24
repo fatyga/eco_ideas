@@ -22,10 +22,6 @@ abstract class IdeasRepository {
     required String profileId,
   });
 
-  Future<List<Map<String, dynamic>>> getIdeaStepAddons({
-    required int id,
-    required String ideaId,
-  });
   Future<EcoIdeaStep> updateIdeaStep({required EcoIdeaStep ideaStep});
 
   Future<EcoIdeaStepAddon> updateIdeaStepAddon({

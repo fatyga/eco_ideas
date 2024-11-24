@@ -1,5 +1,7 @@
 import 'package:eco_ideas/l10n/l10n.dart';
+import 'package:flutter/widgets.dart';
 
+@immutable
 abstract class EIException implements Exception {
   String get message;
   String resolveMessageForUser(AppLocalizations l10n);

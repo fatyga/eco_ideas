@@ -38,23 +38,24 @@ class _IdeaIntroductorScreenState extends ConsumerState<IdeaIntroductorScreen> {
       return idea;
     });
 
+    if (mounted) {
+      idea.showSnackBarOnError(context);
+    }
+
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    idea
-      ..whenData((idea) {
-        if (idea != null) {
-          if (forEdit) {
-            IdeaEditorRoute(idea).go(context);
-          } else {
-            IdeaPresenterRoute(idea).go(context);
-          }
+    idea.whenData((idea) {
+      if (idea != null) {
+        if (forEdit) {
+          IdeaEditorRoute(idea).go(context);
+        } else {
+          IdeaPresenterRoute(idea).go(context);
         }
-      })
-      ..showSnackBarOnError(context);
-
+      }
+    });
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
