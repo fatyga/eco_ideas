@@ -70,15 +70,19 @@ class SupabaseIdeasRepository extends IdeasRepository {
   }
 
   @override
-  Future<List<EcoIdeaStep>> getUserIdeasIntroductions({
-    required String profileId,
+  Future<List<EcoIdeaStep>> getIdeasIntroductions({
+    String? profileId,
   }) async {
     try {
+      final condition = {'id': '0'};
+      if (profileId != null) {
+        condition['idea.profile_id'] = profileId;
+      }
       final introductions = await ref
           .read(supabaseClientProvider)
           .from('step')
           .select<PostgrestList>('*, addons:step_addon(*), idea()')
-          .match({'id': '0', 'idea.profile_id': profileId});
+          .match(condition);
 
       return introductions.map(EcoIdeaStep.fromJson).toList();
     } on PostgrestException catch (error, _) {

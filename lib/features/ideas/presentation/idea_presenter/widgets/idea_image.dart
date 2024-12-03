@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 class IdeaImage extends StatelessWidget {
-  const IdeaImage({required this.imageUrl, super.key});
+  const IdeaImage({required this.imageUrl, this.width, this.height, super.key});
 
   final String? imageUrl;
+  final double? width;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      width: double.infinity,
-      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainer,
-        borderRadius: BorderRadius.circular(10),
       ),
-      height: 130,
+      width: width,
+      height: height,
       child: imageUrl == null
           ? const Column(
               mainAxisAlignment: MainAxisAlignment.center,

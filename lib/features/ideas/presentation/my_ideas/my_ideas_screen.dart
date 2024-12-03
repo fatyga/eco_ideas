@@ -1,7 +1,7 @@
 import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
-import 'package:eco_ideas/features/ideas/presentation/my_ideas/widgets/my_ideas_list.dart';
+import 'package:eco_ideas/features/ideas/presentation/my_ideas/widgets/ideas_list.dart';
 import 'package:eco_ideas/features/user/user.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,7 @@ class _MyIdeasScreenState extends ConsumerState<MyIdeasScreen> {
 
       return await ref
           .read(ideasRepositoryProvider)
-          .getUserIdeasIntroductions(profileId: profileId);
+          .getIdeasIntroductions(profileId: profileId);
     });
     setState(() {});
   }
@@ -49,7 +49,7 @@ class _MyIdeasScreenState extends ConsumerState<MyIdeasScreen> {
       body: Stack(
         children: [
           ideasIntroductions.when(
-            data: (ideas) => MyIdeasList(ideas: ideas),
+            data: (ideas) => EcoIdeasList(ideas: ideas, compact: false),
             error: (err, _) => Center(
               child: Text((err as IdeaException).resolveMessageForUser(l10n)),
             ),

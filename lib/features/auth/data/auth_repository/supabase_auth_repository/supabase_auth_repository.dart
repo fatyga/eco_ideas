@@ -144,7 +144,7 @@ class SupabaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> setNewPassword({required String newPassword}) async {
+  Future<void> setNewPassword({required String newPassword}) async{
     try {
       await ref
           .read(supabaseClientProvider)
