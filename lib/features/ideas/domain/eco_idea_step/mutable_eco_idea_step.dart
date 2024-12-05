@@ -8,8 +8,11 @@ extension MutableEcoIdeaStep on EcoIdeaStep {
     if (addons.isEmpty) {
       return copyWith(addons: [updatedAddon]);
     } else {
-      if (addons.any((addon) => addon.fieldName == updatedAddon.fieldName)) {
-        addons[updatedAddon.id] = updatedAddon;
+      final index = addons
+          .indexWhere((addon) => addon.fieldName == updatedAddon.fieldName);
+
+      if (index != -1) {
+        addons[index] = updatedAddon;
       } else {
         addons.add(updatedAddon);
       }

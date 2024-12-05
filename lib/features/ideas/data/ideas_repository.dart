@@ -16,13 +16,20 @@ abstract class IdeasRepository {
   // Creates new idea and returns inserted data
   Future<EcoIdea> createIdea({required EcoIdea idea});
 
+  // Returns idea with given id or null, if it does not exist
   Future<EcoIdea?> getIdea({required String ideaId});
 
+  // Returns steps with id equal to 0
   Future<List<EcoIdeaStep>> getIdeasIntroductions({
     String? profileId,
   });
 
   Future<EcoIdeaStep> updateIdeaStep({required EcoIdeaStep ideaStep});
+
+  Future<void> reorderAddons({
+    required EcoIdeaStepAddon firstAddon,
+    required EcoIdeaStepAddon secondAddon,
+  });
 
   Future<EcoIdeaStepAddon> updateIdeaStepAddon({
     required EcoIdeaStepAddon ideaStepAddon,

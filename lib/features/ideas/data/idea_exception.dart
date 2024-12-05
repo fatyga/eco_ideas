@@ -52,6 +52,15 @@ class UpdateIdeaStepException extends IdeaException {
   }
 }
 
+class ReorderAddonsException extends IdeaException {
+  ReorderAddonsException(super.message);
+
+  @override
+  String resolveMessageForUser(AppLocalizations l10n) {
+    return 'Fail to reorder addons.';
+  }
+}
+
 class DeleteAddonException extends IdeaException {
   DeleteAddonException(super.message);
 

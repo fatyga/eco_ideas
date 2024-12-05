@@ -1,12 +1,14 @@
+import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step/eco_idea_step.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
 import 'package:eco_ideas/features/ideas/presentation/idea_editor/editor_fields/addon_field.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-class IdeaStepAddonSection extends StatefulWidget {
+class IdeaStepAddonSection extends ConsumerStatefulWidget {
   const IdeaStepAddonSection({
     required this.step,
     required this.addonType,
@@ -19,10 +21,11 @@ class IdeaStepAddonSection extends StatefulWidget {
   final void Function(EcoIdeaStepAddon addon) onChange;
 
   @override
-  State<IdeaStepAddonSection> createState() => _IdeaStepAddonSectionState();
+  ConsumerState<IdeaStepAddonSection> createState() =>
+      _IdeaStepAddonSectionState();
 }
 
-class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
+class _IdeaStepAddonSectionState extends ConsumerState<IdeaStepAddonSection> {
   late List<EcoIdeaStepAddon> values;
 
   @override
@@ -65,7 +68,7 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
                       setState(() {
                         values.add(
                           EcoIdeaStepAddon(
-                            id: values.length,
+                            id: values.isEmpty ? 0 : values.last.id + 1,
                             type: widget.addonType,
                             stepId: widget.step.id,
                             ideaId: widget.step.ideaId,
@@ -79,7 +82,9 @@ class _IdeaStepAddonSectionState extends State<IdeaStepAddonSection> {
                     Flexible(
                       child: _IdeaStepAddonSubpoints(
                         values: values,
-                        onSubmit: widget.onChange,
+                        onReorder:
+                            ref.read(ideasRepositoryProvider).reorderAddons,
+                        onChange: widget.onChange,
                       ),
                     ),
                 ],
@@ -138,11 +143,16 @@ class _IdeaStepAddonHeader extends StatelessWidget {
 class _IdeaStepAddonSubpoints extends StatelessWidget {
   const _IdeaStepAddonSubpoints({
     required this.values,
-    required this.onSubmit,
+    required this.onReorder,
+    required this.onChange,
   });
 
   final List<EcoIdeaStepAddon> values;
-  final void Function(EcoIdeaStepAddon addon) onSubmit;
+  final void Function({
+    required EcoIdeaStepAddon firstAddon,
+    required EcoIdeaStepAddon secondAddon,
+  }) onReorder;
+  final void Function(EcoIdeaStepAddon addon) onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +161,10 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
       child: ReorderableList(
         shrinkWrap: true,
         itemCount: values.length,
-        onReorder: (oldIndex, newIndex) {},
+        onReorder: (oldIndex, newIndex) => onReorder(
+          firstAddon: values[oldIndex],
+          secondAddon: values[newIndex],
+        ),
         itemBuilder: (context, index) => Padding(
           key: ValueKey(values[index].fieldName),
           padding: const EdgeInsets.symmetric(vertical: 4),
@@ -173,7 +186,7 @@ class _IdeaStepAddonSubpoints extends StatelessWidget {
                   Expanded(
                     child: IdeaAddonField(
                       stepAddon: values[index],
-                      onChange: onSubmit,
+                      onChange: onChange,
                     ),
                   ),
                   const SizedBox(width: 4),

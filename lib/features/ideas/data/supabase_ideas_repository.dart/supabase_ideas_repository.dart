@@ -45,7 +45,7 @@ class SupabaseIdeasRepository extends IdeasRepository {
   }
 
   @override
-  Future<EcoIdea> getIdea({required String ideaId}) async {
+  Future<EcoIdea?> getIdea({required String ideaId}) async {
     try {
       final ideaJson = await ref
           .read(supabaseClientProvider)
@@ -56,9 +56,9 @@ class SupabaseIdeasRepository extends IdeasRepository {
           .single()
           .order('id', ascending: true, foreignTable: 'step');
 
-      // Throw an error, when there is no idea with matching id
+      // Return null, when there is no idea with matching id
       if (ideaJson.isEmpty) {
-        throw IdeaWasNotFound('Temporary value');
+        return null;
       }
 
       return EcoIdea.fromJson(
@@ -133,6 +133,24 @@ class SupabaseIdeasRepository extends IdeasRepository {
       return EcoIdeaStepAddon.fromJson(json);
     } on PostgrestException catch (err) {
       throw UpdateIdeaStepAddonException(err.message);
+    }
+  }
+
+  @override
+  Future<void> reorderAddons({
+    required EcoIdeaStepAddon firstAddon,
+    required EcoIdeaStepAddon secondAddon,
+  }) async {
+    try {
+      await updateIdeaStepAddon(
+        ideaStepAddon: firstAddon.copyWith(value: secondAddon.value),
+      );
+
+      await updateIdeaStepAddon(
+        ideaStepAddon: secondAddon.copyWith(value: firstAddon.value),
+      );
+    } on PostgrestException catch (err) {
+      throw ReorderAddonsException(err.message);
     }
   }
 

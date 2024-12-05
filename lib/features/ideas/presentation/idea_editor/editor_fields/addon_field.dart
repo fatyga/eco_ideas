@@ -1,3 +1,4 @@
+import 'package:eco_ideas/features/ideas/data/idea_exception.dart';
 import 'package:eco_ideas/features/ideas/data/ideas_repository.dart';
 import 'package:eco_ideas/features/ideas/domain/eco_idea_step_addon/eco_idea_step_addon.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
@@ -47,6 +48,11 @@ class _IdeaAddonFieldState extends ConsumerState<IdeaAddonField> {
 
   @override
   Widget build(BuildContext context) {
+    submission.whenOrNull(
+      error: (error, _) {
+        _fieldKey.currentState?.invalidate((error as IdeaException).message);
+      },
+    );
     final l10n = context.l10n;
     return Focus(
       onFocusChange: (value) {
