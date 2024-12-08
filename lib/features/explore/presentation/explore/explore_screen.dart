@@ -41,17 +41,19 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return Scaffold(
-      body: Stack(
-        children: [
-          ideasIntroductions.when(
-            data: (ideas) => EcoIdeasList(ideas: ideas, compact: true),
-            error: (err, _) => Center(
-              child: Text((err as IdeaException).resolveMessageForUser(l10n)),
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            ideasIntroductions.when(
+              data: (ideas) => EcoIdeasList(ideas: ideas, compact: true),
+              error: (err, _) => Center(
+                child: Text((err as IdeaException).resolveMessageForUser(l10n)),
+              ),
+              loading: () => const Center(child: CircularProgressIndicator()),
             ),
-            loading: () => const Center(child: CircularProgressIndicator()),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
