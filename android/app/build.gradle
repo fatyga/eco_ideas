@@ -3,7 +3,6 @@ plugins {
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
-android.buildFeatures.buildConfig = true
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
@@ -12,8 +11,6 @@ if (localPropertiesFile.exists()) {
         localProperties.load(reader)
     }
 }
-
-
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
@@ -34,15 +31,15 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace "com.example.verygoodcore.eco_ideas"
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion "27.0.12077973"
+    ndkVersion flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     sourceSets {
@@ -58,10 +55,6 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        manifestPlaceholders += [
-                'appAuthRedirectScheme': ''
-        ]
-        multiDexEnabled true
     }
 
     signingConfigs {
@@ -118,5 +111,5 @@ flutter {
 }
 
 dependencies {
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20"
 }

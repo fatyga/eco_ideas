@@ -1,98 +1,18 @@
 {
-    "@@locale": "en",
-    "appName": "EcoIdeas",
-    "greetingText": "Welcome in ",
-    
+  "@@locale": "en",
+  "appName": "EcoIdeas",
 
+  "field_required": "Required field",
 
-    "requiredValidatorErrorText": "This field is obligatory",
-    "emailTextFieldLabelText": "Email",
-    "passwordTextFieldLabelText": "Password",
-    "passwordRetypeFieldLabelText": "Retype password",
-    "usernameTextFieldLabelText": "Username",
-    "registerTextButtonLabelText": "Don''t have an account? ",
-    "registerTextButtonActionText": "Register!",
-    "forgotPasswordButtonLabelText": "Forget password? ",
-    "forgotPasswordButtonActionText": "Change it!",
-    "aboutMeTextFieldLabelText": "About me",
-    "googleAuthButtonLabelText": "Continue with Google", 
-    "signInButtonText": "Sign In",
-    "signInLabeledDividerText": "OR",
+  "emailField_label": "Email address",
+  "emailField_validator_invalid": "Incorrect format",
+  "passwordField_label": "Password",
 
-    "passwordResetFirstStepAppBarTitleText": "Reset your password",
-    "passwordResetSecondStepAppBarTitleText": "Provide new password",
-    "passwordResetFirstStepDescription": "Please enter an email address with which your account was created.",
-    "passwordResetSecondStepDescription": "In order to finish password reset procedure, please provide new password",
-    "passwordResetLinkSentTitle": "Link was sent!",
-    "passwordResetLinkSentDescription": "We''ve sent a link to given email address. Please open it to finish the proccess of resetting password.",
-    "passwordResetConfirmButtonText": "Confirm",
-    "passwordResetExitDialogTitleText": "Are you want to cancel?",
-    "passwordResetExitDescriptionText": "Password reset procedure will fail.",
-    
-    "passwordInputEmptyErrorText": "Password can''t be empty",
-    "passwordInputTooShortErrorText": "Password is too short(at least 6 characters)",
-    "restrictedPasswordInputErrorSpecialCharacterNotPresentText": "At least one special character(!@#$%^&*) is required",
-    "restrictedPasswordInputErrorDigitNotPresent": "At least one digit(0-9) is required",
-    "restrictedPasswordInputErrorUppercaseNotPresent": "At least one uppercase letter(A-Z) is required",
-    "emailInputEmptyErrorText": "Email can''t be empty",
-    "emailInputInvalidErrorText": "Email is invalid",
-    "signUpScreenAppBarTitle": "Create an account",
-    "signUpButtonText": "Register",
-    "signUpPasswordRetypeInputMismatchErrorText": "Passwords are mismatched",
-    "signUpPasswordretypeInputemptyErrorText": "This field can''t be empty",
-    "signUpUsernameInputErrorEmptyText" : "Username can''t be empty",
-    "signUpUsernameInputErrorTooShortText": "Username is too short(at least 6 characters)",
-    "signUpConfirmEmailAppBarTitleText": "Confirm your email",
-    "signUpConfirmEmailTitle": "Activation link was sent",
-    "signUpConfirmEmailDescription": "We''ve sent you an activation link to your mailbox. Please open it to finish the process of signing up",
-    
-    "signUpCompletionFormTitle": "Express yourself!",
-    "signUpCompletionFormDescription": "Before you start using EcoIdeas, you can let other users get to know you better!",
-    "signUpCompletionFormSubmitButton": "Done!",
-     
-    "signUpCompletionDoneTitle": "Congratulations!",
-    "signUpCompletionDoneDescription": "Your account was created successfully. You can start use the app",
-    "signUpCompletionDoneButtonText": "Let''s start!", 
+  "emailSignInForm_submit": "Sign in",
+  "emailSignInForm_unknown": "Unexpected error during login",
+  "emailSignInForm_invalid_credentials": "Invalid login credentials",
 
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    },
-    "avatarDialogSaveButtonText": "Confirm",
-    "avatarDialogChangeAvatarButtonLabelText": "Change avatar",
-    "avatarDialogAddAvatarButtonLabelText": "Add avatar",
-    "avatarDialogDeleteAvatarButtonLabelText": "Delete avatar",
-    "avatarDialogCloseButtonTooltipText": "Close dialog",
-    "avatarDialogPickGalleryOptionLabelText": "gallery",
-    "avatarDialogCameraOptionLabelText": "camera",
-
-    "signUpFailSnackBarText": "Account could not be created.",
-    "updateUserFail" : "Unsuccessful attempt to update user account.",
-    "setNewPasswordFail": "Unsuccessful attempt to set new password",
-    "invalidDeepLinkSnackBarText" : "Link has expired or is invalid.",
-    "signInFailSnackBarText" : "Unsuccessful sign-in attempt.",
-    "passwordResetLinkSentFailSnackBarText": "Unsuccessful attempt to send a link.",
-    "setUpNewPasswordFailSnackBarText" : "Unsuccessful attempt to set up new password.",
-    "signOutFailSnackBarText" : "Unsuccessful attempt to sign out.",
-
-    "getUserProfileFailSnackBarText": "Unsuccessful attempt to get user profile",
-    "uploadAvatarFailSnackBarText": "Unsuccessful attempt to upload avatar",
-    "updateUserProfileFailSnackBarText": "Unsuccessful attempt to update profile",
-    
-    "homeExploreLabel": "Explore",
-    "homeMyIdeasLabel" : "My ideas",
-    "ideaStepTitleFieldLabelText": "Title",
-
-  
-
-  
-    "ideaStepTipAddonTitle": "Tips", 
-    "ideaStepBenefitAddonTitle": "How it helps the planet?",
-    "ideaStepWarningAddonTitle": "Warnings",
-    "ideaStepRequirmentAddonTitle": "What is needed?",
-
-    "ideaStepDescriptionFieldLabelText": "Description",
-    "homeProfileLabel": "My Profile",
-
-    "modifyMyProfileAppBarTitle": "Edit your profile"
+  "signInMethods_hint": "Continue with",
+  "signInScreenFooter_forgotPassword": "Forgot password?",
+  "signInScreenFooter_createAccount": "Create account"
 }
