@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10,224 +12,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appName => 'EcoIdeas';
 
   @override
-  String get greetingText => 'Welcome in ';
+  String get field_required => 'Required field';
 
   @override
-  String get requiredValidatorErrorText => 'This field is obligatory';
+  String get emailField_label => 'Email address';
 
   @override
-  String get emailTextFieldLabelText => 'Email';
+  String get emailField_validator_invalid => 'Incorrect format';
 
   @override
-  String get passwordTextFieldLabelText => 'Password';
+  String get passwordField_label => 'Password';
 
   @override
-  String get passwordRetypeFieldLabelText => 'Retype password';
+  String get emailSignInForm_submit => 'Sign in';
 
   @override
-  String get usernameTextFieldLabelText => 'Username';
+  String get emailSignInForm_unknown => 'Unexpected error during login';
 
   @override
-  String get registerTextButtonLabelText => 'Don\'\'t have an account? ';
+  String get emailSignInForm_invalid_credentials => 'Invalid login credentials';
 
   @override
-  String get registerTextButtonActionText => 'Register!';
+  String get signInMethods_hint => 'Continue with';
 
   @override
-  String get forgotPasswordButtonLabelText => 'Forget password? ';
+  String get signInScreenFooter_forgotPassword => 'Forgot password?';
 
   @override
-  String get forgotPasswordButtonActionText => 'Change it!';
-
-  @override
-  String get aboutMeTextFieldLabelText => 'About me';
-
-  @override
-  String get googleAuthButtonLabelText => 'Continue with Google';
-
-  @override
-  String get signInButtonText => 'Sign In';
-
-  @override
-  String get signInLabeledDividerText => 'OR';
-
-  @override
-  String get passwordResetFirstStepAppBarTitleText => 'Reset your password';
-
-  @override
-  String get passwordResetSecondStepAppBarTitleText => 'Provide new password';
-
-  @override
-  String get passwordResetFirstStepDescription => 'Please enter an email address with which your account was created.';
-
-  @override
-  String get passwordResetSecondStepDescription => 'In order to finish password reset procedure, please provide new password';
-
-  @override
-  String get passwordResetLinkSentTitle => 'Link was sent!';
-
-  @override
-  String get passwordResetLinkSentDescription => 'We\'\'ve sent a link to given email address. Please open it to finish the proccess of resetting password.';
-
-  @override
-  String get passwordResetConfirmButtonText => 'Confirm';
-
-  @override
-  String get passwordResetExitDialogTitleText => 'Are you want to cancel?';
-
-  @override
-  String get passwordResetExitDescriptionText => 'Password reset procedure will fail.';
-
-  @override
-  String get passwordInputEmptyErrorText => 'Password can\'\'t be empty';
-
-  @override
-  String get passwordInputTooShortErrorText => 'Password is too short(at least 6 characters)';
-
-  @override
-  String get restrictedPasswordInputErrorSpecialCharacterNotPresentText => 'At least one special character(!@#\$%^&*) is required';
-
-  @override
-  String get restrictedPasswordInputErrorDigitNotPresent => 'At least one digit(0-9) is required';
-
-  @override
-  String get restrictedPasswordInputErrorUppercaseNotPresent => 'At least one uppercase letter(A-Z) is required';
-
-  @override
-  String get emailInputEmptyErrorText => 'Email can\'\'t be empty';
-
-  @override
-  String get emailInputInvalidErrorText => 'Email is invalid';
-
-  @override
-  String get signUpScreenAppBarTitle => 'Create an account';
-
-  @override
-  String get signUpButtonText => 'Register';
-
-  @override
-  String get signUpPasswordRetypeInputMismatchErrorText => 'Passwords are mismatched';
-
-  @override
-  String get signUpPasswordretypeInputemptyErrorText => 'This field can\'\'t be empty';
-
-  @override
-  String get signUpUsernameInputErrorEmptyText => 'Username can\'\'t be empty';
-
-  @override
-  String get signUpUsernameInputErrorTooShortText => 'Username is too short(at least 6 characters)';
-
-  @override
-  String get signUpConfirmEmailAppBarTitleText => 'Confirm your email';
-
-  @override
-  String get signUpConfirmEmailTitle => 'Activation link was sent';
-
-  @override
-  String get signUpConfirmEmailDescription => 'We\'\'ve sent you an activation link to your mailbox. Please open it to finish the process of signing up';
-
-  @override
-  String get signUpCompletionFormTitle => 'Express yourself!';
-
-  @override
-  String get signUpCompletionFormDescription => 'Before you start using EcoIdeas, you can let other users get to know you better!';
-
-  @override
-  String get signUpCompletionFormSubmitButton => 'Done!';
-
-  @override
-  String get signUpCompletionDoneTitle => 'Congratulations!';
-
-  @override
-  String get signUpCompletionDoneDescription => 'Your account was created successfully. You can start use the app';
-
-  @override
-  String get signUpCompletionDoneButtonText => 'Let\'\'s start!';
-
-  @override
-  String get counterAppBarTitle => 'Counter';
-
-  @override
-  String get avatarDialogSaveButtonText => 'Confirm';
-
-  @override
-  String get avatarDialogChangeAvatarButtonLabelText => 'Change avatar';
-
-  @override
-  String get avatarDialogAddAvatarButtonLabelText => 'Add avatar';
-
-  @override
-  String get avatarDialogDeleteAvatarButtonLabelText => 'Delete avatar';
-
-  @override
-  String get avatarDialogCloseButtonTooltipText => 'Close dialog';
-
-  @override
-  String get avatarDialogPickGalleryOptionLabelText => 'gallery';
-
-  @override
-  String get avatarDialogCameraOptionLabelText => 'camera';
-
-  @override
-  String get signUpFailSnackBarText => 'Account could not be created.';
-
-  @override
-  String get updateUserFail => 'Unsuccessful attempt to update user account.';
-
-  @override
-  String get setNewPasswordFail => 'Unsuccessful attempt to set new password';
-
-  @override
-  String get invalidDeepLinkSnackBarText => 'Link has expired or is invalid.';
-
-  @override
-  String get signInFailSnackBarText => 'Unsuccessful sign-in attempt.';
-
-  @override
-  String get passwordResetLinkSentFailSnackBarText => 'Unsuccessful attempt to send a link.';
-
-  @override
-  String get setUpNewPasswordFailSnackBarText => 'Unsuccessful attempt to set up new password.';
-
-  @override
-  String get signOutFailSnackBarText => 'Unsuccessful attempt to sign out.';
-
-  @override
-  String get getUserProfileFailSnackBarText => 'Unsuccessful attempt to get user profile';
-
-  @override
-  String get uploadAvatarFailSnackBarText => 'Unsuccessful attempt to upload avatar';
-
-  @override
-  String get updateUserProfileFailSnackBarText => 'Unsuccessful attempt to update profile';
-
-  @override
-  String get homeExploreLabel => 'Explore';
-
-  @override
-  String get homeMyIdeasLabel => 'My ideas';
-
-  @override
-  String get ideaStepTitleFieldLabelText => 'Title';
-
-  @override
-  String get ideaStepTipAddonTitle => 'Tips';
-
-  @override
-  String get ideaStepBenefitAddonTitle => 'How it helps the planet?';
-
-  @override
-  String get ideaStepWarningAddonTitle => 'Warnings';
-
-  @override
-  String get ideaStepRequirmentAddonTitle => 'What is needed?';
-
-  @override
-  String get ideaStepDescriptionFieldLabelText => 'Description';
-
-  @override
-  String get homeProfileLabel => 'My Profile';
-
-  @override
-  String get modifyMyProfileAppBarTitle => 'Edit your profile';
+  String get signInScreenFooter_createAccount => 'Create account';
 }

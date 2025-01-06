@@ -1,95 +1,18 @@
 {
-    "@@locale": "pl",
-    "appName": "EcoIdeas",
-    "greetingText": "Witaj w ",
+  "@@locale": "pl",
+  "appName": "EcoIdeas",
 
-    "requiredValidatorErrorText": "To pole jest obowiązkowe",
-    "emailTextFieldLabelText": "Adres e-mail",
-    "passwordTextFieldLabelText": "Hasło",
-    "usernameTextFieldLabelText": "Nazwa użytkownika",
-    "passwordRetypeFieldLabelText": "Powtórz hasło",
-    "registerTextButtonLabelText": "Nie masz konta? ",
-    "registerTextButtonActionText": "Utwórz je!",
-    "forgotPasswordButtonLabelText": "Zapomniałeś hasła? ",
-    "forgotPasswordButtonActionText": "Zmień je!",
-    "aboutMeTextFieldLabelText": "O mnie",
-    "googleAuthButtonLabelText": "Kontynuuj z Google",
-    "signInButtonText": "Zaloguj się",
-    "signInLabeledDividerText": "LUB",
+  "field_required": "Pole obowiązkowe",
 
-    "passwordResetFirstStepAppBarTitleText": "Zresetuj swoje hasło",
-    "passwordResetSecondStepAppBarTitleText": "Podaj nowe hasło",
-    "passwordResetFirstStepDescription": "Podaj adres e-mail, za pomocą którego utworzono konto.",
-    "passwordResetSecondStepDescription": "Aby ukończyć procedurę zmiany hasła, wprowadź nowe hasło.",
-    "passwordResetLinkSentTitle": "Link został wysłany",
-    "passwordResetLinkSentDescription": "Wysłaliśmy ci link na podany przez ciebie adres email. Proszę otwórz go, aby dokończyć proces resetowania hasła",
-    "passwordResetConfirmButtonText": "Zatwierdź",
-    "passwordResetExitDialogTitleText": "Czy chcesz przerwać?",
-    "passwordResetExitDescriptionText": "Procedura zmiany hasła zakończy się niepowodzeniem.",
+  "emailField_label": "Adres email",
+  "emailField_validator_invalid": "Nieprawidłowy format",
+  "passwordField_label": "Password",
 
-    "passwordInputEmptyErrorText": "To pole nie może być puste",
-    "passwordInputTooShortErrorText": "Hasło jest za krótkie(co najmniej 6 znaków)",
-    "restrictedPasswordInputErrorSpecialCharacterNotPresentText": "Co najmniej jeden znak specjalny(!@#$%^&*) jest wymagany",
-    "restrictedPasswordInputErrorDigitNotPresent": "Co najmniej jedna cyfra(0-9) jest wymagana",
-    "restrictedUpPasswordInputErrorUppercaseNotPresent": "Co najmniej jedna duża litera(A-Z) jest wymagana",
-    "emailInputEmptyErrorText": "To pole nie może być puste",
-    "emailInputInvalidErrorText": "Adres e-mail jest nieprawidłowy.",
-    "signUpScreenAppBarTitle": "Utwórz konto",
-    "signUpButtonText": "Zarejestruj się",
-    "signUpPasswordRetypeInputMismatchErrorText": "Hasła są niezgodne",
-    "signUpPasswordretypeInputemptyErrorText": "To pole nie może być puste",
-    "signUpUsernameInputErrorEmptyText" : "To pole nie może być puste",
-    "signUpUsernameInputErrorTooShortText": "Nazwa użytkownika jest za krótka(co najmniej 6 znaków",
-    "signUpConfirmEmailAppBarTitleText": "Potwierdź swój email",
-    "signUpConfirmEmailTitle": "Link aktywacjny został wysłany",  
-    "signUpConfirmEmailDescription": "Wysłaliśmy maila z linkiem aktywacyjnym na twoją skrzynkę pocztową. Otwórz go, aby aktywować konto, i ukończyć zakładanie konta.",
-    
-    "signUpCompletionFormTitle": "Wyraź siebie!",
-     "signUpCompletionFormDescription": "Zanim zaczniesz korzystać z aplikacji, możesz dać się lepiej poznać innym użytkownikom!",
-    "signUpCompletionFormSubmitButton": "Gotowe!",
+  "emailSignInForm_submit": "Zaloguj się",
+  "emailSignInForm_unknown": "Nieoczekiwany błąd podczas logowania",
+  "emailSignInForm_invalid_credentials": "Nieprawidłowe dane logowania",
 
-    "signUpFinishedTitle": "Gratulacje!",
-    "signUpFinishedDescription": "Rejestracja przebiegła pomyślnie. Możesz zacząć korzystać z aplikacji",
-    "signUpFinishedButtonText": "Zaczynajmy", 
-    "counterAppBarTitle": "Licznik",
-    "@counterAppBarTitle": {
-        "description": "Tytuł wyświetlany w AppBar widgetu CounterPage"
-    },
-
-    "avatarDialogSaveButtonText": "Zatwierdź",
-    "avatarDialogChangeAvatarButtonLabelText": "Zmień avatar",
-    "avatarDialogAddAvatarButtonLabelText": "Dodaj avatar",
-    "avatarDialogDeleteAvatarButtonLabelText": "Usuń avatar",
-    "avatarDialogCloseButtonTooltipText": "Zamknij okno",
-    "avatarDialogPickGalleryOptionLabelText": "galeria",
-    "avatarDialogCameraOptionLabelText": "aparat",
- 
-    "signUpFailSnackBarText": "Nie udało się utworzyć konta.",
-    "updateUserFail" : "Nie udało się zaktualizować informacji o koncie",
-    "setNewPasswordFail": "Nie udało się zmienić hasła",
-    "invalidDeepLinkSnackBarText" : "Link wygasł lub jest nieprawidłowy.",
-    "signInFailSnackBarText" : "Nieudana próba logowania.",
-    "passwordResetLinkSentFailSnackBarText": "Nieudana próba wysłania linka.",
-    "setUpNewPasswordFailSnackBarText" : "Nieudana próba zmiany hasła.",
-    "signOutFailSnackBarText" : "Nieudana próba wylogowania.",
-
-    "getUserProfileFailSnackBarText": "Nieudana próba wczytania profilu użytkownika.",
-    "uploadAvatarFailSnackBarText": "Nieudana próba zapisania avataru.",
-    "updateUserProfileFailSnackBarText": "Nieudana próba zaktualizowania profilu użytkownika.",
-
-    "homeExploreLabel": "Odkrywaj",
-
-    "homeMyIdeasLabel" : "Moje pomysły",
-    "ideaStepTitleFieldLabelText": "Tytuł",
-
-   
-    "ideaStepTipAddonTitle": "Wskazówki", 
-    "ideaStepBenefitAddonTitle": "Jak pomaga to planecie?",
-    "ideaStepWarningAddonTitle": "Ostrzeżenia",
-    "ideaStepRequirmentAddonTitle": "Co jest potrzebne?",
-
-    "ideaStepDescriptionFieldLabelText": "Opis",
-    "homeProfileLabel": "Mój profil",
-
-    "modifyMyProfileAppBarTitle": "Edytuj swój profil"
+  "signInMethods_hint": "Kontynuuj z",
+  "signInScreenFooter_forgotPassword": "Nie pamiętasz hasła?",
+  "SignInFooter_createAccount": "Utwórz konto"
 }
