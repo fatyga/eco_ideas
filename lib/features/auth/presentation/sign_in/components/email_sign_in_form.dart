@@ -5,8 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+// TODO(fatyga): find better name for onChangeSignInMethodTap
 class EmailSignInForm extends ConsumerStatefulWidget {
-  const EmailSignInForm({super.key});
+  const EmailSignInForm({
+    required this.setLoading,
+    required this.onChangeSignInMethodTap,
+    super.key,
+  });
+
+  final ValueChanged<bool> setLoading;
+  final VoidCallback onChangeSignInMethodTap;
 
   @override
   ConsumerState<EmailSignInForm> createState() => _EmailSignInFormState();
@@ -17,8 +25,7 @@ class _EmailSignInFormState extends ConsumerState<EmailSignInForm> {
   final _emailFieldController = TextEditingController();
   final _passwordFieldController = TextEditingController();
 
-  // Represents an ongoing submission
-  bool _isLoading = false;
+  AppLocalizations get l10n => context.l10n;
 
   Future<void> _submit() async {
     final isValid = _formKey.currentState?.validate();
@@ -27,43 +34,25 @@ class _EmailSignInFormState extends ConsumerState<EmailSignInForm> {
       final email = _emailFieldController.text;
       final password = _passwordFieldController.text;
 
-      setState(() {
-        _isLoading = true;
-      });
+      widget.setLoading(true);
 
       try {
         await ref
             .read(authRepositoryProvider)
             .signInWithEmailAndPassword(email: email, password: password);
       } on AuthException catch (e) {
-        _handleAuthException(e);
+        if (mounted) {
+          handleAuthException(context, e);
+        }
       } catch (e) {
-        _handleUnknownException(e);
+        if (mounted) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(l10n.unknown_exception)));
+        }
       }
 
-      setState(() {
-        _isLoading = false;
-      });
+      widget.setLoading(false);
     }
-  }
-
-  // Shows [SnackBar] with internationalized descriptive message
-  void _handleAuthException(AuthException exception) {
-    final String message;
-    if (exception.code == 'invalid_credentials') {
-      message = context.l10n.emailSignInForm_invalid_credentials;
-    } else {
-      message = context.l10n.emailSignInForm_unknown;
-    }
-
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
-  }
-
-  void _handleUnknownException(Object exception) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(context.l10n.emailSignInForm_unknown)),
-    );
   }
 
   @override
@@ -81,13 +70,21 @@ class _EmailSignInFormState extends ConsumerState<EmailSignInForm> {
       key: _formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           EmailField(controller: _emailFieldController),
-          PasswordField(controller: _passwordFieldController),
+          PasswordField(
+            controller: _passwordFieldController,
+          ),
           context.spaces.verticalLarge,
           FilledButton(
             onPressed: _submit,
             child: Text(l10n.emailSignInForm_submit),
+          ),
+          OutlinedButton.icon(
+            onPressed: widget.onChangeSignInMethodTap,
+            icon: const Icon(Icons.arrow_back),
+            label: Text(l10n.change_signIn_method),
           ),
         ],
       ),

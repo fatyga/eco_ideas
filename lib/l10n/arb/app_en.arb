@@ -2,17 +2,108 @@
   "@@locale": "en",
   "appName": "EcoIdeas",
 
-  "field_required": "Required field",
+  "unknown_exception": "Unexpected error occurred",
+  "@unknown_exception": {
+    "description": "Message inside [SnackBar], which informs user about unexpected(unhandled) exception"
+  },
 
-  "emailField_label": "Email address",
-  "emailField_validator_invalid": "Incorrect format",
-  "passwordField_label": "Password",
+  "requiredField": "Required field",
+  "@requiredField": {
+    "description": "Indicates, that the form field must be filled."
+  },
+
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Content for a button, which do some task."
+  },
+
+  "emailAddress": "Email address",
+  "@emailAddress": {
+    "description": "Label of email address form field."
+  },
+
+  "incorrectFormat": "Incorrect format",
+  "@incorrectFormat": {
+    "description": "Indicates, that value entered to form field is incorrect."
+  },
+
+  "password": "Password",
+  "@password": {
+    "description": "Label of password form field."
+  },
+  "confirmPassword": "Confirm password",
+  "@confirmPassword": {
+    "description": "Label of password form field, where user have to reenter a password."
+  },
+  "tooShortPassword": "At least 8 characters are required.",
+  "digitIsRequired": "At least one digit is required",
+  "passwordMismatch": "Passwords are mismatched",
+
+
+  "invalid_credentials": "Invalid login credentials",
+  "@invalid_credentials": {
+    "description": "Message inside [Snackbar], which informs user, that incorrect credentials was provided"
+  },
 
   "emailSignInForm_submit": "Sign in",
-  "emailSignInForm_unknown": "Unexpected error during login",
-  "emailSignInForm_invalid_credentials": "Invalid login credentials",
+  "change_signIn_method": "Change login method",
 
-  "signInMethods_hint": "Continue with",
+
+  "continueWithGoogle": "Continue with Google",
+  "continueWithFacebook": "Continue with Facebook",
+  "continueWithEmail": "Continue with Email address",
+
   "signInScreenFooter_forgotPassword": "Forgot password?",
-  "signInScreenFooter_createAccount": "Create account"
+  "signInScreenFooter_createAccount": "Create account",
+
+  "resetYourPassword": "Reset your password",
+
+  "passwordResetFirstStepScreen_appBar_title": "Reset your password",
+  "passwordResetSecondStepScreen_appBar_title": "Provide new password",
+  "passwordResetFirstStep_description": "Please enter an email address with which your account was created.",
+  "passwordResetSecondStep_description": "In order to finish password reset procedure, please provide new password.",
+  "passwordResetLinkSent_title": "Link was sent!",
+  "passwordResetLinkSent_description": "We've sent a link to given email address. Please open it to finish the process of resetting password.",
+  "passwordResetExitDialogTitleText": "Are you want to cancel?",
+  "passwordResetExitDescriptionText": "Password reset procedure will fail.",
+
+
+  "username": "Username",
+  "@username": {
+    "description": "Label of username form field"
+  },
+
+  "signUp": "Sign up",
+  "@signUp": {
+    "description": "Label of button, which fires up registration"
+  },
+
+  "choose_signUp_method": "Choose sign up method",
+  "@choose_signUp_method": {
+    "description": "Title of [Appbar], which informs, that user have to choose one of available sign up methods"
+  },
+  "change_signUp_method": "Change sign up method",
+  "@change_sign_up_method": {
+    "description": "Text inside button, which shows available registration methods"
+  },
+
+  "emailConfirmationLinkSent": "Email confirmation link sent",
+  "@emailConfirmationLinkSent": {
+    "description": "Informs user, that email confirmation link was sent"
+  },
+
+  "emailConfirmation": "We've sent you email with confirmation link",
+  "@emailConfirmation": {
+    "description": "Informs user, that email with link was sent"
+  },
+
+
+  "title": "Title",
+  "@title": {
+    "description": "Label of text field for title of idea/step"
+  },
+  "description": "Description",
+  "@description": {
+    "description": "Label of text field for description of idea/step"
+  }
 }
