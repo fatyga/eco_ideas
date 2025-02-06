@@ -14,7 +14,7 @@ class AppLogo extends StatelessWidget {
       children: [
         Image.asset('assets/app_icon.png'),
         context.spaces.verticalStandard,
-        Text(l10n.appName, style: theme.textTheme.headlineMedium),
+        Text(l10n.appName, style: theme.textTheme.headlineLarge),
       ],
     );
   }

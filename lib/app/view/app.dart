@@ -9,7 +9,7 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final goRouter = ref.read(goRouterProvider);
+    final goRouter = ref.watch(goRouterProvider);
     return MaterialApp.router(
       theme: EcoIdeasTheme.light,
       darkTheme: EcoIdeasTheme.dark,

@@ -1,0 +1,2 @@
+/home/mfatyga/Documents/github_repos/eco_ideas/android/app/.cxx/Debug/m40662k2/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/mfatyga/Documents/github_repos/eco_ideas/android/app/.cxx/Debug/m40662k2/armeabi-v7a/CMakeFiles/rebuild_cache.dir

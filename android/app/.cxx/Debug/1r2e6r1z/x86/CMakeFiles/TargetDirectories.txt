@@ -1,0 +1,2 @@
+/home/mfatyga/Documents/github_repos/eco_ideas/android/app/.cxx/Debug/1r2e6r1z/x86/CMakeFiles/edit_cache.dir
+/home/mfatyga/Documents/github_repos/eco_ideas/android/app/.cxx/Debug/1r2e6r1z/x86/CMakeFiles/rebuild_cache.dir

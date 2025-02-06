@@ -2,17 +2,51 @@
   "@@locale": "pl",
   "appName": "EcoIdeas",
 
-  "field_required": "Pole obowiązkowe",
+  "unknown_exception": "Wystąpił nieoczekiwany błąd",
 
-  "emailField_label": "Adres email",
-  "emailField_validator_invalid": "Nieprawidłowy format",
-  "passwordField_label": "Password",
+  "requiredField": "To pole jest obowiązkowe",
+  "confirm": "Zatwierdź",
+
+  "emailAddress": "Adres email",
+  "incorrectFormat": "Nieprawidłowy format",
+
+  "password": "Hasło",
+  "confirmPassword": "Powtórz hasło",
+  "tooShortPassword": "Co najmniej 8 znaków jest wymagane",
+  "digitIsRequired": "Co namniej jedna cyfra jest wymagana",
+  "passwordMismatch": "Hasła są niezgodne",
+
+
+  "invalid_credentials": "Nieprawidłowe dane logowania",
 
   "emailSignInForm_submit": "Zaloguj się",
-  "emailSignInForm_unknown": "Nieoczekiwany błąd podczas logowania",
-  "emailSignInForm_invalid_credentials": "Nieprawidłowe dane logowania",
+  "change_signIn_method": "Zmień metodę logowania",
 
-  "signInMethods_hint": "Kontynuuj z",
+
+  "continueWithGoogle": "Kontynuuj z Google",
+  "continueWithFacebook": "Kontynuuj z Facebook",
+  "continueWithEmail": "Kontynuuj z adresem email",
+
   "signInScreenFooter_forgotPassword": "Nie pamiętasz hasła?",
-  "SignInFooter_createAccount": "Utwórz konto"
+  "signInScreenFooter_createAccount": "Utwórz konto",
+
+  "passwordResetFirstStepScreen_appBar_title": "Zresetuj swoje hasło",
+  "passwordResetSecondStepScreen_appBar_title": "Podaj nowe hasło",
+  "passwordResetFirstStep_description": "Podaj adres e-mail, za pomocą którego utworzono konto.",
+  "passwordResetSecondStep_description": "Aby ukończyć procedurę zmiany hasła, wprowadź nowe hasło.",
+  "passwordResetLinkSent_title": "Link został wysłany",
+  "passwordResetLinkSent_description": "Wysłaliśmy ci link na podany przez ciebie adres email. Proszę otwórz go, aby dokończyć proces resetowania hasła",
+  "passwordResetExitDialogTitleText": "Czy chcesz przerwać?",
+  "passwordResetExitDescriptionText": "Procedura zmiany hasła zakończy się niepowodzeniem.",
+
+  "username": "Nazwa użytkownika",
+  "signUp": "Zarejestruj się",
+  "choose_signUp_method": "Wybierz metodę rejestracji",
+  "change_signUp_method": "Zmień metodę rejestracji",
+  "emailConfirmationLinkSent": "Link aktywacyjny wysłany",
+  "emailConfirmation": "Na podany adres email, wysłaliśmy email z linkiem aktywacyjnym",
+
+  "title": "Tytuł",
+  "description": "Opis"
+
 }

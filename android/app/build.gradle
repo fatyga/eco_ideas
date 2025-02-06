@@ -29,9 +29,9 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace "com.example.verygoodcore.eco_ideas"
+    namespace "io.supabase.ecoIdeas"
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    ndkVersion "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -48,7 +48,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.verygoodcore.eco_ideas"
+        applicationId "io.supabase.ecoIdeas"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
