@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
           children: [
             const AppLogo(),
             context.spaces.verticalLarge,
-            const CircularProgressIndicator()
+            const CircularProgressIndicator(),
           ],
         ),
       ),

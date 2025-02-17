@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoadingFeedback extends StatelessWidget {
   const LoadingFeedback(
-      {required this.isLoading, required this.child, super.key});
+      {required this.isLoading, required this.child, super.key,});
 
   final bool isLoading;
   final Widget child;
@@ -20,6 +20,6 @@ class LoadingFeedback extends StatelessWidget {
         const Center(
           child: CircularProgressIndicator(),
         ),
-    ]);
+    ],);
   }
 }

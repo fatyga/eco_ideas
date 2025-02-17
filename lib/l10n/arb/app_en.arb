@@ -105,5 +105,20 @@
   "description": "Description",
   "@description": {
     "description": "Label of text field for description of idea/step"
+  },
+
+  "editYourProfile": "Edit your profile",
+  "@editYourProfile": {
+    "description": "Informs user, that he is on screen for editing his profile"
+  },
+
+  "fullName": "Full name",
+  "@fullName": {
+    "description": "Label of text field for user name and surname"
+  },
+
+  "bio": "Bio",
+  "@bio": {
+    "description": "Label of text field for user bio"
   }
 }

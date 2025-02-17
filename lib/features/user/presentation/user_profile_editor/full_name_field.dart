@@ -1,8 +1,8 @@
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
-class UsernameField extends StatelessWidget {
-  const UsernameField({
+class FullNameField extends StatelessWidget {
+  const FullNameField({
     this.controller,
     this.initialValue,
     super.key,
@@ -26,7 +26,7 @@ class UsernameField extends StatelessWidget {
       initialValue: initialValue,
       validator: (value) => validator(value, l10n),
       decoration: InputDecoration(
-        labelText: l10n.username,
+        labelText: l10n.fullName,
         helperText: '',
       ),
     );

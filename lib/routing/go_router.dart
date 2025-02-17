@@ -1,5 +1,6 @@
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/idea/idea.dart';
+import 'package:eco_ideas/features/user/user.dart';
 import 'package:eco_ideas/utils/scaffold_with_nested_navigation.dart';
 import 'package:eco_ideas/utils/splash_screen.dart';
 
@@ -68,19 +69,25 @@ GoRouter goRouter(Ref ref) {
             navigatorKey: _shellNavigatorProfileKey,
             routes: [
               GoRoute(
-                path: '/profile',
+                path: '/userProfile',
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: Scaffold(body: Center(child: Text('Profile'))),
+                  child: UserProfileScreen(),
                 ),
+                routes: [
+                  GoRoute(
+                    path: 'editor',
+                    builder: (context, _) => const UserProfileEditor(),
+                  ),
+                ],
               ),
             ],
           ),
         ],
       ),
       GoRoute(
-          path: '/ideaEditor',
-
-          builder: (context, _) => const IdeaEditorScreen()),
+        path: '/ideaEditor',
+        builder: (context, _) => const IdeaEditorScreen(),
+      ),
       GoRoute(path: '/splash', builder: (context, _) => const SplashScreen()),
       GoRoute(
         path: '/signIn',
@@ -124,6 +131,7 @@ GoRouter goRouter(Ref ref) {
           return '/explore';
         }
       }
+      return null;
     },
   );
 

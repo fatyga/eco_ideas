@@ -4,7 +4,6 @@ import 'package:eco_ideas/utils/loading_widget.dart';
 import 'package:eco_ideas/utils/spaces.dart';
 import 'package:eco_ideas/utils/state_with_loading.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

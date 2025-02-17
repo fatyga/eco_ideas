@@ -47,6 +47,10 @@
   "emailConfirmation": "Na podany adres email, wysłaliśmy email z linkiem aktywacyjnym",
 
   "title": "Tytuł",
-  "description": "Opis"
+  "description": "Opis",
+
+  "editYourProfile": "Edytuj swój profil",
+  "fullName": "Imię i nazwisko",
+  "bio": "O mnie"
 
 }

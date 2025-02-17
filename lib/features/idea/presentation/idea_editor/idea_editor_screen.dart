@@ -1,15 +1,9 @@
-import 'dart:ffi';
-
-import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/idea/idea.dart';
-import 'package:eco_ideas/features/idea/presentation/idea_editor/components/idea_step_form.dart';
-import 'package:eco_ideas/features/idea/presentation/idea_editor/components/step_indicator.dart';
 import 'package:eco_ideas/features/user/data/data.dart';
 
 import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class IdeaEditorScreen extends ConsumerStatefulWidget {
   const IdeaEditorScreen({this.idea, super.key});
@@ -22,10 +16,9 @@ class IdeaEditorScreen extends ConsumerStatefulWidget {
 }
 
 class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
-  int currentStepIndex = 0;
+  // If null, we are editing idea introduction
+  int? currentStepIndex;
   late Idea idea;
-
-  IdeaStep get currentStep => idea.steps[currentStepIndex];
 
   void _createNewIdea() {
     final userId = ref.read(userRepositoryProvider).currentUser!.id;
@@ -37,6 +30,18 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
     setState(() {
       idea = updatedIdea;
     });
+  }
+
+  void updateStep(IdeaStep updatedStep) {
+    setState(() {
+      idea = idea.withUpdatedStep(currentStepIndex!, updatedStep);
+    });
+  }
+
+  void _addNewStep() {
+    idea = idea.withNewStep(IdeaStep(ideaId: idea.id));
+    currentStepIndex = idea.steps.length - 1;
+    setState(() {});
   }
 
   @override
@@ -53,15 +58,43 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(icon: const Icon(Icons.save_outlined), onPressed: () {}),
+        ],
+      ),
       body: Padding(
         padding: context.paddings.allLarge,
-        child: currentStepIndex == 0
-            ? IdeaForm(idea: idea)
-            : IdeaStepForm(step: currentStep),
+        child: currentStepIndex == null
+            ? IdeaForm(idea: idea, onChanged: updateIdea)
+            : IdeaStepForm(
+                step: idea.steps[currentStepIndex!],
+                onChanged: updateStep,
+              ),
       ),
-      bottomSheet:
-          StepIndicator(index: currentStepIndex, stepsCount: idea.steps.length),
+      bottomSheet: Row(children: [
+        TextButton(
+            onPressed: () {
+              if (currentStepIndex != null && currentStepIndex! > 0) {
+                setState(() {
+                  currentStepIndex = currentStepIndex! - 1;
+                });
+
+              }
+            },
+            child: Text('Previous')),
+        TextButton(
+            onPressed: () {
+              if (currentStepIndex != null && currentStepIndex! < idea.steps.length ) {
+                setState(() {
+                  currentStepIndex = currentStepIndex! + 1;
+                });
+                ;
+              }
+            },
+            child: Text('Next')),
+        TextButton(onPressed: _addNewStep, child: Text('Add'))
+      ]),
     );
   }
 }

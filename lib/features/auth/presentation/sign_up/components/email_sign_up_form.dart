@@ -9,14 +9,11 @@ class EmailSignUpForm extends ConsumerStatefulWidget {
   const EmailSignUpForm({
     required this.setLoading,
     required this.onChangeSignUpMethodTap,
-
     super.key,
   });
 
   final ValueChanged<bool> setLoading;
   final VoidCallback onChangeSignUpMethodTap;
-
-
 
   @override
   ConsumerState<EmailSignUpForm> createState() => _EmailSignUpFormState();
@@ -46,7 +43,6 @@ class _EmailSignUpFormState extends ConsumerState<EmailSignUpForm> {
               email: email,
               password: password,
             );
-
       } on AuthException catch (e) {
         if (mounted) {
           handleAuthException(context, e);
@@ -71,7 +67,9 @@ class _EmailSignUpFormState extends ConsumerState<EmailSignUpForm> {
         children: [
           EmailField(controller: _emailFieldController),
           UsernameField(controller: _usernameFieldController),
-          Flexible( child: RestrictedPasswordField(controller: _passwordFieldController)),
+          Flexible(
+              child: RestrictedPasswordField(
+                  controller: _passwordFieldController,),),
           ListenableBuilder(
             listenable: _passwordFieldController,
             builder: (context, _) {

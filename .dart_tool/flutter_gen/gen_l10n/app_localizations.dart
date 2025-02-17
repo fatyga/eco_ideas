@@ -310,6 +310,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Description'**
   String get description;
+
+  /// Informs user, that he is on screen for editing his profile
+  ///
+  /// In en, this message translates to:
+  /// **'Edit your profile'**
+  String get editYourProfile;
+
+  /// Label of text field for user name and surname
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get fullName;
+
+  /// Label of text field for user bio
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get bio;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

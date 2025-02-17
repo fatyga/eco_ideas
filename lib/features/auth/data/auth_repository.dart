@@ -31,7 +31,7 @@ class AuthRepository {
 
     final iosClientId = dotenv.env['GOOGLE_IOS_CLIENT_ID'];
 
-    final GoogleSignIn googleSignIn = GoogleSignIn(
+    final googleSignIn = GoogleSignIn(
       clientId: iosClientId,
       serverClientId: webClientId,
     );
@@ -85,7 +85,7 @@ class AuthRepository {
     required String email,
   }) async {
     await client.resetPasswordForEmail(email,
-        redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL']);
+        redirectTo: dotenv.env['RESET_PASSWORD_REDIRECT_URL'],);
   }
 
   /// Update user account with provided password

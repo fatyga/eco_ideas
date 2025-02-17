@@ -1,5 +1,4 @@
 import 'package:eco_ideas/l10n/l10n.dart';
-import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
 
 class RestrictedPasswordField extends StatelessWidget {
