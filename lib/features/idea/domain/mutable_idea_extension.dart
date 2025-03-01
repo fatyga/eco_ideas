@@ -7,9 +7,9 @@ extension MutableIdeaExtension on Idea {
     return copyWith(steps: steps);
   }
 
-  Idea withUpdatedStep(int index, IdeaStep step) {
+  Idea withUpdatedStep(IdeaStep step) {
     final steps = List<IdeaStep>.from(this.steps);
-    steps[index] = step;
+    steps[step.id] = step;
 
     return copyWith(steps: steps);
   }

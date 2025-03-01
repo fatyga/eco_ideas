@@ -16,4 +16,30 @@ class IdeaRepository {
   Future<void> createIdea(Idea idea) async {
     await ref.read(supabaseClientProvider).from('idea').insert(idea.toJson());
   }
+
+  Future<IdeaStep> updateStep(IdeaStep step) async {
+    final result = await ref
+        .read(supabaseClientProvider)
+        .from('step')
+        .upsert(step.toJson())
+        .match({'id': step.id, 'idea_id': step.ideaId})
+        .select()
+        .limit(1)
+        .single();
+
+    return IdeaStep.fromJson(result);
+  }
+
+  Future<Idea> updateIdea(Idea idea) async {
+    final result = await ref
+        .read(supabaseClientProvider)
+        .from('idea')
+        .upsert(idea.toJson())
+        .match({'idea_id': idea.id})
+        .select()
+        .limit(1)
+        .single();
+
+    return Idea.fromJson(result);
+  }
 }

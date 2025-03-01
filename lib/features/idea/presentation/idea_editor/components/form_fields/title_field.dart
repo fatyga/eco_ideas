@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class TitleField extends StatelessWidget {
   const TitleField({
-    this.onChanged,
-    this.controller,
+    required this.controller,
+    this.initialValue,
     super.key,
   });
 
-  final TextEditingController? controller;
-  final void Function(String value)? onChanged;
+  final String? initialValue;
+  final TextEditingController controller;
 
   String? validator(String? value, AppLocalizations l10n) {
     if (value == null || value.isEmpty) {
@@ -22,8 +22,8 @@ class TitleField extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return TextFormField(
+
       controller: controller,
-      onChanged: onChanged,
       validator: (value) => validator(value, l10n),
       decoration: InputDecoration(
         labelText: l10n.title,

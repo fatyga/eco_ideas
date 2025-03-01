@@ -10,11 +10,11 @@ part 'idea.g.dart';
 class Idea with _$Idea {
   const factory Idea({
     required String id,
-    required String userId,
+    @JsonKey(name: 'user_id') required String userId,
     String? title,
     String? description,
-    String? imageUrl,
-    @Default(<IdeaStep>[]) List<IdeaStep> steps,
+    @JsonKey(name: 'image_url') String? imageUrl,
+    @JsonKey(includeToJson: false) @Default(<IdeaStep>[]) List<IdeaStep> steps,
   }) = _Idea;
 
   factory Idea.empty({required String userId}) {

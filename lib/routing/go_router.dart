@@ -76,7 +76,7 @@ GoRouter goRouter(Ref ref) {
                 routes: [
                   GoRoute(
                     path: 'editor',
-                    builder: (context, _) => const UserProfileEditor(),
+                    builder: (context, _) => const EditUserProfileScreen(),
                   ),
                 ],
               ),

@@ -9,10 +9,11 @@ class MyIdeasScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: const Center(child: Text('my ideas')),
-      floatingActionButton:
-          FloatingActionButton(onPressed: () {
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
             context.go('/ideaEditor');
-          }, child: Icon(Icons.add)),
+          },
+          child: const Icon(Icons.add)),
     );
   }
 }

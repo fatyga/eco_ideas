@@ -299,6 +299,24 @@ abstract class AppLocalizations {
   /// **'We\'ve sent you email with confirmation link'**
   String get emailConfirmation;
 
+  /// Label for button, which take user to screen, where he can explore ideas
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get explore;
+
+  /// Label for button, which take user to screen with his ideas
+  ///
+  /// In en, this message translates to:
+  /// **'My ideas'**
+  String get myIdeas;
+
+  /// Label for button, which take user to screen with his profile information
+  ///
+  /// In en, this message translates to:
+  /// **'My profile'**
+  String get myProfile;
+
   /// Label of text field for title of idea/step
   ///
   /// In en, this message translates to:

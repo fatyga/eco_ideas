@@ -111,6 +111,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailConfirmation => 'We\'ve sent you email with confirmation link';
 
   @override
+  String get explore => 'Explore';
+
+  @override
+  String get myIdeas => 'My ideas';
+
+  @override
+  String get myProfile => 'My profile';
+
+  @override
   String get title => 'Title';
 
   @override

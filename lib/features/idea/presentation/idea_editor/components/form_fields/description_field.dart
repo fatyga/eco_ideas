@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class DescriptionField extends StatelessWidget {
   const DescriptionField({
-     this.onChanged,
-    this.controller,
+    required this.controller,
+    this.initialValue,
     super.key,
   });
 
-  final TextEditingController? controller;
-  final void Function(String value)? onChanged;
+  final String? initialValue;
+  final TextEditingController controller;
 
   String? validator(String? value, AppLocalizations l10n) {
     if (value == null || value.isEmpty) {
@@ -24,8 +24,10 @@ class DescriptionField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: (value) => validator(value, l10n),
+      maxLines: null,
       decoration: InputDecoration(
         labelText: l10n.description,
+
         helperText: '',
       ),
     );

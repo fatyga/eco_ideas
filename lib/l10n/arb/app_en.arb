@@ -97,6 +97,20 @@
     "description": "Informs user, that email with link was sent"
   },
 
+  "explore": "Explore",
+  "@explore": {
+    "description": "Label for button, which take user to screen, where he can explore ideas"
+  },
+
+  "myIdeas": "My ideas",
+  "@myIdeas": {
+    "description": "Label for button, which take user to screen with his ideas"
+  },
+
+  "myProfile": "My profile",
+  "@myProfile": {
+    "description": "Label for button, which take user to screen with his profile information"
+  },
 
   "title": "Title",
   "@title": {

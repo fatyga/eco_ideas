@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/user/user.dart';
 import 'package:eco_ideas/utils/supabase_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -42,13 +45,39 @@ class UserRepository {
   }
 
   Future<void> updateUserProfile(
-      UserProfile userProfile, XFile? newAvatar) async {
-    await client.auth.updateUser(
-        UserAttributes(data: {'display_name', userProfile.username}));
+    String userId,
+    Map<String, dynamic> changedFields,
+  ) async {
+    if (changedFields.keys.contains(ProfileTable.username)) {
+      await client.auth.updateUser(
+        UserAttributes(
+            data: {'display_name', changedFields[ProfileTable.username]}),
+      );
+    }
 
     await client
         .from('profile')
-        .update(userProfile.toJson())
-        .eq('id', userProfile.id);
+        .update(changedFields)
+        .eq(ProfileTable.id, userId);
+  }
+
+  Future<void> uploadAvatar(String userId, XFile imageFile) async {
+    // TODO(fatyga): make sure that this logic should be here
+    final bytes = await imageFile.readAsBytes();
+    final fileExt = imageFile.path.split('.').last;
+    final fileName = '${DateTime.now().toIso8601String()}.$fileExt';
+    final filePath = fileName;
+
+    await client.storage.from('avatars').uploadBinary(
+          filePath,
+          bytes,
+          fileOptions: FileOptions(contentType: imageFile.mimeType),
+        );
+    final imageUrlResponse = await client.storage
+        .from('avatars')
+        .createSignedUrl(filePath, 60 * 60 * 24 * 365 * 10);
+
+    await client.from('profile').update(
+        {ProfileTable.avatarUrl: imageUrlResponse}).eq(ProfileTable.id, userId);
   }
 }

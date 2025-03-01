@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 class BioField extends StatelessWidget {
   const BioField({
     this.controller,
-    this.initialValue,
     super.key,
   });
 
   final TextEditingController? controller;
-  final String? initialValue;
 
   String? validator(String? value, AppLocalizations l10n) {
     if (value == null || value.isEmpty) {
@@ -23,7 +21,6 @@ class BioField extends StatelessWidget {
     final l10n = context.l10n;
     return TextFormField(
       controller: controller,
-      initialValue: initialValue,
       validator: (value) => validator(value, l10n),
       decoration: InputDecoration(
         labelText: l10n.bio,
