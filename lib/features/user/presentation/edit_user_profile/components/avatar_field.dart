@@ -58,7 +58,7 @@ class _CircleAvatarWithPickerState extends State<_CircleAvatarWithPicker> {
                 context.pop();
               },
               icon: const Icon(Icons.camera_alt),
-              label: Text('Take a picture'),
+              label: const Text('Take a picture'),
             ),
             TextButton.icon(
               onPressed: () async {
@@ -68,20 +68,20 @@ class _CircleAvatarWithPickerState extends State<_CircleAvatarWithPicker> {
                 context.pop();
               },
               icon: const Icon(Icons.image_search),
-              label: Text('Select form gallery'),
+              label: const Text('Select form gallery'),
             ),
             if (widget.currentAvatarUrl != null && widget.currentImage == null)
               Theme(
                 data: Theme.of(context).copyWith(
                     colorScheme: Theme.of(context)
                         .colorScheme
-                        .copyWith(primary: Colors.red)),
+                        .copyWith(primary: Colors.red),),
                 child: TextButton.icon(
                   onPressed: () {
                     context.pop();
                   },
                   icon: const Icon(Icons.delete),
-                  label: Text('Delete current avatar'),
+                  label: const Text('Delete current avatar'),
                 ),
               ),
           ],

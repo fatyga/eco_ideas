@@ -1,32 +1,26 @@
 {
   "@@locale": "en",
   "appName": "EcoIdeas",
-
   "unknown_exception": "Unexpected error occurred",
   "@unknown_exception": {
     "description": "Message inside [SnackBar], which informs user about unexpected(unhandled) exception"
   },
-
   "requiredField": "Required field",
   "@requiredField": {
     "description": "Indicates, that the form field must be filled."
   },
-
   "confirm": "Confirm",
   "@confirm": {
     "description": "Content for a button, which do some task."
   },
-
   "emailAddress": "Email address",
   "@emailAddress": {
     "description": "Label of email address form field."
   },
-
   "incorrectFormat": "Incorrect format",
   "@incorrectFormat": {
     "description": "Indicates, that value entered to form field is incorrect."
   },
-
   "password": "Password",
   "@password": {
     "description": "Label of password form field."
@@ -38,26 +32,18 @@
   "tooShortPassword": "At least 8 characters are required.",
   "digitIsRequired": "At least one digit is required",
   "passwordMismatch": "Passwords are mismatched",
-
-
   "invalid_credentials": "Invalid login credentials",
   "@invalid_credentials": {
     "description": "Message inside [Snackbar], which informs user, that incorrect credentials was provided"
   },
-
   "emailSignInForm_submit": "Sign in",
   "change_signIn_method": "Change login method",
-
-
   "continueWithGoogle": "Continue with Google",
   "continueWithFacebook": "Continue with Facebook",
   "continueWithEmail": "Continue with Email address",
-
   "signInScreenFooter_forgotPassword": "Forgot password?",
   "signInScreenFooter_createAccount": "Create account",
-
   "resetYourPassword": "Reset your password",
-
   "passwordResetFirstStepScreen_appBar_title": "Reset your password",
   "passwordResetSecondStepScreen_appBar_title": "Provide new password",
   "passwordResetFirstStep_description": "Please enter an email address with which your account was created.",
@@ -66,18 +52,14 @@
   "passwordResetLinkSent_description": "We've sent a link to given email address. Please open it to finish the process of resetting password.",
   "passwordResetExitDialogTitleText": "Are you want to cancel?",
   "passwordResetExitDescriptionText": "Password reset procedure will fail.",
-
-
   "username": "Username",
   "@username": {
     "description": "Label of username form field"
   },
-
   "signUp": "Sign up",
   "@signUp": {
     "description": "Label of button, which fires up registration"
   },
-
   "choose_signUp_method": "Choose sign up method",
   "@choose_signUp_method": {
     "description": "Title of [Appbar], which informs, that user have to choose one of available sign up methods"
@@ -86,51 +68,55 @@
   "@change_sign_up_method": {
     "description": "Text inside button, which shows available registration methods"
   },
-
   "emailConfirmationLinkSent": "Email confirmation link sent",
   "@emailConfirmationLinkSent": {
     "description": "Informs user, that email confirmation link was sent"
   },
-
   "emailConfirmation": "We've sent you email with confirmation link",
   "@emailConfirmation": {
     "description": "Informs user, that email with link was sent"
   },
-
   "explore": "Explore",
   "@explore": {
     "description": "Label for button, which take user to screen, where he can explore ideas"
   },
-
   "myIdeas": "My ideas",
   "@myIdeas": {
     "description": "Label for button, which take user to screen with his ideas"
   },
-
   "myProfile": "My profile",
   "@myProfile": {
-    "description": "Label for button, which take user to screen with his profile information"
+    "description": "Label for button, which takes user to screen with his profile information"
   },
-
   "title": "Title",
   "@title": {
     "description": "Label of text field for title of idea/step"
+  },
+  "titleHelperText": "Keep it concise and encouraging.",
+  "@titleHelperText": {
+    "description": "Helper text of text field for title of idea."
   },
   "description": "Description",
   "@description": {
     "description": "Label of text field for description of idea/step"
   },
-
+  "descriptionHelperText": "In a few words familiarise users with your idea.",
+  "@descriptionHelperText": {
+    "description": "Helper text of text field for description of idea."
+  },
   "editYourProfile": "Edit your profile",
   "@editYourProfile": {
     "description": "Informs user, that he is on screen for editing his profile"
   },
-
+  "createIdea": "Create new idea",
+  "@createIdea": {
+    "description": "Headline of section, where user creates new idea"
+  },
+  "createIdeaAndProceedToEditor": "Create and proceed to editor",
   "fullName": "Full name",
   "@fullName": {
     "description": "Label of text field for user name and surname"
   },
-
   "bio": "Bio",
   "@bio": {
     "description": "Label of text field for user bio"

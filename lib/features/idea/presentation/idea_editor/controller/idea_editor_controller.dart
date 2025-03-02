@@ -9,43 +9,55 @@ part 'idea_editor_controller.g.dart';
 @riverpod
 class IdeaEditorController extends _$IdeaEditorController {
   @override
-  Future<IdeaEditorState> build() async {
-    // TODO(fatyga): use currentUserProfileProvider instead
+  FutureOr<IdeaEditorState> build() async {
+    ref.onDispose(() {
+      ref.read(selectedIdeaProvider.notifier).state = null;
+    });
+    final selectedIdea = ref.read(selectedIdeaProvider);
+
     final userId = ref.read(userRepositoryProvider).currentUser!.id;
+
     return IdeaEditorState(
-      idea: Idea.empty(userId: userId),
+      idea: selectedIdea ?? Idea.empty(userId: userId),
     );
   }
+
+
 
   void requestSaveChanges() {
     state =
         AsyncData(state.requireValue.copyWith(isSaveChangesRequested: true));
   }
 
-  Future<void> saveChangesInStep(IdeaStep updatedIdeaStep) async {
-    state = const AsyncLoading();
+  Future<void> saveStepChanges(IdeaStep updatedIdeaStep) async {
+    if (state.requireValue.isStepMode) {
+      state = const AsyncLoading();
 
-    final result =
-        await ref.read(ideaRepositoryProvider).updateStep(updatedIdeaStep);
-    state = AsyncData(
-      state.requireValue.copyWith(
-        isSaveChangesRequested: false,
-        idea: state.requireValue.idea.withUpdatedStep(result),
-      ),
-    );
+      state = await AsyncValue.guard(() async {
+        final result =
+            await ref.read(ideaRepositoryProvider).updateStep(updatedIdeaStep);
+        return state.requireValue.copyWith(
+          isSaveChangesRequested: false,
+          idea: state.requireValue.idea.withUpdatedStep(result),
+        );
+      });
+    }
   }
 
-  Future<void> saveChangesInIntroduction(Idea updatedIdea) async {
-    state = const AsyncLoading();
+  Future<void> saveIntroductionChanges(Idea updatedIdea) async {
+    if (state.requireValue.isIntroductionMode) {
+      state = const AsyncLoading();
 
-    final result =
-        await ref.read(ideaRepositoryProvider).updateIdea(updatedIdea);
-    state = AsyncData(
-      state.requireValue.copyWith(
-        isSaveChangesRequested: false,
-        idea: result.copyWith(steps: state.requireValue.idea.steps),
-      ),
-    );
+      state = await AsyncValue.guard(() async {
+        final result = await ref
+            .read(ideaRepositoryProvider)
+            .updateIdeaIntroduction(updatedIdea);
+        return state.requireValue.copyWith(
+          isSaveChangesRequested: false,
+          idea: result.copyWith(steps: state.requireValue.idea.steps),
+        );
+      });
+    }
   }
 
   void addStep() {

@@ -34,8 +34,10 @@ class IdeaEditorNavigator extends ConsumerWidget {
               Visibility(
                 visible: editorState.canStepBack,
                 child: IconButton(
-                  onPressed:
-                      ref.read(ideaEditorControllerProvider.notifier).stepBack,
+                  onPressed: ref
+                      .read(ideaEditorControllerProvider
+                          .notifier,)
+                      .stepBack,
                   icon: const Icon(Icons.arrow_back_ios),
                 ),
               ),
@@ -48,7 +50,8 @@ class IdeaEditorNavigator extends ConsumerWidget {
                 visible: editorState.canStepForward,
                 child: IconButton(
                   onPressed: ref
-                      .read(ideaEditorControllerProvider.notifier)
+                      .read(ideaEditorControllerProvider
+                          .notifier,)
                       .stepForward,
                   icon: const Icon(Icons.arrow_forward_ios),
                 ),
@@ -56,8 +59,10 @@ class IdeaEditorNavigator extends ConsumerWidget {
               Visibility(
                 visible: editorState.canAddStep,
                 child: IconButton(
-                  onPressed:
-                      ref.read(ideaEditorControllerProvider.notifier).addStep,
+                  onPressed: ref
+                      .read(ideaEditorControllerProvider
+                          .notifier,)
+                      .addStep,
                   icon: const Icon(Icons.add),
                 ),
               ),

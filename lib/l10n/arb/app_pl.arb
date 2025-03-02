@@ -1,35 +1,24 @@
 {
   "@@locale": "pl",
   "appName": "EcoIdeas",
-
   "unknown_exception": "Wystąpił nieoczekiwany błąd",
-
   "requiredField": "To pole jest obowiązkowe",
   "confirm": "Zatwierdź",
-
   "emailAddress": "Adres email",
   "incorrectFormat": "Nieprawidłowy format",
-
   "password": "Hasło",
   "confirmPassword": "Powtórz hasło",
   "tooShortPassword": "Co najmniej 8 znaków jest wymagane",
   "digitIsRequired": "Co namniej jedna cyfra jest wymagana",
   "passwordMismatch": "Hasła są niezgodne",
-
-
   "invalid_credentials": "Nieprawidłowe dane logowania",
-
   "emailSignInForm_submit": "Zaloguj się",
   "change_signIn_method": "Zmień metodę logowania",
-
-
   "continueWithGoogle": "Kontynuuj z Google",
   "continueWithFacebook": "Kontynuuj z Facebook",
   "continueWithEmail": "Kontynuuj z adresem email",
-
   "signInScreenFooter_forgotPassword": "Nie pamiętasz hasła?",
   "signInScreenFooter_createAccount": "Utwórz konto",
-
   "passwordResetFirstStepScreen_appBar_title": "Zresetuj swoje hasło",
   "passwordResetSecondStepScreen_appBar_title": "Podaj nowe hasło",
   "passwordResetFirstStep_description": "Podaj adres e-mail, za pomocą którego utworzono konto.",
@@ -38,22 +27,22 @@
   "passwordResetLinkSent_description": "Wysłaliśmy ci link na podany przez ciebie adres email. Proszę otwórz go, aby dokończyć proces resetowania hasła",
   "passwordResetExitDialogTitleText": "Czy chcesz przerwać?",
   "passwordResetExitDescriptionText": "Procedura zmiany hasła zakończy się niepowodzeniem.",
-
   "username": "Nazwa użytkownika",
   "signUp": "Zarejestruj się",
   "choose_signUp_method": "Wybierz metodę rejestracji",
   "change_signUp_method": "Zmień metodę rejestracji",
   "emailConfirmationLinkSent": "Link aktywacyjny wysłany",
   "emailConfirmation": "Na podany adres email, wysłaliśmy email z linkiem aktywacyjnym",
-
   "explore": "Odkrywaj",
   "myIdeas": "Moje pomysły",
   "myProfile": "Mój profil",
   "title": "Tytuł",
+  "titleHelperText": "Tytuł powinien być zwięzły i zachęcający",
   "description": "Opis",
-
+  "descriptionHelperText": "W kilku słowach opisz swój pomysł",
   "editYourProfile": "Edytuj swój profil",
+  "createIdea": "Stwórz nowy pomysł",
+  "createIdeaAndProceed": "Utwórz i przejdź do edytora",
   "fullName": "Imię i nazwisko",
   "bio": "O mnie"
-
 }

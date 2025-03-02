@@ -5,11 +5,13 @@ class TitleField extends StatelessWidget {
   const TitleField({
     required this.controller,
     this.initialValue,
+    this.withHelperText = false,
     super.key,
   });
 
   final String? initialValue;
   final TextEditingController controller;
+  final bool withHelperText;
 
   String? validator(String? value, AppLocalizations l10n) {
     if (value == null || value.isEmpty) {
@@ -22,12 +24,11 @@ class TitleField extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return TextFormField(
-
       controller: controller,
       validator: (value) => validator(value, l10n),
       decoration: InputDecoration(
         labelText: l10n.title,
-        helperText: '',
+        helperText: withHelperText ? l10n.titleHelperText : '',
       ),
     );
   }

@@ -92,7 +92,7 @@ class _UserProfileFormState extends ConsumerState<UserProfileForm> {
             controller: _bioField,
           ),
           // TODO(fatyga): replace it with FAB in EditUserProfileScreen
-          FilledButton(onPressed: _submit, child: Text('Save')),
+          FilledButton(onPressed: _submit, child: const Text('Save')),
         ],
       ),
     );

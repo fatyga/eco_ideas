@@ -51,7 +51,8 @@ class UserRepository {
     if (changedFields.keys.contains(ProfileTable.username)) {
       await client.auth.updateUser(
         UserAttributes(
-            data: {'display_name', changedFields[ProfileTable.username]}),
+          data: {'display_name', changedFields[ProfileTable.username]},
+        ),
       );
     }
 
@@ -78,6 +79,7 @@ class UserRepository {
         .createSignedUrl(filePath, 60 * 60 * 24 * 365 * 10);
 
     await client.from('profile').update(
-        {ProfileTable.avatarUrl: imageUrlResponse}).eq(ProfileTable.id, userId);
+      {ProfileTable.avatarUrl: imageUrlResponse},
+    ).eq(ProfileTable.id, userId);
   }
 }

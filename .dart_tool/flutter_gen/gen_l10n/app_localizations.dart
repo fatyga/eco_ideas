@@ -311,7 +311,7 @@ abstract class AppLocalizations {
   /// **'My ideas'**
   String get myIdeas;
 
-  /// Label for button, which take user to screen with his profile information
+  /// Label for button, which takes user to screen with his profile information
   ///
   /// In en, this message translates to:
   /// **'My profile'**
@@ -323,17 +323,41 @@ abstract class AppLocalizations {
   /// **'Title'**
   String get title;
 
+  /// Helper text of text field for title of idea.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it concise and encouraging.'**
+  String get titleHelperText;
+
   /// Label of text field for description of idea/step
   ///
   /// In en, this message translates to:
   /// **'Description'**
   String get description;
 
+  /// Helper text of text field for description of idea.
+  ///
+  /// In en, this message translates to:
+  /// **'In a few words familiarise users with your idea.'**
+  String get descriptionHelperText;
+
   /// Informs user, that he is on screen for editing his profile
   ///
   /// In en, this message translates to:
   /// **'Edit your profile'**
   String get editYourProfile;
+
+  /// Headline of section, where user creates new idea
+  ///
+  /// In en, this message translates to:
+  /// **'Create new idea'**
+  String get createIdea;
+
+  /// No description provided for @createIdeaAndProceedToEditor.
+  ///
+  /// In en, this message translates to:
+  /// **'Create and proceed to editor'**
+  String get createIdeaAndProceedToEditor;
 
   /// Label of text field for user name and surname
   ///

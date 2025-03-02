@@ -5,11 +5,13 @@ class DescriptionField extends StatelessWidget {
   const DescriptionField({
     required this.controller,
     this.initialValue,
+    this.withHelperText = false,
     super.key,
   });
 
   final String? initialValue;
   final TextEditingController controller;
+  final bool withHelperText;
 
   String? validator(String? value, AppLocalizations l10n) {
     if (value == null || value.isEmpty) {
@@ -27,8 +29,7 @@ class DescriptionField extends StatelessWidget {
       maxLines: null,
       decoration: InputDecoration(
         labelText: l10n.description,
-
-        helperText: '',
+        helperText: withHelperText ? l10n.descriptionHelperText : '',
       ),
     );
   }

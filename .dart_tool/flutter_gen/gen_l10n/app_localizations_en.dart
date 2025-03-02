@@ -123,10 +123,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get title => 'Title';
 
   @override
+  String get titleHelperText => 'Keep it concise and encouraging.';
+
+  @override
   String get description => 'Description';
 
   @override
+  String get descriptionHelperText => 'In a few words familiarise users with your idea.';
+
+  @override
   String get editYourProfile => 'Edit your profile';
+
+  @override
+  String get createIdea => 'Create new idea';
+
+  @override
+  String get createIdeaAndProceedToEditor => 'Create and proceed to editor';
 
   @override
   String get fullName => 'Full name';

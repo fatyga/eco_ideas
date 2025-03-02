@@ -6,11 +6,13 @@ class IdeaIntroductionForm extends ConsumerStatefulWidget {
   const IdeaIntroductionForm({
     required this.idea,
     this.onChange,
+    this.withFieldsHelperText = false,
     super.key,
   });
 
   final Idea idea;
   final void Function(Idea)? onChange;
+  final bool withFieldsHelperText;
 
   @override
   ConsumerState<IdeaIntroductionForm> createState() =>
@@ -36,8 +38,9 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
 
     if (isValid != null && isValid) {
       final updatedIdea = widget.idea.copyWith(
-          title: _titleFieldController.text,
-          description: _descriptionFieldController.text);
+        title: _titleFieldController.text,
+        description: _descriptionFieldController.text,
+      );
 
       return updatedIdea != widget.idea ? updatedIdea : null;
     } else {
@@ -54,7 +57,7 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
         if (updatedIdea != null) {
           ref
               .read(ideaEditorControllerProvider.notifier)
-              .saveChangesInIntroduction(updatedIdea);
+              .saveIntroductionChanges(updatedIdea);
         }
       }
     });
@@ -65,9 +68,11 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
         children: [
           TitleField(
             controller: _titleFieldController,
+            withHelperText: widget.withFieldsHelperText,
           ),
           DescriptionField(
             controller: _descriptionFieldController,
+            withHelperText: widget.withFieldsHelperText,
           ),
         ],
       ),

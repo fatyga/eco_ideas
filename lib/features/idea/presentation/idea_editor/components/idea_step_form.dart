@@ -55,14 +55,16 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(ideaEditorControllerProvider, (_, current) {
+    ref.listen(ideaEditorControllerProvider,
+        (_, current) {
       if (current.requireValue.isSaveChangesRequested) {
         final updatedIdeaStep = _validateAndSave();
 
         if (updatedIdeaStep != null) {
           ref
-              .read(ideaEditorControllerProvider.notifier)
-              .saveChangesInStep(updatedIdeaStep);
+              .read(
+                  ideaEditorControllerProvider.notifier,)
+              .saveStepChanges(updatedIdeaStep);
         }
       }
     });
