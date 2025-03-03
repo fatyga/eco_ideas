@@ -21,50 +21,51 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
     final theme = Theme.of(context);
     final notifier = ref.read(ideaEditorControllerProvider.notifier);
     final state = ref.watch(ideaEditorControllerProvider);
+    final data = state.requireValue;
 
-    return state.when(
-        data: (IdeaEditorState data) {
-          return LoadingFeedback(
-            isLoading: state.isLoading,
-            child: Scaffold(
-              appBar: AppBar(
-                // TODO(fatyga): back button should by showed implicitly
-                leading: IconButton(
-                  onPressed: () => context.go('/myIdeas'),
-                  icon: const Icon(Icons.arrow_back),
-                ),
-                actions: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.undo)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.redo)),
-                  IconButton(
-                      onPressed: notifier.requestSaveChanges,
-                      icon: const Icon(Icons.save)),
-                ],
-              ),
-              body: Padding(
-                padding: context.paddings.allLarge,
-                child: Builder(
-                  builder: (context) {
-                    if (data.isIntroductionMode) {
-                      return IdeaIntroductionForm(
-                        idea: data.idea,
-                      );
-                    } else {
-                      return IdeaStepForm(
-                        ideaStep: data.idea.steps[data.currentIndex],
-                      );
-                    }
-                  },
-                ),
-              ),
-              bottomSheet: IdeaEditorNavigator(
-                editorState: data,
-              ),
+    ref.listen(
+      ideaEditorControllerProvider,
+      (_, state) => state.showSnackbarOnError(context),
+    );
+
+    return LoadingFeedback(
+      isLoading: state.isLoading,
+      child: Scaffold(
+        appBar: AppBar(
+          // TODO(fatyga): back button should by showed implicitly
+          leading: IconButton(
+            onPressed: () => context.go('/myIdeas'),
+            icon: const Icon(Icons.arrow_back),
+          ),
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.undo)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.redo)),
+            IconButton(
+              onPressed: notifier.requestSaveChanges,
+              icon: const Icon(Icons.save),
             ),
-          );
-        },
-        error: (Object error, StackTrace stackTrace) =>
-            const Center(child: Text('Fail')),
-        loading: () => const SizedBox());
+          ],
+        ),
+        body: Padding(
+          padding: context.paddings.allLarge,
+          child: Builder(
+            builder: (context) {
+              if (data.isIntroductionMode) {
+                return IdeaIntroductionForm(
+                  idea: data.idea,
+                );
+              } else {
+                return IdeaStepForm(
+                  ideaStep: data.idea.steps[data.currentIndex],
+                );
+              }
+            },
+          ),
+        ),
+        bottomSheet: IdeaEditorNavigator(
+          editorState: data,
+        ),
+      ),
+    );
   }
 }

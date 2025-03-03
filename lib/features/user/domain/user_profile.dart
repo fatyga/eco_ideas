@@ -13,7 +13,7 @@ class UserProfile with _$UserProfile {
     @JsonKey(name: ProfileTable.fullName) String? fullName,
     String? bio,
     @JsonKey(includeToJson: false, name: ProfileTable.avatarUrl)
-    String? avatarUrl,
+    @JsonKey(name: ProfileTable.avatarUrl) String? avatarUrl,
   }) = _UserProfile;
 
   factory UserProfile.fromJson(Map<String, Object?> json) =>

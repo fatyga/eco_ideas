@@ -63,7 +63,6 @@ class UserRepository {
   }
 
   Future<void> uploadAvatar(String userId, XFile imageFile) async {
-    // TODO(fatyga): make sure that this logic should be here
     final bytes = await imageFile.readAsBytes();
     final fileExt = imageFile.path.split('.').last;
     final fileName = '${DateTime.now().toIso8601String()}.$fileExt';

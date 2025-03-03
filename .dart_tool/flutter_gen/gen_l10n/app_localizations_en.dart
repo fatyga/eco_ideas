@@ -117,6 +117,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myIdeas => 'My ideas';
 
   @override
+  String get published => 'Published';
+
+  @override
+  String get drafts => 'Drafts';
+
+  @override
   String get myProfile => 'My profile';
 
   @override

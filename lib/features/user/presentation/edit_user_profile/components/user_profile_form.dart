@@ -1,8 +1,10 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/features/idea/idea.dart';
 import 'package:eco_ideas/features/user/user.dart';
 import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserProfileForm extends ConsumerStatefulWidget {
@@ -53,6 +55,9 @@ class _UserProfileFormState extends ConsumerState<UserProfileForm> {
       }
       // Force currentUserProfileProvider to obtain updated user profile
       ref.invalidate(currentUserProfileProvider);
+      if (mounted) {
+        context.pop();
+      }
     }
   }
 
@@ -71,8 +76,9 @@ class _UserProfileFormState extends ConsumerState<UserProfileForm> {
       child: ListView(
         children: [
           Center(
-            child: AvatarField(
-              currentAvatarUrl: widget.userProfile.avatarUrl,
+            child: ImageField(
+              type: ImageFieldType.avatar,
+              imageUrl: widget.userProfile.avatarUrl,
               // TODO(fatyga): change the way how avatar is saved
               onSaved: (file) {
                 setState(() {

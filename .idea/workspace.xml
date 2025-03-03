@@ -10,40 +10,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3416c2ad-4a83-42f4-b66f-fbbfb47e6f5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/save_button.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/idea_creator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/components/components.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/components/idea_card.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/controller/my_ideas_controller.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations_en.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/data/idea_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/data/idea_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/components.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/description_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/description_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/title_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/title_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_editor_navigator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_editor_navigator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/domain/idea.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/domain/idea.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/image_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/image_field.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_introduction_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_introduction_form.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_step_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_step_form.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_state.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/idea_editor_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/idea_editor_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/my_ideas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/my_ideas.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/my_ideas_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/my_ideas_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/presentation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/presentation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/user/data/data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/data/data.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/user/data/profile_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/data/profile_table.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/user/data/user_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/data/user_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/avatar_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/avatar_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/components.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/domain/user_profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/domain/user_profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/bio_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/bio_field.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/user_profile_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/user_profile_form.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/edit_user_profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/edit_user_profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/presentation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/presentation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/user_profile/user_profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/user_profile/user_profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/user_profile/user_profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/user_profile/user_profile_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/l10n/arb/app_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/arb/app_en.arb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/l10n/arb/app_pl.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/arb/app_pl.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/routing/go_router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routing/go_router.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

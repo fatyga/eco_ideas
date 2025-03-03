@@ -80,10 +80,23 @@
   "@explore": {
     "description": "Label for button, which take user to screen, where he can explore ideas"
   },
+
+
   "myIdeas": "My ideas",
   "@myIdeas": {
     "description": "Label for button, which take user to screen with his ideas"
   },
+  "published": "Published",
+  "@published": {
+    "description": "Label for tab, which shows published ideas."
+  },
+
+  "drafts": "Drafts",
+  "@drafts": {
+    "description": "Label for tab, which shows draft ideas"
+  },
+
+
   "myProfile": "My profile",
   "@myProfile": {
     "description": "Label for button, which takes user to screen with his profile information"

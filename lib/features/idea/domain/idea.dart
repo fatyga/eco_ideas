@@ -13,6 +13,7 @@ class Idea with _$Idea {
     @JsonKey(name: 'user_id') required String userId,
     String? title,
     String? description,
+    @Default(false) bool published,
     @JsonKey(name: 'image_url') String? imageUrl,
     @JsonKey(includeToJson: false) @Default(<IdeaStep>[]) List<IdeaStep> steps,
   }) = _Idea;

@@ -1,6 +1,8 @@
 import 'package:eco_ideas/features/idea/idea.dart';
+import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 class IdeaIntroductionForm extends ConsumerStatefulWidget {
   const IdeaIntroductionForm({
@@ -22,6 +24,7 @@ class IdeaIntroductionForm extends ConsumerStatefulWidget {
 class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
   final _formKey = GlobalKey<FormState>();
 
+  XFile? image;
   late final TextEditingController _titleFieldController;
   late final TextEditingController _descriptionFieldController;
 
@@ -37,6 +40,7 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
     final isValid = _formKey.currentState?.validate();
 
     if (isValid != null && isValid) {
+      _formKey.currentState!.save();
       final updatedIdea = widget.idea.copyWith(
         title: _titleFieldController.text,
         description: _descriptionFieldController.text,
@@ -57,15 +61,26 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
         if (updatedIdea != null) {
           ref
               .read(ideaEditorControllerProvider.notifier)
-              .saveIntroductionChanges(updatedIdea);
+              .saveIntroductionChanges(updatedIdea, image);
         }
       }
     });
 
     return Form(
       key: _formKey,
-      child: Column(
+      child: ListView(
         children: [
+          ImageField(
+            type: ImageFieldType.idea,
+            imageUrl: widget.idea.imageUrl,
+            // TODO(fatyga): change the way how image is saved
+            onSaved: (file) {
+              setState(() {
+                image = file;
+              });
+            },
+          ),
+          context.spaces.verticalLarge,
           TitleField(
             controller: _titleFieldController,
             withHelperText: widget.withFieldsHelperText,

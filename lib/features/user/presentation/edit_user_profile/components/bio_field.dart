@@ -22,6 +22,7 @@ class BioField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: (value) => validator(value, l10n),
+      maxLines: null,
       decoration: InputDecoration(
         labelText: l10n.bio,
         helperText: '',

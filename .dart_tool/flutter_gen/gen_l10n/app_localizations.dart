@@ -311,6 +311,18 @@ abstract class AppLocalizations {
   /// **'My ideas'**
   String get myIdeas;
 
+  /// Label for tab, which shows published ideas.
+  ///
+  /// In en, this message translates to:
+  /// **'Published'**
+  String get published;
+
+  /// Label for tab, which shows draft ideas
+  ///
+  /// In en, this message translates to:
+  /// **'Drafts'**
+  String get drafts;
+
   /// Label for button, which takes user to screen with his profile information
   ///
   /// In en, this message translates to:

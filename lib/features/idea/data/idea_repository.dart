@@ -1,7 +1,9 @@
 import 'package:eco_ideas/features/idea/idea.dart';
 import 'package:eco_ideas/utils/supabase_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'idea_repository.g.dart';
 
@@ -30,6 +32,28 @@ class IdeaRepository {
 
     return result.map<Idea>(Idea.fromJson).toList();
   }
+
+  Future<String> uploadIdeaImage(String ideaId, XFile imageFile) async {
+    final bytes = await imageFile.readAsBytes();
+    final fileExt = imageFile.path.split('.').last;
+    final fileName = '${DateTime.now().toIso8601String()}.$fileExt';
+    final filePath = '$ideaId/$fileName';
+
+    await ref.read(supabaseClientProvider).storage.from('ideas').uploadBinary(
+          filePath,
+          bytes,
+          fileOptions: FileOptions(contentType: imageFile.mimeType),
+        );
+    final imageUrlResponse = await ref
+        .read(supabaseClientProvider)
+        .storage
+        .from('ideas')
+        .createSignedUrl(filePath, 60 * 60 * 24 * 365 * 10);
+
+    return imageUrlResponse;
+  }
+
+  Future<void> deleteIdeaImage(String ideaId) async {}
 
   Future<Idea> getIdea(String id) async {
     final result = await ref
