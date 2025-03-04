@@ -31,56 +31,50 @@ class IdeaEditorController extends _$IdeaEditorController {
   }
 
   Future<void> saveStepChanges(IdeaStep updatedIdeaStep, XFile? image) async {
-    if (state.requireValue.isStepMode) {
-      state = const AsyncLoading();
+    state = const AsyncLoading();
 
-      state = await AsyncValue.guard(() async {
-        var result = updatedIdeaStep;
+    state = await AsyncValue.guard(() async {
+      var result = updatedIdeaStep;
 
-        if (image != null) {
-          final imageUrl = await ref
-              .read(ideaRepositoryProvider)
-              .uploadIdeaImage(updatedIdeaStep.ideaId, image);
-          result = result.copyWith(imageUrl: imageUrl);
-        }
-        final savedIdeaStep =
-            await ref.read(ideaRepositoryProvider).updateStep(result);
-        return state.requireValue.copyWith(
-          isSaveChangesRequested: false,
-          idea: state.requireValue.idea.withUpdatedStep(savedIdeaStep),
-        );
-      });
-    }
+      if (image != null) {
+        final imageUrl = await ref
+            .read(ideaRepositoryProvider)
+            .uploadIdeaImage(updatedIdeaStep.ideaId, image);
+        result = result.copyWith(imageUrl: imageUrl);
+      }
+      final savedIdeaStep =
+          await ref.read(ideaRepositoryProvider).updateStep(result);
+      return state.requireValue.copyWith(
+        isSaveChangesRequested: false,
+        idea: state.requireValue.idea.withUpdatedStep(savedIdeaStep),
+      );
+    });
   }
 
   // TODO(fatyga): simplify logic
   Future<void> saveIntroductionChanges(Idea updatedIdea, XFile? image) async {
-    if (state.requireValue.isIntroductionMode) {
-      state = const AsyncLoading();
+    state = const AsyncLoading();
 
-      state = await AsyncValue.guard(() async {
-        var result = updatedIdea;
-        if (image != null) {
-          final imageUrl = await ref
-              .read(ideaRepositoryProvider)
-              .uploadIdeaImage(updatedIdea.id, image);
-          result = result.copyWith(imageUrl: imageUrl);
-        }
-
-        final savedIdea = await ref
+    state = await AsyncValue.guard(() async {
+      var result = updatedIdea;
+      if (image != null) {
+        final imageUrl = await ref
             .read(ideaRepositoryProvider)
-            .updateIdeaIntroduction(result);
+            .uploadIdeaImage(updatedIdea.id, image);
+        result = result.copyWith(imageUrl: imageUrl);
+      }
 
-        return state.requireValue.copyWith(
-          isSaveChangesRequested: false,
-          idea: savedIdea.copyWith(steps: state.requireValue.idea.steps),
-        );
-      });
-    }
+      final savedIdea =
+          await ref.read(ideaRepositoryProvider).updateIdeaIntroduction(result);
+
+      return state.requireValue.copyWith(
+        isSaveChangesRequested: false,
+        idea: savedIdea.copyWith(steps: state.requireValue.idea.steps),
+      );
+    });
   }
 
-
-   void addStep() {
+  void addStep() {
     final stateValue = state.requireValue;
 
     if (!stateValue.isSummaryMode) {
@@ -102,7 +96,9 @@ class IdeaEditorController extends _$IdeaEditorController {
     if (stateValue.isIntroductionMode) return;
 
     state = AsyncData(
-      stateValue.copyWith(currentIndex: stateValue.currentIndex - 1),
+      stateValue.copyWith(
+        currentIndex: stateValue.currentIndex - 1,
+      ),
     );
   }
 
@@ -112,7 +108,9 @@ class IdeaEditorController extends _$IdeaEditorController {
     if (stateValue.isSummaryMode) return;
 
     state = AsyncData(
-      stateValue.copyWith(currentIndex: stateValue.currentIndex + 1),
+      stateValue.copyWith(
+        currentIndex: stateValue.currentIndex + 1,
+      ),
     );
   }
 }

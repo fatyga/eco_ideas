@@ -11,6 +11,7 @@ class IdeaStep with _$IdeaStep {
     @JsonKey(name: 'idea_id')required String ideaId,
     String? title,
     String? description,
+    @Default([]) List<String> hints,
     @JsonKey(name: 'image_url') String? imageUrl,
   }) = _IdeaStep;
 

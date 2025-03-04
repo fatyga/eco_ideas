@@ -7,13 +7,10 @@ import 'package:image_picker/image_picker.dart';
 class IdeaStepForm extends ConsumerStatefulWidget {
   const IdeaStepForm({
     required this.ideaStep,
-    this.onChanged,
     super.key,
   });
 
   final IdeaStep ideaStep;
-
-  final void Function(IdeaStep idea)? onChanged;
 
   @override
   ConsumerState<IdeaStepForm> createState() => _IdeaStepFormState();
@@ -22,9 +19,10 @@ class IdeaStepForm extends ConsumerStatefulWidget {
 class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
   final _formKey = GlobalKey<FormState>();
 
-  XFile? image;
+  XFile? _image;
   late final TextEditingController _titleFieldController;
   late final TextEditingController _descriptionFieldController;
+  late List<TextEditingController> _hintsControllers;
 
   @override
   void initState() {
@@ -32,6 +30,9 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
     _titleFieldController = TextEditingController(text: widget.ideaStep.title);
     _descriptionFieldController =
         TextEditingController(text: widget.ideaStep.description);
+    _hintsControllers = widget.ideaStep.hints
+        .map((hint) => TextEditingController(text: hint))
+        .toList();
   }
 
   IdeaStep? _validateAndSave() {
@@ -42,6 +43,10 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
       final updatedIdeaStep = widget.ideaStep.copyWith(
         title: _titleFieldController.text,
         description: _descriptionFieldController.text,
+        hints: _hintsControllers
+            .where((hintController) => hintController.text.isNotEmpty)
+            .map((hintController) => hintController.text)
+            .toList(),
       );
 
       return updatedIdeaStep != widget.ideaStep ? updatedIdeaStep : null;
@@ -55,6 +60,9 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
     super.didUpdateWidget(oldWidget);
     _titleFieldController.text = widget.ideaStep.title ?? '';
     _descriptionFieldController.text = widget.ideaStep.description ?? '';
+    _hintsControllers = widget.ideaStep.hints
+        .map((hint) => TextEditingController(text: hint))
+        .toList();
   }
 
   @override
@@ -63,10 +71,10 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
       if (current.requireValue.isSaveChangesRequested) {
         final updatedIdeaStep = _validateAndSave();
 
-        if (updatedIdeaStep != null ) {
+        if (updatedIdeaStep != null) {
           ref
               .read(ideaEditorControllerProvider.notifier)
-              .saveStepChanges(updatedIdeaStep, image);
+              .saveStepChanges(updatedIdeaStep, _image);
         }
       }
     });
@@ -80,7 +88,7 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
             // TODO(fatyga): change the way how image is saved
             onSaved: (file) {
               setState(() {
-                image = file;
+                _image = file;
               });
             },
           ),
@@ -92,6 +100,15 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
           DescriptionField(
             key: ValueKey('step${widget.ideaStep.id}description'),
             controller: _descriptionFieldController,
+          ),
+          context.spaces.verticalLarge,
+          IdeaStepHints(
+            onAddHintTap: () {
+              setState(() {
+                _hintsControllers.add(TextEditingController());
+              });
+            },
+            hintsControllers: _hintsControllers,
           ),
         ],
       ),

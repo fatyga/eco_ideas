@@ -7,13 +7,11 @@ import 'package:image_picker/image_picker.dart';
 class IdeaIntroductionForm extends ConsumerStatefulWidget {
   const IdeaIntroductionForm({
     required this.idea,
-    this.onChange,
     this.withFieldsHelperText = false,
     super.key,
   });
 
   final Idea idea;
-  final void Function(Idea)? onChange;
   final bool withFieldsHelperText;
 
   @override

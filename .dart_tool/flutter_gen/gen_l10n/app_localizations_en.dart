@@ -147,6 +147,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createIdeaAndProceedToEditor => 'Create and proceed to editor';
 
   @override
+  String get hints => 'Hints';
+
+  @override
+  String get tapToPickImage => 'Tap to pick an image';
+
+  @override
   String get fullName => 'Full name';
 
   @override

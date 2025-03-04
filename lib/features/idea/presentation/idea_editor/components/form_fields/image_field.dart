@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:eco_ideas/l10n/l10n.dart';
+import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 import 'package:go_router/go_router.dart';
@@ -128,6 +130,7 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final theme = Theme.of(context);
     return GestureDetector(
       onTap: _showModalBottomSheet,
@@ -149,7 +152,17 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
                   // TODO(fatyga): remove this workaround
                   width: double.infinity,
                   height: 240,
-                  child: const Icon(Icons.image_outlined, size: 36),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.image_outlined, size: 36),
+                      context.spaces.verticalSmall,
+                      // TODO(fatyga): set appropriate color
+                      Text(l10n.tapToPickImage,
+                          style: theme.textTheme.labelLarge!
+                              .copyWith(color: theme.colorScheme.surfaceTint))
+                    ],
+                  ),
                 ),
             ],
           ),

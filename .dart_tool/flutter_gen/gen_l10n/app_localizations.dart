@@ -371,6 +371,18 @@ abstract class AppLocalizations {
   /// **'Create and proceed to editor'**
   String get createIdeaAndProceedToEditor;
 
+  /// Title of section for hints to step
+  ///
+  /// In en, this message translates to:
+  /// **'Hints'**
+  String get hints;
+
+  /// Instruction showed inside ImageField. It should communicate, that image can be picked after tap on ImageField
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to pick an image'**
+  String get tapToPickImage;
+
   /// Label of text field for user name and surname
   ///
   /// In en, this message translates to:

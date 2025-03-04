@@ -126,6 +126,16 @@
     "description": "Headline of section, where user creates new idea"
   },
   "createIdeaAndProceedToEditor": "Create and proceed to editor",
+
+  "hints": "Hints",
+  "@hints": {
+    "description": "Title of section for hints to step"
+  },
+
+  "tapToPickImage": "Tap to pick an image",
+  "@tapToPickImage":{
+    "description": "Instruction showed inside ImageField. It should communicate, that image can be picked after tap on ImageField"
+  },
   "fullName": "Full name",
   "@fullName": {
     "description": "Label of text field for user name and surname"

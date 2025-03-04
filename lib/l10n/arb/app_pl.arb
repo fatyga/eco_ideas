@@ -45,6 +45,8 @@
   "editYourProfile": "Edytuj swój profil",
   "createIdea": "Stwórz nowy pomysł",
   "createIdeaAndProceed": "Utwórz i przejdź do edytora",
+  "hints": "Wskazówki",
+  "tapToPickImage": "Dotknij, aby wybrać zdjęcie",
   "fullName": "Imię i nazwisko",
   "bio": "O mnie"
 }
