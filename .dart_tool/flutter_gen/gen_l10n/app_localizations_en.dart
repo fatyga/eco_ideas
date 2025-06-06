@@ -138,9 +138,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get descriptionHelperText => 'In a few words familiarise users with your idea.';
 
   @override
-  String get editYourProfile => 'Edit your profile';
-
-  @override
   String get createIdea => 'Create new idea';
 
   @override
@@ -150,7 +147,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hints => 'Hints';
 
   @override
+  String get introduction => 'Introduction';
+
+  @override
+  String get step => 'Step';
+
+  @override
+  String get summary => 'Summary';
+
+  @override
   String get tapToPickImage => 'Tap to pick an image';
+
+  @override
+  String get takeAPicture => 'Take a picture';
+
+  @override
+  String get selectFromGallery => 'Select from gallery';
+
+  @override
+  String get discardPickedImage => 'Discard picked image';
+
+  @override
+  String get deleteUploadedImage => 'Delete uploaded image';
+
+  @override
+  String get editYourProfile => 'Edit your profile';
 
   @override
   String get fullName => 'Full name';

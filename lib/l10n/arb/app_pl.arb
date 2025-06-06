@@ -46,7 +46,14 @@
   "createIdea": "Stwórz nowy pomysł",
   "createIdeaAndProceed": "Utwórz i przejdź do edytora",
   "hints": "Wskazówki",
+  "introduction": "Wprowadzenie",
+  "step": "Krok",
+  "summary": "Podsumowanie",
   "tapToPickImage": "Dotknij, aby wybrać zdjęcie",
+  "takeAPicture": "Zrób zdjęcie",
+  "selectFromGallery": "Wybierz zdjęcie z galerii",
+  "discardPickedImage": "Odrzuć wybrane zdjęcie",
+  "deleteUploadedImage": "Usuń przesłane zdjęcie",
   "fullName": "Imię i nazwisko",
   "bio": "O mnie"
 }

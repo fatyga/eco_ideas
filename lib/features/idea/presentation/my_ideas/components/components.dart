@@ -1,1 +1,1 @@
-export 'idea_card.dart';
+export '../../common/idea_card.dart';

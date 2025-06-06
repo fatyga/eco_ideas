@@ -25,6 +25,7 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
   XFile? image;
   late final TextEditingController _titleFieldController;
   late final TextEditingController _descriptionFieldController;
+  late List<String> _essentials;
 
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
     _titleFieldController = TextEditingController(text: widget.idea.title);
     _descriptionFieldController =
         TextEditingController(text: widget.idea.description);
+    _essentials = widget.idea.essentials;
   }
 
   Idea? _validateAndSave() {
@@ -42,6 +44,7 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
       final updatedIdea = widget.idea.copyWith(
         title: _titleFieldController.text,
         description: _descriptionFieldController.text,
+        essentials: _essentials,
       );
 
       return updatedIdea != widget.idea ? updatedIdea : null;
@@ -86,6 +89,16 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
           DescriptionField(
             controller: _descriptionFieldController,
             withHelperText: widget.withFieldsHelperText,
+          ),
+          context.spaces.verticalLarge,
+          IdeaAddon(
+            title: 'Essentials',
+            icon: const Icon(Icons.check),
+            values: _essentials,
+            onConfirm: (values) {
+              _essentials = values;
+              setState(() {});
+            },
           ),
         ],
       ),

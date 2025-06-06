@@ -11,6 +11,7 @@ class IdeaCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     return ListTile(
       title: Text(idea.title ?? ''),
       subtitle: Text(idea.description ?? ''),
@@ -21,6 +22,7 @@ class IdeaCard extends ConsumerWidget {
           context.go('/ideaEditor');
         },
       ),
+
     );
   }
 }

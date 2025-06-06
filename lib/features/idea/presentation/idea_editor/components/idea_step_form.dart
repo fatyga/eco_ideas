@@ -22,7 +22,7 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
   XFile? _image;
   late final TextEditingController _titleFieldController;
   late final TextEditingController _descriptionFieldController;
-  late List<TextEditingController> _hintsControllers;
+  late List<String> _hints;
 
   @override
   void initState() {
@@ -30,9 +30,7 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
     _titleFieldController = TextEditingController(text: widget.ideaStep.title);
     _descriptionFieldController =
         TextEditingController(text: widget.ideaStep.description);
-    _hintsControllers = widget.ideaStep.hints
-        .map((hint) => TextEditingController(text: hint))
-        .toList();
+    _hints = widget.ideaStep.hints;
   }
 
   IdeaStep? _validateAndSave() {
@@ -43,10 +41,7 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
       final updatedIdeaStep = widget.ideaStep.copyWith(
         title: _titleFieldController.text,
         description: _descriptionFieldController.text,
-        hints: _hintsControllers
-            .where((hintController) => hintController.text.isNotEmpty)
-            .map((hintController) => hintController.text)
-            .toList(),
+        hints: _hints,
       );
 
       return updatedIdeaStep != widget.ideaStep ? updatedIdeaStep : null;
@@ -60,9 +55,7 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
     super.didUpdateWidget(oldWidget);
     _titleFieldController.text = widget.ideaStep.title ?? '';
     _descriptionFieldController.text = widget.ideaStep.description ?? '';
-    _hintsControllers = widget.ideaStep.hints
-        .map((hint) => TextEditingController(text: hint))
-        .toList();
+    _hints = widget.ideaStep.hints;
   }
 
   @override
@@ -78,6 +71,7 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
         }
       }
     });
+
     return Form(
       key: _formKey,
       child: ListView(
@@ -102,13 +96,14 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
             controller: _descriptionFieldController,
           ),
           context.spaces.verticalLarge,
-          IdeaStepHints(
-            onAddHintTap: () {
-              setState(() {
-                _hintsControllers.add(TextEditingController());
-              });
+          IdeaAddon(
+            title: 'Hints',
+            icon: const Icon(Icons.lightbulb_outline),
+            values: _hints,
+            onConfirm: (values) {
+              _hints = values;
+              setState(() {});
             },
-            hintsControllers: _hintsControllers,
           ),
         ],
       ),

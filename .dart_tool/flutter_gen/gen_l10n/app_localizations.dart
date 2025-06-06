@@ -353,12 +353,6 @@ abstract class AppLocalizations {
   /// **'In a few words familiarise users with your idea.'**
   String get descriptionHelperText;
 
-  /// Informs user, that he is on screen for editing his profile
-  ///
-  /// In en, this message translates to:
-  /// **'Edit your profile'**
-  String get editYourProfile;
-
   /// Headline of section, where user creates new idea
   ///
   /// In en, this message translates to:
@@ -377,11 +371,59 @@ abstract class AppLocalizations {
   /// **'Hints'**
   String get hints;
 
+  /// Informs user, that he is editing introduction of an idea
+  ///
+  /// In en, this message translates to:
+  /// **'Introduction'**
+  String get introduction;
+
+  /// Informs user, that he is editing step of an idea
+  ///
+  /// In en, this message translates to:
+  /// **'Step'**
+  String get step;
+
+  /// Informs user, that he is editing summary of an idea
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get summary;
+
   /// Instruction showed inside ImageField. It should communicate, that image can be picked after tap on ImageField
   ///
   /// In en, this message translates to:
   /// **'Tap to pick an image'**
   String get tapToPickImage;
+
+  /// Label of button, which allow user to take a picture
+  ///
+  /// In en, this message translates to:
+  /// **'Take a picture'**
+  String get takeAPicture;
+
+  /// Label of button, which allow user to choose picture from gallery
+  ///
+  /// In en, this message translates to:
+  /// **'Select from gallery'**
+  String get selectFromGallery;
+
+  /// Label of button, which allow user to discard picked image
+  ///
+  /// In en, this message translates to:
+  /// **'Discard picked image'**
+  String get discardPickedImage;
+
+  /// Label of button, which allow user to delete uploaded image
+  ///
+  /// In en, this message translates to:
+  /// **'Delete uploaded image'**
+  String get deleteUploadedImage;
+
+  /// Informs user, that he is on screen for editing his profile
+  ///
+  /// In en, this message translates to:
+  /// **'Edit your profile'**
+  String get editYourProfile;
 
   /// Label of text field for user name and surname
   ///

@@ -80,8 +80,6 @@
   "@explore": {
     "description": "Label for button, which take user to screen, where he can explore ideas"
   },
-
-
   "myIdeas": "My ideas",
   "@myIdeas": {
     "description": "Label for button, which take user to screen with his ideas"
@@ -90,13 +88,10 @@
   "@published": {
     "description": "Label for tab, which shows published ideas."
   },
-
   "drafts": "Drafts",
   "@drafts": {
     "description": "Label for tab, which shows draft ideas"
   },
-
-
   "myProfile": "My profile",
   "@myProfile": {
     "description": "Label for button, which takes user to screen with his profile information"
@@ -117,24 +112,53 @@
   "@descriptionHelperText": {
     "description": "Helper text of text field for description of idea."
   },
-  "editYourProfile": "Edit your profile",
-  "@editYourProfile": {
-    "description": "Informs user, that he is on screen for editing his profile"
-  },
   "createIdea": "Create new idea",
   "@createIdea": {
     "description": "Headline of section, where user creates new idea"
   },
   "createIdeaAndProceedToEditor": "Create and proceed to editor",
-
   "hints": "Hints",
   "@hints": {
     "description": "Title of section for hints to step"
   },
 
+  "introduction": "Introduction",
+  "@introduction": {
+    "description": "Informs user, that he is editing introduction of an idea"
+  },
+  "step": "Step",
+  "@step": {
+    "description": "Informs user, that he is editing step of an idea"
+  },
+  "summary": "Summary",
+  "@summary": {
+    "description": "Informs user, that he is editing summary of an idea"
+  },
+
   "tapToPickImage": "Tap to pick an image",
-  "@tapToPickImage":{
+  "@tapToPickImage": {
     "description": "Instruction showed inside ImageField. It should communicate, that image can be picked after tap on ImageField"
+  },
+  "takeAPicture": "Take a picture",
+  "@takeAPicture": {
+    "description": "Label of button, which allow user to take a picture"
+  },
+  "selectFromGallery": "Select from gallery",
+  "@selectFromGallery": {
+    "description": "Label of button, which allow user to choose picture from gallery"
+  },
+  "discardPickedImage": "Discard picked image",
+  "@discardPickedImage": {
+    "description": "Label of button, which allow user to discard picked image"
+  },
+  "deleteUploadedImage": "Delete uploaded image",
+  "@deleteUploadedImage": {
+    "description": "Label of button, which allow user to delete uploaded image"
+  },
+
+  "editYourProfile": "Edit your profile",
+  "@editYourProfile": {
+    "description": "Informs user, that he is on screen for editing his profile"
   },
   "fullName": "Full name",
   "@fullName": {

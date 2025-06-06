@@ -1,3 +1,4 @@
+import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/user/user.dart';
 import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,14 @@ class UserProfileScreen extends ConsumerWidget {
     final userProfileValue = ref.watch(currentUserProfileProvider);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => ref.read(authRepositoryProvider).signOut(),
+          ),
+        ],
+      ),
       body: userProfileValue.when(
         data: (userProfile) {
           return Padding(
@@ -51,7 +59,7 @@ class UserProfileScreen extends ConsumerWidget {
                       .copyWith(color: theme.colorScheme.primary),
                 ),
                 context.spaces.verticalLarge,
-                Text(userProfile.bio ?? '', style: theme.textTheme.bodySmall)
+                Text(userProfile.bio ?? '', style: theme.textTheme.bodySmall),
               ],
             ),
           );

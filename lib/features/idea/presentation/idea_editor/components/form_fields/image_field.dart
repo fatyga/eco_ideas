@@ -76,7 +76,7 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
                 }
               },
               icon: const Icon(Icons.camera_alt),
-              label: const Text('Take a picture'),
+              label: Text(context.l10n.takeAPicture),
             ),
             TextButton.icon(
               onPressed: () async {
@@ -88,7 +88,7 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
                 }
               },
               icon: const Icon(Icons.image_search),
-              label: const Text('Select form gallery'),
+              label: Text(context.l10n.selectFromGallery),
             ),
             if (widget.pickedImage != null)
               Theme(
@@ -103,7 +103,7 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
                     context.pop();
                   },
                   icon: const Icon(Icons.delete),
-                  label: const Text('Discard picked image'),
+                  label: Text(context.l10n.discardPickedImage),
                 ),
               )
             else if (widget.imageUrl != null)
@@ -119,7 +119,7 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
                     context.pop();
                   },
                   icon: const Icon(Icons.delete),
-                  label: const Text('Delete uploaded image'),
+                  label: Text(context.l10n.deleteUploadedImage),
                 ),
               ),
           ],
@@ -141,7 +141,7 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
               if (widget.pickedImage != null)
                 Image.file(
                   File(widget.pickedImage!.path),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                   height: 240,
                 )
               else if (widget.imageUrl != null)
@@ -151,7 +151,7 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
                   color: theme.colorScheme.surfaceContainerHigh,
                   // TODO(fatyga): remove this workaround
                   width: double.infinity,
-                  height: 240,
+                  height: 200,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

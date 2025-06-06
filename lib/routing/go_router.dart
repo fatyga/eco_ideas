@@ -1,6 +1,6 @@
 import 'package:eco_ideas/features/auth/auth.dart';
 import 'package:eco_ideas/features/idea/idea.dart';
-import 'package:eco_ideas/features/idea/presentation/my_ideas/idea_creator.dart';
+import 'package:eco_ideas/features/idea/presentation/explore/explore.dart';
 import 'package:eco_ideas/features/user/user.dart';
 import 'package:eco_ideas/utils/scaffold_with_nested_navigation.dart';
 import 'package:eco_ideas/utils/splash_screen.dart';
@@ -51,7 +51,7 @@ GoRouter goRouter(Ref ref) {
               GoRoute(
                 path: '/explore',
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: Scaffold(body: Center(child: Text('Explore'))),
+                  child: ExploreScreen(),
                 ),
               ),
             ],
@@ -85,10 +85,7 @@ GoRouter goRouter(Ref ref) {
           ),
         ],
       ),
-      GoRoute(
-        path: '/ideaCreator',
-        builder: (context, _) => const IdeaCreatorScreen(),
-      ),
+
       GoRoute(
         path: '/ideaEditor',
         builder: (context, _) => const IdeaEditorScreen(),

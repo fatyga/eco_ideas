@@ -1,5 +1,4 @@
 import 'package:eco_ideas/features/idea/idea.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'idea_editor_state.freezed.dart';
@@ -17,19 +16,19 @@ class IdeaEditorState with _$IdeaEditorState {
 
   const IdeaEditorState._();
 
-  bool get isIntroductionMode => currentIndex == -1;
+  bool get isIntroduction => currentIndex == -1;
 
-  bool get isStepMode => currentIndex >= 0 && currentIndex < idea.steps.length;
+  bool get isStep => currentIndex >= 0 && currentIndex < idea.steps.length;
 
-  bool get isSummaryMode => currentIndex == idea.steps.length;
+  bool get isSummary => currentIndex == idea.steps.length;
 
-  bool get canStepBack => !isIntroductionMode;
+  bool get canStepBack => !isIntroduction;
 
   bool get canStepForward =>
-      (isIntroductionMode && idea.steps.isNotEmpty) ||
-      (isStepMode && currentIndex < idea.steps.length - 1);
+      (isIntroduction && idea.steps.isNotEmpty) ||
+      (isStep && currentIndex < idea.steps.length - 1);
 
   bool get canAddStep =>
-      (isIntroductionMode && idea.steps.isEmpty) ||
-      (isStepMode && currentIndex == idea.steps.length - 1);
+      (isIntroduction && idea.steps.isEmpty) ||
+      (isStep && currentIndex == idea.steps.length - 1);
 }

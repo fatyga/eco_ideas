@@ -42,7 +42,7 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
                   IconButton(onPressed: () {}, icon: const Icon(Icons.undo)),
                   IconButton(onPressed: () {}, icon: const Icon(Icons.redo)),
                   IconButton(
-                    onPressed: notifier.requestSaveChanges,
+                    onPressed: notifier.requestChangesSave,
                     icon: const Icon(Icons.save),
                   ),
                 ],
@@ -51,12 +51,13 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
                 padding: context.paddings.allLarge,
                 child: Builder(
                   builder: (context) {
-                    if (data.isIntroductionMode) {
+                    if (data.isIntroduction) {
                       return IdeaIntroductionForm(
                         idea: data.idea,
                       );
                     } else {
                       return IdeaStepForm(
+                        key: ValueKey('${data.idea.id}/${data.currentIndex}'),
                         ideaStep: data.idea.steps[data.currentIndex],
                       );
                     }

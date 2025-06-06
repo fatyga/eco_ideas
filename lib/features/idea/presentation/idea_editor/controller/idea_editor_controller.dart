@@ -25,7 +25,7 @@ class IdeaEditorController extends _$IdeaEditorController {
     );
   }
 
-  void requestSaveChanges() {
+  void requestChangesSave() {
     state =
         AsyncData(state.requireValue.copyWith(isSaveChangesRequested: true));
   }
@@ -77,7 +77,7 @@ class IdeaEditorController extends _$IdeaEditorController {
   void addStep() {
     final stateValue = state.requireValue;
 
-    if (!stateValue.isSummaryMode) {
+    if (!stateValue.isSummary) {
       // TODO(fatyga): simplify new index assignment
       final updatedIdea = stateValue.idea.withNewStep(
         IdeaStep(id: stateValue.idea.steps.length, ideaId: stateValue.idea.id),
@@ -93,7 +93,7 @@ class IdeaEditorController extends _$IdeaEditorController {
 
   void stepBack() {
     final stateValue = state.requireValue;
-    if (stateValue.isIntroductionMode) return;
+    if (stateValue.isIntroduction) return;
 
     state = AsyncData(
       stateValue.copyWith(
@@ -105,7 +105,7 @@ class IdeaEditorController extends _$IdeaEditorController {
   void stepForward() {
     final stateValue = state.requireValue;
 
-    if (stateValue.isSummaryMode) return;
+    if (stateValue.isSummary) return;
 
     state = AsyncData(
       stateValue.copyWith(

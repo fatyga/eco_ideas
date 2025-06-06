@@ -20,15 +20,18 @@ class IdeaRepository {
   final Ref ref;
 
   Future<void> createIdea(Idea idea) async {
-    await ref.read(supabaseClientProvider).from('idea').insert(idea.toJson());
+    await ref
+        .read(supabaseClientProvider)
+        .from(IdeaTable.tableName)
+        .insert(idea.toJson());
   }
 
   Future<List<Idea>> getUserIdeas(String userId) async {
     final result = await ref
         .read(supabaseClientProvider)
-        .from('idea')
-        .select('*,steps:step(*)')
-        .eq('user_id', userId);
+        .from(IdeaTable.tableName)
+        .select('*,${IdeaTable.steps}:step(*)')
+        .eq(IdeaTable.userId, userId);
 
     return result.map<Idea>(Idea.fromJson).toList();
   }
@@ -58,9 +61,9 @@ class IdeaRepository {
   Future<Idea> getIdea(String id) async {
     final result = await ref
         .read(supabaseClientProvider)
-        .from('idea')
-        .select('*,steps:step(*)')
-        .eq('id', id)
+        .from(IdeaTable.tableName)
+        .select('*,${IdeaTable.steps}:step(*)')
+        .eq(IdeaTable.id, id)
         .limit(1)
         .single();
 
@@ -85,9 +88,9 @@ class IdeaRepository {
   Future<Idea> updateIdeaIntroduction(Idea idea) async {
     final result = await ref
         .read(supabaseClientProvider)
-        .from('idea')
+        .from(IdeaTable.tableName)
         .upsert(idea.toJson())
-        .match({'idea_id': idea.id})
+        .match({IdeaTable.id: idea.id})
         .select()
         .limit(1)
         .single();
