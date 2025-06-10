@@ -1,4 +1,4 @@
-import 'package:eco_ideas/utils/spaces.dart';
+import 'package:eco_ideas/utils/blink_animation.dart';
 import 'package:flutter/material.dart';
 
 class SaveButton extends StatelessWidget {
@@ -13,27 +13,22 @@ class SaveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return IconButton(
-      onPressed: onPressed,
-      icon: Stack(
-        children: [
-          if (isSaving)
-            Container(
-              color: theme.scaffoldBackgroundColor,
-              padding: context.paddings.allSmall,
-              child: const Positioned(
-                right: 0,
-                bottom: 0,
-                child: const SizedBox.square(
-                  dimension: 16,
-                  child: CircularProgressIndicator(strokeWidth: 1),
-                ),
-              ),
+    return Builder(
+      builder: (context) {
+        if (isSaving) {
+          return BlinkAnimation(
+            child: IconButton(
+              onPressed: onPressed,
+              icon: const Icon(Icons.save),
             ),
-          const Icon(Icons.save),
-        ],
-      ),
+          );
+        } else {
+          return IconButton(
+            onPressed: onPressed,
+            icon: const Icon(Icons.save),
+          );
+        }
+      },
     );
   }
 }

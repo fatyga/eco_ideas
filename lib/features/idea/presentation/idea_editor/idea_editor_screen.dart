@@ -18,7 +18,6 @@ class IdeaEditorScreen extends ConsumerStatefulWidget {
 class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final notifier = ref.read(ideaEditorControllerProvider.notifier);
     final state = ref.watch(ideaEditorControllerProvider);
 
@@ -27,51 +26,45 @@ class _IdeaEditorScreenState extends ConsumerState<IdeaEditorScreen> {
       (_, state) => state.showSnackbarOnError(context),
     );
 
-    return state.when(
-        data: (IdeaEditorState data) {
-          return LoadingFeedback(
-            isLoading: state.isLoading,
-            child: Scaffold(
-              appBar: AppBar(
-                // TODO(fatyga): back button should by showed implicitly
-                leading: IconButton(
-                  onPressed: () => context.go('/myIdeas'),
-                  icon: const Icon(Icons.arrow_back),
+    return Scaffold(
+      appBar: AppBar(
+        // TODO(fatyga): back button should by showed implicitly
+        leading: IconButton(
+          onPressed: () => !state.isLoading ? context.go('/myIdeas') : null,
+          icon: const Icon(Icons.arrow_back),
+        ),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.undo)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.redo)),
+          SaveButton(
+            onPressed: notifier.requestChangesSave,
+            isSaving: state.isLoading,
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: context.paddings.allLarge,
+        child: Builder(
+          builder: (context) {
+            if (state.requireValue.isIntroduction) {
+              return IdeaIntroductionForm(
+                idea: state.requireValue.idea,
+              );
+            } else {
+              return IdeaStepForm(
+                key: ValueKey(
+                  '${state.requireValue.idea.id}/${state.requireValue.currentIndex}',
                 ),
-                actions: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.undo)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.redo)),
-                  IconButton(
-                    onPressed: notifier.requestChangesSave,
-                    icon: const Icon(Icons.save),
-                  ),
-                ],
-              ),
-              body: Padding(
-                padding: context.paddings.allLarge,
-                child: Builder(
-                  builder: (context) {
-                    if (data.isIntroduction) {
-                      return IdeaIntroductionForm(
-                        idea: data.idea,
-                      );
-                    } else {
-                      return IdeaStepForm(
-                        key: ValueKey('${data.idea.id}/${data.currentIndex}'),
-                        ideaStep: data.idea.steps[data.currentIndex],
-                      );
-                    }
-                  },
-                ),
-              ),
-              bottomSheet: IdeaEditorNavigator(
-                editorState: data,
-              ),
-            ),
-          );
-        },
-        error: (e, _) => Center(child: Text(e.toString())),
-        loading: () =>
-            const LoadingFeedback(isLoading: true, child: SizedBox()));
+                ideaStep: state
+                    .requireValue.idea.steps[state.requireValue.currentIndex],
+              );
+            }
+          },
+        ),
+      ),
+      bottomSheet: IdeaEditorNavigator(
+        editorState: state.requireValue,
+      ),
+    );
   }
 }

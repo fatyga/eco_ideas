@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:eco_ideas/features/idea/data/idea_repository.dart';
 import 'package:eco_ideas/features/idea/idea.dart';
 import 'package:eco_ideas/features/user/data/data.dart';
+import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -54,7 +55,6 @@ class IdeaEditorController extends _$IdeaEditorController {
   // TODO(fatyga): simplify logic
   Future<void> saveIntroductionChanges(Idea updatedIdea, XFile? image) async {
     state = const AsyncLoading();
-
     state = await AsyncValue.guard(() async {
       var result = updatedIdea;
       if (image != null) {
@@ -75,6 +75,8 @@ class IdeaEditorController extends _$IdeaEditorController {
   }
 
   void addStep() {
+    if (state.isLoading) return;
+
     final stateValue = state.requireValue;
 
     if (!stateValue.isSummary) {
@@ -92,6 +94,7 @@ class IdeaEditorController extends _$IdeaEditorController {
   }
 
   void stepBack() {
+    if (state.isLoading) return;
     final stateValue = state.requireValue;
     if (stateValue.isIntroduction) return;
 
@@ -103,6 +106,7 @@ class IdeaEditorController extends _$IdeaEditorController {
   }
 
   void stepForward() {
+    if (state.isLoading) return;
     final stateValue = state.requireValue;
 
     if (stateValue.isSummary) return;

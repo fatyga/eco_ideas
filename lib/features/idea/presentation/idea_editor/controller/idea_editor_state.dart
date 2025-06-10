@@ -1,4 +1,5 @@
 import 'package:eco_ideas/features/idea/idea.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'idea_editor_state.freezed.dart';
@@ -9,10 +10,11 @@ part 'idea_editor_state.freezed.dart';
 
 @freezed
 class IdeaEditorState with _$IdeaEditorState {
-  const factory IdeaEditorState(
-      {required Idea idea,
-      @Default(-1) int currentIndex,
-      @Default(false) bool isSaveChangesRequested,}) = _IdeaEditorState;
+  const factory IdeaEditorState({
+    required Idea idea,
+    @Default(-1) int currentIndex,
+    @Default(false) bool isSaveChangesRequested,
+  }) = _IdeaEditorState;
 
   const IdeaEditorState._();
 
