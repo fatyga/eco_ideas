@@ -10,15 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3416c2ad-4a83-42f4-b66f-fbbfb47e6f5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/utils/blink_animation.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card/idea_card.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card/idea_card_details.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card/idea_card_image.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/configure_fingerprint.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/save_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/save_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/idea_editor_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/idea_editor_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/common/common.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/common.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editing_target.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/components/components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/components/components.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/my_ideas_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/my_ideas_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +68,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -96,11 +109,11 @@
       <recent name="$PROJECT_DIR$/lib/features/auth/data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card" />
       <recent name="$PROJECT_DIR$/lib/features/idea/presentation/common" />
       <recent name="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon" />
       <recent name="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_essentials_addon" />
       <recent name="$PROJECT_DIR$/lib/utils" />
-      <recent name="$PROJECT_DIR$/lib/features/user/presentation/user_profile_editor/components" />
     </key>
   </component>
   <component name="RunManager" selected="Flutter.main_development.dart">

@@ -39,7 +39,10 @@ class MyIdeasScreen extends ConsumerWidget {
                   padding: context.paddings.allStandard,
                   children: ideas
                       .where((idea) => !idea.published)
-                      .map((idea) => IdeaCard(idea: idea))
+                      .map((idea) => Padding(
+                        padding: context.paddings.verticalSmall,
+                        child: IdeaCard(idea: idea),
+                      ))
                       .toList(),
                 ),
               ],
