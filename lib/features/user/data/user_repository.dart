@@ -16,13 +16,15 @@ UserRepository userRepository(Ref ref) =>
     UserRepository(client: ref.read(supabaseClientProvider));
 
 @riverpod
-Future<UserProfile> currentUserProfile(Ref ref) {
-  // TODO(fatyga): make sure, that value is always present
-  final authState = ref.watch(authChangesProvider).requireValue;
+Future<UserProfile> currentUserProfile(Ref ref) async {
+  final keepAliveRef = ref.keepAlive();
+  final authState = ref.watch(authChangesProvider);
+
+  if (authState.hasError) keepAliveRef.close();
 
   return ref
       .read(userRepositoryProvider)
-      .getUserProfile(authState.session!.user);
+      .getUserProfile(authState.requireValue.session!.user);
 }
 
 class UserRepository {
@@ -40,7 +42,6 @@ class UserRepository {
         .limit(1)
         .single();
 
-    response.addAll({'username': user.userMetadata!['display_name']});
     return UserProfile.fromJson(response);
   }
 
@@ -48,14 +49,6 @@ class UserRepository {
     String userId,
     Map<String, dynamic> changedFields,
   ) async {
-    if (changedFields.keys.contains(ProfileTable.username)) {
-      await client.auth.updateUser(
-        UserAttributes(
-          data: {'display_name', changedFields[ProfileTable.username]},
-        ),
-      );
-    }
-
     await client
         .from('profile')
         .update(changedFields)

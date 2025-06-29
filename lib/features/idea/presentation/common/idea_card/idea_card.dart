@@ -22,7 +22,7 @@ class IdeaCard extends ConsumerWidget {
   final IdeaCardLayout ideaCardLayout;
 
   double get _cardHeight => switch (ideaCardLayout) {
-        IdeaCardLayout.vertical => 360,
+        IdeaCardLayout.vertical => 300,
         IdeaCardLayout.horizontal => 120,
       };
 
@@ -31,12 +31,7 @@ class IdeaCard extends ConsumerWidget {
     final theme = Theme.of(context);
     return SizedBox(
       height: _cardHeight,
-      child: Material(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-          side: BorderSide(color: theme.colorScheme.outlineVariant),
-        ),
-        clipBehavior: Clip.antiAlias,
+      child: Card.outlined(
         child: InkWell(
           onTap: () {
             ref.read(selectedIdeaProvider.notifier).state = idea;
@@ -59,7 +54,6 @@ class IdeaCard extends ConsumerWidget {
                       ],
                     ),
                   IdeaCardLayout.horizontal => Row(
-
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _IdeaCardImage(

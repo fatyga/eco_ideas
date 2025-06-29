@@ -8,21 +8,24 @@ class _IdeaCardDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Flexible(
-        child: Text(
-          idea.title ?? '',
-          style:
-              theme.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w300),
-          maxLines: 2,
-          overflow: TextOverflow.fade,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Flexible(
+          child: Text(
+            idea.title ?? '',
+            style: theme.textTheme.bodyMedium!
+                .copyWith(fontWeight: FontWeight.w300),
+            maxLines: 2,
+            overflow: TextOverflow.fade,
+          ),
         ),
-      ),
-      Text(
-        '${idea.steps.length} steps',
-        style: theme.textTheme.bodySmall,
-      ),
-      Text('by ${idea.userId.substring(0, 5)}'),
-    ]);
+        Text(
+          '${idea.steps.length} steps',
+          style: theme.textTheme.bodySmall,
+        ),
+        Text('by ${idea.userProfile.username}'),
+      ],
+    );
   }
 }

@@ -13,16 +13,16 @@ part 'idea_editor_controller.g.dart';
 @riverpod
 class IdeaEditorController extends _$IdeaEditorController {
   @override
-  FutureOr<IdeaEditorState> build() {
+  FutureOr<IdeaEditorState> build() async{
     ref.onDispose(() {
       ref.read(selectedIdeaProvider.notifier).state = null;
     });
     final selectedIdea = ref.read(selectedIdeaProvider);
 
-    final userId = ref.read(userRepositoryProvider).currentUser!.id;
+    final userProfile = await ref.read(currentUserProfileProvider.future);
 
     return IdeaEditorState(
-      idea: selectedIdea ?? Idea.empty(userId: userId),
+      idea: selectedIdea ?? Idea.empty(userProfile: userProfile),
     );
   }
 
