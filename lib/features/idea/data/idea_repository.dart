@@ -30,7 +30,7 @@ class IdeaRepository {
     final result = await ref
         .read(supabaseClientProvider)
         .from(IdeaTable.tableName)
-        .select('*,${IdeaTable.steps}:step(*), userProfile:profile(*)')
+        .select('*,${IdeaTable.steps}:step(*)')
         .eq(IdeaTable.userId, userId);
 
     return result.map<Idea>(Idea.fromJson).toList();
@@ -62,7 +62,7 @@ class IdeaRepository {
     final result = await ref
         .read(supabaseClientProvider)
         .from(IdeaTable.tableName)
-        .select('*,${IdeaTable.steps}:step(*), userProfile:profile(*)')
+        .select('*,${IdeaTable.steps}:step(*)')
         .eq(IdeaTable.id, id)
         .limit(1)
         .single();

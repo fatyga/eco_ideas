@@ -53,15 +53,19 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
   @override
   void didUpdateWidget(covariant IdeaStepForm oldWidget) {
     super.didUpdateWidget(oldWidget);
-    _titleFieldController.text = widget.ideaStep.title ?? '';
-    _descriptionFieldController.text = widget.ideaStep.description ?? '';
-    _hints = widget.ideaStep.hints;
+    //Updates form fields only if saving was successful
+    if (oldWidget.ideaStep != widget.ideaStep) {
+      _titleFieldController.text = widget.ideaStep.title ?? '';
+      _descriptionFieldController.text = widget.ideaStep.description ?? '';
+      _hints = widget.ideaStep.hints;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(ideaEditorControllerProvider, (_, current) {
-      if (current.requireValue.isSaveChangesRequested) {
+    ref.listen(ideaEditorControllerProvider, (prev, current) {
+      if (!prev!.requireValue.isSaveChangesRequested &&
+          current.requireValue.isSaveChangesRequested) {
         final updatedIdeaStep = _validateAndSave();
 
         if (updatedIdeaStep != null) {
@@ -97,9 +101,8 @@ class _IdeaStepFormState extends ConsumerState<IdeaStepForm> {
           ),
           context.spaces.verticalLarge,
           IdeaAddon(
-            title: 'Hints',
-            icon: const Icon(Icons.lightbulb_outline),
-            values: _hints,
+            addonType: IdeaAddonType.hints,
+            items: _hints,
             onConfirm: (values) {
               _hints = values;
               setState(() {});

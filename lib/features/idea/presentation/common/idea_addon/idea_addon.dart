@@ -1,19 +1,65 @@
 import 'package:eco_ideas/features/idea/idea.dart';
+import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+part 'idea_addon_header.dart';
+
+part 'idea_addon_items.dart';
+
+enum IdeaAddonType {
+  hints,
+  warnings,
+  essentials,
+  benefits;
+
+  bool get isTips => this == IdeaAddonType.hints;
+
+  bool get isWarnings => this == IdeaAddonType.warnings;
+
+  bool get isEssentials => this == IdeaAddonType.essentials;
+
+  bool get isBenefits => this == IdeaAddonType.benefits;
+
+  String getTitle(AppLocalizations l10n) {
+    return switch (this) {
+      IdeaAddonType.hints => 'hints',
+      IdeaAddonType.warnings => 'warnings',
+      IdeaAddonType.benefits => 'benefits',
+      IdeaAddonType.essentials => 'essentials'
+    };
+  }
+
+  IconData getIcon() {
+    return switch (this) {
+      IdeaAddonType.hints => Icons.tips_and_updates_outlined,
+      IdeaAddonType.warnings => Icons.warning_amber,
+      IdeaAddonType.essentials => Icons.task_alt,
+      IdeaAddonType.benefits => Icons.health_and_safety_sharp
+    };
+  }
+
+  MaterialColor getColor() {
+    return switch (this) {
+      IdeaAddonType.hints => Colors.yellow,
+      IdeaAddonType.warnings => Colors.red,
+      IdeaAddonType.essentials => Colors.blue,
+      IdeaAddonType.benefits => Colors.green,
+    };
+  }
+}
 
 class IdeaAddon extends StatefulWidget {
   const IdeaAddon({
-    required this.title,
-    required this.icon,
-    required this.values,
+    required this.addonType,
+    required this.items,
     required this.onConfirm,
     super.key,
   });
 
-  final String title;
-  final Widget icon;
-  final List<String> values;
+  final IdeaAddonType addonType;
+  final List<String> items;
   final void Function(List<String>) onConfirm;
 
   @override
@@ -29,112 +75,58 @@ class _IdeaAddonState extends State<IdeaAddon> {
     });
   }
 
+  void _showEditorDialog() {
+    showDialog<void>(
+      context: context,
+      builder: (context) => IdeaAddonEditorDialog(
+        title: widget.addonType.name,
+        values: widget.items,
+        onConfirm: widget.onConfirm,
+      ),
+    );
+  }
+
+  bool? get getHideShowButtonStatus =>
+      widget.items.isEmpty ? null : isContentVisible;
+
+  bool get shouldItemsBeShown => widget.items.isNotEmpty && isContentVisible;
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return ColoredBox(
-      color: theme.colorScheme.surfaceContainerLow,
-      child: Padding(
-        padding: context.paddings.allSmall,
-        child: Column(
-          children: [
-            _IdeaAddonHeader(
-              title: widget.title,
-              icon: widget.icon,
-              isContentVisible: widget.values.isEmpty ? null : isContentVisible,
-              onEditTap: () {
-                showDialog<void>(
-                  context: context,
-                  builder: (context) => IdeaAddonEditorDialog(
-                    title: widget.title,
-                    values: widget.values,
-                    onConfirm: widget.onConfirm,
-                  ),
-                );
-              },
-              onVisibilityToggle: _toggleVisibility,
-            ),
-            if (widget.values.isNotEmpty && isContentVisible)
-              Padding(
-                padding: context.paddings.horizontalLarge,
-                child: _IdeaAddonValues(values: widget.values),
-              ),
-          ],
+    return Theme(
+      data: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: widget.addonType.getColor(),
+          brightness: Theme.of(context).colorScheme.brightness,
         ),
       ),
-    );
-  }
-}
-
-class _IdeaAddonHeader extends StatelessWidget {
-  const _IdeaAddonHeader({
-    required this.title,
-    required this.icon,
-    required this.onEditTap,
-    required this.onVisibilityToggle,
-    this.isContentVisible,
-    super.key,
-  });
-
-  final String title;
-  final Widget icon;
-  final VoidCallback onEditTap;
-  final bool? isContentVisible;
-  final VoidCallback onVisibilityToggle;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Padding(
-      padding: context.paddings.horizontalStandard,
-      child: Row(
-        children: [
-          icon,
-          context.spaces.horizontalSmall,
-          Text(title, style: theme.textTheme.titleMedium),
-          const Spacer(),
-          IconButton(
-            onPressed: onEditTap,
-            icon: const Icon(Icons.edit, size: 20),
-          ),
-          if (isContentVisible != null)
-            IconButton(
-              onPressed: onVisibilityToggle,
-              icon: Icon(
-                isContentVisible!
-                    ? Icons.keyboard_arrow_up
-                    : Icons.keyboard_arrow_down,
-                size: 20,
-              ),
+      child: Builder(
+        builder: (context) {
+          return Container(
+            padding: context.paddings.allSmall,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondaryContainer,
+              borderRadius: BorderRadius.circular(6),
             ),
-        ],
+            child: Column(
+              children: [
+                _IdeaAddonHeader(
+                  addonType: widget.addonType,
+                  itemsCount: widget.items.length,
+                  isContentVisible: getHideShowButtonStatus,
+                  onEditTap: _showEditorDialog,
+                  onVisibilityToggle: _toggleVisibility,
+                ),
+                if (shouldItemsBeShown)
+                  Padding(
+                    padding: context.paddings.horizontalLarge,
+                    child: _IdeaAddonItems(items: widget.items),
+                  ),
+              ],
+            ),
+          );
+        },
       ),
-    );
-  }
-}
-
-class _IdeaAddonValues extends StatelessWidget {
-  const _IdeaAddonValues({required this.values, super.key});
-
-  final List<String> values;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: values
-          .map(
-            (value) => Padding(
-              padding: context.paddings.verticalSmall,
-              child: Row(
-                children: [
-                  const Icon(Icons.circle, size: 8),
-                  context.spaces.horizontalStandard,
-                  Text(value),
-                ],
-              ),
-            ),
-          )
-          .toList(),
     );
   }
 }

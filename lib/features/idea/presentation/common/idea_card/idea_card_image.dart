@@ -25,7 +25,8 @@ class _IdeaCardImage extends StatelessWidget {
           if (imageUrl == null) {
             return ColoredBox(
               color: theme.colorScheme.surfaceContainerLow,
-              child: const Center(child: Icon(Icons.info_outline)),
+              child:
+                  const Center(child: Icon(Icons.image_not_supported_outlined)),
             );
           } else {
             return Image.network(

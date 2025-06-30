@@ -24,7 +24,7 @@ class _IdeaCardDetails extends StatelessWidget {
           '${idea.steps.length} steps',
           style: theme.textTheme.bodySmall,
         ),
-        Text('by ${idea.userProfile.username}'),
+        Text('by ${idea.userId.substring(0,5)}'),
       ],
     );
   }

@@ -92,9 +92,8 @@ class _IdeaIntroductionFormState extends ConsumerState<IdeaIntroductionForm> {
           ),
           context.spaces.verticalLarge,
           IdeaAddon(
-            title: 'Essentials',
-            icon: const Icon(Icons.check),
-            values: _essentials,
+            addonType: IdeaAddonType.essentials,
+            items: _essentials,
             onConfirm: (values) {
               _essentials = values;
               setState(() {});

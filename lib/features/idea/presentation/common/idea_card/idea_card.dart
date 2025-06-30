@@ -32,6 +32,7 @@ class IdeaCard extends ConsumerWidget {
     return SizedBox(
       height: _cardHeight,
       child: Card.outlined(
+        clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: () {
             ref.read(selectedIdeaProvider.notifier).state = idea;

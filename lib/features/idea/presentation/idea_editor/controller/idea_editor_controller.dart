@@ -13,7 +13,7 @@ part 'idea_editor_controller.g.dart';
 @riverpod
 class IdeaEditorController extends _$IdeaEditorController {
   @override
-  FutureOr<IdeaEditorState> build() async{
+  FutureOr<IdeaEditorState> build() async {
     ref.onDispose(() {
       ref.read(selectedIdeaProvider.notifier).state = null;
     });
@@ -22,13 +22,18 @@ class IdeaEditorController extends _$IdeaEditorController {
     final userProfile = await ref.read(currentUserProfileProvider.future);
 
     return IdeaEditorState(
-      idea: selectedIdea ?? Idea.empty(userProfile: userProfile),
+      idea: selectedIdea ?? Idea.empty(userId: userProfile.id),
     );
   }
 
   void requestChangesSave() {
     state =
         AsyncData(state.requireValue.copyWith(isSaveChangesRequested: true));
+  }
+
+  void cancelChangesSaveRequest() {
+    state =
+        AsyncData(state.requireValue.copyWith(isSaveChangesRequested: false));
   }
 
   Future<void> saveStepChanges(IdeaStep updatedIdeaStep, XFile? image) async {

@@ -17,16 +17,13 @@ class IdeaTable {
   static const String imageUrl = 'image_url';
   static const String essentials = 'essentials';
   static const String steps = 'steps';
-
-  //TODO(fatyga): it is not a name of database's column like aboves
-  static const String userProfile = 'userProfile';
 }
 
 @freezed
 class Idea with _$Idea {
   const factory Idea({
     @JsonKey(name: IdeaTable.id) required String id,
-    @JsonKey(includeToJson: false) required UserProfile userProfile,
+    @JsonKey(name: IdeaTable.userId) required String userId,
     @JsonKey(name: IdeaTable.title) String? title,
     @JsonKey(name: IdeaTable.description) String? description,
     @JsonKey(name: IdeaTable.published) @Default(false) bool published,
@@ -40,9 +37,9 @@ class Idea with _$Idea {
     List<IdeaStep> steps,
   }) = _Idea;
 
-  factory Idea.empty({required UserProfile userProfile}) {
+  factory Idea.empty({required String userId}) {
     final id = const Uuid().v4();
-    return Idea(id: id, userProfile: userProfile);
+    return Idea(id: id, userId: userId);
   }
 
   factory Idea.fromJson(Map<String, Object?> json) => _$IdeaFromJson(json);

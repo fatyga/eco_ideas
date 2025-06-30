@@ -28,22 +28,30 @@ class MyIdeasScreen extends ConsumerWidget {
           data: (ideas) {
             return TabBarView(
               children: [
-                ListView(
-                  padding: context.paddings.allStandard,
-                  children: ideas
-                      .where((idea) => idea.published)
-                      .map((idea) => IdeaCard(idea: idea))
-                      .toList(),
+                RefreshIndicator(
+                  onRefresh: () =>
+                      ref.refresh(myIdeasControllerProvider.future),
+                  child: ListView(
+                    padding: context.paddings.allStandard,
+                    children: ideas
+                        .where((idea) => idea.published)
+                        .map((idea) => IdeaCard(idea: idea))
+                        .toList(),
+                  ),
                 ),
-                ListView(
-                  padding: context.paddings.allStandard,
-                  children: ideas
-                      .where((idea) => !idea.published)
-                      .map((idea) => Padding(
-                        padding: context.paddings.verticalSmall,
-                        child: IdeaCard(idea: idea),
-                      ))
-                      .toList(),
+                RefreshIndicator(
+                  onRefresh: () =>
+                      ref.refresh(myIdeasControllerProvider.future),
+                  child: ListView(
+                    padding: context.paddings.allStandard,
+                    children: ideas
+                        .where((idea) => !idea.published)
+                        .map((idea) => Padding(
+                              padding: context.paddings.verticalSmall,
+                              child: IdeaCard(idea: idea),
+                            ))
+                        .toList(),
+                  ),
                 ),
               ],
             );

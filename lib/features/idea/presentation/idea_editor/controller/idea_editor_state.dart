@@ -1,5 +1,4 @@
 import 'package:eco_ideas/features/idea/idea.dart';
-import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'idea_editor_state.freezed.dart';
