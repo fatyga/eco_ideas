@@ -41,10 +41,10 @@ class AuthRepository {
     final idToken = googleAuth.idToken;
 
     if (accessToken == null) {
-      throw 'No Access Token found.';
+      throw Exception('No Access Token found.');
     }
     if (idToken == null) {
-      throw 'No ID Token found.';
+      throw Exception('No ID Token found.');
     }
 
     await client.signInWithIdToken(

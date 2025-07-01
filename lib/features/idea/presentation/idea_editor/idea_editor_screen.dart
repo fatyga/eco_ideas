@@ -1,6 +1,5 @@
 import 'package:eco_ideas/features/idea/idea.dart';
 import 'package:eco_ideas/utils/async_value_extension.dart';
-import 'package:eco_ideas/utils/loading_widget.dart';
 
 import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';

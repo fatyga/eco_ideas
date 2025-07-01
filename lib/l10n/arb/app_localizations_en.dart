@@ -1,3 +1,6 @@
+// dart format off
+// coverage:ignore-file
+
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
@@ -72,25 +75,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordResetFirstStepScreen_appBar_title => 'Reset your password';
 
   @override
-  String get passwordResetSecondStepScreen_appBar_title => 'Provide new password';
+  String get passwordResetSecondStepScreen_appBar_title =>
+      'Provide new password';
 
   @override
-  String get passwordResetFirstStep_description => 'Please enter an email address with which your account was created.';
+  String get passwordResetFirstStep_description =>
+      'Please enter an email address with which your account was created.';
 
   @override
-  String get passwordResetSecondStep_description => 'In order to finish password reset procedure, please provide new password.';
+  String get passwordResetSecondStep_description =>
+      'In order to finish password reset procedure, please provide new password.';
 
   @override
   String get passwordResetLinkSent_title => 'Link was sent!';
 
   @override
-  String get passwordResetLinkSent_description => 'We\'ve sent a link to given email address. Please open it to finish the process of resetting password.';
+  String get passwordResetLinkSent_description =>
+      'We\'ve sent a link to given email address. Please open it to finish the process of resetting password.';
 
   @override
   String get passwordResetExitDialogTitleText => 'Are you want to cancel?';
 
   @override
-  String get passwordResetExitDescriptionText => 'Password reset procedure will fail.';
+  String get passwordResetExitDescriptionText =>
+      'Password reset procedure will fail.';
 
   @override
   String get username => 'Username';
@@ -108,7 +116,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailConfirmationLinkSent => 'Email confirmation link sent';
 
   @override
-  String get emailConfirmation => 'We\'ve sent you email with confirmation link';
+  String get emailConfirmation =>
+      'We\'ve sent you email with confirmation link';
 
   @override
   String get explore => 'Explore';
@@ -135,7 +144,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get description => 'Description';
 
   @override
-  String get descriptionHelperText => 'In a few words familiarise users with your idea.';
+  String get descriptionHelperText =>
+      'In a few words familiarise users with your idea.';
 
   @override
   String get createIdea => 'Create new idea';

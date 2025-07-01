@@ -29,7 +29,6 @@ class _CircleAvatarWithPicker extends StatefulWidget {
     required this.currentImage,
     required this.onChanged,
     this.currentAvatarUrl,
-    super.key,
   });
 
   final XFile? currentImage;
@@ -55,7 +54,9 @@ class _CircleAvatarWithPickerState extends State<_CircleAvatarWithPicker> {
                 final image =
                     await picker.pickImage(source: ImageSource.camera);
                 widget.onChanged(image);
-                context.pop();
+                if(context.mounted) {
+                  context.pop();
+                }
               },
               icon: const Icon(Icons.camera_alt),
               label: const Text('Take a picture'),
@@ -65,7 +66,9 @@ class _CircleAvatarWithPickerState extends State<_CircleAvatarWithPicker> {
                 final image =
                     await picker.pickImage(source: ImageSource.gallery);
                 widget.onChanged(image);
-                context.pop();
+                if(context.mounted) {
+                  context.pop();
+                }
               },
               icon: const Icon(Icons.image_search),
               label: const Text('Select form gallery'),

@@ -24,8 +24,6 @@ class _SignUpScreenState extends State<SignUpScreen> with LoadingFeedbackMixin {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     Theme.of(context);

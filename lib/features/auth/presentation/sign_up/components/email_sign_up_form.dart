@@ -1,4 +1,6 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/l10n/arb/app_localizations.dart';
+
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,7 @@ class EmailSignUpForm extends ConsumerStatefulWidget {
     super.key,
   });
 
-  final ValueChanged<bool> setLoading;
+  final void Function({required bool value}) setLoading;
   final VoidCallback onChangeSignUpMethodTap;
 
   @override
@@ -35,7 +37,7 @@ class _EmailSignUpFormState extends ConsumerState<EmailSignUpForm> {
       final password = _passwordFieldController.text;
       final username = _usernameFieldController.text;
 
-      widget.setLoading(true);
+      widget.setLoading(value: true);
 
       try {
         await ref.read(authRepositoryProvider).signUpWithEmailAndPassword(
@@ -54,7 +56,7 @@ class _EmailSignUpFormState extends ConsumerState<EmailSignUpForm> {
         }
       }
 
-      widget.setLoading(false);
+      widget.setLoading(value: false);
     }
   }
 

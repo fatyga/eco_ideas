@@ -1,7 +1,7 @@
 part of 'idea_addon.dart';
 
 class _IdeaAddonItems extends StatelessWidget {
-  const _IdeaAddonItems({required this.items, super.key});
+  const _IdeaAddonItems({required this.items});
 
   final List<String> items;
 

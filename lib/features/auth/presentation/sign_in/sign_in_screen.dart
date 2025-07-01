@@ -1,5 +1,7 @@
 import 'package:eco_ideas/app_logo.dart';
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/l10n/arb/app_localizations.dart';
+
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/utils/loading_widget.dart';
 
@@ -35,7 +37,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
   }
 
   Future<void> _signInWithGoogle() async {
-    setLoading(true);
+    setLoading(value: true);
 
     try {
       await ref.read(authRepositoryProvider).signInWithGoogle();
@@ -49,7 +51,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen>
             .showSnackBar(SnackBar(content: Text(l10n.unknown_exception)));
       }
     }
-    setLoading(false);
+    setLoading(value: false);
   }
 
   @override

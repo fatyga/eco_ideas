@@ -1,3 +1,5 @@
+
+import 'package:eco_ideas/l10n/arb/app_localizations.dart';
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 

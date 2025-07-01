@@ -4,7 +4,6 @@ class _IdeaCardImage extends StatelessWidget {
   const _IdeaCardImage({
     required this.ideaCardLayout,
     this.imageUrl,
-    super.key,
   });
 
   final String? imageUrl;

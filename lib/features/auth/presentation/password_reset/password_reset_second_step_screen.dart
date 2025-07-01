@@ -1,4 +1,6 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/l10n/arb/app_localizations.dart';
+
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/utils/loading_widget.dart';
 import 'package:eco_ideas/utils/spaces.dart';
@@ -24,7 +26,6 @@ class _PasswordResetScreenState
   final _passwordFieldKey = TextEditingController();
 
   AppLocalizations get l10n => context.l10n;
-  bool _isPasswordChanged = false;
 
   Future<void> _submit() async {
     final isValid = _formKey.currentState?.validate();
@@ -32,13 +33,12 @@ class _PasswordResetScreenState
     if (isValid != null && isValid) {
       final password = _passwordFieldKey.text;
 
-      setLoading(true);
+      setLoading(value: true);
 
       try {
         await ref.read(authRepositoryProvider).setNewPassword(password);
 
         setState(() {
-          _isPasswordChanged = true;
         });
       } on AuthException catch (e) {
         if (mounted) {
@@ -51,7 +51,7 @@ class _PasswordResetScreenState
         }
       }
 
-      setLoading(false);
+      setLoading(value: false);
     }
   }
 

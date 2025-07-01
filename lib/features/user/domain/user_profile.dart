@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:eco_ideas/features/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

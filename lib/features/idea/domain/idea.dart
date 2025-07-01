@@ -1,5 +1,4 @@
 import 'package:eco_ideas/features/idea/idea.dart';
-import 'package:eco_ideas/features/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 

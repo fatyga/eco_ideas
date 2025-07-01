@@ -1,9 +1,7 @@
-import 'dart:io';
 
 import 'package:eco_ideas/features/idea/data/idea_repository.dart';
 import 'package:eco_ideas/features/idea/idea.dart';
 import 'package:eco_ideas/features/user/data/data.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';

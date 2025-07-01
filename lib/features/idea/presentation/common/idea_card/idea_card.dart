@@ -28,7 +28,7 @@ class IdeaCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    Theme.of(context);
     return SizedBox(
       height: _cardHeight,
       child: Card.outlined(

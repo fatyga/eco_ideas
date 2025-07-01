@@ -7,7 +7,6 @@ class _IdeaAddonHeader extends StatelessWidget {
     required this.onEditTap,
     required this.onVisibilityToggle,
     this.isContentVisible,
-    super.key,
   });
 
   final IdeaAddonType addonType;
@@ -57,7 +56,7 @@ class _IdeaAddonHeader extends StatelessWidget {
               if (shouldItemsCountBeShown)
                 Text(getItemsCountLabel,
                     style: theme.textTheme.labelMedium!
-                        .copyWith(color: theme.hintColor)),
+                        .copyWith(color: theme.hintColor),),
             ],
           ),
           const Spacer(),

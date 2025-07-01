@@ -1,7 +1,7 @@
 part of 'idea_card.dart';
 
 class _IdeaCardDetails extends StatelessWidget {
-  const _IdeaCardDetails({required this.idea, super.key});
+  const _IdeaCardDetails({required this.idea});
 
   final Idea idea;
 

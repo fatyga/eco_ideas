@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:eco_ideas/features/user/user.dart';
 import 'package:image_picker/image_picker.dart';

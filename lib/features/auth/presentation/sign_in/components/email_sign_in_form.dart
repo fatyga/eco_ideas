@@ -1,4 +1,6 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/l10n/arb/app_localizations.dart';
+
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ class EmailSignInForm extends ConsumerStatefulWidget {
     super.key,
   });
 
-  final ValueChanged<bool> setLoading;
+  final void Function({required bool value}) setLoading;
   final VoidCallback onChangeSignInMethodTap;
 
   @override
@@ -34,7 +36,7 @@ class _EmailSignInFormState extends ConsumerState<EmailSignInForm> {
       final email = _emailFieldController.text;
       final password = _passwordFieldController.text;
 
-      widget.setLoading(true);
+      widget.setLoading(value: true);
 
       try {
         await ref
@@ -51,7 +53,7 @@ class _EmailSignInFormState extends ConsumerState<EmailSignInForm> {
         }
       }
 
-      widget.setLoading(false);
+      widget.setLoading(value: false);
     }
   }
 

@@ -1,4 +1,6 @@
 import 'package:eco_ideas/features/idea/idea.dart';
+import 'package:eco_ideas/l10n/arb/app_localizations.dart';
+
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/utils/spaces.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +48,7 @@ class IdeaEditorNavigator extends ConsumerWidget {
               Expanded(
                 child: Center(
                   child: Text(getLabel(context.l10n),
-                      style: theme.textTheme.labelLarge),
+                      style: theme.textTheme.labelLarge,),
                 ),
               ),
               Visibility(

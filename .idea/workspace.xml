@@ -10,26 +10,79 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3416c2ad-4a83-42f4-b66f-fbbfb47e6f5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon_header.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon_values.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_gen/gen_l10n/app_localizations_en.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_gen/pubspec.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/configure_fingerprint.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/configure_fingerprint.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/data/idea_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/data/idea_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_options.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/arm64-v8a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/arm64-v8a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/arm64-v8a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/arm64-v8a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/armeabi-v7a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/armeabi-v7a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/armeabi-v7a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/armeabi-v7a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/x86_64/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/x86_64/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/x86_64/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/1r2e6r1z/x86_64/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/4p46i614/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/4p46i614/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/4p46i614/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/4p46i614/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/arm64-v8a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/armeabi-v7a/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/.cxx/Debug/m40662k2/x86_64/CMakeFiles/3.22.1-g37088a8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.last_build_id" beforeDir="false" afterPath="$PROJECT_DIR$/build/.last_build_id" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/l10n.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/view/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/view/app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/data/auth_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/data/auth_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/common/auth_exception_handling.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/common/auth_exception_handling.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/confirm_password_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/confirm_password_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/email_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/email_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/password_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/password_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/restricted_password_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/restricted_password_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/username_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/common/form_fields/username_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_first_step_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_first_step_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_second_step_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/password_reset/password_reset_second_step_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/sign_in/components/email_sign_in_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/sign_in/components/email_sign_in_form.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/sign_in/sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/sign_in/sign_in_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/sign_up/components/email_sign_up_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/sign_up/components/email_sign_up_form.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/auth/presentation/sign_up/sign_up_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/auth/presentation/sign_up/sign_up_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/data/data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/data/data.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/domain/idea.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/domain/idea.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/domain/idea_step.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/domain/idea_step.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon_header.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon_items.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon/idea_addon_items.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card/idea_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card/idea_card.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card/idea_card_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card/idea_card_details.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card/idea_card_image.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card/idea_card_image.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_introduction_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_introduction_form.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_step_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_step_form.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/explore/explore_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/explore/explore_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/description_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/description_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/hint_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/hint_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/image_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/image_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/title_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/form_fields/title_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_editor_navigator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_editor_navigator.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/controller/idea_editor_state.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/idea_editor_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/idea_editor_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/my_ideas_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/idea/presentation/my_ideas/my_ideas_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/data/user_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/data/user_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/domain/user_profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/domain/user_profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/avatar_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/avatar_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/bio_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/bio_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/full_name_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/components/full_name_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/controller/edit_user_profile_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/user/presentation/edit_user_profile/controller/edit_user_profile_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/l10n/l10n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/l10n.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/async_value_extension.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/async_value_extension.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/state_with_loading.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/state_with_loading.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/helpers/pump_app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/helpers/pump_app.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,38 +136,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;BundleExportedModule&quot;: &quot;eco_ideas&quot;,
-    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
-    &quot;Flutter.main_development.dart.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mfatyga/Documents/github_repos/eco_ideas&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "BundleExportedModule": "eco_ideas",
+    "Flutter.main.dart.executor": "Run",
+    "Flutter.main_development.dart.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "io.flutter.reload.alreadyRun": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/src/eco_ideas",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets" />
       <recent name="$PROJECT_DIR$/lib/features/auth/data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\src\eco_ideas\lib\l10n" />
       <recent name="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_card" />
       <recent name="$PROJECT_DIR$/lib/features/idea/presentation/common" />
       <recent name="$PROJECT_DIR$/lib/features/idea/presentation/common/idea_addon" />
       <recent name="$PROJECT_DIR$/lib/features/idea/presentation/idea_editor/components/idea_essentials_addon" />
-      <recent name="$PROJECT_DIR$/lib/utils" />
     </key>
   </component>
   <component name="RunManager" selected="Flutter.main_development.dart">

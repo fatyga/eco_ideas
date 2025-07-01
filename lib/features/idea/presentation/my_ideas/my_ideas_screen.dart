@@ -15,7 +15,7 @@ class MyIdeasScreen extends ConsumerWidget {
     // TODO(fatyga): keep provider alive once it was initialized
     final ideas = ref.watch(myIdeasControllerProvider);
 
-    ref.listen(myIdeasControllerProvider, (_, current) => print(current));
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -49,7 +49,7 @@ class MyIdeasScreen extends ConsumerWidget {
                         .map((idea) => Padding(
                               padding: context.paddings.verticalSmall,
                               child: IdeaCard(idea: idea),
-                            ))
+                            ),)
                         .toList(),
                   ),
                 ),

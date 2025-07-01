@@ -8,7 +8,7 @@ part 'idea_step.g.dart';
 class IdeaStep with _$IdeaStep {
   const factory IdeaStep({
     required int id,
-    @JsonKey(name: 'idea_id')required String ideaId,
+    required String ideaId,
     String? title,
     String? description,
     @Default([]) List<String> hints,

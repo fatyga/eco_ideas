@@ -71,7 +71,7 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
                 );
                 widget.onChanged(image);
 
-                if (mounted) {
+                if (context.mounted) {
                   context.pop();
                 }
               },
@@ -160,7 +160,7 @@ class _ImageFieldImagePickerState extends State<ImageFieldImagePicker> {
                       // TODO(fatyga): set appropriate color
                       Text(l10n.tapToPickImage,
                           style: theme.textTheme.labelLarge!
-                              .copyWith(color: theme.colorScheme.surfaceTint))
+                              .copyWith(color: theme.colorScheme.surfaceTint),),
                     ],
                   ),
                 ),

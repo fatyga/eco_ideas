@@ -1,4 +1,6 @@
 import 'package:eco_ideas/features/auth/auth.dart';
+import 'package:eco_ideas/l10n/arb/app_localizations.dart';
+
 import 'package:eco_ideas/l10n/l10n.dart';
 import 'package:eco_ideas/utils/loading_widget.dart';
 import 'package:eco_ideas/utils/spaces.dart';
@@ -35,7 +37,7 @@ class _PasswordResetScreenState
     if (isValid != null && isValid) {
       final email = _emailFieldController.text;
 
-      setLoading(true);
+      setLoading(value: true);
 
       try {
         await ref
@@ -56,7 +58,7 @@ class _PasswordResetScreenState
         }
       }
 
-      setLoading(false);
+      setLoading(value: false);
     }
   }
 
